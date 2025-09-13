@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projet 1 — UPC</title>
+  <style>
+    body{
+      font-family:Inter, system-ui, sans-serif;
+      line-height:1.6;
+      margin:0;
+      color:#0f172a;
+      /* ✅ Image de fond */
+      background: url("https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1600&auto=format&fit=crop") no-repeat center center fixed;
+      background-size:cover;
+    }
+    /* Overlay semi-transparent pour lisibilité */
+    .overlay{
+      background:rgba(248,250,252,0.9); /* blanc légèrement transparent */
+      min-height:100vh;
+    }
+    header,footer{background:#fff;padding:16px 24px;border-bottom:1px solid #e2e8f0}
+    header a,footer a{text-decoration:none;color:#0ea5a4;font-weight:600}
+    .container{max-width:1000px;margin:0 auto;padding:24px}
+    h1{font-size:2rem;margin-bottom:12px}
+    h2{margin-top:28px;font-size:1.4rem;color:#0ea5a4}
+    p{margin-top:12px;color:#334155}
+    .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+    iframe,embed,video,img{width:100%;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    .back{display:inline-block;margin-top:24px;padding:10px 16px;border-radius:10px;background:#0ea5a4;color:#fff;font-weight:700}
+    @media(max-width:700px){.media-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <a href="site_perso.html">⬅ Retour au site</a>
+    </header>
+
+    <div class="container">
+      <h1>Projet 1 : PFE </h1>
+      <p>
+        Description du projet.
+      </p>
+
+      <h2>Images du projet</h2>
+      <div class="media-grid">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop" alt="Vue CAO taxi spatial">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="Vue technique SolidWorks">
+      </div>
+
+      <h2>Vidéo de démonstration</h2>
+      <div class="media-grid">
+        <!-- Exemple avec YouTube -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="Vidéo démonstration"
+                frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <h2>Documentation PDF</h2>
+      <p>Appréciation des encadrants à la fin du stage de fin d'études : :</p>
+      <embed src="report_upc.pdf" type="application/pdf" width="100%" height="1000px" />
+
+      <h2>Documentation PDF</h2>
+      <p>Voici la présentation complète du projet en PDF :</p>
+      <embed src="reco_upc.pdf" type="application/pdf" width="100%" height="1000px" />
+
+      <a class="back" href="site_perso.html">⬅ Retour à l’accueil</a>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 AlexandreLabau — Projet académique / personnel</p>
+    </footer>
+  </div>
+</body>
+</html>

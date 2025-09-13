@@ -1,0 +1,1688 @@
+<!--
+Fichier: site_perso.html
+Description: Site web responsive one-page simple. Éditer le contenu (titre, texte, images) directement dans ce fichier.
+Instructions: Enregistrez ce fichier et ouvrez-le dans un navigateur pour prévisualiser.
+-->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon Site — Présentation</title>
+  <meta name="description" content="Site vitrine simple et moderne créé automatiquement">
+  <style>
+    /* Reset minimal */
+    *{box-sizing:border-box;margin:0;padding:0}
+
+html, body{
+  height:100%;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  line-height:1.5;
+  color:#0f172a;
+
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,        /* blanc */
+    #6FB4FF 40%,       /* bleu adouci */
+    #B79CFF 100%       /* violet adouci */
+  );
+  background-attachment: fixed;
+}
+
+
+
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    /* Layout */
+    .container{max-width:1300px;margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+    .brand{font-weight:700;font-size:1.125rem}
+    nav a{margin-left:18px;font-weight:600}
+
+    /* Hero */
+    /* === HERO ++ esthétique === */
+.hero {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #e6eef2;
+  border-radius: 18px;
+  padding: clamp(22px, 4vw, 36px);
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(14,165,164,.12), transparent 60%),
+    linear-gradient(180deg, #ffffff, #f8fbfc);
+  box-shadow: 0 18px 50px rgba(15,23,42,.08);
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+}
+
+/* Ruban d'intro + titre + sous-titre */
+.hero .eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(14,165,164,.12);
+  border:1px solid rgba(14,165,164,.25);
+  color:#0ea5a4; font-weight:700; font-size:.9rem;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.08;
+  margin-top: 10px;
+}
+.hero .sub {
+  color:#475569; margin-top:30px; max-width: 60ch;
+}
+
+/* Tags de compétences succincts */
+.hero .tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px }
+.hero .tag {
+  padding:6px 10px; border-radius:999px; font-weight:600;
+  border:1px solid #e6eef2; background:#fff; color:#0f172a;
+  box-shadow: 0 6px 16px rgba(15,23,42,.06);
+}
+
+/* CTA */
+.hero .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px }
+.hero .btn--ghost{ background:transparent; color:#0f172a; border:1px solid #e6eef2 }
+
+/* Bloc portrait (légère carte) */
+.hero figure {
+  background:#ffffffcc;
+  border:1px solid #e6eef2;
+  border-radius:16px;
+  padding:16px;
+  box-shadow: 0 12px 30px rgba(15,23,42,.10);
+  text-align:center;
+}
+.hero figcaption { font-size:.9rem; color:#64748b; margin-top:8px }
+
+/* Card blanche réutilisable */
+.section-card{
+  background:#fff;
+  border:1px solid #e6eef2;
+  border-radius:16px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  padding: clamp(18px, 3vw, 28px);
+  margin-top: 24px;   /* écart avec la section précédente */
+}
+
+
+/* Mini contact en bandeau (verre dépoli) */
+.contact-banner.contact--in-hero {
+  margin-top: 16px;
+  background: linear-gradient(180deg, rgba(14,165,164,.85), rgba(14,165,164,.75)),
+              url("bandeau_top.jpg") center/cover no-repeat;
+  box-shadow: 0 16px 40px rgba(14,165,164,.25);
+}
+.contact-banner .contact-card {
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(6px);
+}
+
+/* Accessibilité / interactions douces */
+.hero .btn, .hero .tag { transition: transform .15s ease, box-shadow .15s ease }
+.hero .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(14,165,164,.25) }
+.hero .tag:hover { transform: translateY(-2px) }
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero { grid-template-columns: 1fr; padding: 22px }
+}
+
+
+    /* Cards / Services */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .card{padding:18px;border-radius:12px;background:#fff;border:1px solid #e6eef2;box-shadow:0 6px 20px rgba(15,23,42,0.04)}
+    .card h3{margin-bottom:8px}
+    .card p{color:#475569;font-size:0.95rem}
+
+    /* Portfolio */
+    .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .portfolio-item{border-radius:10px;overflow:hidden;border:1px solid #eef4f6}
+    .portfolio-item figcaption{padding:10px;font-weight:600}
+
+    /* Footer & contact (form) */
+    footer{margin-top:32px;padding:22px 0;color:#475569;border-top:1px solid #eef4f6}
+    form{display:grid;gap:12px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #e6eef2}
+    textarea{min-height:120px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .grid,.portfolio{grid-template-columns:repeat(2,1fr)}
+      header{flex-wrap:wrap}
+    }
+    @media (max-width:640px){
+      .hero{grid-template-columns:1fr}
+      .grid,.portfolio{grid-template-columns:1fr}
+      nav{width:100%;margin-top:12px}
+      .brand{font-size:1rem}
+    }
+
+    /* Subtle micro-animations */
+    .card:hover{transform:translateY(-6px);transition:transform .25s ease}
+    .btn{transition:transform .15s ease}
+    .btn:active{transform:scale(.98)}
+
+    /* Image ronde */
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #0ea5a4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* grille des compétences (liste non cliquable) */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    /* section compétences cliquables */
+    .skills-section {
+      --card-bg: #ffffff;
+      --card-shadow: 0 6px 18px rgba(0,0,0,.08);
+      --card-shadow-hover: 0 16px 40px rgba(0,0,0,.16);
+      --card-radius: 16px;
+      --lift: -6px;
+    }
+
+    /* carte cliquable */
+    .skill-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      outline: none;
+    }
+    .skill-card:hover,
+    .skill-card:focus-visible {
+      transform: translateY(var(--lift)) scale(1.03);
+      box-shadow: var(--card-shadow-hover);
+      filter: saturate(1.05);
+    }
+    .skill-card:focus-visible {
+      box-shadow: 0 0 0 3px rgba(59,130,246,.35), var(--card-shadow-hover);
+    }
+    .skill-card img {
+      max-width: 80px;
+      max-height: 64px;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+/* ME Program tabs */
+.me-tabs { display:flex; gap:8px; flex-wrap:wrap }
+.me-tab {
+  padding:8px 12px; border:1px solid #e6eef2; background:#fff; border-radius:10px;
+  font-weight:600; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow:0 4px 12px rgba(15,23,42,.04);
+}
+.me-tab:hover { transform:translateY(-2px) }
+.me-tab.is-active, .me-tab:focus-visible {
+  outline:none; background:#0ea5a4; color:#fff; box-shadow:0 8px 22px rgba(14,165,164,.35)
+}
+
+.me-panels { margin-top:14px }
+.me-panel[hidden] { display:none }
+.me-panel { background:#fff; border:1px solid #e6eef2; border-radius:14px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.06) }
+.me-panel[hidden]{display:none}
+
+.me-list { list-style:none; display:grid; gap:8px; padding:0 }
+.me-list a { text-decoration:underline; text-underline-offset:2px }
+.me-subhead { margin-top:8px; font-weight:700; color:#0f172a }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skill-card { transition: none; }
+      .skill-card:hover, .skill-card:focus-visible { transform: none; }
+    }
+
+    /* ====== SECTION CONTACT (bandeau + overlay) ====== */
+    /* NOTE: remplace l'image ci-dessous par celle de ton bandeau du haut de page,
+       ou commente la ligne "background-image" et garde juste une couleur de fond. */
+    .contact-banner {
+      position: relative;
+      isolation: isolate;
+      color: #ffffff;                 /* texte lisible sur fond foncé */
+      border-radius: 12px;
+      margin-top: 16px;
+      padding: 24px;
+      background-color: #0ea5a4;     /* fallback si l'image ne charge pas */
+      background-image: url("bandeau_top.jpg"); /* <= mets ici ton image de bandeau déjà utilisée */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+    .contact-banner::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.45);  /* overlay noir 45% pour renforcer le contraste */
+      z-index:-1;                    /* derrière le contenu */
+    }
+
+    /* Grille interne du contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-top: 14px;
+    }
+    .contact-card{
+      padding:18px;border-radius:12px;
+      background: rgba(255,255,255,0.9); /* cartes blanches semi-transparentes */
+      color:#0f172a;
+      border:1px solid rgba(230,238,242,0.8);
+      box-shadow:0 6px 20px rgba(15,23,42,0.12)
+    }
+    .contact-list{list-style:none;display:grid;gap:14px;margin-top:8px}
+    .contact-item{display:flex;align-items:flex-start;gap:12px}
+    .contact-item svg{flex:0 0 auto;width:20px;height:20px;margin-top:2px}
+    .muted{color:#e2e8f0}
+
+    /* Contact placé sous la photo dans le hero */
+    .contact--in-hero { margin-top: 16px; }
+    .contact--in-hero .contact-grid { grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 641px) {
+      .contact--in-hero .contact-card {
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto; /* centre sous la photo */
+      }
+    }
+    @media (max-width:900px){
+      .contact-grid{grid-template-columns: 1fr}
+    }
+
+/* === Décors latéraux (quinconce logo KTH) === */
+:root{
+  --content-max: 1300px;                   /* largeur max du contenu */
+  --side-size: clamp(90px, 12vw, 200px);   /* taille des logos */
+  --offset: 0.75;                          /* distance par rapport au contenu */
+}
+
+.side-decor{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* derrière le contenu */
+}
+
+.side-decor img{
+  position: absolute;
+  width: var(--side-size);
+  height: auto;
+  opacity: .7;
+  filter: drop-shadow(0 8px 22px rgba(15,23,42,.18));
+  transform: translateY(-50%);
+}
+
+/* Placement horizontal */
+.side-decor .left  { left:  calc(50vw - var(--content-max)/2 - var(--side-size)*var(--offset)); }
+.side-decor .right { right: calc(50vw - var(--content-max)/2 - var(--side-size)*var(--offset)); }
+
+/* Placement vertical en quinconce */
+.side-decor .l1, .side-decor .r1 { top: 12%; }
+.side-decor .l2, .side-decor .r2 { top: 28%; }
+.side-decor .l3, .side-decor .r3 { top: 44%; }
+.side-decor .l4, .side-decor .r4 { top: 60%; }
+.side-decor .l5, .side-decor .r5 { top: 76%; }
+.side-decor .l6, .side-decor .r6 { top: 92%; }
+
+/* Quinconce : décalage supplémentaire */
+.side-decor .left.l2,
+.side-decor .left.l4,
+.side-decor .left.l6 {
+  left: calc(50vw - var(--content-max)/2 - var(--side-size)*calc(var(--offset) + 0.7));
+}
+.side-decor .right.r1,
+.side-decor .right.r3,
+.side-decor .right.r5 {
+  right: calc(50vw - var(--content-max)/2 - var(--side-size)*calc(var(--offset) + 0.7));
+}
+
+/* Légères rotations pour le naturel */
+.side-decor .l1 { transform: translateY(-50%) rotate(-2deg); }
+.side-decor .l3 { transform: translateY(-50%) rotate( 1deg); }
+.side-decor .l5 { transform: translateY(-50%) rotate(-1deg); }
+.side-decor .r2 { transform: translateY(-50%) rotate( 2deg); }
+.side-decor .r4 { transform: translateY(-50%) rotate(-1.5deg); }
+.side-decor .r6 { transform: translateY(-50%) rotate( 1deg); }
+
+/* Contenu au-dessus */
+.container{ position: relative; z-index: 1; }
+
+/* Masquer sur mobile */
+@media (max-width: 900px){
+  .side-decor{ display:none; }
+}
+
+
+  </style>
+</head>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  // On prend tous les groupes d’onglets éventuels
+  document.querySelectorAll('.me-tabs').forEach(function(tabsRoot){
+    const tabs   = tabsRoot.querySelectorAll('.me-tab');
+    // Les panels sont dans le sibling .me-panels le plus proche
+    const panels = tabsRoot.nextElementSibling?.querySelectorAll('.me-panel') || [];
+
+    function showPanel(targetId){
+      panels.forEach(p => p.hidden = (p.id !== targetId));
+      tabs.forEach(t => {
+        const active = t.getAttribute('aria-controls') === targetId;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+
+    // Init (si un panel est déjà “is-active”, on respecte)
+    const initiallyActive = tabsRoot.parentElement.querySelector('.me-panel.is-active')?.id
+                         || tabs[0]?.getAttribute('aria-controls');
+    if(initiallyActive){ showPanel(initiallyActive); }
+
+    // Clicks
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('aria-controls');
+        if(targetId) showPanel(targetId);
+      });
+    });
+  });
+});
+</script>
+
+
+<body>
+<!-- Décors latéraux (logos KTH en quinconce) -->
+<div class="side-decor" aria-hidden="true">
+  <!-- GAUCHE -->
+  <img class="left l1" src="logo_kth.png" alt="Logo KTH">
+  <img class="left l2" src="logo_ense3.png" alt="Logo KTH">
+  <img class="left l3" src="logo_upc.png" alt="Logo KTH">
+  <img class="left l4" src="logo_esa.png" alt="Logo KTH">
+  <img class="left l5" src="logo_kth.png" alt="Logo KTH">
+  <img class="left l6" src="logo_ense3.png" alt="Logo KTH">
+
+  <!-- DROITE -->
+  <img class="right r1" src="logo_kth.png" alt="Logo KTH">
+  <img class="right r2" src="logo_kth.png" alt="Logo KTH">
+  <img class="right r3" src="logo_kth.png" alt="Logo KTH">
+  <img class="right r4" src="logo_kth.png" alt="Logo KTH">
+  <img class="right r5" src="logo_kth.png" alt="Logo KTH">
+  <img class="right r6" src="logo_kth.png" alt="Logo KTH">
+</div>
+
+
+
+  <div class="container">
+    <header>
+      <div class="brand">AlexandreLabau<span style="color:#0ea5a4">.</span></div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+<section class="hero" id="home" aria-labelledby="hero-title">
+  <div>
+    <span class="eyebrow" aria-label="Localisation et disponibilité">EU & FR • Disponible</span>
+    <h1 id="hero-title"><strong>Alexandre Labau</strong></h1>
+    <p class="sub">
+      Holder of a double master’s degree in Mechanical and Energy Engineering from KTH Royal Institute of Technology in Stockholm and Grenoble INP – ENSE3. I aspire to apply my skills within an international company in the field of nuclear energy production.
+    </p>
+
+    <div class="cta">
+      <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV">Télécharger mon CV</a>
+    </div>
+  </div>
+
+  <figure>
+    <img class="profile-pic" src="photo_ESTEC.jpg" alt="Master's thesis defense at the European Space Research and Technology Center" />
+    <figcaption>
+      Master's thesis defense at the European Space Research and Technology Center
+    </figcaption>
+
+    <!-- ===== CONTACT (infos) SOUS la photo ===== -->
+    <section id="contact" class="contact-banner contact--in-hero" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-card" aria-labelledby="contact-infos-title">
+          <h3 id="contact-infos-title"></h3>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+                <path d="M22 8l-10 6L2 8"/>
+              </svg>
+              <div><a href="mailto:alexandrelabau@outlook.fr">alexandrelabau@outlook.fr</a></div>
+            </li>
+            <li class="contact-item">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zm7.5 0h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.13V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.45V23h-4V8.5z"/>
+              </svg>
+              <div><a href="https://www.linkedin.com/in/alexandre-labau/" target="_blank" rel="noopener">linkedin.com/in/alexandre-labau</a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ===== FIN CONTACT ===== -->
+  </figure>
+</section>
+
+     
+      </section>
+
+      <section id="Ma formation" class="section-card" aria-labelledby="formation-title">
+  	<h2 id="formation-title" style="margin-bottom:8px">Ma formation</h2>
+
+  	<ul style="margin-top:12px;color:#475569;list-style-type:disc; padding-left:20px;">
+   
+        
+
+        <ul style="margin-top:12px;color:#475569;list-style-type:disc; padding-left:20px;">
+          <li>
+            <a href="https://www.kth.se/en/studies/exchange/general/double-degree-1.619496" target="_blank" style="color:blue;">
+              Programme double diplôme – KTH Royal Institute of Technology
+            </a>
+          </li>
+	<p class="muted" style="margin-top:8px; color:#475569">  
+          7ème en Ingénierie Mécanique et Énergétique au <a href="https://www.shanghairanking.com/rankings/gras/2024/RS0201" target="_blank" style="color:blue;"> Classement Shanghai Ranking 2024
+          </a>
+        </p>
+          <li>
+            <a href="https://ense3.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ense3-filiere-mecanique-et-energetique-me#page-programme" target="_blank" style="color:blue;">
+              Ingénieur Grenoble INP – ENSE3, filière Mécanique et Énergétique
+            </a>
+          </li>
+          <li>
+            <a href="https://www.esa.int/" target="_blank" style="color:blue;">
+              Agence Spatiale Européenne (ESA)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.upc.edu/en" target="_blank" style="color:blue;">
+              Universitat Politècnica de Catalunya (UPC)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.cat.com/en_US/products/new/power-systems.html" target="_blank" style="color:blue;">
+              Caterpillar – Power Systems
+            </a>
+          </li>
+        </ul>
+	</section>
+
+
+<section id="me-program" class="skills-section" style="margin-top:28px">
+  <!-- TITRES (bilingue, on masque celui qui n'est pas sélectionné) -->
+  <h2 class="me-title" data-lang="fr">Grenoble-INP ENSE3 - Mécanique & Énergétique — Catalogue des enseignements</h2>
+  <h2 class="me-title" data-lang="en" hidden>Grenoble-INP ENSE3 - Mechanical & Energy Engineering — Course Catalog</h2>
+
+  <p class="me-sub" data-lang="fr" style="color:#000000;margin-top:8px">
+    Choisissez la langue puis le semestre pour parcourir les pages officielles des cours.
+  </p>
+  <p class="me-sub" data-lang="en" style="color:#000000;margin-top:8px" hidden>
+    Pick a language, then a semester to browse the official course pages.
+  </p>
+
+  <!-- Onglets LANGUE -->
+  <div class="me-lang-tabs" role="tablist" aria-label="Langue / Language" style="margin-top:12px">
+    <button class="me-lang is-active" role="tab" aria-selected="true" aria-controls="lang-fr-panel" id="tab-fr">Français</button>
+    <button class="me-lang" role="tab" aria-selected="false" aria-controls="lang-en-panel" id="tab-en">English</button>
+  </div>
+
+  <!-- PANNEAU FR --------------------------------------------------------->
+  <div id="lang-fr-panel" class="me-lang-panel" role="tabpanel" aria-labelledby="tab-fr" style="margin-top:12px">
+    <!-- Onglets semestres -->
+    <div class="me-tabs" role="tablist" aria-label="Semestres ME" style="margin-top:8px">
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s5" id="tab-fr-s5">S5</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s6" id="tab-fr-s6">S6</button>
+      <button class="me-tab is-active" role="tab" aria-selected="true" aria-controls="me-fr-s7" id="tab-fr-s7">S7</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s8" id="tab-fr-s8">S8</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s9" id="tab-fr-s9">S9</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s10" id="tab-fr-s10">S10</button>
+    </div>
+
+    <div class="me-panels" style="margin-top:8px">
+      <!-- S5 FR -->
+      <div class="me-panel" id="me-fr-s5" role="tabpanel" aria-labelledby="tab-fr-s5" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/automatique-et-commande-des-syst-egrave-mes-3eus1aut" target="_blank" rel="noopener">Automatique et commande des systèmes (3EUS1AUT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/energie-eacute-lectrique-3eus1ene" target="_blank" rel="noopener">Énergie électrique (3EUS1ENE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/math-eacute-matiques-pour-l-ing-eacute-nieur-3eus1mat" target="_blank" rel="noopener">Mathématiques pour l’ingénieur (3EUS1MAT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/m-eacute-canique-des-solides-d-eacute-formables-3eus1msd" target="_blank" rel="noopener">Mécanique des solides déformables (3EUS1MSD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/syst-egrave-mes-m-eacute-caniques-3eus1smc" target="_blank" rel="noopener">Systèmes mécaniques (3EUS1SMC)</a></li>  
+        </ul>
+      </div>
+
+      <!-- S6 FR -->
+      <div class="me-panel" id="me-fr-s6" role="tabpanel" aria-labelledby="tab-fr-s6" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/outils-informatiques-et-num-eacute-riques-pour-l-ing-eacute-nieur-3eus2oin" target="_blank" rel="noopener">Outils informatiques & numériques pour l’ingénieur (3EUS2OIN)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/capteurs-et-traitement-de-l-information-3eus2cti" target="_blank" rel="noopener">Capteurs & traitement de l’information (3EUS2CTI) — (page récapitulative)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/thermo-hydraulique-monophasique-3eus2thm" target="_blank" rel="noopener">Thermo-hydraulique monophasique (3EUS2THM) — (page récapitulative)</a></li>
+        </ul>
+      </div>
+
+      <!-- S7 FR -->
+      <div class="me-panel is-active" id="me-fr-s7" role="tabpanel" aria-labelledby="tab-fr-s7">
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/conception-m-eacute-canique-4eus3cme" target="_blank" rel="noopener">Conception mécanique (4EUS3CME)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/hydraulique-des-eacute-coulements-en-charge-me-hoe-4eus3hec" target="_blank" rel="noopener">Hydraulique des écoulements en charge (4EUS3HEC)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-et-analyse-d-eacute-coulements-1-ien-me-4eus3ma1" target="_blank" rel="noopener">Modélisation & analyse d’écoulements 1 (4EUS3MA1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-en-m-eacute-canique-ien-me-4eus3mem" target="_blank" rel="noopener">Modélisation en mécanique (4EUS3MEM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/simulation-pour-les-fluides-et-la-thermique-1-4eus3sf1" target="_blank" rel="noopener">Simulation pour les fluides & la thermique 1 (4EUS3SF1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/strategie-dentreprise-souverainete-et-transitions-4em7ses4" target="_blank" rel="noopener">Stratégie d’entreprise, souveraineté & transitions (4EM7SES4)</a></li>
+        </ul>
+      </div>
+
+      <!-- S8 FR -->
+      <div class="me-panel" id="me-fr-s8" role="tabpanel" aria-labelledby="tab-fr-s8" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/heat-and-mass-transfers-ien-me-sem-m1-sgb-4eus4hmt-1" target="_blank" rel="noopener">Transferts de chaleur & de masse (4EUS4HMT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-et-analyse-d-eacute-coulements-2-ien-me-4eus4ma2" target="_blank" rel="noopener">Modélisation & analyse d’écoulements 2 (4EUS4MA2) — (voir récapitulatif S8)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/structure-et-mat-eacute-riaux-ien-me-4eus4stm" target="_blank" rel="noopener">Structure & matériaux (4EUS4STM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/simulation-pour-les-fluides-et-la-thermique-2-4eus4sft" target="_blank" rel="noopener">Simulation pour les fluides & la thermique 2 (4EUS4SFT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/team-project-projet-d-ing-eacute-nierie-toutes-fili-egrave-res-m1-sgb-m1-hce-4eus4pro" target="_blank" rel="noopener">Projet d’ingénierie / Team Project (4EUS4PRO)</a></li>
+        </ul>
+      </div>
+
+      <!-- S9 FR -->
+      <div class="me-panel" id="me-fr-s9" role="tabpanel" aria-labelledby="tab-fr-s9" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-avanc-eacute-e-et-durabilit-eacute-des-structures-ien-me-gee-5eus5mad" target="_blank" rel="noopener">Modélisation avancée & durabilité des structures (5EUS5MAD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/outils-de-simulation-avanc-eacute-s-pour-la-m-eacute-canique-5eus5osa" target="_blank" rel="noopener">Outils de simulation avancés (5EUS5OSA)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/aerodynamics-and-combustion-me-m2-fme-5eus5aie-1" target="_blank" rel="noopener">Aérodynamique & combustion (5EUS5AIE)</a></li>
+         
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/syst-egrave-mes-hydrauliques-me-gee-5eus5syh" target="_blank" rel="noopener">Systèmes hydrauliques (5EUS5SYH)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/advanced-heat-transfer-and-energetics-ien-me-sem-ise-m2-fme-m2-entech-5eu5adht" target="_blank" rel="noopener">Transferts de chaleur avancés & énergétique (5EU5ADHT)</a></li>
+        </ul>
+      </div>
+
+      <!-- S10 FR -->
+      <div class="me-panel" id="me-fr-s10" role="tabpanel" aria-labelledby="tab-fr-s10" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/projet-de-fin-d-eacute-tudes-5eus6pfe" target="_blank" rel="noopener">Projet de fin d’études / Stage (5EUS6PFE)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANNEAU EN --------------------------------------------------------->
+  <div id="lang-en-panel" class="me-lang-panel" role="tabpanel" aria-labelledby="tab-en" hidden style="margin-top:12px">
+    <!-- Semester tabs -->
+    <div class="me-tabs" role="tablist" aria-label="ME semesters (EN)" style="margin-top:8px">
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s5" id="tab-en-s5">S5</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s6" id="tab-en-s6">S6</button>
+      <button class="me-tab is-active" role="tab" aria-selected="true" aria-controls="me-en-s7" id="tab-en-s7">S7</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s8" id="tab-en-s8">S8</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s9" id="tab-en-s9">S9</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s10" id="tab-en-s10">S10</button>
+    </div>
+
+    <div class="me-panels" style="margin-top:8px">
+      <!-- S5 EN -->
+      <div class="me-panel" id="me-en-s5" role="tabpanel" aria-labelledby="tab-en-s5" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/control-command-of-systems-3eus1aut" target="_blank" rel="noopener">Control Command of Systems (3EUS1AUT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/electrical-engineering-3eus1ene" target="_blank" rel="noopener">Electrical Engineering (3EUS1ENE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mathematics-for-engineers-3eus1mat" target="_blank" rel="noopener">Mathematics for Engineers (3EUS1MAT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/solid-mechanics-3eus1msd" target="_blank" rel="noopener">Solid Mechanics (3EUS1MSD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mechanical-systems-3eus1smc" target="_blank" rel="noopener">Mechanical Systems (3EUS1SMC)</a></li>
+        </ul>
+      </div>
+
+      <!-- S6 EN -->
+      <div class="me-panel" id="me-en-s6" role="tabpanel" aria-labelledby="tab-en-s6" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/computer-and-mathematical-tools-for-engineers-3eus2oin" target="_blank" rel="noopener">Computer & Mathematical Tools for Engineers (3EUS2OIN)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/sensors-and-signal-processing-3eus2cti" target="_blank" rel="noopener">Sensors & Signal Processing (3EUS2CTI) — (overview)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/monophasic-hydraulic-and-heat-transferts-3eus2thm" target="_blank" rel="noopener">Monophasic Hydraulic & Heat Transfers (3EUS2THM)</a></li>
+        </ul>
+      </div>
+
+      <!-- S7 EN -->
+      <div class="me-panel is-active" id="me-en-s7" role="tabpanel" aria-labelledby="tab-en-s7">
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mechanical-design-4eus3cme" target="_blank" rel="noopener">Mechanical design (4EUS3CME)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/pressurized-flow-hydraulics-4eus3hec" target="_blank" rel="noopener">Pressurized Flow Hydraulics (4EUS3HEC)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/flow-analysis-and-modelling-1-4eus3ma1" target="_blank" rel="noopener">Flow analysis & modelling 1 (4EUS3MA1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mechanical-modelling-4eus3mem" target="_blank" rel="noopener">Mechanical modelling (4EUS3MEM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/simulations-for-flows-and-thermal-issues-1-4eus3sf1" target="_blank" rel="noopener">Simulations for flows & thermal issues 1 (4EUS3SF1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/corporate-strategy-energy-transition-and-sovereignty-4em7ses4" target="_blank" rel="noopener">Corporate Strategy, Energy Transition & Sovereignty (4EM7SES4)</a></li>
+        </ul>
+      </div>
+
+      <!-- S8 EN -->
+      <div class="me-panel" id="me-en-s8" role="tabpanel" aria-labelledby="tab-en-s8" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/heat-and-mass-transfers-4eus4hmt" target="_blank" rel="noopener">Heat & Mass Transfers (4EUS4HMT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/modelling-and-analysis-of-flows-2-ien-me-4eus4ma2" target="_blank" rel="noopener">Modelling & analysis of flows 2 (4EUS4MA2)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/structures-and-materials-ien-me-4eus4stm" target="_blank" rel="noopener">Structures & materials (4EUS4STM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/simulations-for-flows-and-thermal-issues-2-4eus4sft" target="_blank" rel="noopener">Simulations for flows & thermal issues 2 (4EUS4SFT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/team-project-4eus4pro" target="_blank" rel="noopener">Team Project (4EUS4PRO)</a></li>
+        </ul>
+      </div>
+
+      <!-- S9 EN -->
+      <div class="me-panel" id="me-en-s9" role="tabpanel" aria-labelledby="tab-en-s9" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-modelling-and-structure-durability-5eus5mad" target="_blank" rel="noopener">Advanced Modelling & Structure Durability (5EUS5MAD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-simulation-tools-for-mechanics-5eus5osa" target="_blank" rel="noopener">Advanced Simulation Tools for Mechanics & Environment (5EUS5OSA)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/aerodynamics-and-combustion-5eus5aie" target="_blank" rel="noopener">Aerodynamics & Combustion (5EUS5AIE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/hydraulic-systems-5eus5syh" target="_blank" rel="noopener">Hydraulic Systems (5EUS5SYH) — (overview)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-heat-transfer-and-energetics-ien-me-sem-ise-m2-fme-m2-entech-5eu5adht" target="_blank" rel="noopener">Advanced Heat Transfer & Energetics (5EU5ADHT)</a></li>
+        </ul>
+      </div>
+
+      <!-- S10 EN -->
+      <div class="me-panel" id="me-en-s10" role="tabpanel" aria-labelledby="tab-en-s10" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/5eus6pfe" target="_blank" rel="noopener">Final Project – Internship / Master Thesis (5EUS6PFE)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Styles rapides (autonomes) -->
+  <style>
+    .me-lang, .me-tab{
+      display:inline-block;padding:8px 12px;margin-right:6px;border-radius:10px;
+      border:1px solid #e6eef2;background:#fff;font-weight:600;cursor:pointer
+    }
+    .me-lang.is-active, .me-tab.is-active{background:#0ea5a4;color:#fff;border-color:#0ea5a4}
+    .me-list{list-style:disc;padding-left:20px}
+    .me-list li{margin:6px 0}
+    .me-subhead{margin-top:10px;color:#64748b;font-weight:700;list-style:none}
+    /* Masquages accessibles */
+    .me-panel[hidden]{display:none}
+    .me-lang-panel[hidden]{display:none}
+    .me-title[hidden], .me-sub[hidden]{display:none}
+  </style>
+
+  <!-- Script de pilotage langue/semestre -->
+  <script>
+    (function () {
+      const langTabs = document.querySelectorAll('#me-program .me-lang');
+      const langPanels = document.querySelectorAll('#me-program .me-lang-panel');
+      const titles = document.querySelectorAll('#me-program .me-title');
+      const subs = document.querySelectorAll('#me-program .me-sub');
+
+      function showLang(panelId){
+        // Activer l’onglet langue
+        langTabs.forEach(b=>{
+          const on = b.getAttribute('aria-controls') === panelId;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on);
+        });
+        // Afficher le bon panneau langue
+        langPanels.forEach(p=>p.hidden = p.id !== panelId);
+        // Basculer les titres/descriptions
+        const isFr = panelId === 'lang-fr-panel';
+        titles.forEach(el => el.hidden = (el.dataset.lang !== (isFr?'fr':'en')));
+        subs.forEach(el => el.hidden = (el.dataset.lang !== (isFr?'fr':'en')));
+      }
+
+      // Écouteurs langue
+      langTabs.forEach(b=>{
+        b.addEventListener('click', ()=> showLang(b.getAttribute('aria-controls')));
+      });
+
+      // Gestion des onglets de semestre (déléguée dans chaque panneau langue)
+      document.querySelectorAll('#me-program .me-lang-panel').forEach(panel=>{
+        const tablist = panel.querySelector('.me-tabs');
+        if(!tablist) return;
+        tablist.addEventListener('click', e=>{
+          const btn = e.target.closest('.me-tab'); if(!btn) return;
+          const panelId = btn.getAttribute('aria-controls');
+          // active bouton
+          tablist.querySelectorAll('.me-tab').forEach(t=>{
+            const on = t === btn; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', on);
+          });
+          // toggle panneaux
+          panel.querySelectorAll('.me-panel').forEach(p=>p.hidden = (p.id !== panelId));
+        });
+      });
+
+      // Langue par défaut = FR
+      showLang('lang-fr-panel');
+    })();
+  </script>
+</section>
+
+
+
+<!-- ======= Software Skills (grouped & unified) ======= -->
+<section id="software-skills" class="skills-section" style="margin-top:28px">
+  <h2>Software Skills</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Here are the main tools I use, grouped by category.
+  </p>
+
+  <!-- CFD -->
+  <div class="skills-group">
+    <h3 class="skills-heading">CFD</h3>
+    <div class="skills-grid">
+      <a class="skill-card" href="https://www.ansys.com/products/fluids/ansys-fluent" target="_blank" rel="noopener" aria-label="Ansys Fluent">
+        <img src="logo_fluent.png" alt="Ansys Fluent"><span class="skill-label">Ansys Fluent</span>
+      </a>
+      <a class="skill-card" href="https://www.openfoam.com/" target="_blank" rel="noopener" aria-label="OpenFOAM">
+        <img src="logo_openfoam.png" alt="OpenFOAM"><span class="skill-label">OpenFOAM</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CAD & FEM -->
+  <div class="skills-group">
+    <h3 class="skills-heading">CAD & FEM</h3>
+    <div class="skills-grid">
+      <a class="skill-card" href="https://www.solidworks.com/" target="_blank" rel="noopener" aria-label="SOLIDWORKS">
+        <img src="logo_solidworks.png" alt="SOLIDWORKS"><span class="skill-label">SOLIDWORKS</span>
+      </a>
+      <a class="skill-card" href="https://www.3ds.com/fr/products/catia" target="_blank" rel="noopener" aria-label="CATIA">
+        <img src="logo_catia.png" alt="CATIA"><span class="skill-label">CATIA</span>
+      </a>
+	<a class="skill-card" href="https://www.3ds.com/products/simulia/abaqus" target="_blank" rel="noopener" aria-label="Abaqus">
+        <img src="logo_abaqus.png" alt="Abaqus"><span class="skill-label">Abaqus</span>
+      </a>
+      <a class="skill-card" href="https://www.autodesk.com/products/autocad/overview" target="_blank" rel="noopener" aria-label="AutoCAD">
+        <img src="logo_autocad.png" alt="AutoCAD"><span class="skill-label">AutoCAD</span>
+      </a>
+      <a class="skill-card" href="https://www.ansys.com/products/structures/ansys-mechanical" target="_blank" rel="noopener" aria-label="Ansys Mechanical">
+        <img src="logo_ansys.png" alt="Ansys Mechanical"><span class="skill-label">Ansys Mechanical</span>
+      </a>
+      <a class="skill-card" href="https://www.ansys.com/products/ansys-workbench" target="_blank" rel="noopener" aria-label="Ansys Workbench">
+        <img src="logo_ansys_workbench.png" alt="Ansys Workbench"><span class="skill-label">Ansys Workbench</span>
+      </a>
+      <!-- No official product page: keep static (no hover animation) -->
+      <div class="skill-tile" aria-label="DesignModeler">
+        <img src="logo_ansys_designmodeler.jpg" alt="DesignModeler"><span class="skill-label">DesignModeler</span>
+      </div>
+      <a class="skill-card" href="https://www.blender.org/" target="_blank" rel="noopener" aria-label="Blender">
+        <img src="logo_blender.png" alt="Blender"><span class="skill-label">Blender</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Programming languages & multiphysics modeling -->
+  <div class="skills-group">
+    <h3 class="skills-heading">Programming languages & multiphysics modeling</h3>
+    <div class="skills-grid">
+      <a class="skill-card" href="https://www.python.org/" target="_blank" rel="noopener" aria-label="Python">
+        <img src="logo_python.png" alt="Python"><span class="skill-label">Python</span>
+      </a>
+      <a class="skill-card" href="https://fr.mathworks.com/products/simulink.html" target="_blank" rel="noopener" aria-label="Simulink / MATLAB">
+        <img src="logo_matlab.png" alt="Simulink / MATLAB"><span class="skill-label">Simulink / MATLAB</span>
+      </a>
+      <a class="skill-card" href="https://jupyter.org/" target="_blank" rel="noopener" aria-label="JupyterLab">
+        <img src="logo_jupyter.png" alt="JupyterLab"><span class="skill-label">JupyterLab</span>
+      </a>
+      <a class="skill-card" href="https://www.linux.org/" target="_blank" rel="noopener" aria-label="Linux">
+        <img src="logo_linux.png" alt="Linux"><span class="skill-label">Linux</span>
+      </a>
+      <!-- Static tiles (no single official page) -->
+      <div class="skill-tile" aria-label="C">
+        <img src="logo_c.png" alt="C"><span class="skill-label">C</span>
+      </div>
+      <div class="skill-tile" aria-label="C++">
+        <img src="logo_ccc.png" alt="C++"><span class="skill-label">C++</span>
+      </div>
+      <div class="skill-tile" aria-label="HTML">
+        <img src="logo_html.png" alt="HTML"><span class="skill-label">HTML</span>
+      </div>
+      <div class="skill-tile" aria-label="SQL">
+        <img src="logo_sql.png" alt="SQL"><span class="skill-label">SQL</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Office -->
+  <div class="skills-group">
+    <h3 class="skills-heading">Office</h3>
+    <div class="skills-grid">
+	<a class="skill-card" href="https://www.latex-project.org/" target="_blank" rel="noopener" aria-label="LaTeX">
+        <img src="logo_latex.png" alt="LaTeX"><span class="skill-label">LaTeX</span>
+      </a>
+      <a class="skill-card" href="https://www.microsoft.com/microsoft-365/excel" target="_blank" rel="noopener" aria-label="Excel">
+        <img src="logo_excel.png" alt="Excel"><span class="skill-label">Excel</span>
+      </a>
+      <a class="skill-card" href="https://www.microsoft.com/microsoft-365/word" target="_blank" rel="noopener" aria-label="Word">
+        <img src="logo_word.png" alt="Word"><span class="skill-label">Word</span>
+      </a>
+      <a class="skill-card" href="https://www.microsoft.com/microsoft-365/powerpoint" target="_blank" rel="noopener" aria-label="PowerPoint">
+        <img src="logo_powerpoint.png" alt="PowerPoint"><span class="skill-label">PowerPoint</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Add-on styles to enforce labels under logos + max 4 per row -->
+  <style>
+    /* Headings */
+    #software-skills .skills-heading{
+      margin:18px 0 8px; font-size:1.05rem; color:#0f172a;
+    }
+
+    /* Grid: max 4 per row, responsive down to 1 */
+    #software-skills .skills-grid{
+      display:grid; gap:20px; align-items:stretch;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (max-width: 1024px){
+      #software-skills .skills-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px){
+      #software-skills .skills-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 440px){
+      #software-skills .skills-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Make cards vertical so the name sits just under the logo */
+    #software-skills .skill-card{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:14px;
+    }
+    #software-skills .skill-tile{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:14px; background:#fff; border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08); border:1px solid #e6eef2;
+    }
+
+    /* Logo sizing + centering */
+    #software-skills .skill-card img,
+    #software-skills .skill-tile img{
+      max-width:80px; max-height:64px; width:auto; height:auto; display:block; margin:0 auto;
+    }
+
+    /* Label directly under the logo */
+    #software-skills .skill-label{
+      display:block; margin-top:8px; font-weight:600; font-size:0.9rem; color:#0f172a; text-align:center;
+    }
+  </style>
+</section>
+
+<!-- ====== Section Recommandations (logos ajustables + largeur pleine) ====== -->
+<section id="recommandations" class="section-card" aria-labelledby="reco-title" style="--reco-logo-size:28px;">
+  <h2 id="reco-title">Recommandations</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Téléchargez mes lettres de recommandation ou lisez-les en ligne.
+  </p>
+
+  <!-- Liens de visualisation -->
+  <div class="reco-grid" style="margin-top:12px">
+
+
+    <a class="reco-card" href="appreciation_pfe.pdf">
+      <img class="reco-logo" src="logo_esa.png" alt="ESA">
+      <span>Appréciation : 9 mois à l'Agence Spatiale Européenne</span>
+    </a>
+	
+<a class="reco-card" href="reco_pfe.pdf">
+      <img class="reco-logo" src="logo_esa.png" alt="ESA">
+      <span>Lettre de recommandation : Agence Spatiale Européenne</span>
+    </a>
+
+    <a class="reco-card" href="reco_upc.pdf">
+      <img class="reco-logo" src="logo_upc.png" alt="UPC">
+      <span>Lettre de recommandation : Université Polytechnique de Catalogne</span>
+    </a>
+
+    <a class="reco-card" href="reco_kth.pdf">
+      <img class="reco-logo" src="logo_kth.png" alt="KTH">
+      <span>Lettre de recommandation : KTH Ecole Royale Polytechnique de Stockholm</span>
+    </a>
+
+	<a class="reco-card" href="reco_ense3.pdf">
+      <img class="reco-logo" src="logo_ense3.png" alt="KTH">
+      <span>Lettre de recommandation : Métais</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Grille fluide : chaque carte prend toute la largeur de sa colonne */
+  .reco-grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    justify-items: stretch; /* les cartes s'étirent */
+    align-items: stretch;
+  }
+
+  /* Cartes = liens en pleine largeur, contenu centré */
+  .reco-card{
+    display:flex;
+    align-items:center;
+    justify-content:center; /* centre logo + texte */
+    gap:12px;
+    width:100%;
+    padding:14px;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    background:#fff;
+    font-weight:600;
+    text-align:center;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .reco-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(14,165,164,.18);
+  }
+
+  /* Logo dimensionné par variable CSS (modifiable) */
+  .reco-logo{
+    width:var(--reco-logo-size, 60px);
+    height:auto;
+    flex:0 0 auto;
+    display:block;
+  }
+
+  /* (Optionnel) pour forcer 1 colonne sur petits écrans */
+  @media (max-width:700px){
+    .reco-grid{ grid-template-columns:1fr; }
+  }
+</style>
+
+
+
+<!-- Styles locaux de la section -->
+<style>
+  #recommandations .reco-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  #recommandations .reco-btn{
+    display:inline-block; padding:10px 14px; border-radius:10px;
+    background:#0ea5a4; color:#fff; font-weight:700; border:1px solid #0ea5a4;
+    text-decoration:none; box-shadow:0 6px 18px rgba(14,165,164,.25);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  #recommandations .reco-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(14,165,164,.35)}
+
+  #recommandations .reco-grid{
+    display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  }
+  #recommandations .reco-card{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px; background:#fff; border:1px solid #e6eef2; border-radius:12px;
+    font-weight:600; text-decoration:none; color:#0f172a;
+    box-shadow:0 6px 18px rgba(15,23,42,.06); transition:transform .2s ease, box-shadow .2s ease;
+  }
+  #recommandations .reco-card:hover{transform:translateY(-4px); box-shadow:0 12px 28px rgba(15,23,42,.12)}
+</style>
+
+<!-- ====== Section Rapports (logos + boutons pleine largeur) ====== -->
+<section id="rapports" class="section-card" aria-labelledby="rapports-title" style="--report-logo-size:28px;">
+  <h2 id="rapports-title">Rapports</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Téléchargez mes rapports ou lisez-les en ligne.
+  </p>
+
+  <div class="report-grid" style="margin-top:12px">
+    <a class="report-card" href="report_pfe.pdf" download>
+      <img class="report-logo" src="logo_esa.png" alt="ESA">
+      <span>Ingénieur mécanique à l'Agence Spatiale Européenne : stage de fin d'études avec prolongation</span>
+    </a>
+
+    <a class="report-card" href="report_upc.pdf" download>
+      <img class="report-logo" src="logo_upc.png" alt="UPC">
+      <span>Ingénieur à l'Université Polytechnique de Catalogne (CFD, FEM & CAD)</span>
+    </a>
+
+    <a class="report-card" href="report_kth_fundamentals.pdf" download>
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Fundamentals of Spaceflights</span>
+    </a>
+
+    <a class="report-card" href="report_kth_human_spaceflight.pdf" download>
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Human Spaceflight</span>
+    </a>
+
+    <a class="report-card" href="report_kth_aeroelasticity.pdf" download>
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Aeroelasticity</span>
+    </a>
+
+    <a class="report-card" href="report_kth_fibre_composites.pdf" download>
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Fibre Composites</span>
+    </a>
+
+<a class="report-card" href="report_ense3_verlinde.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Conception mécanique Bureau d'Etude : Moteur Hydraulique Verlinde</span>
+    </a>
+
+<a class="report-card" href="report_ense3_belier_resonance.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Hydraulique des écoulements en charge Bureau d'Etude : coup de Belier et résonance</span>
+    </a>
+
+
+<a class="report-card" href="report_ense3_belier.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Hydraulique des écoulements en charge Travail Pratique : coup de Belier</span>
+    </a>
+
+
+<a class="report-card" href="report_ense3_Hercule.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Enjeux énergétique : projet Hercule</span>
+    </a>
+
+<a class="report-card" href="report_ense3_mae2.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Modélisation et analyse des écoulements </span>
+    </a>
+
+<a class="report-card" href="report_ense3_fluent.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Jet turbulent sur Fluent</span>
+    </a>
+
+<a class="report-card" href="report_ense3_abaqus.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Abaqus</span>
+    </a>
+
+<a class="report-card" href="report_ense3_poutre.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Poutre</span>
+    </a>
+
+<a class="report-card" href="report_ense3_portique.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Portique</span>
+    </a>
+
+<a class="report-card" href="report_ense3_debitmetre.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Debitmetre</span>
+    </a>
+
+<a class="report-card" href="report_ense3_fan.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Fan Blade</span>
+    </a>
+
+<a class="report-card" href="report_ense3_overset.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Overset</span>
+    </a>
+
+<a class="report-card" href="report_ense3_maillage.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Maillage</span>
+    </a>
+
+
+<a class="report-card" href="report_ense3_refrig.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Refrig</span>
+    </a>
+
+<a class="report-card" href="report_ense3_heatexch.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Heat exchanger</span>
+    </a>
+
+
+<a class="report-card" href="report_ense3_skate.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Conception et modélisation mécanique : Skate</span>
+    </a>
+
+<a class="report-card" href="report_ense3_trott.pdf" download>
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Conception et modélisation mécanique : Trottinette</span>
+    </a>
+
+    <!-- Optionnel : un 4e rapport -->
+    <a class="report-card" href="report_cater.pdf" download>
+      <img class="report-logo" src="logo_cat.png" alt="CATER">
+      <span>Rapport de stage de première année effectué au sein de Caterpillar</span>
+    </a>
+  </div>
+</section>
+
+<!-- Styles (reprennent l'esthétique de la section Recommandations) -->
+<style>
+  .report-grid{
+    display:grid; gap:10px; grid-template-columns:repeat(3,1fr);
+  }
+  @media (max-width:800px){
+    .report-grid{ grid-template-columns:1fr; }
+  }
+
+  .report-card{
+    display:inline-flex;          /* bouton cliquable */
+    align-items:center;
+    justify-content:center;       /* contenu centré */
+    gap:10px;
+    width:100%;                   /* pleine largeur de la colonne */
+    padding:12px 14px;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    background:#fff;
+    font-weight:700;
+    text-align:center;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .report-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(14,165,164,.18);
+  }
+
+  .report-logo{
+    width:var(--report-logo-size, 28px);
+    height:auto;
+    display:block;
+    flex:0 0 auto;
+  }
+</style>
+
+
+
+<!-- ====== Galerie Skate ====== -->
+<section id="skate-gallery" class="section-card" aria-labelledby="skate-gallery-title">
+  <h2 id="skate-gallery-title">Galerie Skate</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Visualisation des résultats, maillages et plans.
+  </p>
+
+  <div class="skate-grid">
+    <figure>
+      <img src="skate_result1.png" loading="lazy" alt="Résultat 1">
+      <figcaption>skate_result1</figcaption>
+    </figure>
+    <figure>
+     
+      <img src="skate_result2.png" loading="lazy" alt="Résultat 2">
+      <figcaption>sakte_result2</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_result3.png" loading="lazy" alt="Résultat 3">
+      <figcaption>skate_result3</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_cdc.png" loading="lazy" alt="Cahier des charges">
+      <figcaption>skate_cdc</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_cdc2.png" loading="lazy" alt="Cahier des charges 2">
+      <figcaption>skate_cdc2</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_conclusion_cdc.png" loading="lazy" alt="Conclusion CDC">
+      <figcaption>skate_conclusion_cdc</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_loading.png" loading="lazy" alt="Loading / chargement">
+      <figcaption>skate_loading</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_magnitude.png" loading="lazy" alt="Magnitude">
+      <figcaption>skate_magnitude</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_magnitude_mises.png" loading="lazy" alt="Magnitude von Mises">
+      <figcaption>skate_magnitude_mises</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_maillage.png" loading="lazy" alt="Maillage">
+      <figcaption>skate_maillage</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_masse.png" loading="lazy" alt="Masse">
+      <figcaption>skate_masse</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_mises.png" loading="lazy" alt="Contraintes de Mises">
+      <figcaption>skate_mises</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_optimisation.png" loading="lazy" alt="Optimisation">
+      <figcaption>skate_optimisation</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_optimisation2.png" loading="lazy" alt="Optimisation 2">
+      <figcaption>skate_optimisation2</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_plan.png" loading="lazy" alt="Plan">
+      <figcaption>skate_plan</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ====== Styles de la galerie (à placer dans ton <style> global si tu préfères) ====== -->
+<style>
+  #skate-gallery .skate-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top:12px;
+  }
+  #skate-gallery figure{
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  #skate-gallery figure:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.12);
+  }
+  #skate-gallery img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+    display:block;
+    padding:10px;
+  }
+  #skate-gallery figcaption{
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+    padding:8px 10px 12px;
+    text-align:center;
+  }
+  /* Lightbox (dialog) */
+  #skate-lightbox::backdrop{ background:rgba(2,6,23,.6) }
+  #skate-lightbox{
+    border:none; padding:0; background:transparent;
+  }
+  .lightbox-inner{
+    display:flex; align-items:center; justify-content:center;
+    max-width:95vw; max-height:92vh; margin:auto;
+  }
+  .lightbox-img{
+    max-width:95vw; max-height:92vh;
+    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+    background:#fff;
+  }
+  .lightbox-close{
+    position:fixed; top:12px; right:12px;
+    background:#fff; border:1px solid #e6eef2;
+    border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+</style>
+
+<!-- ====== Galerie Trottinette ====== -->
+<section id="trott-gallery" class="section-card" aria-labelledby="trott-gallery-title">
+  <h2 id="trott-gallery-title">Galerie Trottinette</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Visualisation des vues CAO, contraintes, maillages et résultats.
+  </p>
+
+  <div class="trott-grid">
+    <figure>
+      <img src="trott_cad_deck.png" loading="lazy" alt="CAD deck">
+      <figcaption>trott_cad_deck</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cad_deck1.png" loading="lazy" alt="CAD deck 1">
+      <figcaption>trott_cad_deck1</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cad_deck2.png" loading="lazy" alt="CAD deck 2">
+      <figcaption>trott_cad_deck2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cad1.png" loading="lazy" alt="CAD 1">
+      <figcaption>trott_cad1</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cdc.png" loading="lazy" alt="Cahier des charges">
+      <figcaption>trott_cdc</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_config2.png" loading="lazy" alt="Configuration 2">
+      <figcaption>trott_config2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_magnitude.png" loading="lazy" alt="Deck magnitude">
+      <figcaption>trott_deck_magnitude</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_magnitude3.png" loading="lazy" alt="Deck magnitude 3">
+      <figcaption>trott_deck_magnitude3</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_mises.png" loading="lazy" alt="Deck mises">
+      <figcaption>trott_deck_mises</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_mises2.png" loading="lazy" alt="Deck mises 2">
+      <figcaption>trott_deck_mises2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_mises3.png" loading="lazy" alt="Deck mises 3">
+      <figcaption>trott_deck_mises3</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_efforts.png" loading="lazy" alt="Efforts">
+      <figcaption>trott_efforts</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_loading.png" loading="lazy" alt="Loading / chargement">
+      <figcaption>trott_loading</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_magnitude.png" loading="lazy" alt="Magnitude">
+      <figcaption>trott_magnitude</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_maillage.png" loading="lazy" alt="Maillage">
+      <figcaption>trott_maillage</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_materiel.png" loading="lazy" alt="Matériel">
+      <figcaption>trott_materiel</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_mises.png" loading="lazy" alt="Contraintes de Mises">
+      <figcaption>trott_mises</figcaption>
+    </figure>
+    <figure>
+ 
+      <img src="trott_result_final.png" loading="lazy" alt="Résultat final">
+      <figcaption>trott_resul_final</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_roue.png" loading="lazy" alt="Roue">
+      <figcaption>trott_roue</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_roue2.png" loading="lazy" alt="Roue 2">
+      <figcaption>trott_roue2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_schema.png" loading="lazy" alt="Schéma">
+      <figcaption>trott_schema</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ====== Styles (peuvent aller dans ton <style> global) ====== -->
+<style>
+  #trott-gallery .trott-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top:12px;
+  }
+  #trott-gallery figure{
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  #trott-gallery figure:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.12);
+  }
+  #trott-gallery img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+    display:block;
+    padding:10px;
+  }
+  #trott-gallery figcaption{
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+    padding:8px 10px 12px;
+    text-align:center;
+  }
+  /* Lightbox (dialog) */
+  #trott-lightbox::backdrop{ background:rgba(2,6,23,.6) }
+  #trott-lightbox{
+    border:none; padding:0; background:transparent;
+  }
+  .trott-lightbox-inner{
+    display:flex; align-items:center; justify-content:center;
+    max-width:95vw; max-height:92vh; margin:auto;
+  }
+  .trott-lightbox-img{
+    max-width:95vw; max-height:92vh;
+    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+    background:#fff;
+  }
+  .trott-lightbox-close{
+    position:fixed; top:12px; right:12px;
+    background:#fff; border:1px solid #e6eef2;
+    border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+</style>
+
+<!-- ====== Lightbox dédiée à la galerie Trottinette ====== -->
+<dialog id="trott-lightbox" aria-label="Agrandissement image trottinette">
+  <button class="trott-lightbox-close" onclick="document.getElementById('trott-lightbox').close()">✕</button>
+  <div class="trott-lightbox-inner">
+    <img class="trott-lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Zoom au clic pour la galerie trottinette
+  (function(){
+    const dialog = document.getElementById('trott-lightbox');
+    const bigImg = dialog.querySelector('.trott-lightbox-img');
+
+    document.querySelectorAll('#trott-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Fermer au clic en dehors du contenu
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const clickedInDialog = (
+        e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom
+      );
+      if(!clickedInDialog) dialog.close();
+    });
+  })();
+</script>
+
+
+<!-- ====== Lightbox (zoom au clic) ====== -->
+<dialog id="skate-lightbox" aria-label="Agrandissement image">
+  <button class="lightbox-close" onclick="document.getElementById('skate-lightbox').close()">✕</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Ouvre l'image en grand dans le <dialog>
+  (function(){
+    const dialog = document.getElementById('skate-lightbox');
+    const bigImg = dialog.querySelector('.lightbox-img');
+
+    document.querySelectorAll('#skate-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Fermer au clic sur le fond
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const clickedInDialog = (
+        e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom
+      );
+      if(!clickedInDialog) dialog.close();
+    });
+  })();
+</script>
+
+
+      <section id="portfolio">
+        <h2 style="margin-top:28px">Portfolio</h2>
+        <div class="portfolio">
+          <figure class="portfolio-item">
+            <a href="projet1.html" target="_blank">
+              <img src="logo_esa.png" alt="Projet 1 : PFE">
+              <figcaption> Ingénieur mécanique à l'Agence Spatiale Européenne : stage de fin d'études avec prolongation</figcaption>
+            </a>
+          </figure>
+          <figure class="portfolio-item">
+            <a href="projet2.html" target="_blank">
+              <img src="logo_upc.png" alt="Projet 2">
+              <figcaption>Ingénieur à l'Université Polytechnique de Catalogne - BarcelonaTech UPC (CFD, FEM & CAD)</figcaption>
+            </a>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="logo_kth.png" alt="Projet 3">
+            <figcaption>Projet 3 — CAD Project at KTH</figcaption>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="logo_ense3.png" alt="Projet 4">
+            <figcaption>Projet 4 — Blog professionnel</figcaption>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="logo_cat.png" alt="Projet 5">
+            <figcaption>Projet 5 — Blog professionnel</figcaption>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Projet 6">
+            <figcaption>Projet 6 — Blog professionnel</figcaption>
+          </figure>
+        </div>
+      </section>
+
+<!--
+
+<section id="services">
+        <h2 style="margin-top:28px">Services</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Design & UI</h3>
+            <p>Création d'interfaces modernes et accessibles, maquettes responsive et prototypage rapide.</p>
+          </article>
+          <article class="card">
+            <h3>Développement</h3>
+            <p>Sites HTML/CSS/JS, intégration CMS (WordPress/Netlify) et optimisation performance.</p>
+          </article>
+          <article class="card">
+            <h3>SEO & Performance</h3>
+            <p>Audit rapide, optimisation des images, balises meta et amélioration du temps de chargement.</p>
+          </article>
+        </div>
+      </section>
+
+<section id="alpha-video" class="alpha-video" aria-label="Animation">
+  <div class="alpha-video__wrap">
+    <video
+      class="alpha-video__elt"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-label="Horloge animée avec fond transparent"
+    >
+      <source src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Alarm_Clock_Animation_High_Res_alpha_transparency.webm" type="video/webm">
+      Votre navigateur ne supporte pas les vidéos WebM avec transparence.
+    </video>
+  </div>
+</section>
+
+
+
+        <section id="contact" class="contact-banner contact--in-hero" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact</h2>
+          <div class="contact-grid">
+
+         
+  
+            <div class="contact-card" aria-labelledby="contact-form-title">
+              <h3 id="contact-form-title">M’écrire un message</h3>
+              <form action="https://formspree.io/f/xeolvyrp" method="POST">
+                <label>
+                  Votre nom :
+                  <input type="text" name="name" required>
+                </label>
+                <label>
+                  Votre email :
+                  <input type="email" name="email" required>
+                </label>
+                <label>
+                  Votre message :
+                  <textarea name="message" required></textarea>
+                </label>
+                <button type="submit" class="btn" style="width:max-content">Envoyer</button>
+              </form>
+            </div>
+
+          </div>
+        </section>
+
+      </section>
+-->
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div>&copy; <span id="year"></span> AlexandreLabau. Tous droits réservés.</div>
+        </div>
+    </footer>
+  </div>
+
+  <script>
+    // Année dynamique
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll pour liens d'ancre
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+      });
+    });
+  </script>
+</body>
+</html>
