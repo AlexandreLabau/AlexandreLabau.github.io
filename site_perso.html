@@ -85,6 +85,18 @@ html, body{
 }
 
 /* CTA */
+/* Empiler les liens sur une colonne (retours à la ligne) */
+.hero .cta.cta--stack{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* gauche */
+  gap: 8px;
+}
+.hero .cta.cta--stack .btn{
+  width: fit-content; /* évite de prendre toute la largeur */
+}
+
+
 .hero .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px }
 .hero .btn--ghost{ background:transparent; color:#0f172a; border:1px solid #e6eef2 }
 
@@ -309,68 +321,49 @@ html, body{
       .contact-grid{grid-template-columns: 1fr}
     }
 
-/* === Décors latéraux (quinconce logo KTH) === */
+/* === Décors latéraux : logos en carré === */
 :root{
-  --content-max: 1300px;                   /* largeur max du contenu */
-  --side-size: clamp(90px, 12vw, 200px);   /* taille des logos */
-  --offset: 0.75;                          /* distance par rapport au contenu */
+  --content-max: 1300px;
+  --side-size: clamp(100px, 12vw, 160px);
+  --gap-side: 40px; /* marge entre logos et zone de contenu */
 }
 
 .side-decor{
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0; /* derrière le contenu */
+  z-index: 0;
 }
 
 .side-decor img{
   position: absolute;
   width: var(--side-size);
   height: auto;
-  opacity: .7;
+  opacity: .8;
   filter: drop-shadow(0 8px 22px rgba(15,23,42,.18));
   transform: translateY(-50%);
 }
 
-/* Placement horizontal */
-.side-decor .left  { left:  calc(50vw - var(--content-max)/2 - var(--side-size)*var(--offset)); }
-.side-decor .right { right: calc(50vw - var(--content-max)/2 - var(--side-size)*var(--offset)); }
+/* Placement : carré */
+.side-decor .left  { left:  calc(50% - var(--content-max)/2 - var(--side-size) - var(--gap-side)); }
+.side-decor .right { right: calc(50% - var(--content-max)/2 - var(--side-size) - var(--gap-side)); }
 
-/* Placement vertical en quinconce */
-.side-decor .l1, .side-decor .r1 { top: 12%; }
-.side-decor .l2, .side-decor .r2 { top: 28%; }
-.side-decor .l3, .side-decor .r3 { top: 44%; }
-.side-decor .l4, .side-decor .r4 { top: 60%; }
-.side-decor .l5, .side-decor .r5 { top: 76%; }
-.side-decor .l6, .side-decor .r6 { top: 92%; }
+/* Ligne du haut */
+.side-decor .l1 { top: 25%; }
+.side-decor .r1 { top: 25%; }
 
-/* Quinconce : décalage supplémentaire */
-.side-decor .left.l2,
-.side-decor .left.l4,
-.side-decor .left.l6 {
-  left: calc(50vw - var(--content-max)/2 - var(--side-size)*calc(var(--offset) + 0.7));
-}
-.side-decor .right.r1,
-.side-decor .right.r3,
-.side-decor .right.r5 {
-  right: calc(50vw - var(--content-max)/2 - var(--side-size)*calc(var(--offset) + 0.7));
-}
+/* Ligne du bas */
+.side-decor .l2 { top: 70%; }
+.side-decor .r2 { top: 70%; }
 
-/* Légères rotations pour le naturel */
-.side-decor .l1 { transform: translateY(-50%) rotate(-2deg); }
-.side-decor .l3 { transform: translateY(-50%) rotate( 1deg); }
-.side-decor .l5 { transform: translateY(-50%) rotate(-1deg); }
-.side-decor .r2 { transform: translateY(-50%) rotate( 2deg); }
-.side-decor .r4 { transform: translateY(-50%) rotate(-1.5deg); }
-.side-decor .r6 { transform: translateY(-50%) rotate( 1deg); }
-
-/* Contenu au-dessus */
 .container{ position: relative; z-index: 1; }
 
-/* Masquer sur mobile */
-@media (max-width: 900px){
-  .side-decor{ display:none; }
+@media (max-width: 1000px){
+  .side-decor{ display: none; }
 }
+
+.hero .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px }
+.cta--docs .btn--ghost{ font-size:.9rem; padding:8px 12px }
 
 
   </style>
@@ -411,36 +404,29 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 <body>
-<!-- Décors latéraux (logos KTH en quinconce) -->
-<div class="side-decor" aria-hidden="true">
-  <!-- GAUCHE -->
-  <img class="left l1" src="logo_kth.png" alt="Logo KTH">
-  <img class="left l2" src="logo_ense3.png" alt="Logo KTH">
-  <img class="left l3" src="logo_upc.png" alt="Logo KTH">
-  <img class="left l4" src="logo_esa.png" alt="Logo KTH">
-  <img class="left l5" src="logo_kth.png" alt="Logo KTH">
-  <img class="left l6" src="logo_ense3.png" alt="Logo KTH">
 
-  <!-- DROITE -->
-  <img class="right r1" src="logo_kth.png" alt="Logo KTH">
-  <img class="right r2" src="logo_kth.png" alt="Logo KTH">
-  <img class="right r3" src="logo_kth.png" alt="Logo KTH">
-  <img class="right r4" src="logo_kth.png" alt="Logo KTH">
-  <img class="right r5" src="logo_kth.png" alt="Logo KTH">
-  <img class="right r6" src="logo_kth.png" alt="Logo KTH">
+<div class="side-decor" aria-hidden="true">
+  <img class="left l1"  src="logo_kth.png"   alt="KTH">
+  <img class="left l2"  src="logo_ense3.png" alt="ENSE3">
+  <img class="right r1" src="logo_esa.png"   alt="ESA">
+  <img class="right r2" src="logo_upc.png"   alt="UPC">
 </div>
 
 
 
   <div class="container">
     <header>
-      <div class="brand">AlexandreLabau<span style="color:#0ea5a4">.</span></div>
-      <nav>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="brand">Alexandre Labau : Mechanical and energy engineering</span></div>
+
+<nav>
+  <a href="#education">My education</a>
+  <a href="#software-skills">Software Skills</a>
+  <a href="#recommandations">Recommendations</a>
+  <a href="#rapports">Reports</a>
+  <a href="#contact">Contact</a>
+</nav>
     </header>
+
 
     <main>
 <section class="hero" id="home" aria-labelledby="hero-title">
@@ -448,12 +434,21 @@ document.addEventListener('DOMContentLoaded', function(){
     <span class="eyebrow" aria-label="Localisation et disponibilité">EU & FR • Disponible</span>
     <h1 id="hero-title"><strong>Alexandre Labau</strong></h1>
     <p class="sub">
-      Holder of a double master’s degree in Mechanical and Energy Engineering from KTH Royal Institute of Technology in Stockholm and Grenoble INP – ENSE3. I aspire to apply my skills within an international company in the field of nuclear energy production.
+      Holder of a double master’s degree in Mechanical and Energy Engineering from KTH Royal Institute of Technology in Stockholm and Grenoble INP – ENSE3, I aspire to apply my skills within an international organization.
     </p>
 
-    <div class="cta">
-      <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV">Télécharger mon CV</a>
-    </div>
+<div class="cta cta--stack">
+  <!-- CV -->
+  <a class="btn btn--ghost" href="resume_alexandre_labau.pdf" download aria-label="Download my CV (EN)">Download my CV</a>
+  <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV (FR)">Télécharger mon CV (FR)</a>
+  <a class="btn btn--ghost" href="appreciation_pfe.pdf" target="_blank" rel="noopener">ESA - Appraisal</a>
+  <a class="btn btn--ghost" href="reco_pfe.pdf" target="_blank" rel="noopener">ESA - Reference letter</a>
+  <a class="btn btn--ghost" href="reco_kth.pdf" target="_blank" rel="noopener">KTH - Reference letter</a>
+  <a class="btn btn--ghost" href="reco_ense3.pdf" target="_blank" rel="noopener">Grenoble INP - ENSE3 - Reference letter</a>
+  <a class="btn btn--ghost" href="reco_upc.pdf" target="_blank" rel="noopener">UPC - Reference letter</a>
+</div>
+
+
   </div>
 
   <figure>
@@ -464,74 +459,290 @@ document.addEventListener('DOMContentLoaded', function(){
 
     <!-- ===== CONTACT (infos) SOUS la photo ===== -->
     <section id="contact" class="contact-banner contact--in-hero" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <div class="contact-grid">
-        <div class="contact-card" aria-labelledby="contact-infos-title">
-          <h3 id="contact-infos-title"></h3>
-          <ul class="contact-list">
-            <li class="contact-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
-                <path d="M22 8l-10 6L2 8"/>
-              </svg>
-              <div><a href="mailto:alexandrelabau@outlook.fr">alexandrelabau@outlook.fr</a></div>
-            </li>
-            <li class="contact-item">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zm7.5 0h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.13V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.45V23h-4V8.5z"/>
-              </svg>
-              <div><a href="https://www.linkedin.com/in/alexandre-labau/" target="_blank" rel="noopener">linkedin.com/in/alexandre-labau</a></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
+  <h2 id="contact-title">Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-card" aria-labelledby="contact-infos-title">
+      <h3 id="contact-infos-title"></h3>
+      <ul class="contact-list">
+        <li class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+            <path d="M22 8l-10 6L2 8"/>
+          </svg>
+          <div><a href="mailto:alexandrelabau@outlook.fr">alexandrelabau@outlook.fr</a></div>
+        </li>
+
+        <!-- Téléphone -->
+        <li class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.33 1.7.63 2.5a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.58-1.14a2 2 0 0 1 2.11-.45c.8.3 1.64.51 2.5.63A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <div><a href="tel:+33786345497" aria-label="Appeler Alexandre Labau">+33&nbsp;7&nbsp;86&nbsp;34&nbsp;54&nbsp;97</a></div>
+        </li>
+
+        <li class="contact-item">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zm7.5 0h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.13V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.45V23h-4V8.5z"/>
+          </svg>
+          <div><a href="https://www.linkedin.com/in/alexandre-labau/" target="_blank" rel="noopener">linkedin.com/in/alexandre-labau</a></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
     <!-- ===== FIN CONTACT ===== -->
   </figure>
 </section>
 
+
+<style>
+  /* Variante "transparente" des sections (pas de fond blanc ni d'ombre) */
+  .section-card.is-ghost {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Cartes éducation (une par ligne) */
+  .edu-grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top:12px;
+  }
+  .edu-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .edu-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(14,165,164,.18);
+  }
+  .edu-card img{
+    width:36px; height:auto; flex:0 0 auto;
+  }
+  .edu-title{ font-weight:700; line-height:1.2}
+  .edu-sub{ color:#475569; font-size:.95rem; margin-top:4px }
+</style>
+
      
       </section>
 
-      <section id="Ma formation" class="section-card" aria-labelledby="formation-title">
-  	<h2 id="formation-title" style="margin-bottom:8px">Ma formation</h2>
+<style>
+  /* Section sans fond */
+  .section-card.is-ghost { background: transparent; border: 0; box-shadow: none; }
 
-  	<ul style="margin-top:12px;color:#475569;list-style-type:disc; padding-left:20px;">
-   
-        
+  /* Liste éducation : UNE carte par ligne (toujours) */
+  .edu-list {
+    display: grid;
+    grid-template-columns: 1fr;  /* => une seule colonne, tout le temps */
+    gap: 12px;
+    margin-top: 12px;
+  }
 
-        <ul style="margin-top:12px;color:#475569;list-style-type:disc; padding-left:20px;">
-          <li>
-            <a href="https://www.kth.se/en/studies/exchange/general/double-degree-1.619496" target="_blank" style="color:blue;">
-              Programme double diplôme – KTH Royal Institute of Technology
-            </a>
-          </li>
-	<p class="muted" style="margin-top:8px; color:#475569">  
-          7ème en Ingénierie Mécanique et Énergétique au <a href="https://www.shanghairanking.com/rankings/gras/2024/RS0201" target="_blank" style="color:blue;"> Classement Shanghai Ranking 2024
-          </a>
-        </p>
-          <li>
-            <a href="https://ense3.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ense3-filiere-mecanique-et-energetique-me#page-programme" target="_blank" style="color:blue;">
-              Ingénieur Grenoble INP – ENSE3, filière Mécanique et Énergétique
-            </a>
-          </li>
-          <li>
-            <a href="https://www.esa.int/" target="_blank" style="color:blue;">
-              Agence Spatiale Européenne (ESA)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.upc.edu/en" target="_blank" style="color:blue;">
-              Universitat Politècnica de Catalunya (UPC)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.cat.com/en_US/products/new/power-systems.html" target="_blank" style="color:blue;">
-              Caterpillar – Power Systems
-            </a>
-          </li>
+  /* Carte éducation (cliquable, full width) */
+  .edu-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(15,23,42,.06);
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .edu-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(14,165,164,.18);
+    border-color: #cfe9e7;
+  }
+
+  .edu-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+  .edu-content { display: grid; gap: 2px }
+  .edu-title   { font-weight: 700; line-height: 1.2; color: #0f172a; }
+  .edu-sub     { color: #475569; font-size: .95rem; }
+  .edu-sub a { text-decoration: underline; }
+</style>
+
+<style>
+  /* Section "ghost": pas de fond pour le container */
+  #education.section-card.is-ghost{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Liste verticale – une carte par ligne */
+  .edu-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  /* Carte non-cliquable (le lien est interne) */
+  .edu-row{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(15,23,42,.06);
+  }
+
+  .edu-logo{
+    width: 80px; height: auto; display: block; flex: 0 0 auto;
+  }
+
+  .edu-title{ font-weight: 800; }
+  .edu-sub{ color:#475569; margin-top: 2px; }
+  .edu-details{ margin: 8px 0 0 0; padding-left: 18px; color:#0f172a }
+  .edu-details li{ margin: 4px 0; }
+
+  .edu-links{ margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap }
+  .edu-link{
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #0ea5a4;
+    color: #0ea5a4;
+    font-weight: 700;
+    background: #fff;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .edu-link:hover{
+    transform: translateY(-2px);
+    background: #0ea5a4;
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(14,165,164,.25);
+  }
+
+  @media (max-width:680px){
+    .edu-row{ grid-template-columns: 1fr; text-align: left }
+    .edu-logo{ width: 40px; }
+  }
+</style>
+
+
+<section id="education" class="section-card is-ghost" aria-labelledby="formation-title">
+  <h2 id="formation-title" style="margin-bottom:8px">My education</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Main schools, programs and industrial experiences.
+  </p>
+
+  <div class="edu-list">
+    <!-- KTH -->
+    <div class="edu-row" role="group" aria-labelledby="edu-kth-title">
+      <img class="edu-logo" src="logo_kth.png" alt="KTH">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-kth-title">KTH Royal Institute of Technology — Double-degree program</div>
+        <div class="edu-sub">Mechanical & Energy Engineering • focus on structural mechanics and heat transfer</div>
+        <ul class="edu-details">
+          <li>Coursework & projects across mechanics, thermal sciences and simulations.</li>
+          <li>Ranked #7 worldwide in Mechanical Engineering (Shanghai Ranking 2024).</li>
         </ul>
-	</section>
+        <div class="edu-links">
+          <a class="edu-link" href="https://www.kth.se/en/studies/exchange/general/double-degree-1.619496" target="_blank" rel="noopener">Program page</a>
+          <a class="edu-link" href="https://www.shanghairanking.com/rankings/gras/2024/RS0201" target="_blank" rel="noopener">Ranking</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENSE3 -->
+    <div class="edu-row" role="group" aria-labelledby="edu-ense3-title">
+      <img class="edu-logo" src="logo_ense3.png" alt="ENSE3">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-ense3-title">Grenoble INP – ENSE3 — Mechanical & Energy Engineering</div>
+        <div class="edu-sub">Engineering degree (ME track) • multiphysics approach</div>
+        <ul class="edu-details">
+          <li>Courses : Solid Mechanics (materials strength, elasticity), Structures and materials (fatigue, failure), FEM (plastic & elastic deformation, buckling local & global instability, modal analysis vibrations on ANSYS and Abaqus), Thermohydraulic, Heat and mass transfers (heat exchangers), Modelling and analysis of flows, Lightweight structures, Industrial Design and Mechanical modeling (CAD with ISO GPS compliance).</li>
+          <li>Team projects and industrial problem-solving across semesters.</li>
+        </ul>
+        <div class="edu-links">
+          <a class="edu-link" href="https://ense3.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ense3-filiere-mecanique-et-energetique-me#page-programme" target="_blank" rel="noopener">Program page (FR)</a>
+    
+
+          <a class="edu-link" href="https://ense3.grenoble-inp.fr/en/study-at-ense3/master-s-degree-in-engineering-grenoble-inp-ense3-mechanical-and-energy-engineering-me#page-programme" target="_blank" rel="noopener">Program page (EN)</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ESA -->
+    <div class="edu-row" role="group" aria-labelledby="edu-esa-title">
+      <img class="edu-logo" src="logo_esa.png" alt="ESA">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-esa-title">European Space Agency (ESA) — Master’s thesis internship (extended)</div>
+        <div class="edu-sub">Mechanical engineering • CAD & Digital Twin enablement</div>
+        <ul class="edu-details">
+          <li>Mechanical design of ESA pressurised systems, from 2D and 3D CAD modeling to manufacturing and assembly. Reference letter attached.
+</li>
+
+<li> Reducing the operational costs and downtime of mechanical equipment through predictive maintenance thanks to the digitalization of manufacturing lines via digital twins, AI, and smart sensors. Follow up implemetation of new technologies for digitalization within industries.</li>
+<li>Development of a Machine Learning application in Python for this predictive maintenance. Application validated during a European conference and now under ESA licensed registration.</li>
+<li>Daily collaboration with international companies and space agencies to ensure an optimized integration of the new technologies.</li>
+          <li>Project extended and presented to experts at a conference in the Netherlands.</li>
+        </ul>
+        <div class="edu-links">
+          <a class="edu-link" href="https://www.esa.int/" target="_blank" rel="noopener">ESA website</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPC -->
+    <div class="edu-row" role="group" aria-labelledby="edu-upc-title">
+      <img class="edu-logo" src="logo_upc.png" alt="UPC">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-upc-title">Universitat Politècnica de Catalunya (UPC) — ESEIAAT</div>
+        <div class="edu-sub">CFD, FEM & CAD • mechanical engineering applications</div>
+        <ul class="edu-details">
+          <li>Multidisciplinary resolution of outstanding issues for pantograph-catenary interaction from CAD (CATIA V5 in 2D and 3D) to Finite Element Analysis (ANSYS). Reference attached.</li>
+        </ul>
+        <div class="edu-links">
+          <a class="edu-link" href="https://www.upc.edu/en" target="_blank" rel="noopener">UPC website</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caterpillar -->
+    <div class="edu-row" role="group" aria-labelledby="edu-cat-title">
+      <img class="edu-logo" src="logo_cat.png" alt="Caterpillar">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-cat-title">Caterpillar</div>
+        <div class="edu-sub">First-year industrial experience</div>
+        <ul class="edu-details">
+          <li> Gained practical mechanical experience on industrial assembly lines for heavy systems.</li>
+          <li>Developed hands-on skills in mechanical assembly and production workflows on manufacturing lines.</li>
+        </ul>
+        <div class="edu-links">
+          <a class="edu-link" href="https://www.cat.com/en_US/products/new/power-systems.html" target="_blank" rel="noopener">Business unit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section id="me-program" class="skills-section" style="margin-top:28px">
@@ -924,70 +1135,94 @@ document.addEventListener('DOMContentLoaded', function(){
   </style>
 </section>
 
-<!-- ====== Section Recommandations (logos ajustables + largeur pleine) ====== -->
-<section id="recommandations" class="section-card" aria-labelledby="reco-title" style="--reco-logo-size:28px;">
-  <h2 id="reco-title">Recommandations</h2>
+<!-- ====== Recommendations (one row per line, ghost section) ====== -->
+<section id="recommandations" class="section-card is-ghost" aria-labelledby="reco-title">
+  <h2 id="reco-title">Recommendations and appraisal</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
-    Téléchargez mes lettres de recommandation ou lisez-les en ligne.
+    Download the following documents or read them online.
   </p>
 
-  <!-- Liens de visualisation -->
-  <div class="reco-grid" style="margin-top:12px">
-
-
-    <a class="reco-card" href="appreciation_pfe.pdf">
+  <div class="reco-list">
+    <!-- ESA — Appraisal -->
+    <div class="reco-row" role="group" aria-labelledby="reco-esa-app-title">
       <img class="reco-logo" src="logo_esa.png" alt="ESA">
-      <span>Appréciation : 9 mois à l'Agence Spatiale Européenne</span>
-    </a>
-	
-<a class="reco-card" href="reco_pfe.pdf">
-      <img class="reco-logo" src="logo_esa.png" alt="ESA">
-      <span>Lettre de recommandation : Agence Spatiale Européenne</span>
-    </a>
+      <div class="reco-content">
+        <div class="reco-title" id="reco-esa-app-title">European Space Agency : Appraisal</div>
+        <div class="reco-sub">9 months at the European Space Agency — Michael Mallon, Dr.-Ing., Supervisor</div>
+        <div class="reco-links">
+  <a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Open reference PDF</a>
+<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Poster Master Thesis</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Report</a>
+</div>
 
-    <a class="reco-card" href="reco_upc.pdf">
+      </div>
+    </div>
+
+    <!-- ESA — Reference letter -->
+    <div class="reco-row" role="group" aria-labelledby="reco-esa-ref-title">
+      <img class="reco-logo" src="logo_esa.png" alt="ESA">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-esa-ref-title">European Space Agency : Reference Letter</div>
+        <div class="reco-sub">Nicoletta Wagner, Space Project Manager & Michael Mallon, Dr.-Ing., Supervisor</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Open reference PDF</a>
+<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Poster Master Thesis</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Report</a>
+</div>
+
+      </div>
+    </div>
+
+    <!-- UPC -->
+    <div class="reco-row" role="group" aria-labelledby="reco-upc-title">
       <img class="reco-logo" src="logo_upc.png" alt="UPC">
-      <span>Lettre de recommandation : Université Polytechnique de Catalogne</span>
-    </a>
+      <div class="reco-content">
+        <div class="reco-title" id="reco-upc-title">Universitat Politècnica de Catalunya (UPC) : Reference Letter</div>
+        <div class="reco-sub">Robert Arcos, Associate Professor</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Open reference PDF</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Report</a>
+</div>
 
-    <a class="reco-card" href="reco_kth.pdf">
+      </div>
+    </div>
+
+    <!-- KTH -->
+    <div class="reco-row" role="group" aria-labelledby="reco-kth-title">
       <img class="reco-logo" src="logo_kth.png" alt="KTH">
-      <span>Lettre de recommandation : KTH Ecole Royale Polytechnique de Stockholm</span>
-    </a>
+      <div class="reco-content">
+        <div class="reco-title" id="reco-kth-title">KTH Royal Institute of Technology : Reference Letter</div>
+        <div class="reco-sub">Professor Christer Fuglesang, Former ESA Astronaut</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Open reference PDF</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Report - Industrial Design</a>
 
-	<a class="reco-card" href="reco_ense3.pdf">
-      <img class="reco-logo" src="logo_ense3.png" alt="KTH">
-      <span>Lettre de recommandation : Métais</span>
-    </a>
+</div>
+
+      </div>
+    </div>
+
+    <!-- ENSE3 -->
+    <div class="reco-row" role="group" aria-labelledby="reco-ense3-title">
+      <img class="reco-logo" src="logo_ense3.png" alt="ENSE3">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-ense3-title">Grenoble - INP - ENSE3 : Reference Letter</div>
+        <div class="reco-sub">Oliiver Métais, President of the French Hydrotechnical Society</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Open reference PDF</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank" rel="noopener">Report – Compressible flow in a nozzle on Fluent</a>
+<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank" rel="noopener">Report – Turbulent Jet on Fluent</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank" rel="noopener">Report – Flowmeter</a>
+  
+</div>
+
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
   /* Grille fluide : chaque carte prend toute la largeur de sa colonne */
-  .reco-grid{
-    display:grid;
-    gap:12px;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    justify-items: stretch; /* les cartes s'étirent */
-    align-items: stretch;
-  }
-
-  /* Cartes = liens en pleine largeur, contenu centré */
-  .reco-card{
-    display:flex;
-    align-items:center;
-    justify-content:center; /* centre logo + texte */
-    gap:12px;
-    width:100%;
-    padding:14px;
-    border:1px solid #e6eef2;
-    border-radius:12px;
-    background:#fff;
-    font-weight:600;
-    text-align:center;
-    box-shadow:0 6px 16px rgba(15,23,42,.06);
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
   .reco-card:hover{
     transform:translateY(-2px);
     box-shadow:0 10px 22px rgba(14,165,164,.18);
@@ -1007,6 +1242,61 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 </style>
 
+<style>
+  /* Section ghost (pas de fond autour du container) */
+  #recommandations.section-card.is-ghost{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Liste verticale : une carte par ligne (toujours) */
+  .reco-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  /* Carte non cliquable (seuls les liens internes le sont) */
+  .reco-row{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(15,23,42,.06);
+  }
+
+  .reco-logo{
+    width: 60px; height: auto; display: block; flex: 0 0 auto;
+  }
+
+  .reco-title{ font-weight: 800; line-height: 1.2; color:#0f172a }
+  .reco-sub  { color:#475569; margin-top: 2px; }
+
+  .reco-links{ margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap }
+  .reco-link{
+    display:inline-block; padding:6px 10px; border-radius:999px;
+    border:1px solid #0ea5a4; color:#0ea5a4; font-weight:700; background:#fff;
+    text-decoration:none; transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .reco-link:hover{
+    transform: translateY(-2px);
+    background: #0ea5a4; color:#fff;
+    box-shadow: 0 10px 22px rgba(14,165,164,.25);
+  }
+
+  @media (max-width:680px){
+    .reco-row{ grid-template-columns: 1fr; }
+    .reco-logo{ width: 48px; }
+  }
+</style>
 
 
 <!-- Styles locaux de la section -->
@@ -1032,140 +1322,152 @@ document.addEventListener('DOMContentLoaded', function(){
   #recommandations .reco-card:hover{transform:translateY(-4px); box-shadow:0 12px 28px rgba(15,23,42,.12)}
 </style>
 
-<!-- ====== Section Rapports (logos + boutons pleine largeur) ====== -->
-<section id="rapports" class="section-card" aria-labelledby="rapports-title" style="--report-logo-size:28px;">
-  <h2 id="rapports-title">Rapports</h2>
+<!-- ====== Reports Section (logos + full-width buttons) ====== -->
+<section id="rapports" class="section-card is-ghost" aria-labelledby="rapports-title" style="--report-logo-size:28px;">
+  <h2 id="rapports-title">Reports</h2>
+<p class="muted" style="margin-top:6px;color:#334155;font-style:italic">
+  Please note: this work was carried out with the persons mentioned in the reports.
+</p>
+
   <p class="muted" style="margin-top:8px; color:#475569">
-    Téléchargez mes rapports ou lisez-les en ligne.
+    Download the reports or read them online.
   </p>
 
   <div class="report-grid" style="margin-top:12px">
-    <a class="report-card" href="report_pfe.pdf" download>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank">
       <img class="report-logo" src="logo_esa.png" alt="ESA">
-      <span>Ingénieur mécanique à l'Agence Spatiale Européenne : stage de fin d'études avec prolongation</span>
+      <span>Report Master’s thesis with extension : Engineer at the European Space Agency</span>
     </a>
 
-    <a class="report-card" href="report_upc.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank">
       <img class="report-logo" src="logo_upc.png" alt="UPC">
-      <span>Ingénieur à l'Université Polytechnique de Catalogne (CFD, FEM & CAD)</span>
+      <span>Engineering internship at the Polytechnic University of Catalonia (CFD, FEM & CAD)</span>
     </a>
 
-    <a class="report-card" href="report_kth_fundamentals.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_cater.pdf" target="_blank">
+      <img class="report-logo" src="logo_cat.png" alt="Caterpillar">
+      <span>First-year internship report at Caterpillar</span>
+    </a>
+
+
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_aeroelasticity.pdf" target="_blank">
       <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Fundamentals of Spaceflights</span>
+      <span>Aeroelasticity applied to the Windex aircraft</span>
     </a>
 
-    <a class="report-card" href="report_kth_human_spaceflight.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fibre_composites.pdf" target="_blank">
       <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Human Spaceflight</span>
+      <span>Fibre Composites - Analysis and design : Design Problem - FEM & Python</span>
     </a>
 
-    <a class="report-card" href="report_kth_aeroelasticity.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fundamentals.pdf" target="_blank">
       <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Aeroelasticity</span>
+      <span>Comparative Evaluation of Reusable Launch Vehicles and Expendable Launch Vehicles</span>
     </a>
 
-    <a class="report-card" href="report_kth_fibre_composites.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_refrig.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Heat Exchangers : Refrigeration system</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_heatexch.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Heat Exchangers : Tubular System</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Flow modeling and analysis : Turbulent Jet on Fluent</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Flow modeling and analysis : Compressible flow in a nozzle on Fluent</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Flow modeling and analysis : Flowmeter</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_overset.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Fluids and Thermal Simulations : Overset meshing on Fluent</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_maillage.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Fluids and Thermal Simulations : Mesh Generation on Fluent</span>
+    </a>
+
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_belier_resonance.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Pressurized Flow Hydraulics Project: Water Hammer and Resonance</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_belier.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Pressurized Flow Hydraulics Lab: Water Hammer</span>
+    </a>
+
+
+
+
+
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_verlinde.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Mechanical Design Project: Hydraulic Motor Verlinde</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fan.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Industrial Design : Fan Blade on SolidWorks</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank">
       <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Fibre Composites</span>
+      <span>Vehicle Design : A space taxi for two people - Human Spaceflight</span>
     </a>
 
-<a class="report-card" href="report_ense3_verlinde.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_abaqus.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Conception mécanique Bureau d'Etude : Moteur Hydraulique Verlinde</span>
+      <span>Mechanical modeling on Abaqus</span>
     </a>
 
-<a class="report-card" href="report_ense3_belier_resonance.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Hydraulique des écoulements en charge Bureau d'Etude : coup de Belier et résonance</span>
+      <span>Mechanical Design and Modeling : Skateboard</span>
     </a>
 
-
-<a class="report-card" href="report_ense3_belier.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Hydraulique des écoulements en charge Travail Pratique : coup de Belier</span>
+      <span>Mechanical Design and Modeling : Scooter</span>
     </a>
 
-
-<a class="report-card" href="report_ense3_Hercule.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_poutre.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Enjeux énergétique : projet Hercule</span>
+      <span>Structures and materials : Free cantilever beam </span>
     </a>
 
-<a class="report-card" href="report_ense3_mae2.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_portique.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Modélisation et analyse des écoulements </span>
+      <span>Structures and materials : Two-story portico</span>
     </a>
 
-<a class="report-card" href="report_ense3_fluent.pdf" download>
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_Hercule.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Jet turbulent sur Fluent</span>
-    </a>
-
-<a class="report-card" href="report_ense3_abaqus.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Abaqus</span>
-    </a>
-
-<a class="report-card" href="report_ense3_poutre.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Poutre</span>
-    </a>
-
-<a class="report-card" href="report_ense3_portique.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Portique</span>
-    </a>
-
-<a class="report-card" href="report_ense3_debitmetre.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Debitmetre</span>
-    </a>
-
-<a class="report-card" href="report_ense3_fan.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Fan Blade</span>
-    </a>
-
-<a class="report-card" href="report_ense3_overset.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Overset</span>
-    </a>
-
-<a class="report-card" href="report_ense3_maillage.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Maillage</span>
+      <span>Energy Issues: Hercule Project</span>
     </a>
 
 
-<a class="report-card" href="report_ense3_refrig.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Refrig</span>
-    </a>
-
-<a class="report-card" href="report_ense3_heatexch.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Heat exchanger</span>
-    </a>
-
-
-<a class="report-card" href="report_ense3_skate.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Conception et modélisation mécanique : Skate</span>
-    </a>
-
-<a class="report-card" href="report_ense3_trott.pdf" download>
-      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Conception et modélisation mécanique : Trottinette</span>
-    </a>
-
-    <!-- Optionnel : un 4e rapport -->
-    <a class="report-card" href="report_cater.pdf" download>
-      <img class="report-logo" src="logo_cat.png" alt="CATER">
-      <span>Rapport de stage de première année effectué au sein de Caterpillar</span>
-    </a>
   </div>
 </section>
+
+
 
 <!-- Styles (reprennent l'esthétique de la section Recommandations) -->
 <style>
@@ -1204,9 +1506,141 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 </style>
 
+<style>
+  #backgrounds-gallery .bg-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top:12px;
+  }
+  #backgrounds-gallery figure{
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  #backgrounds-gallery figure:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,0,0,.12);
+  }
+  #backgrounds-gallery img{
+    width:100%;
+    height:160px;            /* ajuste si besoin */
+    object-fit:contain;      /* garde l’image intacte */
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+    display:block;
+    padding:10px;
+  }
+  #backgrounds-gallery figcaption{
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+    padding:8px 10px 12px;
+    text-align:center;
+  }
+  /* Lightbox */
+  #bg-lightbox::backdrop{ background:rgba(2,6,23,.6) }
+  #bg-lightbox{
+    border:none; padding:0; background:transparent;
+  }
+  .bg-lightbox-inner{
+    display:flex; align-items:center; justify-content:center;
+    max-width:95vw; max-height:92vh; margin:auto;
+  }
+  .bg-lightbox-img{
+    max-width:95vw; max-height:92vh;
+    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+    background:#fff;
+  }
+  .bg-lightbox-close{
+    position:fixed; top:12px; right:12px;
+    background:#fff; border:1px solid #e6eef2;
+    border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+</style>
 
 
-<!-- ====== Galerie Skate ====== -->
+<section id="backgrounds-gallery" class="section-card" aria-labelledby="backgrounds-gallery-title">
+  <h2 id="backgrounds-gallery-title">Projects Illustrations</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Click any image to enlarge.
+  </p>
+
+  <div class="bg-grid">
+    <figure>
+      <img src="fond1.png"  loading="lazy" alt="Background 1">
+      <figcaption>Example ANSYS Fluent</figcaption>
+    </figure>
+    <figure>
+      <img src="fond2.png"  loading="lazy" alt="Background 2">
+      <figcaption>Example ANSYS Fluent</figcaption>
+    </figure>
+    <figure>
+      <img src="fond3.png"  loading="lazy" alt="Background 3">
+      <figcaption>Industrial Design SolidWorks view </figcaption>
+    </figure>
+    
+	<figure>
+      <img src="fond12.png" loading="lazy" alt="Background 12">
+      <figcaption>Verlinde Motor assembly on SolidWorks</figcaption>
+    </figure>
+	<figure>
+      <img src="fond4.png"  loading="lazy" alt="Background 4">
+      <figcaption>Digital Twins ESA</figcaption>
+    </figure>
+    <figure>
+      <img src="fond5.png"  loading="lazy" alt="Background 5">
+      <figcaption>Fluent simulation at UPC</figcaption>
+    </figure>
+    <figure>
+      <img src="fond6.png"  loading="lazy" alt="Background 6">
+      <figcaption>Mechanical conception and modeling on Abaqus</figcaption>
+    </figure>
+    <figure>
+      <img src="fond7.png"  loading="lazy" alt="Background 7">
+      <figcaption>Mechanical conception and modeling on Abaqus</figcaption>
+    </figure>
+    <figure>
+      <img src="fond8.png"  loading="lazy" alt="Background 8">
+      <figcaption>Mechanical conception and modeling on Abaqus</figcaption>
+    </figure>
+    <figure>
+      <img src="fond9.png"  loading="lazy" alt="Background 9">
+      <figcaption>Fan blade design on SolidWorks</figcaption>
+    </figure>
+    <figure>
+      <img src="fond16.png"  loading="lazy" alt="Background 16">
+      <figcaption>Fluent Meshing</figcaption>
+    </figure>
+    <figure>
+      <img src="fond17.png"  loading="lazy" alt="Background 17">
+      <figcaption>Fluent Meshing</figcaption>
+    </figure>
+    <figure>
+      <img src="fond10.png" loading="lazy" alt="Background 10">
+      <figcaption>ISS docking port design on SolidWorks</figcaption>
+    </figure>
+	<figure>
+      <img src="fond11.png" loading="lazy" alt="Background 11">
+      <figcaption>Space Vehicle developed on SolidWorks</figcaption>
+    </figure>
+    <figure>
+      <img src="fond19.png"  loading="lazy" alt="Background 19">
+      <figcaption>Space Vehicle developed on SolidWorks</figcaption>
+    </figure>
+    <figure>
+      <img src="fond20.png" loading="lazy" alt="Background 20">
+      <figcaption>Space Vehicle developed on SolidWorks</figcaption>
+    </figure>
+  </div>
+</section>
+
+
+<!--
 <section id="skate-gallery" class="section-card" aria-labelledby="skate-gallery-title">
   <h2 id="skate-gallery-title">Galerie Skate</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
@@ -1277,6 +1711,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </figure>
   </div>
 </section>
+-->
 
 <!-- ====== Styles de la galerie (à placer dans ton <style> global si tu préfères) ====== -->
 <style>
@@ -1336,7 +1771,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 </style>
 
-<!-- ====== Galerie Trottinette ====== -->
+<!-- 
 <section id="trott-gallery" class="section-card" aria-labelledby="trott-gallery-title">
   <h2 id="trott-gallery-title">Galerie Trottinette</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
@@ -1431,7 +1866,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </figure>
   </div>
 </section>
-
+-->
 <!-- ====== Styles (peuvent aller dans ton <style> global) ====== -->
 <style>
   #trott-gallery .trott-grid{
@@ -1559,7 +1994,7 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
 </script>
 
-
+<!--
       <section id="portfolio">
         <h2 style="margin-top:28px">Portfolio</h2>
         <div class="portfolio">
@@ -1593,6 +2028,8 @@ document.addEventListener('DOMContentLoaded', function(){
           </figure>
         </div>
       </section>
+
+-->
 
 <!--
 
@@ -1667,7 +2104,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     <footer>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-        <div>&copy; <span id="year"></span> AlexandreLabau. Tous droits réservés.</div>
+        <div>&copy; <span id="year"></span> AlexandreLabau. All rights reserved.</div>
         </div>
     </footer>
   </div>
@@ -1684,5 +2121,67 @@ document.addEventListener('DOMContentLoaded', function(){
       });
     });
   </script>
+
+<dialog id="bg-lightbox" aria-label="Enlarged background">
+  <button class="bg-lightbox-close" onclick="document.getElementById('bg-lightbox').close()">✕</button>
+  <div class="bg-lightbox-inner">
+    <img class="bg-lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Zoom on click for Backgrounds gallery
+  (function(){
+    const dialog = document.getElementById('bg-lightbox');
+    const bigImg = dialog.querySelector('.bg-lightbox-img');
+
+    document.querySelectorAll('#backgrounds-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Close when clicking outside the dialog content
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                     e.clientY >= rect.top  && e.clientY <= rect.bottom;
+      if(!inside) dialog.close();
+    });
+  })();
+</script>
+<dialog id="bg-lightbox" aria-label="Enlarged background">
+  <button class="bg-lightbox-close" onclick="document.getElementById('bg-lightbox').close()">✕</button>
+  <div class="bg-lightbox-inner">
+    <img class="bg-lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Zoom on click for Backgrounds gallery
+  (function(){
+    const dialog = document.getElementById('bg-lightbox');
+    const bigImg = dialog.querySelector('.bg-lightbox-img');
+
+    document.querySelectorAll('#backgrounds-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Close when clicking outside the dialog content
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                     e.clientY >= rect.top  && e.clientY <= rect.bottom;
+      if(!inside) dialog.close();
+    });
+  })();
+</script>
+
 </body>
 </html>
