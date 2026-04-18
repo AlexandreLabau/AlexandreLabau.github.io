@@ -1,0 +1,3915 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="logo_buck.png" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buck Engineering website</title>
+  <meta name="description" content="Site vitrine simple et moderne créé automatiquement">
+  <style>
+    /* Reset minimal */
+    *{box-sizing:border-box;margin:0;padding:0}
+
+html, body{
+  height:100%;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  line-height:1.5;
+  color:#0f172a;
+
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,        /* blanc */
+    #6FB4FF 40%,       /* bleu adouci */
+    #B79CFF 100%       /* violet adouci */
+  );
+  background-attachment: fixed;
+}
+
+
+
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    /* Layout */
+    .container{max-width:1300px;margin:0 auto;padding:24px}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;flex-wrap:nowrap;gap:8px}
+    .brand{font-weight:700;font-size:clamp(.9rem,1.5vw,1.05rem);white-space:nowrap;flex-shrink:0}
+    nav { display:flex; flex-wrap:nowrap; gap:3px; align-items:center; overflow-x:auto; scrollbar-width:none }
+    nav::-webkit-scrollbar{display:none}
+    nav a {
+      padding:clamp(4px,.5vw,6px) clamp(9px,.9vw,13px); border-radius:999px;
+      font-weight:600; font-size:clamp(.82rem,1.1vw,.9rem); white-space:nowrap;
+      border:1px solid #e6eef2; background:#fff;
+      color:#0f172a; text-decoration:none;
+      transition:background .15s, border-color .15s, transform .1s, box-shadow .1s;
+      box-shadow:0 2px 6px rgba(15,23,42,.04);
+    }
+    nav a:hover { background:#f0fdfc; border-color:#0ea5a4; color:#0ea5a4; transform:translateY(-1px); box-shadow:0 4px 12px rgba(14,165,164,.15) }
+
+    /* Hero */
+    /* === HERO ++ esthétique === */
+.hero {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid #e6eef2;
+  border-radius: 18px;
+  padding: clamp(22px, 4vw, 36px);
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(14,165,164,.12), transparent 60%),
+    linear-gradient(180deg, #ffffff, #f8fbfc);
+  box-shadow: 0 18px 50px rgba(15,23,42,.08);
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+}
+
+/* Ruban d'intro + titre + sous-titre */
+.hero .eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 12px; border-radius:999px;
+  background: rgba(14,165,164,.12);
+  border:1px solid rgba(14,165,164,.25);
+  color:#0ea5a4; font-weight:700; font-size:.9rem;
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.08;
+  margin-top: 10px;
+}
+.hero .sub {
+  color:#475569; margin-top:30px; max-width: 60ch;
+}
+
+/* Tags de compétences succincts */
+.hero .tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px }
+.hero .tag {
+  padding:6px 10px; border-radius:999px; font-weight:600;
+  border:1px solid #e6eef2; background:#fff; color:#0f172a;
+  box-shadow: 0 6px 16px rgba(15,23,42,.06);
+}
+
+/* CTA */
+/* Empiler les liens sur une colonne (retours à la ligne) */
+.hero .cta.cta--stack{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* gauche */
+  gap: 8px;
+}
+.hero .cta.cta--stack .btn{
+  width: fit-content; /* évite de prendre toute la largeur */
+}
+
+
+.hero .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px }
+.hero .btn--ghost{
+  background:#fff; color:#0f172a;
+  border:1px solid #cbd5e1;
+  box-shadow:0 2px 8px rgba(15,23,42,.06);
+}
+.hero .btn--ghost:hover{
+  background:#f0fdfc; border-color:#0ea5a4; color:#0ea5a4;
+}
+
+/* Bloc portrait (légère carte) */
+.hero figure {
+  background:#ffffffcc;
+  border:1px solid #e6eef2;
+  border-radius:16px;
+  padding:16px;
+  box-shadow: 0 12px 30px rgba(15,23,42,.10);
+  text-align:center;
+}
+.hero figcaption { font-size:.9rem; color:#64748b; margin-top:8px }
+
+/* Card blanche réutilisable */
+.section-card{
+  background:#fff;
+  border:1px solid #e6eef2;
+  border-radius:16px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  padding: clamp(18px, 3vw, 28px);
+  margin-top: 24px;   /* écart avec la section précédente */
+}
+
+
+/* Mini contact en bandeau (verre dépoli) */
+.contact-banner.contact--in-hero {
+  margin-top: 16px;
+  background: linear-gradient(180deg, rgba(14,165,164,.85), rgba(14,165,164,.75)),
+              url("bandeau_top.jpg") center/cover no-repeat;
+  box-shadow: 0 16px 40px rgba(14,165,164,.25);
+}
+.contact-banner .contact-card {
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(6px);
+}
+
+/* Accessibilité / interactions douces */
+.hero .btn, .hero .tag { transition: transform .15s ease, box-shadow .15s ease }
+.hero .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(14,165,164,.25) }
+.hero .tag:hover { transform: translateY(-2px) }
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero { grid-template-columns: 1fr; padding: 22px }
+}
+
+
+    /* Cards / Services */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .card{padding:18px;border-radius:12px;background:#fff;border:1px solid #e6eef2;box-shadow:0 6px 20px rgba(15,23,42,0.04)}
+    .card h3{margin-bottom:8px}
+    .card p{color:#475569;font-size:0.95rem}
+
+    /* Portfolio */
+    .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .portfolio-item{border-radius:10px;overflow:hidden;border:1px solid #eef4f6}
+    .portfolio-item figcaption{padding:10px;font-weight:600}
+
+    /* Footer & contact (form) */
+    footer{margin-top:32px;padding:22px 0;color:#475569;border-top:1px solid #eef4f6}
+    form{display:grid;gap:12px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #e6eef2}
+    textarea{min-height:120px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .grid,.portfolio{grid-template-columns:repeat(2,1fr)}
+      header{flex-wrap:wrap}
+    }
+    @media (max-width:640px){
+      .hero{grid-template-columns:1fr}
+      .grid,.portfolio{grid-template-columns:1fr}
+      nav{width:100%;margin-top:12px}
+      .brand{font-size:1rem}
+    }
+
+    /* Subtle micro-animations */
+    .card:hover{transform:translateY(-6px);transition:transform .25s ease}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:9px 18px; border-radius:10px;
+      font-weight:600; font-size:.88rem; cursor:pointer;
+      text-decoration:none; line-height:1;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:active{transform:scale(.98)}
+
+    /* Image ronde */
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #0ea5a4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin: 0 auto;
+      display: block;
+    }
+
+    /* grille des compétences (liste non cliquable) */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    /* section compétences cliquables */
+    .skills-section {
+      --card-bg: #ffffff;
+      --card-shadow: 0 6px 18px rgba(0,0,0,.08);
+      --card-shadow-hover: 0 16px 40px rgba(0,0,0,.16);
+      --card-radius: 16px;
+      --lift: -6px;
+    }
+
+    /* carte cliquable */
+    .skill-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+      outline: none;
+    }
+    .skill-card:hover,
+    .skill-card:focus-visible {
+      transform: translateY(var(--lift)) scale(1.03);
+      box-shadow: var(--card-shadow-hover);
+      filter: saturate(1.05);
+    }
+    .skill-card:focus-visible {
+      box-shadow: 0 0 0 3px rgba(59,130,246,.35), var(--card-shadow-hover);
+    }
+    .skill-card img {
+      max-width: 80px;
+      max-height: 64px;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+/* ME Program tabs */
+.me-tabs { display:flex; gap:8px; flex-wrap:wrap }
+.me-tab {
+  padding:8px 12px; border:1px solid #e6eef2; background:#fff; border-radius:10px;
+  font-weight:600; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow:0 4px 12px rgba(15,23,42,.04);
+}
+.me-tab:hover { transform:translateY(-2px) }
+.me-tab.is-active, .me-tab:focus-visible {
+  outline:none; background:#0ea5a4; color:#fff; box-shadow:0 8px 22px rgba(14,165,164,.35)
+}
+
+.me-panels { margin-top:14px }
+.me-panel[hidden] { display:none }
+.me-panel { background:#fff; border:1px solid #e6eef2; border-radius:14px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.06) }
+.me-panel[hidden]{display:none}
+
+.me-list { list-style:none; display:grid; gap:8px; padding:0 }
+.me-list a { text-decoration:underline; text-underline-offset:2px }
+.me-subhead { margin-top:8px; font-weight:700; color:#0f172a }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skill-card { transition: none; }
+      .skill-card:hover, .skill-card:focus-visible { transform: none; }
+    }
+
+    /* ====== SECTION CONTACT (bandeau + overlay) ====== */
+    /* NOTE: remplace l'image ci-dessous par celle de ton bandeau du haut de page,
+       ou commente la ligne "background-image" et garde juste une couleur de fond. */
+    .contact-banner {
+      position: relative;
+      isolation: isolate;
+      color: #ffffff;                 /* texte lisible sur fond foncé */
+      border-radius: 12px;
+      margin-top: 16px;
+      padding: 24px;
+      background-color: #0ea5a4;     /* fallback si l'image ne charge pas */
+      background-image: url("bandeau_top.jpg"); /* <= mets ici ton image de bandeau déjà utilisée */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+    .contact-banner::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.45);  /* overlay noir 45% pour renforcer le contraste */
+      z-index:-1;                    /* derrière le contenu */
+    }
+
+    /* Grille interne du contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-top: 14px;
+    }
+    .contact-card{
+      padding:18px;border-radius:12px;
+      background: rgba(255,255,255,0.9); /* cartes blanches semi-transparentes */
+      color:#0f172a;
+      border:1px solid rgba(230,238,242,0.8);
+      box-shadow:0 6px 20px rgba(15,23,42,0.12)
+    }
+    .contact-list{list-style:none;display:grid;gap:14px;margin-top:8px}
+    .contact-item{display:flex;align-items:flex-start;gap:12px}
+    .contact-item svg{flex:0 0 auto;width:20px;height:20px;margin-top:2px}
+    .muted{color:#e2e8f0}
+
+    /* Contact placé sous la photo dans le hero */
+    .contact--in-hero { margin-top: 16px; }
+    .contact--in-hero .contact-grid { grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 641px) {
+      .contact--in-hero .contact-card {
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto; /* centre sous la photo */
+      }
+    }
+    @media (max-width:900px){
+      .contact-grid{grid-template-columns: 1fr}
+    }
+
+/* === Décors latéraux : logos en carré === */
+:root{
+  --content-max: 1300px;
+  --side-size: clamp(100px, 12vw, 160px);
+  --gap-side: 40px; /* marge entre logos et zone de contenu */
+}
+
+.side-decor{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.side-decor img{
+  position: absolute;
+  width: var(--side-size);
+  height: auto;
+  opacity: .8;
+  filter: drop-shadow(0 8px 22px rgba(15,23,42,.18));
+  transform: translateY(-50%);
+}
+
+/* Placement : carré */
+.side-decor .left  { left:  calc(50% - var(--content-max)/2 - var(--side-size) - var(--gap-side)); }
+.side-decor .right { right: calc(50% - var(--content-max)/2 - var(--side-size) - var(--gap-side)); }
+
+/* Ligne du haut */
+.side-decor .l1 { top: 25%; }
+.side-decor .r1 { top: 25%; }
+
+/* Ligne du bas */
+.side-decor .l2 { top: 70%; }
+.side-decor .r2 { top: 70%; }
+
+.container{ position: relative; z-index: 1; }
+
+@media (max-width: 1000px){
+  .side-decor{ display: none; }
+}
+
+.hero .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px }
+.cta--docs .btn--ghost{ font-size:.9rem; padding:8px 12px }
+
+
+  </style>
+</head>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  // On prend tous les groupes d’onglets éventuels
+  document.querySelectorAll('.me-tabs').forEach(function(tabsRoot){
+    const tabs   = tabsRoot.querySelectorAll('.me-tab');
+    // Les panels sont dans le sibling .me-panels le plus proche
+    const panels = tabsRoot.nextElementSibling?.querySelectorAll('.me-panel') || [];
+
+    function showPanel(targetId){
+      panels.forEach(p => p.hidden = (p.id !== targetId));
+      tabs.forEach(t => {
+        const active = t.getAttribute('aria-controls') === targetId;
+        t.classList.toggle('is-active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+
+    // Init (si un panel est déjà “is-active”, on respecte)
+    const initiallyActive = tabsRoot.parentElement.querySelector('.me-panel.is-active')?.id
+                         || tabs[0]?.getAttribute('aria-controls');
+    if(initiallyActive){ showPanel(initiallyActive); }
+
+    // Clicks
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('aria-controls');
+        if(targetId) showPanel(targetId);
+      });
+    });
+  });
+});
+</script>
+
+
+<body>
+
+<div class="side-decor" aria-hidden="true">
+  <img class="left l1"  src="logo_kth.png"   alt="KTH">
+  <img class="left l2"  src="logo_ense3.png" alt="ENSE3">
+  <img class="right r1" src="logo_esa.png"   alt="ESA">
+  <img class="right r2" src="logo_upc.png"   alt="UPC">
+</div>
+
+
+
+  <div class="container">
+    <header>
+      <div class="brand">Alexandre Labau : Ingénieur en mécanique et énergétique</span></div>
+
+<nav>
+  <a href="#fresque">Parcours</a>
+  <a href="#education">Formation</a>
+  <a href="#edf">EDF</a>
+  <a href="#software-skills">Compétences</a>
+  <a href="#recommandations">Recommandations</a>
+  <a href="#entretien">Entretien</a>
+  <a href="#rapports">Rapports</a>
+  <a href="#contact">Contact</a>
+</nav>
+    </header>
+
+
+    <main>
+<section class="hero" id="home" aria-labelledby="hero-title">
+  <div>
+    <span class="eyebrow" aria-label="Localisation et disponibilité">EU & FR • Disponible</span>
+    <h1 id="hero-title"><strong>Alexandre Labau</strong></h1>
+    <p class="sub">
+      Titulaire d’un double diplôme de master en Génie Mécanique et Énergétique (KTH Stockholm / Grenoble INP – ENSE3), je cherche à mettre mes compétences en simulation, qualification d’équipements et rédaction technique au service de projets industriels exigeants dans l’énergie et l’ingénierie avancée.
+    </p>
+
+<div class="cta cta--stack">
+  <!-- CV -->
+  <a class="btn btn--ghost" href="resume_alexandre_labau.pdf" download aria-label="Télécharger mon CV (EN)">Télécharger mon CV (EN)</a>
+  <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV (FR)">Télécharger mon CV (FR)</a>
+  <a class="btn btn--ghost" href="appreciation_pfe.pdf" target="_blank" rel="noopener">ESA : Fiche d'appréciation</a>
+  <a class="btn btn--ghost" href="reco_pfe.pdf" target="_blank" rel="noopener">ESA : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_kth.pdf" target="_blank" rel="noopener">KTH : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_ense3.pdf" target="_blank" rel="noopener">Grenoble INP ENSE3 : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_upc.pdf" target="_blank" rel="noopener">UPC : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_pony.pdf" target="_blank" rel="noopener">Pony : Lettre de recommandation</a>
+</div>
+
+
+  </div>
+
+  <figure>
+    <img class="profile-pic" src="photo_ESTEC.jpg" alt="Soutenance de thèse au Centre européen de recherche et de technologie spatiale (ESTEC)" />
+    <figcaption>
+      Soutenance de thèse au Centre européen de recherche et de technologie spatiale (ESTEC)
+    </figcaption>
+
+    <!-- ===== CONTACT (infos) SOUS la photo ===== -->
+    <section id="contact" class="contact-banner contact--in-hero" aria-labelledby="contact-title">
+  <h2 id="contact-title">Contact</h2>
+  <div class="contact-grid">
+    <div class="contact-card" aria-labelledby="contact-infos-title">
+      <h3 id="contact-infos-title"></h3>
+      <ul class="contact-list">
+        <li class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+            <path d="M22 8l-10 6L2 8"/>
+          </svg>
+          <div><a href="mailto:alexandrelabau@outlook.fr">alexandrelabau@outlook.fr</a></div>
+        </li>
+
+        <!-- Téléphone -->
+        <li class="contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h2a2 2 0 0 1 2 1.72c.12.86.33 1.7.63 2.5a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.58-1.14a2 2 0 0 1 2.11-.45c.8.3 1.64.51 2.5.63A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <div><a href="tel:+33786345497" aria-label="Appeler Alexandre Labau">+33&nbsp;7&nbsp;86&nbsp;34&nbsp;54&nbsp;97</a></div>
+        </li>
+
+        <li class="contact-item">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zm7.5 0h3.8v2h.05c.53-1 1.84-2.05 3.8-2.05 4.06 0 4.8 2.67 4.8 6.13V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.17 0-2.5 1.7-2.5 3.45V23h-4V8.5z"/>
+          </svg>
+          <div><a href="https://www.linkedin.com/in/alexandre-labau/" target="_blank" rel="noopener">linkedin.com/in/alexandre-labau</a></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <!-- ===== FIN CONTACT ===== -->
+  </figure>
+</section>
+
+
+<style>
+  /* Variante "transparente" des sections (pas de fond blanc ni d'ombre) */
+  .section-card.is-ghost {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Cartes éducation (une par ligne) */
+  .edu-grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin-top:12px;
+  }
+  .edu-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .edu-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(14,165,164,.18);
+  }
+  .edu-card img{
+    width:36px; height:auto; flex:0 0 auto;
+  }
+  .edu-title{ font-weight:700; line-height:1.2}
+  .edu-sub{ color:#475569; font-size:.95rem; margin-top:4px }
+</style>
+
+     
+      </section>
+
+<style>
+  /* Section sans fond */
+  .section-card.is-ghost { background: transparent; border: 0; box-shadow: none; }
+
+  /* Liste éducation : UNE carte par ligne (toujours) */
+  .edu-list {
+    display: grid;
+    grid-template-columns: 1fr;  /* => une seule colonne, tout le temps */
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  /* Carte éducation (cliquable, full width) */
+  .edu-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(15,23,42,.06);
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+  .edu-row:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(14,165,164,.18);
+    border-color: #cfe9e7;
+  }
+
+  .edu-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+  .edu-content { display: grid; gap: 2px }
+  .edu-title   { font-weight: 700; line-height: 1.2; color: #0f172a; }
+  .edu-sub     { color: #475569; font-size: .95rem; }
+  .edu-sub a { text-decoration: underline; }
+</style>
+
+<style>
+  /* Section "ghost": pas de fond pour le container */
+  #education.section-card.is-ghost{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Liste verticale – une carte par ligne */
+  .edu-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  /* Carte non-cliquable (le lien est interne) */
+  .edu-row{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(15,23,42,.06);
+  }
+
+  .edu-logo{
+    width: 80px; height: auto; display: block; flex: 0 0 auto;
+  }
+
+  .edu-title{ font-weight: 800; }
+  .edu-sub{ color:#475569; margin-top: 2px; }
+  .edu-details{ margin: 8px 0 0 0; padding-left: 18px; color:#0f172a }
+  .edu-details li{ margin: 4px 0; }
+
+  .edu-links{ margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap }
+  .edu-link{
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid #0ea5a4;
+    color: #0ea5a4;
+    font-weight: 700;
+    background: #fff;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .edu-link:hover{
+    transform: translateY(-2px);
+    background: #0ea5a4;
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(14,165,164,.25);
+  }
+
+  @media (max-width:680px){
+    .edu-row{ grid-template-columns: 1fr; text-align: left }
+    .edu-logo{ width: 40px; }
+  }
+</style>
+
+
+<!-- ====== Fresque chronologique : Section dédiée ====== -->
+<section id="fresque" class="section-card is-ghost" style="margin-top:28px">
+  <h2 style="margin-bottom:4px">Parcours professionnel</h2>
+  <p style="color:#475569; margin-top:8px">Fresque chronologique : glissez pour parcourir.</p>
+
+  <div class="frq2-wrap" style="margin-top:20px">
+    <div class="frq2-track" id="frq2-track">
+      <div class="frq2-rail"></div>
+    </div>
+  </div>
+  <div id="frq2-detail" class="frq2-detail" style="display:none"></div>
+</section>
+
+<style>
+.frq2-wrap {
+  overflow-x: auto; overflow-y: visible; padding: 20px 0 32px;
+  cursor: grab; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent;
+}
+.frq2-wrap:active { cursor: grabbing }
+.frq2-wrap::-webkit-scrollbar { height: 4px }
+.frq2-wrap::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:2px }
+
+.frq2-track {
+  position: relative; display: flex; align-items: flex-start;
+  min-width: max-content; padding: 80px 40px 16px;
+}
+.frq2-rail {
+  position: absolute; top: 80px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg,
+    #D97706 0%, #D97706 8%,
+    #2563EB 16%, #2563EB 24%,
+    #DC2626 32%, #DC2626 40%,
+    #1D4ED8 48%, #1D4ED8 56%,
+    #1E3A8A 64%, #1E3A8A 72%,
+    #991B1B 80%, #991B1B 88%,
+    #16A34A 96%, #16A34A 100%
+  );
+  border-radius: 2px;
+}
+.frq2-col {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; width: 220px; flex-shrink: 0;
+}
+.frq2-dot {
+  position: absolute; top: -8px; width: 16px; height: 16px;
+  border-radius: 50%; background: #fff;
+  border: 2.5px solid #0ea5a4; box-shadow: 0 0 0 3px rgba(14,165,164,.12);
+  z-index: 2;
+}
+.frq2-stem { width: 2px; height: 24px; background: #0ea5a4; margin-top: 8px; opacity: .45 }
+.frq2-card {
+  width: 200px; background: #fff; border: 1px solid #e6eef2;
+  border-radius: 14px; padding: 14px; overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15,23,42,.06);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.frq2-col:hover .frq2-card { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.12); border-color: var(--card-color, #0ea5a4) }
+.frq2-dates {
+  position: absolute; top: -60px; text-align: center; line-height: 1.4;
+}
+.frq2-date-start { font-size: .85rem; font-weight: 800; color: #0f172a }
+.frq2-date-end   { font-size: .78rem; font-weight: 600; color: #64748b }
+.frq2-card-img   { width: 100%; height: 90px; object-fit: cover; display: block; border-radius: 6px; margin-bottom: 10px }
+.frq2-title  { font-weight: 800; font-size: .88rem; color: #0f172a; margin: 0 0 4px; line-height: 1.3 }
+.frq2-meta   { font-size: .75rem; color: #64748b; margin-bottom: 8px }
+.frq2-missions { list-style:none; padding:0; margin:0; display:grid; gap:3px }
+.frq2-missions li { font-size:.74rem; color:#475569; padding-left:10px; position:relative }
+.frq2-missions li::before { content:"›"; position:absolute; left:0; color:#0ea5a4 }
+.frq2-skills { display:flex; flex-wrap:wrap; gap:3px; margin-top:8px }
+.frq2-skill  { font-size:.68rem; padding:2px 7px; border-radius:999px; border:1px solid #e6eef2; color:#64748b; background:#f8fafc }
+.frq2-dl-wrap { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px }
+.frq2-dl {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 10px; border-radius:7px; font-size:.75rem; font-weight:600;
+  background:#f0fdfc; border:1px solid rgba(14,165,164,.35); color:#0ea5a4;
+  text-decoration:none; transition:background .15s;
+}
+.frq2-dl:hover { background:#ccfbf1 }
+@media(max-width:700px){ .frq2-col{ width:175px } .frq2-card{ width:155px } }
+/* Jalons */
+.frq2-milestone { width: 100px; }
+.frq2-milestone-dot {
+  position: absolute; top: -16px; font-size: 1.5rem; z-index: 3;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.15));
+}
+.frq2-milestone-label {
+  margin-top: 12px; text-align: center; font-size: .72rem; font-weight: 700;
+  color: #B45309; max-width: 96px; line-height: 1.35;
+  padding: 5px 7px; border-radius: 8px;
+  background: #FFFBEB; border: 1.5px solid #FDE68A;
+  box-shadow: 0 2px 8px rgba(245,158,11,.15);
+}
+.frq2-milestone-date {
+  font-size: .8rem; font-weight: 800; color: #D97706;
+  position: absolute; top: -58px; text-align: center; line-height: 1.4;
+}
+
+/* États actifs */
+.frq2-col { cursor: pointer }
+
+/* Bandeau logo en haut de carte */
+.frq2-logo-band {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px;
+  min-height: 72px; padding: 10px 14px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f0fdfc 100%);
+  border-bottom: 1px solid #e6eef2;
+}
+.frq2-logo-img {
+  max-height: 48px; max-width: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 4px rgba(15,23,42,.12));
+}
+.frq2-client-logos {
+  display: flex; justify-content: center; align-items: center; gap: 5px; flex-wrap: wrap;
+}
+.frq2-client-logo-img {
+  max-height: 20px; max-width: 54px; object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(15,23,42,.15));
+}
+.frq2-client-badge {
+  font-size: .58rem; font-weight: 800; color: #fff;
+  padding: 1px 5px; border-radius: 3px; letter-spacing: .02em;
+}
+/* Bandeau logo dans le panneau détail */
+.frq2-detail-logo-band {
+  display: flex; align-items: center; gap: 18px;
+  padding: 4px 0 4px;
+}
+.frq2-detail-logo-wrap {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 96px; padding: 10px 16px;
+  border-radius: 14px; background: #fff;
+}
+.frq2-detail-logo-img {
+  max-height: 52px; max-width: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(15,23,42,.12));
+}
+.frq2-detail-logo-initial {
+  width: 72px; height: 72px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; font-weight: 900; color: #fff;
+}
+.frq2-col.is-active .frq2-dot {
+  background: var(--card-color, #0ea5a4); transform: scale(1.3);
+  box-shadow: 0 0 0 5px rgba(0,0,0,.12);
+}
+.frq2-col.is-active .frq2-card {
+  border-color: var(--card-color, #0ea5a4); border-width: 2px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.14);
+}
+
+/* Panneau détail */
+.frq2-detail {
+  margin-top: 18px; background: #fff;
+  border: 1px solid #e6eef2; border-radius: 16px; overflow: hidden;
+  animation: frq2-in .2s ease;
+}
+@keyframes frq2-in { from { opacity:0; transform:translateY(-6px) } to { opacity:1; transform:translateY(0) } }
+.frq2-detail-head {
+  background: rgba(14,165,164,.07); border-bottom: 1px solid #e6eef2;
+  padding: 14px 20px; display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.frq2-detail-head h3 { margin: 0; font-size: 1rem; color: #0f172a }
+.frq2-detail-head-meta { font-size: .82rem; color: #64748b; margin-top: 2px }
+.frq2-detail-body {
+  padding: 20px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.frq2-detail-img-wrap { grid-column: 1 / -1 }
+.frq2-detail-img {
+  width: 100%; max-height: 200px; object-fit: cover;
+  border-radius: 12px; border: 1px solid #e6eef2;
+  box-shadow: 0 4px 14px rgba(15,23,42,.08);
+}
+.frq2-detail-col h4 {
+  font-size: .78rem; font-weight: 700; color: #64748b;
+  text-transform: uppercase; letter-spacing: .05em; margin: 0 0 8px;
+}
+.frq2-detail-missions { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px }
+.frq2-detail-missions li { font-size: .9rem; color: #334155; padding-left: 14px; position: relative }
+.frq2-detail-missions li::before { content: "›"; position: absolute; left: 0; color: #0ea5a4 }
+.frq2-detail-skills { display: flex; flex-wrap: wrap; gap: 5px }
+.frq2-detail-skill { font-size: .8rem; padding: 3px 10px; border-radius: 999px; border: 1px solid #e6eef2; color: #334155; background: #f8fafc }
+.frq2-detail-dl-wrap { display: flex; flex-wrap: wrap; gap: 6px }
+.frq2-detail-dl {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 12px; border-radius: 8px; font-size: .82rem; font-weight: 600;
+  background: #f0fdfc; border: 1px solid rgba(14,165,164,.35); color: #0ea5a4;
+  text-decoration: none; transition: background .15s;
+}
+.frq2-detail-dl:hover { background: #ccfbf1 }
+.frq2-close {
+  padding: 5px 14px; border-radius: 8px; font-weight: 600; cursor: pointer;
+  font-size: .82rem; border: 1px solid #e6eef2; background: #fff; color: #64748b;
+  flex-shrink: 0; transition: background .15s;
+}
+.frq2-close:hover { background: #f8fafc }
+@media(max-width:700px){ .frq2-detail-body { grid-template-columns: 1fr } }
+</style>
+
+<script>
+(function(){
+  /* =====================================================
+     DONNEES DE LA FRESQUE : modifier uniquement ici
+     Champs : start, end, title, entity, site
+              missions (tableau), skills (virgules)
+              image (chemin/url ou "")
+              downloads (tableau de {label, url} ou [])
+     ===================================================== */
+  var DATA = [
+    {
+      id: 1,
+      start: "Juin 2022", end: "Août 2022",
+      title: "Stage ouvrier",
+      entity: "Caterpillar", site: "France",
+      missions: [
+        "Monteur sur les lignes d'assemblages",
+        "Modélisation CAO de pièces",
+        "Études ergonomiques"
+      ],
+      skills: "CAO, assemblage industriel, ergonomie",
+      logo: "logo_cat.png", image: "", downloads: []
+    },
+    {
+      id: 2,
+      start: "Sept 2022", end: "Sept 2023",
+      title: "Membre : Association BIE",
+      entity: "Grenoble INP : ENSE3", site: "Grenoble",
+      missions: [
+        "Accueil et intégration de plus de 1 000 étudiants internationaux",
+        "Organisation d'événements d'intégration",
+        "Communication interculturelle"
+      ],
+      skills: "Communication, gestion d'événements, leadership",
+      logo: "logo_ense3.png", image: "", downloads: []
+    },
+    {
+      id: 3,
+      start: "Juin 2023", end: "Août 2023",
+      title: "Stage ingénieur : Mécanique des fluides",
+      entity: "Université Polytechnique de Catalogne (UPC)", site: "Barcelone",
+      missions: [
+        "Modélisation et simulation mécanique des structures",
+        "Simulation CFD : mécanique des fluides",
+        "Post-traitement des résultats (Ansys Workbench, Fluent, Python)"
+      ],
+      skills: "CAO, CFD, Ansys Workbench, Ansys Fluent, Python",
+      logo: "logo_upc.png", image: "",
+      downloads: [{ label: "Lettre de recommandation UPC", url: "reco_upc.pdf" }]
+    },
+    {
+      id: 4,
+      start: "Jan 2024", end: "Mars 2024",
+      title: "Projet étudiant : Véhicule pressurisé",
+      entity: "KTH École Royale Polytechnique", site: "Stockholm",
+      missions: [
+        "Supervisé par Christer Fuglesang (1er astronaute suédois)",
+        "Réalisation des modèles CAO (réservoirs pressurisés)",
+        "Coordination d'une équipe internationale de 25 personnes"
+      ],
+      skills: "CAO, SolidWorks, gestion de projet, travail en équipe international",
+      logo: "logo_kth.png", image: "",
+      downloads: [{ label: "Lettre de recommandation KTH", url: "reco_kth.pdf" }]
+    },
+    {
+      id: "m1",
+      type: "milestone",
+      start: "Juin 2024",
+      end: "",
+      title: "Fin du Double Diplôme",
+      entity: "KTH / ENSE3",
+      site: "",
+      missions: [],
+      skills: "",
+      logo: "", image: "", downloads: []
+    },
+    {
+      id: 5,
+      start: "Sept 2024", end: "Mai 2025",
+      title: "Stage ingénieur : Suivi énergétique",
+      entity: "Agence Spatiale Européenne (ESA)", site: "ESTEC, Pays-Bas",
+      missions: [
+        "Études thermiques et hydrauliques des équipements ESA",
+        "CAO et post-traitement des données de simulation",
+        "Application Python pour la maintenance prédictive (licence ESA)"
+      ],
+      skills: "Thermo-hydraulique, CAO, Python, simulation numérique, maintenance prédictive",
+      logo: "logo_esa.png", image: "photo_ESTEC.jpg",
+      downloads: [
+        { label: "Appréciation ESA", url: "appreciation_pfe.pdf" },
+        { label: "Reco. ESA", url: "reco_pfe.pdf" }
+      ]
+    },
+    {
+      id: 6,
+      start: "Fév 2025", end: "Mai 2025",
+      title: "Ingénieur en Maintenance Prédictive",
+      entity: "ESA / Industriels", site: "Europe",
+      missions: [
+        "Déploiement des solutions de maintenance prédictive chez ArianeGroup, GKN et Airbus",
+        "Adaptation des algorithmes Python aux systèmes industriels des clients",
+        "Formation des équipes terrain aux outils développés"
+      ],
+      skills: "Python, maintenance prédictive, transfert technologique, déploiement industriel",
+      logo: "logo_esa.png",
+      clients: [
+        { name: "ArianeGroup", logo: "logo_arianegroup.png" },
+        { name: "GKN", logo: "logo_gkn.png" },
+        { name: "Airbus", logo: "", initial: "A", color: "#00205B" }
+      ],
+      image: "", downloads: []
+    },
+    {
+      id: 7,
+      start: "Sept 2025", end: "Mars 2026",
+      title: "Fondateur : Auto-entrepreneur",
+      entity: "Buck Engineering", site: "France",
+      missions: [
+        "Gestion administrative complète : création de l'auto-entreprise, suivi financier et aides (ACRE)",
+        "Définition et cadrage du besoin client, rédaction de spécifications techniques",
+        "Rédaction de devis, cahiers des charges et rapports techniques selon les exigences client",
+        "Suivi de la conformité des livrables aux exigences définies, gestion des écarts et dérogations",
+        "Coordination avec les prestataires pour mener les projets à leur terme dans les délais"
+      ],
+      skills: "Entrepreneuriat, rédaction technique, spécifications, conformité aux exigences, relation client",
+      logo: "logo_buck.png", image: "", downloads: []
+    },
+    {
+      id: 8,
+      start: "Nov 2025", end: "Mars 2026",
+      title: "Prestataire de services",
+      entity: "Pony", site: "France",
+      missions: [
+        "Vérification sur le terrain des solutions retenues par l'équipe",
+        "Diagnostic de systèmes mécaniques et établissement de process de maintenance"
+      ],
+      skills: "IoT, CAO, FEM, logistique, diagnostics terrain",
+      logo: "logo_pony.png", image: "", downloads: [{ label: "Lettre de recommandation Pony", url: "reco_pony.pdf" }]
+    }
+  ];
+  /* ===================================================== */
+
+  var track  = document.getElementById("frq2-track");
+  var detail = document.getElementById("frq2-detail");
+  var activeId = null;
+
+  /* Palette associee a chaque experience par son id */
+  var COLORS = {
+    1: { base: "#D97706", light: "#FFFBEB" },
+    2: { base: "#2563EB", light: "#EFF6FF" },
+    3: { base: "#DC2626", light: "#FEF2F2" },
+    4: { base: "#1D4ED8", light: "#EFF6FF" },
+    5: { base: "#1E3A8A", light: "#F0F4FF" },
+    6: { base: "#0369A1", light: "#F0F9FF" },
+    7: { base: "#991B1B", light: "#FEF2F2" },
+    8: { base: "#16A34A", light: "#F0FDF4" }
+  };
+  function getColor(id){ return COLORS[id] || { base: "#0ea5a4", light: "#f0fdfc" }; }
+
+  /* Aligne le rail entre le premier et le dernier point */
+  function positionRail(){
+    var cols = track.querySelectorAll(".frq2-col");
+    var rail = track.querySelector(".frq2-rail");
+    if(!rail || cols.length < 2) return;
+    var first = cols[0];
+    var last  = cols[cols.length - 1];
+    rail.style.left  = (first.offsetLeft + first.offsetWidth / 2) + "px";
+    rail.style.right = (track.scrollWidth - last.offsetLeft - last.offsetWidth / 2) + "px";
+  }
+
+  function render(){
+    /* Vide le track sauf le rail */
+    track.innerHTML = '<div class="frq2-rail"></div>';
+
+    DATA.forEach(function(it){
+      var col = document.createElement("div");
+      col.className = "frq2-col" + (activeId === it.id ? " is-active" : "");
+
+      var imgHtml = it.image
+        ? '<img class="frq2-card-img" src="' + it.image + '" alt="' + (it.title||"") + '" loading="lazy">'
+        : "";
+
+      var missions = (it.missions||[]).slice(0,3)
+        .map(function(m){ return "<li>" + m + "</li>"; }).join("");
+      var skills = (it.skills||"").split(",")
+        .map(function(s){ return '<span class="frq2-skill">' + s.trim() + "</span>"; }).join("");
+
+      /* Jalons */
+      if(it.type === "milestone"){
+        col.className = "frq2-col frq2-milestone";
+        col.innerHTML =
+          '<div class="frq2-milestone-date">' + (it.start||"?") + '</div>' +
+          '<div class="frq2-milestone-dot">&#127891;</div>' +
+          '<div class="frq2-milestone-label">' + it.title + '</div>';
+        col.style.cursor = "default";
+        track.appendChild(col);
+        return;
+      }
+
+      var c = getColor(it.id);
+      col.style.setProperty("--card-color", c.base);
+      col.style.setProperty("--card-light", c.light);
+
+      var clientLogosHtml = "";
+      if(it.clients && it.clients.length){
+        clientLogosHtml = '<div class="frq2-client-logos">' +
+          it.clients.map(function(cl){
+            return cl.logo
+              ? '<img class="frq2-client-logo-img" src="' + cl.logo + '" alt="' + cl.name + '" title="' + cl.name + '">'
+              : '<span class="frq2-client-badge" style="background:' + (cl.color||"#64748b") + '" title="' + cl.name + '">' + (cl.initial||cl.name.charAt(0)) + '</span>';
+          }).join("") +
+          '</div>';
+      }
+
+      var logoBand = (it.logo || clientLogosHtml)
+        ? '<div class="frq2-logo-band" style="background:linear-gradient(135deg,' + c.light + ' 0%,#fff 100%);border-bottom:1px solid ' + c.base + '22">' +
+            (it.logo ? '<img class="frq2-logo-img" src="' + it.logo + '" alt="' + (it.entity||"") + '" loading="lazy">' : "") +
+            clientLogosHtml +
+          '</div>'
+        : '';
+
+      col.innerHTML =
+        '<div class="frq2-dates">' +
+          '<div class="frq2-date-start" style="color:' + c.base + '">' + (it.start||"?") + "</div>" +
+          '<div class="frq2-date-end" style="color:' + c.base + 'aa">'   + (it.end||"?")   + "</div>" +
+        "</div>" +
+        '<div class="frq2-dot" style="border-color:' + c.base + ';box-shadow:0 0 0 3px ' + c.base + '22"></div>' +
+        '<div class="frq2-stem" style="background:' + c.base + ';opacity:.55"></div>' +
+        '<div class="frq2-card">' +
+          logoBand +
+          (it.image ? '<img class="frq2-card-img" src="' + it.image + '" alt="' + (it.title||"") + '" loading="lazy">' : "") +
+          '<div style="padding:12px 14px">' +
+            '<p class="frq2-title">' + (it.title||"Sans titre") + "</p>" +
+            '<p class="frq2-meta">'  + [it.entity, it.site].filter(Boolean).join(" · ") + "</p>" +
+            (missions ? '<ul class="frq2-missions">' + missions + "</ul>" : "") +
+            (skills   ? '<div class="frq2-skills">'  + skills   + "</div>" : "") +
+          "</div>" +
+        "</div>";
+
+      col.addEventListener("click", function(){ toggleDetail(it.id); });
+      track.appendChild(col);
+    });
+    requestAnimationFrame(positionRail);
+  }
+
+  function toggleDetail(id){
+    if(activeId === id){
+      activeId = null;
+      detail.style.display = "none";
+      render(); return;
+    }
+    activeId = id;
+    var it = DATA.filter(function(x){ return x.id === id; })[0];
+    if(!it) return;
+
+    var imgHtml = it.image
+      ? '<div class="frq2-detail-img-wrap"><img class="frq2-detail-img" src="' + it.image + '" alt="' + (it.title||"") + '" loading="lazy"></div>'
+      : "";
+
+    var missions = (it.missions||[])
+      .map(function(m){ return "<li>" + m + "</li>"; }).join("");
+    var skills = (it.skills||"").split(",")
+      .map(function(s){ return '<span class="frq2-detail-skill">' + s.trim() + "</span>"; }).join("");
+
+    var dlHtml = "";
+    if(it.downloads && it.downloads.length){
+      var dlIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+      var dlItems = it.downloads.map(function(d){
+        return '<a class="frq2-detail-dl" href="' + d.url + '" download>' + dlIcon + d.label + "</a>";
+      }).join("");
+      dlHtml = '<div class="frq2-detail-col" style="grid-column:1/-1"><h4>Téléchargements</h4><div class="frq2-detail-dl-wrap">' + dlItems + "</div></div>";
+    }
+
+    /* Logo principal + logos clients dans le détail */
+    var c2 = getColor(it.id);
+    var detailClientHtml = "";
+    if(it.clients && it.clients.length){
+      detailClientHtml = '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">' +
+        it.clients.map(function(cl){
+          return cl.logo
+            ? '<img src="' + cl.logo + '" alt="' + cl.name + '" title="' + cl.name + '" style="max-height:22px;max-width:70px;object-fit:contain">'
+            : '<span title="' + cl.name + '" style="font-size:.65rem;font-weight:800;color:#fff;padding:2px 6px;border-radius:4px;background:' + (cl.color||"#64748b") + '">' + (cl.initial||cl.name.charAt(0)) + '</span>';
+        }).join("") +
+        '</div>';
+    }
+    var detailLogoHtml;
+    if(it.logo){
+      detailLogoHtml = '<div class="frq2-detail-logo-wrap" style="border:2px solid ' + c2.base + '28;background:' + c2.light + '">' +
+        '<img class="frq2-detail-logo-img" src="' + it.logo + '" alt="' + (it.entity||"") + '" loading="lazy">' +
+        detailClientHtml +
+        '</div>';
+    } else {
+      var init2 = (it.entity||"?").charAt(0).toUpperCase();
+      detailLogoHtml = '<div class="frq2-detail-logo-initial" style="background:linear-gradient(135deg,' + c2.base + ',' + c2.base + 'bb)">' + init2 + '</div>';
+    }
+
+    detail.innerHTML =
+      '<div class="frq2-detail-head" style="background:' + c2.light + ';border-bottom:2px solid ' + c2.base + '22">' +
+        '<div class="frq2-detail-logo-band">' +
+          detailLogoHtml +
+          "<div>" +
+            '<h3 style="margin:0;color:' + c2.base + '">' + (it.title||"Sans titre") + "</h3>" +
+            '<div class="frq2-detail-head-meta" style="margin-top:4px">' +
+              [it.entity, it.site].filter(Boolean).join(" · ") +
+            "</div>" +
+            '<div class="frq2-detail-head-meta" style="margin-top:2px;font-weight:600">' +
+              (it.start||"") + " → " + (it.end||"") +
+            "</div>" +
+          "</div>" +
+        "</div>" +
+        '<button class="frq2-close" id="frq2-close" style="border-color:' + c2.base + '44;color:' + c2.base + '">Fermer ✕</button>' +
+      "</div>" +
+      '<div class="frq2-detail-body">' +
+        imgHtml +
+        (missions ? '<div class="frq2-detail-col"><h4>Missions</h4><ul class="frq2-detail-missions">' + missions + "</ul></div>" : "") +
+        (skills   ? '<div class="frq2-detail-col"><h4>Compétences</h4><div class="frq2-detail-skills">' + skills + "</div></div>" : "") +
+        dlHtml +
+      "</div>";
+
+    detail.style.display = "block";
+    document.getElementById("frq2-close").addEventListener("click", function(){
+      activeId = null; detail.style.display = "none"; render();
+    });
+    render();
+    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  /* drag scroll (ne déclenche pas le click si on glisse) */
+  var wrap = document.querySelector(".frq2-wrap");
+  if(wrap){
+    var isDown = false, startX, scrollLeft, moved = false;
+    wrap.addEventListener("mousedown", function(e){
+      isDown = true; moved = false;
+      startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft;
+    });
+    wrap.addEventListener("mouseleave", function(){ isDown = false; });
+    wrap.addEventListener("mouseup",    function(){ isDown = false; });
+    wrap.addEventListener("mousemove",  function(e){
+      if(!isDown) return;
+      var dx = e.pageX - wrap.offsetLeft - startX;
+      if(Math.abs(dx) > 4) moved = true;
+      e.preventDefault();
+      wrap.scrollLeft = scrollLeft - dx;
+    });
+    /* Annule le click si l'utilisateur a glissé */
+    wrap.addEventListener("click", function(e){
+      if(moved){ e.stopPropagation(); moved = false; }
+    }, true);
+  }
+
+  render();
+  /* Positionner la fresque sur la fin (entrée la plus récente) */
+  if(wrap) wrap.scrollLeft = wrap.scrollWidth;
+})();
+</script>
+
+<section id="education" class="section-card is-ghost" aria-labelledby="formation-title">
+  <h2 id="formation-title" style="margin-bottom:8px">Formation</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Principales écoles, programmes et expériences industrielles.
+  </p>
+
+  <div class="edu-list">
+    <!-- KTH -->
+    <div class="edu-row" role="group" aria-labelledby="edu-kth-title">
+      <img class="edu-logo" src="logo_kth.png" alt="KTH">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-kth-title">KTH École Royale Polytechnique de Stockholm : Double diplôme</div>
+        <div class="edu-sub">Génie mécanique et énergétique • mécanique des structures et transferts thermiques</div>
+        <ul class="edu-details">
+          <li>Cours et projets en mécanique, sciences thermiques et simulations numériques.</li>
+          <li>Classée #7 mondial en génie mécanique (Shanghai Ranking 2024).</li>
+        </ul>
+        <div class="edu-links">
+<a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+          <a class="edu-link" href="https://www.kth.se/en/studies/exchange/general/double-degree-1.619496" target="_blank" rel="noopener">Page du programme</a>
+          <a class="edu-link" href="https://www.shanghairanking.com/rankings/gras/2024/RS0201" target="_blank" rel="noopener">Classement</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENSE3 -->
+    <div class="edu-row" role="group" aria-labelledby="edu-ense3-title">
+      <img class="edu-logo" src="logo_ense3.png" alt="ENSE3">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-ense3-title">Grenoble INP, ENSE3 : Diplôme d'ingénieur en Génie Mécanique et Énergétique</div>
+        <div class="edu-sub">Diplôme d'ingénieur (filière ME) • approche multiphysique</div>
+        <ul class="edu-details">
+          <li>Cours : Mécanique des solides (résistance des matériaux, élasticité), Structures et matériaux (fatigue, rupture), MEF (déformation plastique et élastique, flambement et instabilité locale/globale, analyse modale et vibrations sur ANSYS et Abaqus), Thermo-hydraulique, Transferts de chaleur et de masse (échangeurs), Modélisation et analyse des écoulements, Structures légères, Conception industrielle et modélisation mécanique (CAO avec conformité ISO GPS).</li>
+          <li>Projets en équipe et résolution de problèmes industriels tout au long des semestres.</li>
+        </ul>
+        <div class="edu-links">
+
+<a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+          <a class="edu-link" href="https://ense3.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ense3-filiere-mecanique-et-energetique-me#page-programme" target="_blank" rel="noopener">Page du programme</a>
+
+          <a class="edu-link" href="https://ense3.grenoble-inp.fr/en/study-at-ense3/master-s-degree-in-engineering-grenoble-inp-ense3-mechanical-and-energy-engineering-me#page-programme" target="_blank" rel="noopener">Page du programme (EN)</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ESA -->
+    <div class="edu-row" role="group" aria-labelledby="edu-esa-title">
+      <img class="edu-logo" src="logo_esa.png" alt="ESA">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-esa-title">Agence Spatiale Européenne (ESA) : Stage de fin d’études (prolongé)</div>
+        <div class="edu-sub">Génie mécanique • CAO &amp; jumeaux numériques</div>
+        <ul class="edu-details">
+          <li>Conception mécanique d'équipements ESA (boîtiers de capteurs), de la modélisation CAO 2D/3D jusqu'à la fabrication et l'assemblage. Lettre de recommandation jointe.
+</li>
+
+<li> Réduction des coûts opérationnels et des arrêts imprévus des équipements mécaniques grâce à la maintenance prédictive, via la numérisation des lignes de production (jumeaux numériques, IA, capteurs intelligents).</li>
+<li>Développement d'une application Python de Machine Learning pour la maintenance prédictive. Application validée lors d'une conférence européenne et désormais sous licence ESA.</li>
+<li>Collaboration quotidienne avec des entreprises et agences spatiales internationales pour une intégration optimisée des nouvelles technologies.</li>
+          <li>Stage prolongé et présenté devant des experts lors d'une conférence aux Pays-Bas.</li>
+        </ul>
+        <div class="edu-links">
+  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Fiche d'appréciation stage</a>
+<a class="reco-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster de thèse</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="edu-link" href="https://www.esa.int/" target="_blank" rel="noopener">Site ESA</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPC -->
+    <div class="edu-row" role="group" aria-labelledby="edu-upc-title">
+      <img class="edu-logo" src="logo_upc.png" alt="UPC">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-upc-title">Université Polytechnique de Catalogne (UPC), ESEIAAT</div>
+        <div class="edu-sub">CFD, FEM et CAO • applications en génie mécanique</div>
+        <ul class="edu-details">
+          <li>Résolution multidisciplinaire des problèmes d'interaction pantographe-caténaire, de la CAO (CATIA V5 2D/3D) jusqu'à l'analyse par éléments finis (ANSYS). Lettre de recommandation jointe.</li>
+        </ul>
+        <div class="edu-links">
+  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="edu-link" href="https://www.upc.edu/en" target="_blank" rel="noopener">Site UPC</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caterpillar -->
+    <div class="edu-row" role="group" aria-labelledby="edu-cat-title">
+      <img class="edu-logo" src="logo_cat.png" alt="Caterpillar">
+      <div class="edu-content">
+        <div class="edu-title" id="edu-cat-title">Caterpillar</div>
+        <div class="edu-sub">Expérience industrielle de première année</div>
+        <ul class="edu-details">
+          <li> Acquisition d'une expérience mécanique pratique sur les lignes d'assemblage industrielles pour systèmes lourds.</li>
+          <li>Développement de compétences pratiques en assemblage mécanique et flux de production sur lignes de fabrication.</li>
+        </ul>
+        <div class="edu-links">
+
+<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_cater.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="edu-link" href="https://www.cat.com/en_US/products/new/power-systems.html" target="_blank" rel="noopener">Unité commerciale</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="me-program" class="skills-section" style="margin-top:28px">
+  <!-- TITRES (bilingue, on masque celui qui n'est pas sélectionné) -->
+  <h2 class="me-title" data-lang="fr">Grenoble-INP ENSE3 - Mécanique & Énergétique : Catalogue des enseignements</h2>
+  <h2 class="me-title" data-lang="en" hidden>Grenoble-INP ENSE3 - Mechanical & Energy Engineering : Course Catalog</h2>
+
+  <p class="me-sub" data-lang="fr" style="color:#000000;margin-top:8px">
+    Choisissez la langue puis le semestre pour parcourir les pages officielles des cours.
+  </p>
+  <p class="me-sub" data-lang="en" style="color:#000000;margin-top:8px" hidden>
+    Pick a language, then a semester to browse the official course pages.
+  </p>
+
+  <!-- Onglets LANGUE -->
+  <div class="me-lang-tabs" role="tablist" aria-label="Langue / Language" style="margin-top:12px">
+    <button class="me-lang is-active" role="tab" aria-selected="true" aria-controls="lang-fr-panel" id="tab-fr">Français</button>
+    <button class="me-lang" role="tab" aria-selected="false" aria-controls="lang-en-panel" id="tab-en">English</button>
+  </div>
+
+  <!-- PANNEAU FR --------------------------------------------------------->
+  <div id="lang-fr-panel" class="me-lang-panel" role="tabpanel" aria-labelledby="tab-fr" style="margin-top:12px">
+    <!-- Onglets semestres -->
+    <div class="me-tabs" role="tablist" aria-label="Semestres ME" style="margin-top:8px">
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s5" id="tab-fr-s5">S5</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s6" id="tab-fr-s6">S6</button>
+      <button class="me-tab is-active" role="tab" aria-selected="true" aria-controls="me-fr-s7" id="tab-fr-s7">S7</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s8" id="tab-fr-s8">S8</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s9" id="tab-fr-s9">S9</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-fr-s10" id="tab-fr-s10">S10</button>
+    </div>
+
+    <div class="me-panels" style="margin-top:8px">
+      <!-- S5 FR -->
+      <div class="me-panel" id="me-fr-s5" role="tabpanel" aria-labelledby="tab-fr-s5" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/automatique-et-commande-des-syst-egrave-mes-3eus1aut" target="_blank" rel="noopener">Automatique et commande des systèmes (3EUS1AUT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/energie-eacute-lectrique-3eus1ene" target="_blank" rel="noopener">Énergie électrique (3EUS1ENE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/math-eacute-matiques-pour-l-ing-eacute-nieur-3eus1mat" target="_blank" rel="noopener">Mathématiques pour l’ingénieur (3EUS1MAT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/m-eacute-canique-des-solides-d-eacute-formables-3eus1msd" target="_blank" rel="noopener">Mécanique des solides déformables (3EUS1MSD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/syst-egrave-mes-m-eacute-caniques-3eus1smc" target="_blank" rel="noopener">Systèmes mécaniques (3EUS1SMC)</a></li>  
+        </ul>
+      </div>
+
+      <!-- S6 FR -->
+      <div class="me-panel" id="me-fr-s6" role="tabpanel" aria-labelledby="tab-fr-s6" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/outils-informatiques-et-num-eacute-riques-pour-l-ing-eacute-nieur-3eus2oin" target="_blank" rel="noopener">Outils informatiques & numériques pour l’ingénieur (3EUS2OIN)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/capteurs-et-traitement-de-l-information-3eus2cti" target="_blank" rel="noopener">Capteurs & traitement de l’information (3EUS2CTI) : (page récapitulative)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/thermo-hydraulique-monophasique-3eus2thm" target="_blank" rel="noopener">Thermo-hydraulique monophasique (3EUS2THM) : (page récapitulative)</a></li>
+        </ul>
+      </div>
+
+      <!-- S7 FR -->
+      <div class="me-panel is-active" id="me-fr-s7" role="tabpanel" aria-labelledby="tab-fr-s7">
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/conception-m-eacute-canique-4eus3cme" target="_blank" rel="noopener">Conception mécanique (4EUS3CME)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/hydraulique-des-eacute-coulements-en-charge-me-hoe-4eus3hec" target="_blank" rel="noopener">Hydraulique des écoulements en charge (4EUS3HEC)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-et-analyse-d-eacute-coulements-1-ien-me-4eus3ma1" target="_blank" rel="noopener">Modélisation & analyse d’écoulements 1 (4EUS3MA1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-en-m-eacute-canique-ien-me-4eus3mem" target="_blank" rel="noopener">Modélisation en mécanique (4EUS3MEM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/simulation-pour-les-fluides-et-la-thermique-1-4eus3sf1" target="_blank" rel="noopener">Simulation pour les fluides & la thermique 1 (4EUS3SF1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/strategie-dentreprise-souverainete-et-transitions-4em7ses4" target="_blank" rel="noopener">Stratégie d’entreprise, souveraineté & transitions (4EM7SES4)</a></li>
+        </ul>
+      </div>
+
+      <!-- S8 FR -->
+      <div class="me-panel" id="me-fr-s8" role="tabpanel" aria-labelledby="tab-fr-s8" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/heat-and-mass-transfers-ien-me-sem-m1-sgb-4eus4hmt-1" target="_blank" rel="noopener">Transferts de chaleur & de masse (4EUS4HMT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-et-analyse-d-eacute-coulements-2-ien-me-4eus4ma2" target="_blank" rel="noopener">Modélisation & analyse d’écoulements 2 (4EUS4MA2) : (voir récapitulatif S8)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/structure-et-mat-eacute-riaux-ien-me-4eus4stm" target="_blank" rel="noopener">Structure & matériaux (4EUS4STM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/simulation-pour-les-fluides-et-la-thermique-2-4eus4sft" target="_blank" rel="noopener">Simulation pour les fluides & la thermique 2 (4EUS4SFT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/team-project-projet-d-ing-eacute-nierie-toutes-fili-egrave-res-m1-sgb-m1-hce-4eus4pro" target="_blank" rel="noopener">Projet d’ingénierie / Team Project (4EUS4PRO)</a></li>
+        </ul>
+      </div>
+
+      <!-- S9 FR -->
+      <div class="me-panel" id="me-fr-s9" role="tabpanel" aria-labelledby="tab-fr-s9" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-avanc-eacute-e-et-durabilit-eacute-des-structures-ien-me-gee-5eus5mad" target="_blank" rel="noopener">Modélisation avancée & durabilité des structures (5EUS5MAD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/outils-de-simulation-avanc-eacute-s-pour-la-m-eacute-canique-5eus5osa" target="_blank" rel="noopener">Outils de simulation avancés (5EUS5OSA)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/aerodynamics-and-combustion-me-m2-fme-5eus5aie-1" target="_blank" rel="noopener">Aérodynamique & combustion (5EUS5AIE)</a></li>
+         
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/syst-egrave-mes-hydrauliques-me-gee-5eus5syh" target="_blank" rel="noopener">Systèmes hydrauliques (5EUS5SYH)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/advanced-heat-transfer-and-energetics-ien-me-sem-ise-m2-fme-m2-entech-5eu5adht" target="_blank" rel="noopener">Transferts de chaleur avancés & énergétique (5EU5ADHT)</a></li>
+        </ul>
+      </div>
+
+      <!-- S10 FR -->
+      <div class="me-panel" id="me-fr-s10" role="tabpanel" aria-labelledby="tab-fr-s10" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/projet-de-fin-d-eacute-tudes-5eus6pfe" target="_blank" rel="noopener">Projet de fin d’études / Stage (5EUS6PFE)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANNEAU EN --------------------------------------------------------->
+  <div id="lang-en-panel" class="me-lang-panel" role="tabpanel" aria-labelledby="tab-en" hidden style="margin-top:12px">
+    <!-- Semester tabs -->
+    <div class="me-tabs" role="tablist" aria-label="ME semesters (EN)" style="margin-top:8px">
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s5" id="tab-en-s5">S5</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s6" id="tab-en-s6">S6</button>
+      <button class="me-tab is-active" role="tab" aria-selected="true" aria-controls="me-en-s7" id="tab-en-s7">S7</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s8" id="tab-en-s8">S8</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s9" id="tab-en-s9">S9</button>
+      <button class="me-tab" role="tab" aria-selected="false" aria-controls="me-en-s10" id="tab-en-s10">S10</button>
+    </div>
+
+    <div class="me-panels" style="margin-top:8px">
+      <!-- S5 EN -->
+      <div class="me-panel" id="me-en-s5" role="tabpanel" aria-labelledby="tab-en-s5" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/control-command-of-systems-3eus1aut" target="_blank" rel="noopener">Control Command of Systems (3EUS1AUT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/electrical-engineering-3eus1ene" target="_blank" rel="noopener">Electrical Engineering (3EUS1ENE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mathematics-for-engineers-3eus1mat" target="_blank" rel="noopener">Mathematics for Engineers (3EUS1MAT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/solid-mechanics-3eus1msd" target="_blank" rel="noopener">Solid Mechanics (3EUS1MSD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mechanical-systems-3eus1smc" target="_blank" rel="noopener">Mechanical Systems (3EUS1SMC)</a></li>
+        </ul>
+      </div>
+
+      <!-- S6 EN -->
+      <div class="me-panel" id="me-en-s6" role="tabpanel" aria-labelledby="tab-en-s6" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/computer-and-mathematical-tools-for-engineers-3eus2oin" target="_blank" rel="noopener">Computer & Mathematical Tools for Engineers (3EUS2OIN)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/sensors-and-signal-processing-3eus2cti" target="_blank" rel="noopener">Sensors & Signal Processing (3EUS2CTI) : (overview)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/monophasic-hydraulic-and-heat-transferts-3eus2thm" target="_blank" rel="noopener">Monophasic Hydraulic & Heat Transfers (3EUS2THM)</a></li>
+        </ul>
+      </div>
+
+      <!-- S7 EN -->
+      <div class="me-panel is-active" id="me-en-s7" role="tabpanel" aria-labelledby="tab-en-s7">
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mechanical-design-4eus3cme" target="_blank" rel="noopener">Mechanical design (4EUS3CME)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/pressurized-flow-hydraulics-4eus3hec" target="_blank" rel="noopener">Pressurized Flow Hydraulics (4EUS3HEC)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/flow-analysis-and-modelling-1-4eus3ma1" target="_blank" rel="noopener">Flow analysis & modelling 1 (4EUS3MA1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/mechanical-modelling-4eus3mem" target="_blank" rel="noopener">Mechanical modelling (4EUS3MEM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/simulations-for-flows-and-thermal-issues-1-4eus3sf1" target="_blank" rel="noopener">Simulations for flows & thermal issues 1 (4EUS3SF1)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/corporate-strategy-energy-transition-and-sovereignty-4em7ses4" target="_blank" rel="noopener">Corporate Strategy, Energy Transition & Sovereignty (4EM7SES4)</a></li>
+        </ul>
+      </div>
+
+      <!-- S8 EN -->
+      <div class="me-panel" id="me-en-s8" role="tabpanel" aria-labelledby="tab-en-s8" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/heat-and-mass-transfers-4eus4hmt" target="_blank" rel="noopener">Heat & Mass Transfers (4EUS4HMT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/modelling-and-analysis-of-flows-2-ien-me-4eus4ma2" target="_blank" rel="noopener">Modelling & analysis of flows 2 (4EUS4MA2)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/structures-and-materials-ien-me-4eus4stm" target="_blank" rel="noopener">Structures & materials (4EUS4STM)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/simulations-for-flows-and-thermal-issues-2-4eus4sft" target="_blank" rel="noopener">Simulations for flows & thermal issues 2 (4EUS4SFT)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/team-project-4eus4pro" target="_blank" rel="noopener">Team Project (4EUS4PRO)</a></li>
+        </ul>
+      </div>
+
+      <!-- S9 EN -->
+      <div class="me-panel" id="me-en-s9" role="tabpanel" aria-labelledby="tab-en-s9" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-modelling-and-structure-durability-5eus5mad" target="_blank" rel="noopener">Advanced Modelling & Structure Durability (5EUS5MAD)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-simulation-tools-for-mechanics-5eus5osa" target="_blank" rel="noopener">Advanced Simulation Tools for Mechanics & Environment (5EUS5OSA)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/aerodynamics-and-combustion-5eus5aie" target="_blank" rel="noopener">Aerodynamics & Combustion (5EUS5AIE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/hydraulic-systems-5eus5syh" target="_blank" rel="noopener">Hydraulic Systems (5EUS5SYH) : (overview)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-heat-transfer-and-energetics-ien-me-sem-ise-m2-fme-m2-entech-5eu5adht" target="_blank" rel="noopener">Advanced Heat Transfer & Energetics (5EU5ADHT)</a></li>
+        </ul>
+      </div>
+
+      <!-- S10 EN -->
+      <div class="me-panel" id="me-en-s10" role="tabpanel" aria-labelledby="tab-en-s10" hidden>
+        <ul class="me-list">
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/5eus6pfe" target="_blank" rel="noopener">Final Project – Internship / Master Thesis (5EUS6PFE)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Styles rapides (autonomes) -->
+  <style>
+    .me-lang, .me-tab{
+      display:inline-block;padding:8px 12px;margin-right:6px;border-radius:10px;
+      border:1px solid #e6eef2;background:#fff;font-weight:600;cursor:pointer
+    }
+    .me-lang.is-active, .me-tab.is-active{background:#0ea5a4;color:#fff;border-color:#0ea5a4}
+    .me-list{list-style:disc;padding-left:20px}
+    .me-list li{margin:6px 0}
+    .me-subhead{margin-top:10px;color:#64748b;font-weight:700;list-style:none}
+    /* Masquages accessibles */
+    .me-panel[hidden]{display:none}
+    .me-lang-panel[hidden]{display:none}
+    .me-title[hidden], .me-sub[hidden]{display:none}
+  </style>
+
+  <!-- Script de pilotage langue/semestre -->
+  <script>
+    (function () {
+      const langTabs = document.querySelectorAll('#me-program .me-lang');
+      const langPanels = document.querySelectorAll('#me-program .me-lang-panel');
+      const titles = document.querySelectorAll('#me-program .me-title');
+      const subs = document.querySelectorAll('#me-program .me-sub');
+
+      function showLang(panelId){
+        // Activer l’onglet langue
+        langTabs.forEach(b=>{
+          const on = b.getAttribute('aria-controls') === panelId;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on);
+        });
+        // Afficher le bon panneau langue
+        langPanels.forEach(p=>p.hidden = p.id !== panelId);
+        // Basculer les titres/descriptions
+        const isFr = panelId === 'lang-fr-panel';
+        titles.forEach(el => el.hidden = (el.dataset.lang !== (isFr?'fr':'en')));
+        subs.forEach(el => el.hidden = (el.dataset.lang !== (isFr?'fr':'en')));
+      }
+
+      // Écouteurs langue
+      langTabs.forEach(b=>{
+        b.addEventListener('click', ()=> showLang(b.getAttribute('aria-controls')));
+      });
+
+      // Gestion des onglets de semestre (déléguée dans chaque panneau langue)
+      document.querySelectorAll('#me-program .me-lang-panel').forEach(panel=>{
+        const tablist = panel.querySelector('.me-tabs');
+        if(!tablist) return;
+        tablist.addEventListener('click', e=>{
+          const btn = e.target.closest('.me-tab'); if(!btn) return;
+          const panelId = btn.getAttribute('aria-controls');
+          // active bouton
+          tablist.querySelectorAll('.me-tab').forEach(t=>{
+            const on = t === btn; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', on);
+          });
+          // toggle panneaux
+          panel.querySelectorAll('.me-panel').forEach(p=>p.hidden = (p.id !== panelId));
+        });
+      });
+
+      // Langue par défaut = FR
+      showLang('lang-fr-panel');
+    })();
+  </script>
+</section>
+
+
+
+
+
+
+<!-- ====== Section EDF : avec images et liens sources, sans émojis ====== -->
+<section id="edf" class="section-card is-ghost" aria-labelledby="edf-title" style="margin-top:28px">
+  <h2 id="edf-title" style="margin-bottom:8px">EDF : Contexte, Projets &amp; Organisation</h2>
+  <p style="margin-top:8px; color:#475569">
+    Éléments de contexte sur EDF : projet Hercule, programme nucléaire, organisation et DIPDE.
+  </p>
+
+  <div class="edf-tabs" role="tablist" aria-label="Sections EDF" style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+    <button class="edf-tab is-active" role="tab" aria-selected="true" aria-controls="edf-hercule" id="tab-edf-hercule">Projet Hercule</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-nucleaire" id="tab-edf-nucleaire">Projets Nucléaires</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-orga" id="tab-edf-orga">Organisation</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-dipde" id="tab-edf-dipde">La DIPDE</button>
+  </div>
+
+  <div class="edf-panels" style="margin-top:14px">
+
+    <!-- ===== HERCULE ===== -->
+    <div id="edf-hercule" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-hercule">
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:12px">Naissance, ambitions, controverses et épilogue</h3>
+
+        <!-- Image centrale + légende -->
+        <figure class="edf-figure">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/EDF_logo.svg/320px-EDF_logo.svg.png"
+            alt="Logo EDF"
+            class="edf-img-logo"
+          />
+        </figure>
+
+        <div class="edf-subsection">
+          <h4>Genèse et contexte (2017–2019)</h4>
+          <p>Le projet Hercule trouve son origine dans l'ouverture à la concurrence des marchés de l'énergie en Europe, sous double pression : la Commission européenne réclamait la mise en concurrence des concessions hydroélectriques et une réforme du dispositif ARENH. En novembre 2018, Emmanuel Macron demanda au PDG d'EDF de réfléchir à une réorganisation du groupe. En juin 2019, Jean-Bernard Lévy présenta en interne son projet Hercule.</p>
+          <div class="edf-sources" style="margin-top:8px">
+            <span class="edf-source-label">Sources :</span>
+            <a class="edf-source-link" href="https://www.usinenouvelle.com/article/hercule-restructuration-edf.N1055882" target="_blank" rel="noopener">L'Usine Nouvelle : Hercule, le projet de restructuration d'EDF</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Projet_Hercule" target="_blank" rel="noopener">Wikipedia : Projet Hercule</a>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Ce que prévoyait le projet</h4>
+          <p>Séparation des activités en trois entités distinctes :</p>
+          <ul class="edf-list">
+            <li><strong>EDF Bleu</strong> : 100 % publique, regroupant les activités nucléaires et RTE</li>
+            <li><strong>EDF Vert</strong> : Enedis, vente d'électricité, énergies renouvelables et services (35 % ouvert aux capitaux privés)</li>
+            <li><strong>EDF Azur</strong> : Dédiée aux activités hydrauliques (barrages)</li>
+          </ul>
+          <div class="edf-sources" style="margin-top:8px">
+            <span class="edf-source-label">Source :</span>
+            <a class="edf-source-link" href="https://www.opera-energie.com/projet-hercule-edf/" target="_blank" rel="noopener">Opéra Énergie : Projet Hercule : comprendre la restructuration d'EDF</a>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Motivations officielles</h4>
+          <p>La dette nette d'EDF atteignait 41 milliards d'euros fin 2019, projetée à 60 milliards fin 2022. Le plan Hercule visait à ouvrir le capital des activités rentables pour attirer de nouveaux investisseurs et financer l'agrandissement des infrastructures renouvelables, tout en isolant le risque financier nucléaire.</p>
+        </div>
+
+        <div class="edf-two-col">
+          <div class="edf-pros">
+            <h4 style="color:#16a34a; font-size:.95rem">Avantages attendus</h4>
+            <ul class="edf-list">
+              <li>Isolation du risque financier nucléaire</li>
+              <li>Accès à de nouveaux capitaux pour les investissements EnR</li>
+              <li>Résolution du litige ARENH avec Bruxelles</li>
+              <li>Protection des concessions hydrauliques via la structure Azur</li>
+            </ul>
+          </div>
+          <div class="edf-cons">
+            <h4 style="color:#dc2626; font-size:.95rem">Inconvénients &amp; oppositions</h4>
+            <ul class="edf-list">
+              <li>Fin du modèle intégré historique d'EDF</li>
+              <li>Risque de désoptimisation et hausse des coûts</li>
+              <li>Inquiétudes sur la qualité du service public de distribution</li>
+              <li>Opposition unanime des syndicats et de la majorité parlementaire</li>
+            </ul>
+            <div class="edf-sources" style="margin-top:8px">
+              <a class="edf-source-link" href="https://www.cfecgc-energies.fr/projet-hercule/" target="_blank" rel="noopener">CFE-CGC Énergies : Position syndicale sur Hercule</a>
+              <a class="edf-source-link" href="https://www.fnccr.asso.fr/article/projet-de-restructuration-dedf-hercule/" target="_blank" rel="noopener">FNCCR : Analyse du projet Hercule</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Épilogue : abandon et renationalisation</h4>
+          <div class="edf-timeline">
+            <div class="edf-timeline-item">
+              <span class="edf-badge">Avril 2021</span>
+              <p>Bruno Le Maire déclare : <em>"Oublions Hercule et construisons ensemble le grand EDF."</em> Le projet est officiellement abandonné.</p>
+            </div>
+            <div class="edf-timeline-item">
+              <span class="edf-badge">28 juillet 2021</span>
+              <p>Le gouvernement annonce l'échec des négociations avec la Commission Européenne. <a class="edf-inline-link" href="https://lenergeek.com/2021/07/29/abandon-projet-hercule-edf/" target="_blank" rel="noopener">Lenergeek →</a></p>
+            </div>
+            <div class="edf-timeline-item">
+              <span class="edf-badge">6 juillet 2022</span>
+              <p>La Première Ministre Élisabeth Borne annonce la renationalisation complète d'EDF à 100 %. <a class="edf-inline-link" href="https://www.opera-energie.com/renationalisation-edf/" target="_blank" rel="noopener">Opéra Énergie →</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NUCLEAIRE ===== -->
+    <div id="edf-nucleaire" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-nucleaire" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:16px">Les projets nucléaires majeurs d'EDF</h3>
+
+        <!-- Flamanville 3 -->
+        <div class="edf-project-block edf-project--blue">
+          <div class="edf-project-header">
+            <span class="edf-project-dot" style="background:#3b82f6"></span>
+            <h4>Flamanville 3 : L'EPR de référence</h4>
+          </div>
+
+          <!-- Image Flamanville -->
+          <figure class="edf-figure">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Centrale_de_Flamanville.jpg/640px-Centrale_de_Flamanville.jpg"
+              alt="Vue aérienne de la centrale nucléaire de Flamanville avec l'EPR en construction"
+              class="edf-img-wide"
+            />
+            <figcaption class="edf-figcaption">Vue aérienne de la centrale de Flamanville : l'EPR est le bâtiment en dôme au premier plan (© Wikimedia Commons)</figcaption>
+          </figure>
+
+          <div class="edf-timeline" style="margin-top:14px">
+            <div class="edf-timeline-item"><span class="edf-badge">8 mai 2024</span><p>Chargement du combustible dans la cuve du réacteur EPR. <a class="edf-inline-link" href="https://www.edf.fr/centrale-nucleaire-flamanville3" target="_blank" rel="noopener">EDF officiel →</a></p></div>
+            <div class="edf-timeline-item"><span class="edf-badge">3 septembre 2024</span><p>Première divergence du réacteur à 15h54 : première réaction nucléaire en France depuis plus de 20 ans. <a class="edf-inline-link" href="https://www.edf.fr/la-centrale-nucleaire-de-flamanville-3-epr/les-actualites-de-la-centrale-nucleaire-de-flamanville-3-epr/actualites-reglementaires-du-reacteur-ndeg3-de-flamanville-aout-2024" target="_blank" rel="noopener">EDF →</a></p></div>
+            <div class="edf-timeline-item"><span class="edf-badge">21 décembre 2024</span><p>Premier raccordement au réseau électrique national. <a class="edf-inline-link" href="https://www.edf.fr/groupe-edf/espaces-dedies/journalistes/tous-les-communiques-de-presse/point-d-actualite-sur-l-epr-de-flamanville-le-reacteur-produit-ses-premiers-electrons-sur-le-reseau-electrique-national" target="_blank" rel="noopener">Communiqué EDF →</a></p></div>
+            <div class="edf-timeline-item"><span class="edf-badge">14 décembre 2025</span><p>Le réacteur atteint 100 % de puissance nucléaire (1 669 MWe bruts). <a class="edf-inline-link" href="https://www.edf.fr/centrale-nucleaire-flamanville3" target="_blank" rel="noopener">EDF →</a></p></div>
+          </div>
+          <div class="edf-stat-row">
+            <div class="edf-stat"><div class="edf-stat-val">1 630 MWe</div><div class="edf-stat-lbl">Puissance nette</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">17 ans</div><div class="edf-stat-lbl">Durée de construction</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">23,7 Md€</div><div class="edf-stat-lbl">Coût total estimé</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">−30 %</div><div class="edf-stat-lbl">Coût prévu EPR2</div></div>
+          </div>
+          <div class="edf-sources" style="margin-top:12px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Centrale_nucl%C3%A9aire_de_Flamanville" target="_blank" rel="noopener">Wikipedia : Centrale de Flamanville</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/R%C3%A9acteur_pressuris%C3%A9_europ%C3%A9en" target="_blank" rel="noopener">Wikipedia : EPR</a>
+            <a class="edf-source-link" href="https://www.framatome.com/fr/clients/nucleaire/flamanville-3/" target="_blank" rel="noopener">Framatome : Flamanville 3</a>
+            <a class="edf-source-link" href="https://www.connaissancedesenergies.org/afp/epr-de-flamanville-la-date-datteinte-de-la-pleine-puissance-repoussee-250801" target="_blank" rel="noopener">Connaissance des Énergies</a>
+          </div>
+        </div>
+
+        <!-- EPR2 -->
+        <div class="edf-project-block edf-project--green" style="margin-top:16px">
+          <div class="edf-project-header">
+            <span class="edf-project-dot" style="background:#16a34a"></span>
+            <h4>EPR2 : La prochaine génération (programme des 6 réacteurs)</h4>
+          </div>
+
+          <!-- Image EPR2 / Penly -->
+          <figure class="edf-figure">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Centrale_nucl%C3%A9aire_de_Penly.jpg/640px-Centrale_nucl%C3%A9aire_de_Penly.jpg"
+              alt="Centrale nucléaire de Penly, site retenu pour la première paire EPR2"
+              class="edf-img-wide"
+            />
+            <figcaption class="edf-figcaption">Centrale nucléaire de Penly (Seine-Maritime) : site de la première paire EPR2 (© Wikimedia Commons)</figcaption>
+          </figuresec
+
+          <p style="margin-top:12px">Programme de six réacteurs en trois paires, lancé fin 2021. Conçu par EDF et Framatome via leur filiale commune Edvance, l'EPR2 est une évolution simplifiée et mieux industrialisable de l'EPR. Coût prévisionnel : <strong>72,8 milliards d'euros</strong> (valeur 2020).</p>
+          <div class="edf-site-grid">
+            <div class="edf-site-card">
+              <strong>Penly (Normandie)</strong>
+              <span>Paire 1 : Travaux préparatoires lancés juillet 2024</span>
+              <span class="edf-date-badge">Mise en service 2038</span>
+            </div>
+            <div class="edf-site-card">
+              <strong>Gravelines</strong>
+              <span>Paire 2</span>
+              <span class="edf-date-badge">Mise en service ~2040–2041</span>
+            </div>
+            <div class="edf-site-card">
+              <strong>Bugey</strong>
+              <span>Paire 3</span>
+              <span class="edf-date-badge">Mise en service ~2042–2043</span>
+            </div>
+          </div>
+          <div class="edf-sources" style="margin-top:12px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/nouveau-nucleaire/programme-epr2" target="_blank" rel="noopener">EDF : Programme EPR2 (officiel)</a>
+            <a class="edf-source-link" href="https://epr2-penly.edf.fr/" target="_blank" rel="noopener">EDF : Projet EPR2 Penly</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Evolutionary_Power_Reactor_2" target="_blank" rel="noopener">Wikipedia : EPR2</a>
+            <a class="edf-source-link" href="https://www.connaissancedesenergies.org/questions-et-reponses-energies/epr2-quelle-technologie-et-quels-projets-en-cours" target="_blank" rel="noopener">Connaissance des Énergies : EPR2</a>
+            <a class="edf-source-link" href="https://www.prefectures-regions.gouv.fr/normandie/Grands-dossiers/Grand-Chantier-EPR2/Le-Grand-Chantier-de-l-EPR2-a-Penly/Le-projet-d-EPR2/" target="_blank" rel="noopener">Préfecture Normandie : Grand Chantier Penly</a>
+          </div>
+        </div>
+
+        <!-- NUWARD -->
+        <div class="edf-project-block edf-project--yellow" style="margin-top:16px">
+          <div class="edf-project-header">
+            <span class="edf-project-dot" style="background:#d97706"></span>
+            <h4>NUWARD : Le SMR français</h4>
+          </div>
+
+          <figure class="edf-figure">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/NUWARD_SMR_EDF.jpg/640px-NUWARD_SMR_EDF.jpg"
+              alt="Représentation du réacteur SMR NUWARD développé par EDF"
+              class="edf-img-wide"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+            />
+            <!-- Fallback si image indisponible -->
+            <div style="display:none; background:#f8fbfc; border:1px solid #e6eef2; border-radius:10px; padding:20px; text-align:center; color:#64748b; font-size:.9rem">
+              Représentation du SMR NUWARD : <a href="https://www.nuward.com/" target="_blank" rel="noopener" style="color:#0ea5a4">nuward.com</a>
+            </div>
+          </figure>
+
+          <p style="margin-top:10px">Petit réacteur modulaire (SMR) en développement depuis 2019, co-développé par EDF, Framatome, TechnicAtome, Naval Group et le CEA. Restructuré en 2024–2025 pour aboutir à un réacteur unique de <strong>400 MWe</strong>.</p>
+          <div class="edf-stat-row">
+            <div class="edf-stat"><div class="edf-stat-val">400 MWe</div><div class="edf-stat-lbl">Puissance électrique</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">100 MWth</div><div class="edf-stat-lbl">Cogénération chaleur</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">Mi-2026</div><div class="edf-stat-lbl">Point Comex EDF</div></div>
+          </div>
+          <p style="margin-top:10px"><strong>Usages visés :</strong> remplacement de centrales fossiles, alimentation de data centers, chauffage urbain, production d'hydrogène industriel.</p>
+          <div class="edf-sources" style="margin-top:10px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://www.nuward.com/" target="_blank" rel="noopener">NUWARD (site officiel)</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/NUWARD" target="_blank" rel="noopener">Wikipedia : NUWARD</a>
+            <a class="edf-source-link" href="https://www.sfen.org/rgn/nuward-le-smr-francais/" target="_blank" rel="noopener">SFEN : NUWARD, le SMR français</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORGANISATION ===== -->
+    <div id="edf-orga" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-orga" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:12px">Nouvelle architecture depuis avril 2024</h3>
+
+        <figure class="edf-figure">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/EDF_logo.svg/320px-EDF_logo.svg.png"
+            alt="EDF"
+            class="edf-img-logo"
+          />
+        </figure>
+
+        <p style="color:#475569; margin-bottom:16px">Au 1<sup>er</sup> avril 2024, EDF a réorganisé ses activités nucléaires autour de quatre grandes directions, dans une logique de regroupement par grands métiers.
+          <a class="edf-inline-link" href="https://www.sfen.org/rgn/edf-devoile-une-nouvelle-organisation-des-activites-nucleaires/" target="_blank" rel="noopener">SFEN : Nouvelle organisation EDF →</a>
+        </p>
+        <div class="edf-orga-grid">
+          <div class="edf-orga-card">
+            <h4>DSTID</h4>
+            <p class="edf-orga-full">Direction Stratégie, Technologies, Innovation et Développement</p>
+            <p>Maîtrise d'ouvrage des constructions nucléaires, développement international, autorité technique du groupe.</p>
+          </div>
+          <div class="edf-orga-card">
+            <h4>Direction Projets &amp; Construction</h4>
+            <p>Maîtrise d'œuvre des grands projets nouveau nucléaire (sécurité, sûreté, coûts, délais).</p>
+          </div>
+          <div class="edf-orga-card edf-orga-card--highlight">
+            <h4>DISC</h4>
+            <p class="edf-orga-full">Direction Ingénierie et Supply Chain</p>
+            <p>Études, équipements et prestations pour le parc existant et les projets neufs. Harmonisation des méthodes et référentiels. Intègre la relation fournisseurs de la stratégie industrielle jusqu'au contrôle des fabrications.</p>
+          </div>
+          <div class="edf-orga-card">
+            <h4>Direction Production Nucléaire &amp; Thermique</h4>
+            <p>Exploitation, maintenance et démantèlement du parc existant.</p>
+          </div>
+        </div>
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Références :</span>
+          <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/notre-groupe/nos-metiers/production-nucleaire" target="_blank" rel="noopener">EDF : Métiers de la production nucléaire</a>
+          <a class="edf-source-link" href="https://www.sfen.org/rgn/edf-devoile-une-nouvelle-organisation-des-activites-nucleaires/" target="_blank" rel="noopener">SFEN : Réorganisation EDF avril 2024</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DIPDE ===== -->
+    <div id="edf-dipde" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-dipde" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:12px">La DIPDE en détail</h3>
+
+        <!-- Image centrale nucléaire générique -->
+        <figure class="edf-figure">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Centrale_du_Bugey.jpg/640px-Centrale_du_Bugey.jpg"
+            alt="Centrale nucléaire du Bugey, l'un des 11 sites couverts par la DIPDE"
+            class="edf-img-wide"
+          />
+          <figcaption class="edf-figcaption">Centrale nucléaire du Bugey (Ain) : l'un des 11 sites nucléaires couverts par la DIPDE (© Wikimedia Commons)</figcaption>
+        </figure>
+
+        <div class="edf-subsection">
+          <h4>Définition et positionnement</h4>
+          <p>La <strong>Division de l'Ingénierie du Parc et De l'Environnement (DIPDE)</strong> assure les études d'ingénierie et la réalisation des travaux d'amélioration pour la partie nucléaire des 56 réacteurs en fonctionnement, et fournit une expertise environnementale pour l'ensemble des réacteurs (construction, exploitation, déconstruction).</p>
+          <div class="edf-stat-row" style="margin-top:12px">
+            <div class="edf-stat"><div class="edf-stat-val">~2 500</div><div class="edf-stat-lbl">Salariés</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">56</div><div class="edf-stat-lbl">Réacteurs couverts</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">11</div><div class="edf-stat-lbl">Sites nucléaires</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">Marseille</div><div class="edf-stat-lbl">Siège principal</div></div>
+          </div>
+          <div class="edf-sources" style="margin-top:10px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://www.nuclearvalley.com/annuaire/edf-dipde/" target="_blank" rel="noopener">Nuclear Valley : EDF DIPDE</a>
+            <a class="edf-source-link" href="https://cgenial-connect.fr/profentreprise/2261" target="_blank" rel="noopener">Cgenial Connect : Présentation DIPDE</a>
+            <a class="edf-source-link" href="https://www.edf.fr/edf-recrute/offre/detail/2024-123057" target="_blank" rel="noopener">EDF Recrutement : Ingénieur DIPDE</a>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Missions principales</h4>
+          <div class="edf-mission-grid">
+            <div class="edf-mission-card">
+              <strong>Ingénierie de modification</strong>
+              <p>Conception et réalisation des dossiers de modification pour améliorer performance, sûreté ou conformité réglementaire.</p>
+            </div>
+            <div class="edf-mission-card">
+              <strong>Grand Carénage</strong>
+              <p>Programme de prolongation de vie au-delà de 40 ans (et potentiellement 60 ans). RGV, NPGV, M2C, Visites Décennales.</p>
+              <a class="edf-inline-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/notre-parc-nucleaire/le-grand-carenage" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px">EDF : Grand Carénage →</a>
+            </div>
+            <div class="edf-mission-card">
+              <strong>Expertise environnementale</strong>
+              <p>Évaluation des impacts environnementaux des sites pour tous les réacteurs du parc.</p>
+            </div>
+            <div class="edf-mission-card">
+              <strong>Poursuite d'exploitation au-delà de 60 ans</strong>
+              <p>Participation aux travaux préparatoires à la demande de prolongation, en lien avec l'ASNR.</p>
+              <a class="edf-inline-link" href="https://www.asnr.fr/" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px">ASNR (autorité de sûreté) →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Le service MCP (Matériels et Composants Primaires)</h4>
+          <p>Responsable, pour l'intégralité des tranches REP en exploitation, des matériels de robinetterie, de la production de froid et des moto-ventilateurs.</p>
+
+          <!-- Image circuit primaire REP -->
+          <figure class="edf-figure" style="margin-top:12px">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Schema_Reacteur_a_Eau_Pressurisee.svg/640px-Schema_Reacteur_a_Eau_Pressurisee.svg.png"
+              alt="Schéma d'un réacteur à eau pressurisée : circuit primaire et secondaire"
+              class="edf-img-wide"
+            />
+            <figcaption class="edf-figcaption">Schéma d'un réacteur à eau pressurisée (REP) : circuits primaire et secondaire (© Wikimedia Commons)</figcaption>
+          </figure>
+
+          <ul class="edf-list" style="margin-top:10px">
+            <li><strong>Qualification de matériels</strong> : Démonstration qu'un équipement remplit sa fonction de sûreté en conditions normales, incidentelles et accidentelles, conformément aux exigences du référentiel nucléaire (RCC-E, RCC-M, RCCSN, guides ASNR)</li>
+            <li><strong>Gestion des modifications matérielles</strong> : Instruction des dossiers de modification sur le parc REP en exploitation, depuis l'identification du besoin jusqu'à la mise en service</li>
+            <li><strong>Gestion des obsolescences</strong> : Identification et remplacement des composants en fin de vie, rédaction des spécifications de substitution</li>
+            <li><strong>Instruction des aléas</strong> : Analyse technique lors d'un comportement inattendu en exploitation, rédaction de notes de dérogation et fiches d'aléas</li>
+            <li><strong>Prolongation de durée de vie</strong> : Participation aux études préparatoires au-delà de 60 ans (VD5), en lien avec le Grand Carénage et les prescriptions de l'ASNR</li>
+            <li><strong>Veille réglementaire et normative</strong> : Intégration des nouvelles exigences de l'ASNR / ASN dans les dossiers techniques</li>
+          </ul>
+          <div class="edf-sources" style="margin-top:10px">
+            <span class="edf-source-label">Sources :</span>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/R%C3%A9acteur_%C3%A0_eau_pressuris%C3%A9e" target="_blank" rel="noopener">Wikipedia : Réacteur à eau pressurisée (REP)</a>
+            <a class="edf-source-link" href="https://www.asnr.fr/publications/" target="_blank" rel="noopener">ASNR : Publications réglementaires</a>
+          </div>
+        </div>
+
+        <!-- Encart motivation nucléaire -->
+        <div class="edf-subsection" style="background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 100%); border:1px solid #bae6fd; border-radius:12px; padding:18px 20px; margin-top:16px">
+          <h4 style="color:#0369A1; margin-bottom:10px">Pourquoi la qualification nucléaire m'intéresse</h4>
+          <p style="color:#0f172a; line-height:1.65">
+            La rigueur de la qualification nucléaire me parle directement : à l'ESA, j'ai travaillé selon des référentiels normatifs stricts (ECSS), rédigé des rapports techniques en anglais et démontré la tenue de systèmes en conditions opérationnelles. Transposer cette approche aux équipements REP — robinetterie, production de froid, moto-ventilateurs — est pour moi une continuité logique. La DIPDE/MCP représente un environnement où la rigueur documentaire, la maîtrise des exigences et la compréhension des systèmes mécaniques convergent : trois axes au cœur de ma formation et de mon expérience.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px">
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Référentiels RCC-M / RCC-E</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Parc REP en exploitation</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Qualification conditions accidentelles</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Dossiers de modification</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Prolongation de durée de vie</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    </script>
+
+  </div><!-- fin .edf-panels -->
+</section>
+
+
+
+
+<style>
+/* ===== EDF Section styles ===== */
+.edf-tabs { display:flex; gap:8px; flex-wrap:wrap }
+.edf-tab {
+  padding:8px 16px; border:1px solid #e6eef2; background:#fff; border-radius:10px;
+  font-weight:600; cursor:pointer; font-size:.9rem; letter-spacing:.01em;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  box-shadow:0 4px 12px rgba(15,23,42,.04);
+}
+.edf-tab:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(14,165,164,.15) }
+.edf-tab.is-active { background:#0ea5a4; color:#fff; border-color:#0ea5a4; box-shadow:0 8px 22px rgba(14,165,164,.3) }
+.edf-panel[hidden] { display:none }
+
+.edf-card {
+  background:#fff; border:1px solid #e6eef2; border-radius:16px;
+  padding:clamp(16px,3vw,28px); box-shadow:0 8px 24px rgba(15,23,42,.07);
+}
+
+/* Images */
+.edf-figure { margin:16px 0; text-align:center }
+.edf-img-wide {
+  width:100%; max-height:280px; object-fit:cover; border-radius:12px;
+  border:1px solid #e6eef2; box-shadow:0 6px 18px rgba(15,23,42,.08);
+  display:block; margin:0 auto;
+}
+.edf-img-logo {
+  height:52px; width:auto; display:block; margin:0 auto;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.1));
+}
+.edf-figcaption {
+  font-size:.82rem; color:#64748b; margin-top:6px; font-style:italic;
+}
+
+/* Sources */
+.edf-sources { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:8px }
+.edf-source-label { font-weight:700; color:#64748b; font-size:.82rem; white-space:nowrap }
+.edf-source-link {
+  display:inline-block; padding:3px 10px; border-radius:999px;
+  border:1px solid #cbd5e1; color:#334155; font-size:.82rem; font-weight:600;
+  background:#f8fafc; text-decoration:none;
+  transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+.edf-source-link:hover { border-color:#0ea5a4; color:#0ea5a4; background:#f0fdfc }
+.edf-inline-link {
+  color:#0ea5a4; font-weight:600; text-decoration:underline; text-underline-offset:2px;
+  font-size:.88rem;
+}
+.edf-inline-link:hover { color:#0c8a89 }
+
+/* Subsections */
+.edf-subsection { margin-top:18px }
+.edf-subsection h4 { font-weight:800; margin-bottom:8px; color:#0f172a; border-left:3px solid #0ea5a4; padding-left:10px }
+.edf-list { list-style:none; display:grid; gap:6px; padding:0; margin-top:8px }
+.edf-list li { padding:6px 10px 6px 14px; border-left:2px solid #e6eef2; color:#334155; font-size:.95rem }
+.edf-list li strong { color:#0f172a }
+
+/* Timeline */
+.edf-timeline { display:grid; gap:10px; margin-top:12px }
+.edf-timeline-item { display:flex; align-items:flex-start; gap:12px }
+.edf-badge {
+  flex:0 0 auto; display:inline-block; padding:4px 10px; border-radius:999px;
+  background:rgba(14,165,164,.1); border:1px solid rgba(14,165,164,.3);
+  color:#0ea5a4; font-weight:700; font-size:.82rem; white-space:nowrap;
+}
+.edf-timeline-item p { margin:0; color:#334155; font-size:.93rem; padding-top:3px }
+
+/* Pros/cons */
+.edf-two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px }
+.edf-pros, .edf-cons { border-radius:12px; padding:14px }
+.edf-pros { background:#f0fdf4; border:1px solid #bbf7d0 }
+.edf-cons { background:#fef2f2; border:1px solid #fecaca }
+.edf-pros h4, .edf-cons h4 { margin-bottom:8px }
+
+/* Nuclear project blocks */
+.edf-project-block { border-radius:12px; padding:18px; border:1px solid #e6eef2 }
+.edf-project--blue { background:linear-gradient(135deg,#eff6ff,#fff) }
+.edf-project--green { background:linear-gradient(135deg,#f0fdf4,#fff) }
+.edf-project--yellow { background:linear-gradient(135deg,#fffbeb,#fff) }
+.edf-project-header { display:flex; align-items:center; gap:10px; margin-bottom:10px }
+.edf-project-dot { width:12px; height:12px; border-radius:50%; flex:0 0 auto }
+.edf-project-header h4 { font-weight:800; color:#0f172a; margin:0 }
+
+/* Stats */
+.edf-stat-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px }
+.edf-stat { background:#fff; border:1px solid #e6eef2; border-radius:10px; padding:10px 14px; text-align:center; min-width:80px; box-shadow:0 3px 10px rgba(0,0,0,.05) }
+.edf-stat-val { font-weight:900; font-size:1.1rem; color:#0ea5a4 }
+.edf-stat-lbl { font-size:.8rem; color:#64748b; margin-top:2px }
+
+/* Sites grid */
+.edf-site-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px }
+.edf-site-card { background:#fff; border:1px solid #e6eef2; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:4px }
+.edf-site-card strong { color:#0f172a; font-size:.95rem }
+.edf-site-card span { color:#475569; font-size:.85rem }
+.edf-date-badge { display:inline-block; margin-top:4px; background:rgba(14,165,164,.1); color:#0ea5a4; border-radius:999px; padding:3px 8px; font-size:.8rem; font-weight:700; border:1px solid rgba(14,165,164,.25) }
+
+/* Organisation */
+.edf-orga-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px }
+.edf-orga-card { background:#f8fbfc; border:1px solid #e6eef2; border-radius:12px; padding:16px }
+.edf-orga-card--highlight { background:rgba(14,165,164,.06); border-color:rgba(14,165,164,.3) }
+.edf-orga-card h4 { font-weight:800; color:#0f172a; margin-bottom:4px }
+.edf-orga-full { font-size:.85rem; color:#64748b; font-style:italic; margin-bottom:6px }
+.edf-orga-card p { color:#334155; font-size:.9rem }
+
+/* Mission grid */
+.edf-mission-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px }
+.edf-mission-card { background:#f8fbfc; border:1px solid #e6eef2; border-radius:12px; padding:14px }
+.edf-mission-card strong { display:block; color:#0f172a; margin-bottom:6px; font-size:.95rem }
+.edf-mission-card p { color:#475569; font-size:.9rem; margin:0 }
+
+/* Fresque */
+.edf-fresque-template { border:1px solid #e6eef2; border-radius:12px; overflow:hidden }
+.edf-fresque-header { background:rgba(14,165,164,.08); border-bottom:1px solid #e6eef2; padding:12px 16px }
+.edf-fresque-dates { font-weight:800; color:#0ea5a4 }
+.edf-fresque-body { padding:16px; display:grid; gap:10px }
+.edf-fresque-row { display:flex; align-items:center; gap:10px }
+.edf-fresque-row label { font-weight:700; color:#0f172a; white-space:nowrap; min-width:140px; font-size:.9rem }
+.edf-fresque-input { flex:1; padding:8px 12px; border:1px solid #e6eef2; border-radius:8px; font-size:.9rem; color:#0f172a; background:#fff; outline:none; transition:border-color .15s ease }
+.edf-fresque-input:focus { border-color:#0ea5a4 }
+.edf-fresque-textarea { width:100%; padding:10px 12px; border:1px solid #e6eef2; border-radius:8px; font-size:.9rem; color:#0f172a; background:#fff; min-height:80px; resize:vertical; outline:none; font-family:inherit; transition:border-color .15s ease }
+.edf-fresque-textarea:focus { border-color:#0ea5a4 }
+.edf-fresque-two-col { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+
+/* STAR */
+.edf-star-box { background:rgba(14,165,164,.05); border:1px solid rgba(14,165,164,.2); border-radius:12px; padding:16px }
+.edf-star-box h5 { font-weight:800; color:#0f172a; margin-bottom:12px }
+.edf-star-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px }
+.edf-star-grid > div { background:#fff; border-radius:10px; padding:10px; border:1px solid #e6eef2; text-align:center }
+.edf-star-grid strong { display:block; font-size:1.6rem; color:#0ea5a4; font-weight:900 }
+.edf-star-grid p { margin:4px 0 0; color:#475569; font-size:.82rem }
+
+/* Section ghost */
+#edf.section-card.is-ghost { background:transparent; border:none; box-shadow:none; padding-left:0; padding-right:0 }
+
+@media (max-width:800px) {
+  .edf-two-col, .edf-orga-grid, .edf-mission-grid, .edf-site-grid { grid-template-columns:1fr }
+  .edf-star-grid { grid-template-columns:repeat(2,1fr) }
+  .edf-fresque-row { flex-direction:column; align-items:flex-start }
+  .edf-fresque-row label { min-width:unset }
+  .edf-fresque-two-col { grid-template-columns:1fr }
+  .edf-img-wide { max-height:200px }
+}
+</style>
+
+<script>
+(function(){
+  const section = document.getElementById('edf');
+  if(!section) return;
+  const tabsRoot = section.querySelector('.edf-tabs');
+  if(!tabsRoot) return;
+  const tabs = tabsRoot.querySelectorAll('.edf-tab');
+  const panels = section.querySelectorAll('.edf-panels .edf-panel');
+  function showPanel(id){
+    panels.forEach(p => p.hidden = (p.id !== id));
+    tabs.forEach(t => {
+      const on = t.getAttribute('aria-controls') === id;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => showPanel(t.getAttribute('aria-controls'))));
+  showPanel(tabs[0].getAttribute('aria-controls'));
+})();
+</script>
+
+
+
+
+
+
+
+
+<!-- ======= Software Skills (grouped & unified) ======= -->
+<section id="software-skills" class="skills-section" style="margin-top:28px">
+  <h2>Compétences</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Les principaux outils que j'utilise, regroupés par catégorie.
+  </p>
+
+  <!-- CFD -->
+  <div class="skills-group">
+    <h3 class="skills-heading">CFD</h3>
+    <div class="skills-grid">
+      <a class="skill-card" href="https://www.ansys.com/products/fluids/ansys-fluent" target="_blank" rel="noopener" aria-label="Ansys Fluent">
+        <img src="logo_fluent.png" alt="Ansys Fluent"><span class="skill-label">Ansys Fluent</span>
+      </a>
+      <a class="skill-card" href="https://www.openfoam.com/" target="_blank" rel="noopener" aria-label="OpenFOAM">
+        <img src="logo_openfoam.png" alt="OpenFOAM"><span class="skill-label">OpenFOAM</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CAD & FEM -->
+  <div class="skills-group">
+    <h3 class="skills-heading">CAD & FEM</h3>
+    <!-- Note cotation fonctionnelle -->
+    <p style="font-size:.85rem; color:#475569; margin-bottom:10px">Cotation fonctionnelle et tolérancement selon les normes <strong style="color:#0f172a">ISO GPS</strong> (Geometrical Product Specifications) — appliqués en conception industrielle et modélisation mécanique.</p>
+    <div class="skills-grid">
+      <a class="skill-card" href="https://www.solidworks.com/" target="_blank" rel="noopener" aria-label="SOLIDWORKS">
+        <img src="logo_solidworks.png" alt="SOLIDWORKS"><span class="skill-label">SOLIDWORKS</span>
+      </a>
+      <a class="skill-card" href="https://www.3ds.com/fr/products/catia" target="_blank" rel="noopener" aria-label="CATIA">
+        <img src="logo_catia.png" alt="CATIA"><span class="skill-label">CATIA</span>
+      </a>
+	<a class="skill-card" href="https://www.3ds.com/products/simulia/abaqus" target="_blank" rel="noopener" aria-label="Abaqus">
+        <img src="logo_abaqus.png" alt="Abaqus"><span class="skill-label">Abaqus</span>
+      </a>
+      <a class="skill-card" href="https://www.autodesk.com/products/autocad/overview" target="_blank" rel="noopener" aria-label="AutoCAD">
+        <img src="logo_autocad.png" alt="AutoCAD"><span class="skill-label">AutoCAD</span>
+      </a>
+      <a class="skill-card" href="https://www.ansys.com/products/structures/ansys-mechanical" target="_blank" rel="noopener" aria-label="Ansys Mechanical">
+        <img src="logo_ansys.png" alt="Ansys Mechanical"><span class="skill-label">Ansys Mechanical</span>
+      </a>
+      <a class="skill-card" href="https://www.ansys.com/products/ansys-workbench" target="_blank" rel="noopener" aria-label="Ansys Workbench">
+        <img src="logo_ansys_workbench.png" alt="Ansys Workbench"><span class="skill-label">Ansys Workbench</span>
+      </a>
+      <!-- No official product page: keep static (no hover animation) -->
+      <div class="skill-tile" aria-label="DesignModeler">
+        <img src="logo_ansys_designmodeler.jpg" alt="DesignModeler"><span class="skill-label">DesignModeler</span>
+      </div>
+      <a class="skill-card" href="https://www.blender.org/" target="_blank" rel="noopener" aria-label="Blender">
+        <img src="logo_blender.png" alt="Blender"><span class="skill-label">Blender</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Programming languages & multiphysics modeling -->
+  <div class="skills-group">
+    <h3 class="skills-heading">Programming languages & multiphysics modeling</h3>
+    <div class="skills-grid">
+      <a class="skill-card" href="https://www.python.org/" target="_blank" rel="noopener" aria-label="Python">
+        <img src="logo_python.png" alt="Python"><span class="skill-label">Python</span>
+      </a>
+      <a class="skill-card" href="https://fr.mathworks.com/products/simulink.html" target="_blank" rel="noopener" aria-label="Simulink / MATLAB">
+        <img src="logo_matlab.png" alt="Simulink / MATLAB"><span class="skill-label">Simulink / MATLAB</span>
+      </a>
+      <a class="skill-card" href="https://jupyter.org/" target="_blank" rel="noopener" aria-label="JupyterLab">
+        <img src="logo_jupyter.png" alt="JupyterLab"><span class="skill-label">JupyterLab</span>
+      </a>
+      <a class="skill-card" href="https://www.linux.org/" target="_blank" rel="noopener" aria-label="Linux">
+        <img src="logo_linux.png" alt="Linux"><span class="skill-label">Linux</span>
+      </a>
+      <!-- Static tiles (no single official page) -->
+      <div class="skill-tile" aria-label="C">
+        <img src="logo_c.png" alt="C"><span class="skill-label">C</span>
+      </div>
+      <div class="skill-tile" aria-label="C++">
+        <img src="logo_ccc.png" alt="C++"><span class="skill-label">C++</span>
+      </div>
+      <div class="skill-tile" aria-label="HTML">
+        <img src="logo_html.png" alt="HTML"><span class="skill-label">HTML</span>
+      </div>
+      <div class="skill-tile" aria-label="SQL">
+        <img src="logo_sql.png" alt="SQL"><span class="skill-label">SQL</span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Office -->
+  <div class="skills-group">
+    <h3 class="skills-heading">Office</h3>
+    <div class="skills-grid">
+	<a class="skill-card" href="https://www.latex-project.org/" target="_blank" rel="noopener" aria-label="LaTeX">
+        <img src="logo_latex.png" alt="LaTeX"><span class="skill-label">LaTeX</span>
+      </a>
+      <a class="skill-card" href="https://www.microsoft.com/microsoft-365/excel" target="_blank" rel="noopener" aria-label="Excel">
+        <img src="logo_excel.png" alt="Excel"><span class="skill-label">Excel</span>
+      </a>
+      <a class="skill-card" href="https://www.microsoft.com/microsoft-365/word" target="_blank" rel="noopener" aria-label="Word">
+        <img src="logo_word.png" alt="Word"><span class="skill-label">Word</span>
+      </a>
+      <a class="skill-card" href="https://www.microsoft.com/microsoft-365/powerpoint" target="_blank" rel="noopener" aria-label="PowerPoint">
+        <img src="logo_powerpoint.png" alt="PowerPoint"><span class="skill-label">PowerPoint</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Add-on styles to enforce labels under logos + max 4 per row -->
+  <style>
+    /* Headings */
+    #software-skills .skills-heading{
+      margin:18px 0 8px; font-size:1.05rem; color:#0f172a;
+    }
+
+    /* Grid: max 4 per row, responsive down to 1 */
+    #software-skills .skills-grid{
+      display:grid; gap:20px; align-items:stretch;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (max-width: 1024px){
+      #software-skills .skills-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px){
+      #software-skills .skills-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 440px){
+      #software-skills .skills-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* Make cards vertical so the name sits just under the logo */
+    #software-skills .skill-card{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:14px;
+    }
+    #software-skills .skill-tile{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding:14px; background:#fff; border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08); border:1px solid #e6eef2;
+    }
+
+    /* Logo sizing + centering */
+    #software-skills .skill-card img,
+    #software-skills .skill-tile img{
+      max-width:80px; max-height:64px; width:auto; height:auto; display:block; margin:0 auto;
+    }
+
+    /* Label directly under the logo */
+    #software-skills .skill-label{
+      display:block; margin-top:8px; font-weight:600; font-size:0.9rem; color:#0f172a; text-align:center;
+    }
+  </style>
+</section>
+
+<!-- ====== Recommendations (one row per line, ghost section) ====== -->
+<section id="recommandations" class="section-card is-ghost" aria-labelledby="reco-title">
+  <h2 id="reco-title">Recommandations et appréciations</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Téléchargez les documents suivants ou consultez-les en ligne.
+  </p>
+
+  <div class="reco-list">
+    <!-- ESA : Appraisal -->
+
+
+    <!-- ESA : Reference letter -->
+    <div class="reco-row" role="group" aria-labelledby="reco-esa-ref-title">
+      <img class="reco-logo" src="logo_esa.png" alt="ESA">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-esa-ref-title">Agence Spatiale Européenne : Lettre de recommandation et fiche d'appréciation</div>
+<div class="reco-sub">9 mois à l'Agence Spatiale Européenne</div>
+        <div class="reco-sub">Nicoletta Wagner, Responsable de la division ingénierie du futur au sein de l'Agence Spatiale Européenne (ESA)<br>Michael Mallon, Docteur et Ingénieur pour la Maintenance Prédictive de l'ESA et des process d'industrialisation</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Fiche d'appréciation stage</a>
+<a class="reco-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster de thèse</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Rapport</a>
+</div>
+
+      </div>
+    </div>
+
+    <!-- UPC -->
+    <div class="reco-row" role="group" aria-labelledby="reco-upc-title">
+      <img class="reco-logo" src="logo_upc.png" alt="UPC">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-upc-title">Université Polytechnique de Catalogne (UPC) : Lettre de recommandation</div>
+        <div class="reco-sub">Robert Arcos, Enseignant chercheur à l'Université Polytechnique de Catalogne</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Rapport</a>
+</div>
+
+      </div>
+    </div>
+
+    <!-- KTH -->
+    <div class="reco-row" role="group" aria-labelledby="reco-kth-title">
+      <img class="reco-logo" src="logo_kth.png" alt="KTH">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-kth-title">KTH École Royale Polytechnique de Stockholm : Lettre de recommandation</div>
+        <div class="reco-sub">Christer Fuglesang, premier astronaute suédois de l'histoire et directeur du centre spatial de l'École Royale Polytechnique de Stockholm (KTH)</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Rapport : Conception industrielle</a>
+
+</div>
+
+      </div>
+    </div>
+
+    <!-- Pony -->
+    <div class="reco-row" role="group" aria-labelledby="reco-pony-title">
+      <div class="reco-logo reco-logo--text" aria-hidden="true" style="width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#16A34A,#15803D);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.3rem;color:#fff;flex-shrink:0">P</div>
+      <div class="reco-content">
+        <div class="reco-title" id="reco-pony-title">Pony : Lettre de recommandation</div>
+        <div class="reco-sub">Prestation de services : diagnostics mécaniques et électroniques, gestion logistique, CAO</div>
+        <div class="reco-links">
+          <a class="reco-link" href="reco_pony.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+          <a class="reco-link" href="reco_pony.pdf" download>Télécharger</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENSE3 -->
+    <div class="reco-row" role="group" aria-labelledby="reco-ense3-title">
+      <img class="reco-logo" src="logo_ense3.png" alt="ENSE3">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-ense3-title">Grenoble INP – ENSE3 : Lettre de recommandation</div>
+        <div class="reco-sub">Olivier Métais, Président de la société Hydrotechnique de France et Ancien directeur de l'ENSE3, Grenoble INP</div>
+        <div class="reco-links">
+  <a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank" rel="noopener">Rapport : Écoulement compressible dans une tuyère</a>
+<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank" rel="noopener">Rapport : Jet turbulent (Fluent)</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank" rel="noopener">Rapport : Débitmètre</a>
+  
+</div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Grille fluide : chaque carte prend toute la largeur de sa colonne */
+  .reco-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(14,165,164,.18);
+  }
+
+  /* Logo dimensionné par variable CSS (modifiable) */
+  .reco-logo{
+    width:var(--reco-logo-size, 60px);
+    height:auto;
+    flex:0 0 auto;
+    display:block;
+  }
+
+  /* (Optionnel) pour forcer 1 colonne sur petits écrans */
+  @media (max-width:700px){
+    .reco-grid{ grid-template-columns:1fr; }
+  }
+</style>
+
+<style>
+  /* Section ghost (pas de fond autour du container) */
+  #recommandations.section-card.is-ghost{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Liste verticale : une carte par ligne (toujours) */
+  .reco-list{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  /* Carte non cliquable (seuls les liens internes le sont) */
+  .reco-row{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(15,23,42,.06);
+  }
+
+  .reco-logo{
+    width: 60px; height: auto; display: block; flex: 0 0 auto;
+  }
+
+  .reco-title{ font-weight: 800; line-height: 1.2; color:#0f172a }
+  .reco-sub  { color:#475569; margin-top: 2px; }
+
+  .reco-links{ margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap }
+  .reco-link{
+    display:inline-block; padding:6px 10px; border-radius:999px;
+    border:1px solid #0ea5a4; color:#0ea5a4; font-weight:700; background:#fff;
+    text-decoration:none; transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .reco-link:hover{
+    transform: translateY(-2px);
+    background: #0ea5a4; color:#fff;
+    box-shadow: 0 10px 22px rgba(14,165,164,.25);
+  }
+
+  @media (max-width:680px){
+    .reco-row{ grid-template-columns: 1fr; }
+    .reco-logo{ width: 48px; }
+  }
+</style>
+
+
+<!-- Styles locaux de la section -->
+<style>
+  #recommandations .reco-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  #recommandations .reco-btn{
+    display:inline-block; padding:10px 14px; border-radius:10px;
+    background:#0ea5a4; color:#fff; font-weight:700; border:1px solid #0ea5a4;
+    text-decoration:none; box-shadow:0 6px 18px rgba(14,165,164,.25);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  #recommandations .reco-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(14,165,164,.35)}
+
+  #recommandations .reco-grid{
+    display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  }
+  #recommandations .reco-card{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:16px; background:#fff; border:1px solid #e6eef2; border-radius:12px;
+    font-weight:600; text-decoration:none; color:#0f172a;
+    box-shadow:0 6px 18px rgba(15,23,42,.06); transition:transform .2s ease, box-shadow .2s ease;
+  }
+  #recommandations .reco-card:hover{transform:translateY(-4px); box-shadow:0 12px 28px rgba(15,23,42,.12)}
+</style>
+
+
+
+<!-- ======= Section Entretien ======= -->
+<section id="entretien" class="section-card is-ghost" aria-labelledby="entretien-title" style="margin-top:28px">
+  <h2 id="entretien-title" style="margin-bottom:8px">Entretien</h2>
+  <p class="muted" style="margin-top:8px;color:#475569">Questions fréquentes, cliquez sur une question pour révéler la réponse.</p>
+
+  <div class="qa-list" style="margin-top:20px">
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi avez-vous choisi l'ingénierie mécanique et énergétique ?</button>
+      <div class="qa-a" hidden>
+        <p>Dès le lycée, j'étais fasciné par la manière dont la physique se traduit en systèmes concrets : moteurs, structures, flux thermiques. L'ingénierie mécanique et énergétique est à l'intersection de ces disciplines : elle permet de concevoir des objets réels tout en maîtrisant les phénomènes physiques qui les gouvernent. La double formation KTH / ENSE3 m'a offert une vision à la fois rigoureuse sur le plan théorique et très orientée vers l'application industrielle.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi un double diplôme franco-suédois ?</button>
+      <div class="qa-a" hidden>
+        <p>Je voulais sortir de ma zone de confort académique et culturelle. KTH est l'une des meilleures écoles d'ingénieurs en Europe du Nord, avec une approche très axée sur la recherche et l'innovation. Combiner cela avec la rigueur de Grenoble INP – ENSE3 sur les aspects énergétiques m'a paru idéal pour me préparer à des environnements internationaux exigeants. Apprendre à travailler en anglais au quotidien, dans des équipes multiculturelles, a été une richesse autant personnelle que professionnelle.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Quelle est l'expérience qui vous a le plus marqué ?</button>
+      <div class="qa-a" hidden>
+        <p>Sans hésitation, mon stage de fin d'études à l'Agence Spatiale Européenne (ESA, ESTEC, Pays-Bas). J'y ai travaillé sur des études thermo-hydrauliques d'équipements spatiaux et développé une application Python de maintenance prédictive aujourd'hui sous licence ESA. La rigueur imposée par les normes spatiales, la qualité des ingénieurs rencontrés et la dimension internationale de l'environnement ont été déterminants dans ma vision du métier. Ce stage a été prolongé, ce qui reflète la confiance que l'équipe m'a accordée.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Qu'est-ce qui vous a motivé à postuler à l'ESA ?</button>
+      <div class="qa-a" hidden>
+        <p>L'ESA représente pour moi l'archétype de l'organisation où l'excellence technique et la coopération internationale se rejoignent. J'avais déjà réalisé un stage en simulation CFD à Barcelone et un projet étudiant à KTH supervisé par un astronaute, ce qui m'avait donné le goût des défis techniques ambitieux dans des contextes multiculturels. Intégrer l'ESA était une étape logique dans cette progression. Le fait d'y avoir développé un outil concret, aujourd'hui utilisé en production, confirme que ce choix était le bon.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment décririez-vous votre profil en quelques mots ?</button>
+      <div class="qa-a" hidden>
+        <p>Je suis un ingénieur polyvalent, à l'aise aussi bien sur des sujets de simulation numérique (CFD, FEM, thermo-hydraulique) que sur du développement Python ou de la conception CAO. Ma formation m'a appris à m'adapter vite à de nouveaux environnements techniques. J'aime travailler en équipe internationale, coordonner des projets et livrer des résultats concrets. Mon expérience entrepreneuriale avec Buck Engineering m'a aussi appris la rigueur de la relation client et la gestion de projets en autonomie complète.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Parlez-moi de votre expérience chez Buck Engineering.</button>
+      <div class="qa-a" hidden>
+        <p>Buck Engineering est l'auto-entreprise que j'ai fondée en septembre 2025 pour proposer des prestations d'ingénierie à des particuliers et des entreprises : conception CAO, études mécaniques, conseils techniques. Cette démarche m'a appris à gérer l'intégralité d'un projet : de la rédaction du devis à la livraison, en passant par la relation client et l'adaptation au besoin. C'est une expérience qui complète ma formation académique en m'ancrant dans la réalité économique et commerciale du métier d'ingénieur.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Quelles sont vos ambitions professionnelles à moyen terme ?</button>
+      <div class="qa-a" hidden>
+        <p>Je souhaite intégrer une organisation internationale : industrie spatiale, énergies renouvelables ou grands groupes industriels : où je pourrai travailler sur des problématiques techniques complexes avec des équipes multiculturelles. À moyen terme, j'aimerais évoluer vers des rôles de coordination technique ou de chef de projet, en m'appuyant sur mes compétences en simulation, CAO et développement Python. L'expérience ESA m'a montré que je peux apporter une valeur ajoutée réelle dans ce type d'environnement.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment gérez-vous le travail en équipe internationale ?</button>
+      <div class="qa-a" hidden>
+        <p>J'ai eu la chance de travailler dans des contextes très variés : une équipe de 25 personnes à KTH pour le projet de véhicule pressurisé, une équipe ESA plurinationale aux Pays-Bas, ou encore l'association BIE à Grenoble où j'assurais l'accueil d'étudiants internationaux. Ces expériences m'ont appris que la communication claire, la flexibilité culturelle et la rigueur dans les livrables sont les clés d'un travail collaboratif efficace, quelle que soit la nationalité des membres de l'équipe.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi la qualification d'équipements nucléaires vous attire-t-elle ?</button>
+      <div class="qa-a" hidden>
+        <p>Ce qui m'attire dans la qualification nucléaire, c'est la rigueur totale qu'elle impose : chaque équipement doit démontrer sa capacité à remplir sa fonction de sûreté en conditions normales, incidentelles et accidentelles, selon des référentiels précis comme les RCC-M et RCC-E. C'est une démarche qui ressemble à celle que j'ai pratiquée à l'ESA, où les normes ECSS fixaient des exigences très strictes sur la documentation, la traçabilité et la démonstration de conformité. Passer de l'espace au nucléaire, c'est appliquer la même logique de rigueur dans un contexte industriel différent mais tout aussi exigeant. La dimension "sûreté critique" me motive : chaque dossier a un impact réel sur la fiabilité d'un réacteur en exploitation.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment démontrez-vous la tenue d'un équipement en conditions accidentelles ?</button>
+      <div class="qa-a" hidden>
+        <p>La démonstration de tenue en conditions accidentelles repose sur une approche structurée en plusieurs étapes. D'abord, on définit précisément les conditions enveloppantes : séismes (par rapport à la carte sismique du site), accidents de perte de réfrigérant primaire (APRP), variations de température et de pression. Ensuite, on mobilise les leviers de démonstration : calcul analytique ou par éléments finis pour les contraintes mécaniques, essais de qualification (vieillissement accéléré, essais sous conditions LOCA), et retour d'expérience sur des équipements similaires. Dans mon expérience à l'ESA, j'ai appliqué une démarche analogue pour des équipements spatiaux : enveloppes thermiques et vibratoires, analyses FEM sous ANSYS, et rédaction de rapports de qualification. Transposer cela aux équipements REP est une continuité directe.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Donnez un exemple de rédaction technique pour un cahier des charges ou une prescription.</button>
+      <div class="qa-a" hidden>
+        <p>Chez Buck Engineering, j'ai rédigé des cahiers des charges pour des clients industriels : identification des fonctions attendues, définition des critères d'acceptation, description des contraintes d'environnement et de compatibilité. À l'ESA, j'ai produit des rapports techniques en anglais sur des études thermo-hydrauliques, avec une structure normée : objet, référentiels applicables, hypothèses, résultats et conclusions. Pour la rédaction de prescriptions, mon expérience KTH sur le véhicule pressurisé m'a amené à formaliser des exigences de conception en conformité avec des normes structurelles. Ce que je retiens de ces expériences, c'est que la qualité d'un document technique tient à trois choses : la précision des exigences, la traçabilité des hypothèses et la clarté des conclusions. Ce sont exactement ces critères que j'appliquerais dans la rédaction de dossiers de qualification ou de modification chez EDF.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .qa-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .qa-item {
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(15,23,42,.05);
+    transition: box-shadow .2s ease;
+  }
+  .qa-item:has(.qa-q[aria-expanded="true"]) {
+    box-shadow: 0 6px 20px rgba(14,165,164,.15);
+    border-color: #0ea5a4;
+  }
+
+  .qa-q {
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background .15s ease, color .15s ease;
+    font-family: inherit;
+  }
+  .qa-q:hover { background: #f0fdfc; color: #0ea5a4; }
+  .qa-q[aria-expanded="true"] { color: #0ea5a4; background: #f0fdfc; }
+
+  .qa-q::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    color: #94a3b8;
+    transition: transform .25s ease, color .25s ease;
+  }
+  .qa-q[aria-expanded="true"]::after {
+    content: '−';
+    color: #0ea5a4;
+    transform: rotate(0deg);
+  }
+
+  .qa-a {
+    padding: 0 20px 18px;
+    color: #334155;
+    line-height: 1.7;
+    font-size: .95rem;
+    border-top: 1px solid #e6eef2;
+    animation: qa-slide-down .2s ease;
+  }
+  .qa-a p { margin: 12px 0 0; }
+
+  @keyframes qa-slide-down {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+(function(){
+  document.querySelectorAll('.qa-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var answer = btn.nextElementSibling;
+      btn.setAttribute('aria-expanded', !expanded);
+      if(expanded){ answer.hidden = true; }
+      else { answer.hidden = false; }
+    });
+  });
+})();
+</script>
+
+<section id="projects" class="section-card" aria-labelledby="projects-title">
+  <h2 id="projects-title">Projets &amp; Expériences</h2>
+
+
+  <!-- ===== Project A : ESA Digital Twins / Predictive Maintenance ===== -->
+  <article class="project" role="group" aria-labelledby="proj-esa-title">
+    <header class="project-head">
+      <img class="project-logo" src="logo_esa.png" alt="ESA" />
+      <div>
+        <h3 id="proj-esa-title" class="project-title">ESA : Digital Twins & Predictive Maintenance</h3>
+        <p class="project-desc">
+          Développement d'une application Python de Machine Learning pour réduire les arrêts imprévus grâce aux jumeaux numériques et capteurs intelligents. Travail présenté devant des experts à l'ESTEC (Pays-Bas) et déposé sous licence ESA.
+        </p>
+        <div class="project-links">
+          <a class="project-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Fiche d'appréciation</a>
+          <a class="project-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Lettre de recommandation</a>
+<a class="project-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster</a>
+<a class="project-link" href="report_pfe.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="project-link" href="https://www.esa.int/" target="_blank" rel="noopener">Site ESA</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="proj-grid">
+<figure><img src="PdM.png" loading="lazy" alt="PdM"><figcaption>Maintenance prédictive (PdM)</figcaption></figure>
+<figure><img src="Presentation.jpeg" loading="lazy" alt="Presentation"><figcaption>Présentation finale</figcaption></figure>
+<figure><img src="arduinosensoronasset.jpeg" loading="lazy" alt="arduinosensoronasset"><figcaption>Capteur Arduino sur équipement</figcaption></figure>
+<figure><img src="Circuit.png" loading="lazy" alt="Circuit"><figcaption>Circuit Arduino</figcaption></figure>
+<figure><img src="3ddt.png" loading="lazy" alt="3ddt"><figcaption>Jumeau numérique 3D</figcaption></figure>
+    <figure><img src="ABBorgafolders.png" loading="lazy" alt="ABBorgafolders"><figcaption>Dossiers organisation ABB</figcaption></figure>
+    <figure><img src="analysis_temp.png" loading="lazy" alt="analysis_temp"><figcaption>Analyse de température</figcaption></figure>
+   
+
+   <figure><img src="panel_stat.png" loading="lazy" alt="panel_stat"><figcaption>Tableau de bord statistique</figcaption></figure>
+    <figure><img src="panel3d.png" loading="lazy" alt="panel3d"><figcaption>Panneau 3D</figcaption></figure>
+
+    <figure><img src="detectfreq1.png" loading="lazy" alt="detectfreq1"><figcaption>Détection fréquence 1</figcaption></figure>
+    <figure><img src="detectfreq2.png" loading="lazy" alt="detectfreq2"><figcaption>Détection fréquence 2</figcaption></figure>
+    <figure><img src="detectfreq3.png" loading="lazy" alt="detectfreq3"><figcaption>Détection fréquence 3</figcaption></figure>
+    <figure><img src="detectfreq4.png" loading="lazy" alt="detectfreq4"><figcaption>Détection fréquence 4</figcaption></figure>
+    <figure><img src="panel_freq.png" loading="lazy" alt="panel_freq"><figcaption>Panneau fréquences</figcaption></figure>
+    <figure><img src="panel_mean.png" loading="lazy" alt="panel_mean"><figcaption>Panneau moyennes</figcaption></figure>
+    
+    <figure><img src="CAD1.png" loading="lazy" alt="CAD1"><figcaption>CAD 1</figcaption></figure>
+    <figure><img src="CAD2.png" loading="lazy" alt="CAD2"><figcaption>CAD 2</figcaption></figure>
+    <figure><img src="CAD3.png" loading="lazy" alt="CAD3"><figcaption>CAD 3</figcaption></figure>
+    <figure><img src="CAD4.png" loading="lazy" alt="CAD4"><figcaption>CAD 4</figcaption></figure>
+    <figure><img src="CAD5.png" loading="lazy" alt="CAD5"><figcaption>CAD 5</figcaption></figure>
+    <figure><img src="CAD6.png" loading="lazy" alt="CAD6"><figcaption>CAD 6</figcaption></figure>
+    <figure><img src="CAD7.png" loading="lazy" alt="CAD7"><figcaption>CAD 7</figcaption></figure>
+ 
+    </div>
+  </article>
+
+  <!-- ===== Project B : UPC CFD / Meshing on Fluent ===== -->
+  <article class="project" role="group" aria-labelledby="proj-upc-title">
+    <header class="project-head">
+      <img class="project-logo" src="logo_upc.png" alt="UPC" />
+      <div>
+        <h3 id="proj-upc-title" class="project-title">UPC BarcelonaTech - CFD & Meshing on Fluent</h3>
+        <p class="project-desc">
+          De la CAO au CFD : stratégies de maillage, paramétrage du solveur et validation sur des cas industriels.
+        </p>
+        <div class="project-links">
+          <a class="project-link" href="reco_upc.pdf" target="_blank" rel="noopener">Lettre de recommandation</a>
+          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Rapport de stage</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="proj-grid">
+    <figure><img src="mesh.png" loading="lazy" alt="mesh"><figcaption>Hiérarchie maillage</figcaption></figure>
+    <figure><img src="organigramme.png" loading="lazy" alt="organigramme"><figcaption>Organigramme</figcaption></figure>
+      <figure>
+        <img src="fond5.png" loading="lazy" alt="Fluent simulation at UPC" data-group="upc">
+        <figcaption>Simulation Fluent</figcaption>
+      </figure>
+    <figure><img src="setup1.png" loading="lazy" alt="setup1"><figcaption>Setup 1</figcaption></figure>
+    <figure><img src="setup2.png" loading="lazy" alt="setup2"><figcaption>Setup 2</figcaption></figure>
+    <figure><img src="setup3.png" loading="lazy" alt="setup3"><figcaption>Setup 3</figcaption></figure>
+     <figure><img src="ph_maillage_general.png" loading="lazy" alt="ph_maillage_general"><figcaption>Maillage général</figcaption></figure>
+    <figure><img src="pt_maillage_bras.png" loading="lazy" alt="pt_maillage_bras"><figcaption>Mesh bras</figcaption></figure>
+    <figure><img src="pt_maillage_global.png" loading="lazy" alt="pt_maillage_global"><figcaption>Mesh global</figcaption></figure>
+    <figure><img src="pt_maillage_isolant.png" loading="lazy" alt="pt_maillage_isolant"><figcaption>Isolant</figcaption></figure>
+    <figure><img src="pt_maillage_panhead.png" loading="lazy" alt="pt_maillage_panhead"><figcaption>Mesh panhead</figcaption></figure>
+    <figure><img src="pt_maillage_support.png" loading="lazy" alt="pt_maillage_support"><figcaption>Support</figcaption></figure>
+
+      <figure>
+        <img src="fond16.png" loading="lazy" alt="Fluent Meshing : 1" data-group="upc">
+        <figcaption>Fluent meshing (1)</figcaption>
+      </figure>
+      <figure>
+        <img src="fond17.png" loading="lazy" alt="Fluent Meshing : 2" data-group="upc">
+        <figcaption>Fluent meshing (2)</figcaption>
+      </figure>
+
+<figure><img src="ph_maillage_plus_precis.png" loading="lazy" alt="ph_maillage_plus_precis"><figcaption>Maillage précis</figcaption></figure>
+    <figure><img src="ph_maillage_train_tunnel.png" loading="lazy" alt="ph_maillage_train_tunnel"><figcaption>Train & tunnel</figcaption></figure>
+    <figure><img src="phh_maillage_domaine.png" loading="lazy" alt="phh_maillage_domaine"><figcaption>Domaine</figcaption></figure>
+    <figure><img src="pt_resid.png" loading="lazy" alt="pt_resid"><figcaption>Résidus</figcaption></figure>
+    <figure><img src="ph_ldc_dessous.png" loading="lazy" alt="ph_ldc_dessous"><figcaption>LDC : dessous</figcaption></figure>
+    <figure><img src="ph_ldc_dessous_points_arret.png" loading="lazy" alt="ph_ldc_dessous_points_arret"><figcaption>Points d’arrêt</figcaption></figure>
+    <figure><img src="ph_ldc_dessous_points_arret_zoom_maillage.png" loading="lazy" alt="ph_ldc_dessous_points_arret_zoom_maillage"><figcaption>Zoom maillage</figcaption></figure>
+
+    <!-- Rang 2 -->
+    <figure><img src="ph_ldc_dessous_zone_tourb.png" loading="lazy" alt="ph_ldc_dessous_zone_tourb"><figcaption>Zone tourbillonnaire</figcaption></figure>
+
+    
+
+
+
+    <figure><img src="LDC.png" loading="lazy" alt="LDC"><figcaption>LDC</figcaption></figure>
+    <figure><img src="pt_ldc_bras.png" loading="lazy" alt="pt_ldc_bras"><figcaption>LDC : bras</figcaption></figure>
+    <!-- Rang 3 -->
+    <figure><img src="pt_maillage_train.png" loading="lazy" alt="pt_maillage_train"><figcaption>Mesh train</figcaption></figure>
+    <figure><img src="pt_maillage_train_basse.png" loading="lazy" alt="pt_maillage_train_basse"><figcaption>Mesh train (basse)</figcaption></figure>
+
+
+
+    <figure><img src="ldc_pantographpresque.png" loading="lazy" alt="ldc_pantographpresque"><figcaption>LDC pantograph</figcaption></figure>
+
+
+    <figure><img src="pt_ldc_global.png" loading="lazy" alt="pt_ldc_global"><figcaption>LDC : global</figcaption></figure>
+
+
+
+    </div>
+  </article>
+
+  <!-- ===== Project C : SolidWorks Space Vehicle / ISS Docking ===== -->
+  <article class="project" role="group" aria-labelledby="proj-space-title">
+    <header class="project-head">
+      <img class="project-logo" src="logo_kth.png" alt="KTH" />
+      <div>
+        <h3 id="proj-space-title" class="project-title">Conception industrielle SolidWorks : Véhicule spatial</h3>
+        <p class="project-desc">
+          Conception et assemblage d'un véhicule spatial.
+        </p>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Rapport</a>
+	<a class="project-link" href="reco_kth.pdf" target="_blank" rel="noopener">Lettre de recommandation</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="proj-grid">
+      <figure>
+        <img src="fond11.png" loading="lazy" alt="Space vehicle assembly" data-group="space">
+        <figcaption>Assemblage véhicule spatial</figcaption>
+      </figure>
+      <figure>
+        <img src="fond19.png" loading="lazy" alt="Space vehicle view 2" data-group="space">
+        <figcaption>Vue véhicule (2)</figcaption>
+      </figure>
+      <figure>
+        <img src="fond20.png" loading="lazy" alt="Space vehicle view 3" data-group="space">
+        <figcaption>Vue véhicule (3)</figcaption>
+      </figure>
+      <figure>
+        <img src="fond10.png" loading="lazy" alt="ISS docking port design" data-group="space">
+        <figcaption>Port d'amarrage ISS</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- ===== Project E : Verlinde Hydraulic Motor (SolidWorks) ===== -->
+  <article class="project" role="group" aria-labelledby="proj-verlinde-title">
+    <header class="project-head">
+      <img class="project-logo" src="logo_ense3.png" alt="ENSE3" />
+      <div>
+        <h3 id="proj-verlinde-title" class="project-title">Projets de conception industrielle et modélisation mécanique</h3>
+        <p class="project-desc">
+          CAO, EF (Catia, SolidWorks, Abaqus, ANSYS).
+        </p>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_verlinde.pdf" target="_blank" rel="noopener">Rapport : Moteur hydraulique Verlinde</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fan.pdf" target="_blank" rel="noopener">Rapport : Pale de ventilateur CAO SolidWorks</a>
+
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank" rel="noopener">Rapport : Modélisation mécanique Skate (Abaqus)</a>
+
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank" rel="noopener">Rapport : Modélisation mécanique Trottinette (Abaqus)</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="proj-grid">
+<figure>
+        <img src="fond6.png" loading="lazy" alt="Abaqus postprocessing 1" data-group="mech">
+        <figcaption>Abaqus : résultats</figcaption>
+      </figure>
+      <figure>
+        <img src="fond7.png" loading="lazy" alt="Abaqus postprocessing 2" data-group="mech">
+        <figcaption>Abaqus : contraintes</figcaption>
+      </figure>
+      <figure>
+        <img src="fond8.png" loading="lazy" alt="Abaqus postprocessing 3" data-group="mech">
+        <figcaption>Abaqus : déformations</figcaption>
+      </figure>
+      <figure>
+        <img src="fond9.png" loading="lazy" alt="Fan blade design on SolidWorks" data-group="mech">
+        <figcaption>Fan blade (SolidWorks)</figcaption>
+      </figure>
+      <figure>
+        <img src="fond12.png" loading="lazy" alt="Verlinde motor assembly on SolidWorks" data-group="verlinde">
+        <figcaption>Vue assemblage</figcaption>
+      </figure>
+      <figure>
+        <img src="fond3.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_joint.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_roulement.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_vis1.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_vis2.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+
+<figure>
+        <img src="verlinde_ressort.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_plan.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_eclate.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+
+<figure>
+        <img src="verlinde_derriere.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_devant.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_ressort_assemblage.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_joint_assemblage.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+<figure>
+        <img src="verlinde_ecran_rep.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
+        <figcaption>Industrial design view</figcaption>
+      </figure>
+    </div>
+  </article>
+
+<!-- ===== Project F : CFD Simulation: Turbulent Jet (ENSE3) ===== -->
+<article class="project" role="group" aria-labelledby="proj-cfd-title">
+  <header class="project-head">
+    <img class="project-logo" src="logo_ense3.png" alt="ENSE3" />
+    <div>
+      <h3 id="proj-cfd-title" class="project-title">Grenoble INP ENSE3 - Heat Exchangers and CFD Simulations </h3>
+      <p class="project-desc">
+        Numerical studies using ANSYS Fluent and OpenFoam. Includes geometry setup,
+        mesh generation, solver parameters, and flow visualization (pressure, velocity,
+        turbulence intensity). Results compared with theoretical and experimental references.
+      </p>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank" rel="noopener">Report Fluent Turbulent Jet</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_overset.pdf" target="_blank" rel="noopener">Report Overset Meshing Fluent</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_maillage.pdf" target="_blank" rel="noopener">Report Meshing Generation Fluent</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank" rel="noopener">Report Compressible flow in a nozzle</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_heatexch.pdf" target="_blank" rel="noopener">Report Tubular Heat Exchangers</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_refrig.pdf" target="_blank" rel="noopener">Report Refrigeration system</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="proj-grid">
+    <!-- Images du projet (chaque figure garde ton nom exact) -->
+<figure><img src="Capture d’écran 2025-09-12 140754.png" loading="lazy" alt="CFD result 140754"><figcaption>Contours</figcaption></figure>
+<figure><img src="Capture d’écran 2025-09-12 140738.png" loading="lazy" alt="CFD result 140738"><figcaption>Contours</figcaption></figure>
+    
+<figure><img src="Capture d’écran 2025-09-12 140615.png" loading="lazy" alt="CFD result 140615"><figcaption>Contours</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140627.png" loading="lazy" alt="CFD result 140627"><figcaption>Contours</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140644.png" loading="lazy" alt="CFD result 140644"><figcaption>Contours</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140702.png" loading="lazy" alt="CFD result 140702"><figcaption>Contours</figcaption></figure>
+    
+    <figure><img src="Capture d’écran 2025-09-12 135704.png" loading="lazy" alt="CFD result 135704"><figcaption>Champ de vitesse</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 135721.png" loading="lazy" alt="CFD result 135721"><figcaption>Mesh</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 135745.png" loading="lazy" alt="CFD result 135745"><figcaption>Profile plot</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 135813.png" loading="lazy" alt="CFD result 135813"><figcaption>Residus</figcaption></figure>
+    
+    <figure><img src="Capture d’écran 2025-09-12 141403.png" loading="lazy" alt="CFD result 141403"><figcaption>Mesh section</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141434.png" loading="lazy" alt="CFD result 141434"><figcaption>Mesh section</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141449.png" loading="lazy" alt="CFD result 141449"><figcaption>Mesh section</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141517.png" loading="lazy" alt="CFD result 141517"><figcaption>Mesh section</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140822.png" loading="lazy" alt="CFD result 140822"><figcaption>Meshing</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140839.png" loading="lazy" alt="CFD result 140839"><figcaption>Mesh zoom</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140854.png" loading="lazy" alt="CFD result 140854"><figcaption>Boundary conditions</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140943.png" loading="lazy" alt="CFD result 140943"><figcaption>Residuals</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 140957.png" loading="lazy" alt="CFD result 140957"><figcaption>Residuals</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141011.png" loading="lazy" alt="CFD result 141011"><figcaption>Champ de vitesse</figcaption></figure>
+
+    <figure><img src="Capture d’écran 2025-09-12 141050.png" loading="lazy" alt="CFD result 141050"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141059.png" loading="lazy" alt="CFD result 141059"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141116.png" loading="lazy" alt="CFD result 141116"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141131.png" loading="lazy" alt="CFD result 141131"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141146.png" loading="lazy" alt="CFD result 141146"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141211.png" loading="lazy" alt="CFD result 141211"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141026.png" loading="lazy" alt="CFD result 141026"><figcaption>Profil</figcaption></figure>
+
+
+    <figure><img src="Capture d’écran 2025-09-12 141322.png" loading="lazy" alt="CFD result 141322"><figcaption>Graph</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141334.png" loading="lazy" alt="CFD result 141334"><figcaption>Graph</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141350.png" loading="lazy" alt="CFD result 141350"><figcaption>Graph</figcaption></figure>
+  </div>
+</article>
+
+</section>
+
+<!-- ====== Reports Section (logos + full-width buttons) ====== -->
+<section id="rapports" class="section-card is-ghost" aria-labelledby="rapports-title" style="--report-logo-size:28px;">
+  <h2 id="rapports-title">Rapports</h2>
+<p class="muted" style="margin-top:6px;color:#334155;font-style:italic">
+  Note : ces travaux ont été réalisés avec les personnes mentionnées dans les rapports.
+</p>
+
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Téléchargez les rapports ou consultez-les en ligne.
+  </p>
+
+  <div class="report-grid" style="margin-top:12px">
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank">
+      <img class="report-logo" src="logo_esa.png" alt="ESA">
+      <span>Rapport de stage de fin d’études (prolongé) : Ingénieur à l’Agence Spatiale Européenne</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank">
+      <img class="report-logo" src="logo_upc.png" alt="UPC">
+      <span>Stage ingénieur à l'Université Polytechnique de Catalogne (CFD, FEM &amp; CAO)</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_cater.pdf" target="_blank">
+      <img class="report-logo" src="logo_cat.png" alt="Caterpillar">
+      <span>Rapport de stage de première année chez Caterpillar</span>
+    </a>
+
+
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_aeroelasticity.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Aéroélasticité appliquée à l'avion Windex</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fibre_composites.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Matériaux composites fibreux : Analyse et conception : Problème de conception : FEM &amp; Python</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fundamentals.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Évaluation comparative des lanceurs réutilisables et à usage unique</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_refrig.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Échangeurs de chaleur : système de réfrigération</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_heatexch.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Échangeurs de chaleur : système tubulaire</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Modélisation et analyse d'écoulements : Jet turbulent sur Fluent</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Modélisation et analyse d'écoulements : Écoulement compressible dans une tuyère (Fluent)</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Modélisation et analyse d'écoulements : Débitmètre</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_overset.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Simulations fluides et thermiques : Maillage Overset sur Fluent</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_maillage.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Simulations fluides et thermiques : Génération de maillage sur Fluent</span>
+    </a>
+
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_belier_resonance.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Hydraulique en charge : Coup de bélier et résonance</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_belier.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>TP Hydraulique en charge : Coup de bélier</span>
+    </a>
+
+
+
+
+
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_verlinde.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Projet de conception mécanique : Moteur hydraulique Verlinde</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fan.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Conception industrielle : Pale de ventilateur (SolidWorks)</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Conception de véhicule : Taxi spatial pour deux personnes : Vol habité</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_abaqus.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Modélisation mécanique sur Abaqus</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Conception et modélisation mécanique : Skateboard</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Conception et modélisation mécanique : Trottinette</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_poutre.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Structures et matériaux : Poutre en porte-à-faux </span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_portique.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Structures et matériaux : Portique à deux niveaux</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_Hercule.pdf" target="_blank">
+      <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
+      <span>Energy Issues: Hercule Project</span>
+    </a>
+
+
+  </div>
+</section>
+
+
+
+<!-- Styles (reprennent l'esthétique de la section Recommandations) -->
+<style>
+  .report-grid{
+    display:grid; gap:10px; grid-template-columns:repeat(3,1fr);
+  }
+  @media (max-width:800px){
+    .report-grid{ grid-template-columns:1fr; }
+  }
+
+  .report-card{
+    display:inline-flex;          /* bouton cliquable */
+    align-items:center;
+    justify-content:center;       /* contenu centré */
+    gap:10px;
+    width:100%;                   /* pleine largeur de la colonne */
+    padding:12px 14px;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    background:#fff;
+    font-weight:700;
+    text-align:center;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .report-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(14,165,164,.18);
+  }
+
+  .report-logo{
+    width:var(--report-logo-size, 28px);
+    height:auto;
+    display:block;
+    flex:0 0 auto;
+  }
+</style>
+
+<style>
+  #backgrounds-gallery .bg-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top:12px;
+  }
+  #backgrounds-gallery figure{
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  #backgrounds-gallery figure:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,0,0,.12);
+  }
+  #backgrounds-gallery img{
+    width:100%;
+    height:160px;            /* ajuste si besoin */
+    object-fit:contain;      /* garde l’image intacte */
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+    display:block;
+    padding:10px;
+  }
+  #backgrounds-gallery figcaption{
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+    padding:8px 10px 12px;
+    text-align:center;
+  }
+  /* Lightbox */
+  #bg-lightbox::backdrop{ background:rgba(2,6,23,.6) }
+  #bg-lightbox{
+    border:none; padding:0; background:transparent;
+  }
+  .bg-lightbox-inner{
+    display:flex; align-items:center; justify-content:center;
+    max-width:95vw; max-height:92vh; margin:auto;
+  }
+  .bg-lightbox-img{
+    max-width:95vw; max-height:92vh;
+    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+    background:#fff;
+  }
+  .bg-lightbox-close{
+    position:fixed; top:12px; right:12px;
+    background:#fff; border:1px solid #e6eef2;
+    border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+</style>
+
+
+<style>
+  /* ===== Projects section ===== */
+  .project{ margin-top:18px; }
+  .project-head{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:14px;
+    align-items:start;
+    padding:14px;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    background:#fff;
+    box-shadow:0 6px 16px rgba(15,23,42,.06);
+  }
+  .project-logo{ width:48px; height:auto; display:block; }
+  .project-title{ font-weight:800; line-height:1.2; color:#0f172a; }
+  .project-desc{ color:#475569; margin-top:4px; }
+  .project-links{ margin-top:8px; display:flex; gap:10px; flex-wrap:wrap; }
+  .project-link{
+    display:inline-block; padding:6px 10px; border-radius:999px;
+    border:1px solid #0ea5a4; color:#0ea5a4; font-weight:700; background:#fff;
+    text-decoration:none; transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  }
+  .project-link:hover{
+    transform: translateY(-2px);
+    background:#0ea5a4; color:#fff;
+    box-shadow:0 10px 22px rgba(14,165,164,.25);
+  }
+
+  /* Image grids inside each project */
+  .proj-grid{
+    display:grid; gap:14px; margin-top:12px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .proj-grid figure{
+    background:#fff; border:1px solid #e6eef2; border-radius:12px; overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  .proj-grid figure:hover{ transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.12) }
+  .proj-grid img{
+    width:100%; height:160px; object-fit:contain; display:block; padding:10px;
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+  }
+  .proj-grid figcaption{
+    font-size:.9rem; font-weight:600; color:#475569; padding:8px 10px 12px; text-align:center;
+  }
+
+  @media (max-width:680px){
+    .project-head{ grid-template-columns:1fr; }
+    .project-logo{ width:40px; }
+  }
+</style>
+
+
+<section id="backgrounds-gallery" class="section-card" aria-labelledby="backgrounds-gallery-title">
+  <h2 id="backgrounds-gallery-title">Illustrations de projets</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Cliquez sur une image pour l'agrandir.
+  </p>
+
+  <div class="bg-grid">
+    <figure>
+      <img src="fond1.png"  loading="lazy" alt="Background 1">
+      <figcaption>Exemple ANSYS Fluent</figcaption>
+    </figure>
+    <figure>
+      <img src="fond2.png"  loading="lazy" alt="Background 2">
+      <figcaption>Exemple ANSYS Fluent</figcaption>
+    </figure>
+    <figure>
+      <img src="fond3.png"  loading="lazy" alt="Background 3">
+      <figcaption>Industrial Design SolidWorks view </figcaption>
+    </figure>
+    
+	<figure>
+      <img src="fond12.png" loading="lazy" alt="Background 12">
+      <figcaption>Verlinde Motor assembly on SolidWorks</figcaption>
+    </figure>
+	<figure>
+      <img src="fond4.png"  loading="lazy" alt="Background 4">
+      <figcaption>Digital Twins ESA</figcaption>
+    </figure>
+    <figure>
+      <img src="fond5.png"  loading="lazy" alt="Background 5">
+      <figcaption>Fluent simulation at UPC</figcaption>
+    </figure>
+    <figure>
+      <img src="fond6.png"  loading="lazy" alt="Background 6">
+      <figcaption>Mechanical conception and modeling on Abaqus</figcaption>
+    </figure>
+    <figure>
+      <img src="fond7.png"  loading="lazy" alt="Background 7">
+      <figcaption>Mechanical conception and modeling on Abaqus</figcaption>
+    </figure>
+    <figure>
+      <img src="fond8.png"  loading="lazy" alt="Background 8">
+      <figcaption>Mechanical conception and modeling on Abaqus</figcaption>
+    </figure>
+    <figure>
+      <img src="fond9.png"  loading="lazy" alt="Background 9">
+      <figcaption>Fan blade design on SolidWorks</figcaption>
+    </figure>
+    <figure>
+      <img src="fond16.png"  loading="lazy" alt="Background 16">
+      <figcaption>Fluent Meshing</figcaption>
+    </figure>
+    <figure>
+      <img src="fond17.png"  loading="lazy" alt="Background 17">
+      <figcaption>Fluent Meshing</figcaption>
+    </figure>
+    <figure>
+      <img src="fond10.png" loading="lazy" alt="Background 10">
+      <figcaption>ISS docking port design on SolidWorks</figcaption>
+    </figure>
+	<figure>
+      <img src="fond11.png" loading="lazy" alt="Background 11">
+      <figcaption>Space Vehicle developed on SolidWorks</figcaption>
+    </figure>
+    <figure>
+      <img src="fond19.png"  loading="lazy" alt="Background 19">
+      <figcaption>Space Vehicle developed on SolidWorks</figcaption>
+    </figure>
+    <figure>
+      <img src="fond20.png" loading="lazy" alt="Background 20">
+      <figcaption>Space Vehicle developed on SolidWorks</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!--
+<section id="skate-gallery" class="section-card" aria-labelledby="skate-gallery-title">
+  <h2 id="skate-gallery-title">Galerie Skate</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Visualisation des résultats, maillages et plans.
+  </p>
+
+  <div class="skate-grid">
+    <figure>
+      <img src="skate_result1.png" loading="lazy" alt="Résultat 1">
+      <figcaption>skate_result1</figcaption>
+    </figure>
+    <figure>
+     
+      <img src="skate_result2.png" loading="lazy" alt="Résultat 2">
+      <figcaption>sakte_result2</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_result3.png" loading="lazy" alt="Résultat 3">
+      <figcaption>skate_result3</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_cdc.png" loading="lazy" alt="Cahier des charges">
+      <figcaption>skate_cdc</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_cdc2.png" loading="lazy" alt="Cahier des charges 2">
+      <figcaption>skate_cdc2</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_conclusion_cdc.png" loading="lazy" alt="Conclusion CDC">
+      <figcaption>skate_conclusion_cdc</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_loading.png" loading="lazy" alt="Loading / chargement">
+      <figcaption>skate_loading</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_magnitude.png" loading="lazy" alt="Magnitude">
+      <figcaption>skate_magnitude</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_magnitude_mises.png" loading="lazy" alt="Magnitude von Mises">
+      <figcaption>skate_magnitude_mises</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_maillage.png" loading="lazy" alt="Maillage">
+      <figcaption>skate_maillage</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_masse.png" loading="lazy" alt="Masse">
+      <figcaption>skate_masse</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_mises.png" loading="lazy" alt="Contraintes de Mises">
+      <figcaption>skate_mises</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_optimisation.png" loading="lazy" alt="Optimisation">
+      <figcaption>skate_optimisation</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_optimisation2.png" loading="lazy" alt="Optimisation 2">
+      <figcaption>skate_optimisation2</figcaption>
+    </figure>
+    <figure>
+      <img src="skate_plan.png" loading="lazy" alt="Plan">
+      <figcaption>skate_plan</figcaption>
+    </figure>
+  </div>
+</section>
+-->
+
+<!-- ====== Styles de la galerie (à placer dans ton <style> global si tu préfères) ====== -->
+<style>
+  #skate-gallery .skate-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top:12px;
+  }
+  #skate-gallery figure{
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  #skate-gallery figure:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.12);
+  }
+  #skate-gallery img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+    display:block;
+    padding:10px;
+  }
+  #skate-gallery figcaption{
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+    padding:8px 10px 12px;
+    text-align:center;
+  }
+  /* Lightbox (dialog) */
+  #skate-lightbox::backdrop{ background:rgba(2,6,23,.6) }
+  #skate-lightbox{
+    border:none; padding:0; background:transparent;
+  }
+  .lightbox-inner{
+    display:flex; align-items:center; justify-content:center;
+    max-width:95vw; max-height:92vh; margin:auto;
+  }
+  .lightbox-img{
+    max-width:95vw; max-height:92vh;
+    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+    background:#fff;
+  }
+  .lightbox-close{
+    position:fixed; top:12px; right:12px;
+    background:#fff; border:1px solid #e6eef2;
+    border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+</style>
+
+<!-- 
+<section id="trott-gallery" class="section-card" aria-labelledby="trott-gallery-title">
+  <h2 id="trott-gallery-title">Galerie Trottinette</h2>
+  <p class="muted" style="margin-top:8px; color:#475569">
+    Visualisation des vues CAO, contraintes, maillages et résultats.
+  </p>
+
+  <div class="trott-grid">
+    <figure>
+      <img src="trott_cad_deck.png" loading="lazy" alt="CAD deck">
+      <figcaption>trott_cad_deck</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cad_deck1.png" loading="lazy" alt="CAD deck 1">
+      <figcaption>trott_cad_deck1</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cad_deck2.png" loading="lazy" alt="CAD deck 2">
+      <figcaption>trott_cad_deck2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cad1.png" loading="lazy" alt="CAD 1">
+      <figcaption>trott_cad1</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_cdc.png" loading="lazy" alt="Cahier des charges">
+      <figcaption>trott_cdc</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_config2.png" loading="lazy" alt="Configuration 2">
+      <figcaption>trott_config2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_magnitude.png" loading="lazy" alt="Deck magnitude">
+      <figcaption>trott_deck_magnitude</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_magnitude3.png" loading="lazy" alt="Deck magnitude 3">
+      <figcaption>trott_deck_magnitude3</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_mises.png" loading="lazy" alt="Deck mises">
+      <figcaption>trott_deck_mises</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_mises2.png" loading="lazy" alt="Deck mises 2">
+      <figcaption>trott_deck_mises2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_deck_mises3.png" loading="lazy" alt="Deck mises 3">
+      <figcaption>trott_deck_mises3</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_efforts.png" loading="lazy" alt="Efforts">
+      <figcaption>trott_efforts</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_loading.png" loading="lazy" alt="Loading / chargement">
+      <figcaption>trott_loading</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_magnitude.png" loading="lazy" alt="Magnitude">
+      <figcaption>trott_magnitude</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_maillage.png" loading="lazy" alt="Maillage">
+      <figcaption>trott_maillage</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_materiel.png" loading="lazy" alt="Matériel">
+      <figcaption>trott_materiel</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_mises.png" loading="lazy" alt="Contraintes de Mises">
+      <figcaption>trott_mises</figcaption>
+    </figure>
+    <figure>
+ 
+      <img src="trott_result_final.png" loading="lazy" alt="Résultat final">
+      <figcaption>trott_resul_final</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_roue.png" loading="lazy" alt="Roue">
+      <figcaption>trott_roue</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_roue2.png" loading="lazy" alt="Roue 2">
+      <figcaption>trott_roue2</figcaption>
+    </figure>
+    <figure>
+      <img src="trott_schema.png" loading="lazy" alt="Schéma">
+      <figcaption>trott_schema</figcaption>
+    </figure>
+  </div>
+</section>
+-->
+<!-- ====== Styles (peuvent aller dans ton <style> global) ====== -->
+<style>
+  #trott-gallery .trott-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    margin-top:12px;
+  }
+  #trott-gallery figure{
+    background:#fff;
+    border:1px solid #e6eef2;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,23,42,.06);
+    transition:transform .2s ease, box-shadow .2s ease;
+    cursor:zoom-in;
+  }
+  #trott-gallery figure:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.12);
+  }
+  #trott-gallery img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+    background:linear-gradient(180deg,#fff,#f8fbfc);
+    display:block;
+    padding:10px;
+  }
+  #trott-gallery figcaption{
+    font-size:.9rem;
+    font-weight:600;
+    color:#475569;
+    padding:8px 10px 12px;
+    text-align:center;
+  }
+  /* Lightbox (dialog) */
+  #trott-lightbox::backdrop{ background:rgba(2,6,23,.6) }
+  #trott-lightbox{
+    border:none; padding:0; background:transparent;
+  }
+  .trott-lightbox-inner{
+    display:flex; align-items:center; justify-content:center;
+    max-width:95vw; max-height:92vh; margin:auto;
+  }
+  .trott-lightbox-img{
+    max-width:95vw; max-height:92vh;
+    border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35);
+    background:#fff;
+  }
+  .trott-lightbox-close{
+    position:fixed; top:12px; right:12px;
+    background:#fff; border:1px solid #e6eef2;
+    border-radius:999px; padding:8px 12px; font-weight:700; cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+  }
+</style>
+
+<!-- ====== Lightbox dédiée à la galerie Trottinette ====== -->
+<dialog id="trott-lightbox" aria-label="Agrandissement image trottinette">
+  <button class="trott-lightbox-close" onclick="document.getElementById('trott-lightbox').close()">✕</button>
+  <div class="trott-lightbox-inner">
+    <img class="trott-lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Zoom au clic pour la galerie trottinette
+  (function(){
+    const dialog = document.getElementById('trott-lightbox');
+    const bigImg = dialog.querySelector('.trott-lightbox-img');
+
+    document.querySelectorAll('#trott-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Fermer au clic en dehors du contenu
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const clickedInDialog = (
+        e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom
+      );
+      if(!clickedInDialog) dialog.close();
+    });
+  })();
+</script>
+
+
+<!-- ====== Lightbox (zoom au clic) ====== -->
+<dialog id="skate-lightbox" aria-label="Agrandissement image">
+  <button class="lightbox-close" onclick="document.getElementById('skate-lightbox').close()">✕</button>
+  <div class="lightbox-inner">
+    <img class="lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Ouvre l'image en grand dans le <dialog>
+  (function(){
+    const dialog = document.getElementById('skate-lightbox');
+    const bigImg = dialog.querySelector('.lightbox-img');
+
+    document.querySelectorAll('#skate-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Fermer au clic sur le fond
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const clickedInDialog = (
+        e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom
+      );
+      if(!clickedInDialog) dialog.close();
+    });
+  })();
+</script>
+
+<!--
+      <section id="portfolio">
+        <h2 style="margin-top:28px">Portfolio</h2>
+        <div class="portfolio">
+          <figure class="portfolio-item">
+            <a href="projet1.html" target="_blank">
+              <img src="logo_esa.png" alt="Projet 1 : PFE">
+              <figcaption> Ingénieur mécanique à l'Agence Spatiale Européenne : stage de fin d'études avec prolongation</figcaption>
+            </a>
+          </figure>
+          <figure class="portfolio-item">
+            <a href="projet2.html" target="_blank">
+              <img src="logo_upc.png" alt="Projet 2">
+              <figcaption>Ingénieur à l'Université Polytechnique de Catalogne - BarcelonaTech UPC (CFD, FEM & CAD)</figcaption>
+            </a>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="logo_kth.png" alt="Projet 3">
+            <figcaption>Projet 3 : Projet CAO à KTH</figcaption>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="logo_ense3.png" alt="Projet 4">
+            <figcaption>Projet 4 : Blog professionnel</figcaption>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="logo_cat.png" alt="Projet 5">
+            <figcaption>Projet 5 : Blog professionnel</figcaption>
+          </figure>
+          <figure class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Projet 6">
+            <figcaption>Projet 6 : Blog professionnel</figcaption>
+          </figure>
+        </div>
+      </section>
+
+-->
+
+<!--
+
+<section id="services">
+        <h2 style="margin-top:28px">Services</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Design & UI</h3>
+            <p>Création d'interfaces modernes et accessibles, maquettes responsive et prototypage rapide.</p>
+          </article>
+          <article class="card">
+            <h3>Développement</h3>
+            <p>Sites HTML/CSS/JS, intégration CMS (WordPress/Netlify) et optimisation performance.</p>
+          </article>
+          <article class="card">
+            <h3>SEO & Performance</h3>
+            <p>Audit rapide, optimisation des images, balises meta et amélioration du temps de chargement.</p>
+          </article>
+        </div>
+      </section>
+
+<section id="alpha-video" class="alpha-video" aria-label="Animation">
+  <div class="alpha-video__wrap">
+    <video
+      class="alpha-video__elt"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      aria-label="Horloge animée avec fond transparent"
+    >
+      <source src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Alarm_Clock_Animation_High_Res_alpha_transparency.webm" type="video/webm">
+      Votre navigateur ne supporte pas les vidéos WebM avec transparence.
+    </video>
+  </div>
+</section>
+
+
+
+
+        <section id="contact" class="contact-banner contact--in-hero" aria-labelledby="contact-title">
+          <h2 id="contact-title">Contact</h2>
+          <div class="contact-grid">
+
+         
+  
+            <div class="contact-card" aria-labelledby="contact-form-title">
+              <h3 id="contact-form-title">M’écrire un message</h3>
+              <form action="https://formspree.io/f/xeolvyrp" method="POST">
+                <label>
+                  Votre nom :
+                  <input type="text" name="name" required>
+                </label>
+                <label>
+                  Votre email :
+                  <input type="email" name="email" required>
+                </label>
+                <label>
+                  Votre message :
+                  <textarea name="message" required></textarea>
+                </label>
+                <button type="submit" class="btn" style="width:max-content">Envoyer</button>
+              </form>
+            </div>
+
+          </div>
+        </section>
+
+      </section>
+-->
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div>&copy; <span id="year"></span> AlexandreLabau. All rights reserved.</div>
+        </div>
+    </footer>
+  </div>
+
+  <script>
+    // Année dynamique
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll pour liens d'ancre
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+      });
+    });
+  </script>
+
+<dialog id="bg-lightbox" aria-label="Enlarged background">
+  <button class="bg-lightbox-close" onclick="document.getElementById('bg-lightbox').close()">✕</button>
+  <div class="bg-lightbox-inner">
+    <img class="bg-lightbox-img" alt="">
+  </div>
+</dialog>
+
+<script>
+  // Zoom on click for Backgrounds gallery
+  (function(){
+    const dialog = document.getElementById('bg-lightbox');
+    const bigImg = dialog.querySelector('.bg-lightbox-img');
+
+    document.querySelectorAll('#backgrounds-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Close when clicking outside the dialog content
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                     e.clientY >= rect.top  && e.clientY <= rect.bottom;
+      if(!inside) dialog.close();
+    });
+  })();
+</script>
+
+<script>
+  // Attach lightbox to all project images (reuses #bg-lightbox)
+  (function(){
+    const dialog = document.getElementById('bg-lightbox');
+    const bigImg = dialog?.querySelector('.bg-lightbox-img');
+    if(!dialog || !bigImg) return;
+
+    document.querySelectorAll('.proj-grid img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    dialog.addEventListener('click', (e)=>{
+      const r = dialog.getBoundingClientRect();
+      const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      if(!inside) dialog.close();
+    });
+  })();
+</script>
+
+
+<script>
+  // Zoom on click for Backgrounds gallery
+  (function(){
+    const dialog = document.getElementById('bg-lightbox');
+    const bigImg = dialog.querySelector('.bg-lightbox-img');
+
+    document.querySelectorAll('#backgrounds-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        bigImg.src = img.src;
+        bigImg.alt = img.alt || '';
+        dialog.showModal();
+      });
+    });
+
+    // Close when clicking outside the dialog content
+    dialog.addEventListener('click', (e)=>{
+      const rect = dialog.getBoundingClientRect();
+      const inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                     e.clientY >= rect.top  && e.clientY <= rect.bottom;
+      if(!inside) dialog.close();
+    });
+  })();
+</script>
+
+</body>
+</html>
