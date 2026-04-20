@@ -1,14 +1,10 @@
-<!--
-Fichier: site_perso.html
-Description: Site web responsive one-page simple. Éditer le contenu (titre, texte, images) directement dans ce fichier.
-Instructions: Enregistrez ce fichier et ouvrez-le dans un navigateur pour prévisualiser.
--->
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
+  <link rel="icon" href="logo_buck.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mon Site — Présentation</title>
+  <title>Alexandre Labau</title>
   <meta name="description" content="Site vitrine simple et moderne créé automatiquement">
   <style>
     /* Reset minimal */
@@ -37,9 +33,19 @@ html, body{
 
     /* Layout */
     .container{max-width:1300px;margin:0 auto;padding:24px}
-    header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
-    .brand{font-weight:700;font-size:1.125rem}
-    nav a{margin-left:18px;font-weight:600}
+    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;flex-wrap:nowrap;gap:8px}
+    .brand{font-weight:700;font-size:clamp(.9rem,1.5vw,1.05rem);white-space:nowrap;flex-shrink:0}
+    nav { display:flex; flex-wrap:nowrap; gap:3px; align-items:center; overflow-x:auto; scrollbar-width:none }
+    nav::-webkit-scrollbar{display:none}
+    nav a {
+      padding:clamp(4px,.5vw,6px) clamp(9px,.9vw,13px); border-radius:999px;
+      font-weight:600; font-size:clamp(.82rem,1.1vw,.9rem); white-space:nowrap;
+      border:1px solid #e6eef2; background:#fff;
+      color:#0f172a; text-decoration:none;
+      transition:background .15s, border-color .15s, transform .1s, box-shadow .1s;
+      box-shadow:0 2px 6px rgba(15,23,42,.04);
+    }
+    nav a:hover { background:#f0fdfc; border-color:#0ea5a4; color:#0ea5a4; transform:translateY(-1px); box-shadow:0 4px 12px rgba(14,165,164,.15) }
 
     /* Hero */
     /* === HERO ++ esthétique === */
@@ -98,7 +104,14 @@ html, body{
 
 
 .hero .cta { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px }
-.hero .btn--ghost{ background:transparent; color:#0f172a; border:1px solid #e6eef2 }
+.hero .btn--ghost{
+  background:#fff; color:#0f172a;
+  border:1px solid #cbd5e1;
+  box-shadow:0 2px 8px rgba(15,23,42,.06);
+}
+.hero .btn--ghost:hover{
+  background:#f0fdfc; border-color:#0ea5a4; color:#0ea5a4;
+}
 
 /* Bloc portrait (légère carte) */
 .hero figure {
@@ -176,7 +189,13 @@ html, body{
 
     /* Subtle micro-animations */
     .card:hover{transform:translateY(-6px);transition:transform .25s ease}
-    .btn{transition:transform .15s ease}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:9px 18px; border-radius:10px;
+      font-weight:600; font-size:.88rem; cursor:pointer;
+      text-decoration:none; line-height:1;
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
     .btn:active{transform:scale(.98)}
 
     /* Image ronde */
@@ -367,6 +386,27 @@ html, body{
 
 
   </style>
+
+<style id="section-order">
+  /* Réordonnancement visuel des sections via flexbox */
+  main { display: flex; flex-direction: column; }
+  section.hero,
+  #home  { order: 0; }
+  #fresque { order: 10; }
+  #education { order: 35; }
+  #me-program { order: 65; }
+  #edf { order: 20; }
+  #entretien { order: 25; }
+  #rapports { order: 40; }
+  #recommandations { order: 50; }
+  #projects { order: 60; }
+  #software-skills { order: 70; }
+  #backgrounds-gallery { display: none !important; }
+  #skate-gallery { display: none !important; }
+  #trott-gallery { display: none !important; }
+  #contact { order: 100; }
+  /* les <style> et <script> directs de <main> sont invisibles, order 0 */
+</style>
 </head>
 
 <script>
@@ -416,14 +456,17 @@ document.addEventListener('DOMContentLoaded', function(){
 
   <div class="container">
     <header>
-      <div class="brand">Alexandre Labau : Mechanical and energy engineering</span></div>
+      <div class="brand">Alexandre Labau : Ingénieur en mécanique et énergétique</span></div>
 
 <nav>
-  <a href="#education">Education</a>
-  <a href="#software-skills">Software Skills</a>
-  <a href="#recommandations">Recommendations</a>
-  <a href="#rapports">Reports</a>
-  <a href="#contact">Contact</a>
+  <a href="#fresque">Parcours</a>
+  <a href="#edf">EDF</a>
+  <a href="#entretien">Q / R</a>
+  <a href="#education">Formation</a>
+  <a href="#rapports">Rapports</a>
+  <a href="#recommandations">Recommandations</a>
+  <a href="#projects">Projets</a>
+  <a href="#software-skills">Compétences</a>
 </nav>
     </header>
 
@@ -434,27 +477,27 @@ document.addEventListener('DOMContentLoaded', function(){
     <span class="eyebrow" aria-label="Localisation et disponibilité">EU & FR • Disponible</span>
     <h1 id="hero-title"><strong>Alexandre Labau</strong></h1>
     <p class="sub">
-      Holder of a double master’s degree in Mechanical and Energy Engineering from KTH Royal Institute of Technology in Stockholm and Grenoble INP – ENSE3, I aspire to apply my skills within an international organization.
+      Titulaire d’un double diplôme international en Mécanique et Énergétique entre KTH École Royale Polytechnique de Stockholm et Grenoble INP, ENSE3, je souhaite contribuer activement à la transition énergétique, plus spécifiquement dans le domaine de la production d’énergie nucléaire.
     </p>
 
 <div class="cta cta--stack">
-  <!-- CV -->
-  <a class="btn btn--ghost" href="resume_alexandre_labau.pdf" download aria-label="Download my CV (EN)">Download my CV</a>
+  <a class="btn btn--ghost" href="reco_pfe.pdf" target="_blank" rel="noopener">ESA : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="appreciation_pfe.pdf" target="_blank" rel="noopener">ESA : Fiche d'appréciation</a>
+  <a class="btn btn--ghost" href="reco_pony.pdf" target="_blank" rel="noopener">Pony : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_kth.pdf" target="_blank" rel="noopener">KTH : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_ense3.pdf" target="_blank" rel="noopener">Grenoble INP ENSE3 : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_upc.pdf" target="_blank" rel="noopener">UPC : Lettre de recommandation</a>
   <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV (FR)">Télécharger mon CV (FR)</a>
-  <a class="btn btn--ghost" href="appreciation_pfe.pdf" target="_blank" rel="noopener">ESA - Appraisal</a>
-  <a class="btn btn--ghost" href="reco_pfe.pdf" target="_blank" rel="noopener">ESA - Reference letter</a>
-  <a class="btn btn--ghost" href="reco_kth.pdf" target="_blank" rel="noopener">KTH - Reference letter</a>
-  <a class="btn btn--ghost" href="reco_ense3.pdf" target="_blank" rel="noopener">Grenoble INP - ENSE3 - Reference letter</a>
-  <a class="btn btn--ghost" href="reco_upc.pdf" target="_blank" rel="noopener">UPC - Reference letter</a>
+  <a class="btn btn--ghost" href="resume_alexandre_labau.pdf" download aria-label="Télécharger mon CV (EN)">Télécharger mon CV (EN)</a>
 </div>
 
 
   </div>
 
   <figure>
-    <img class="profile-pic" src="photo_ESTEC.jpg" alt="Master's thesis defense at the European Space Research and Technology Center" />
+    <img class="profile-pic" src="photo_ESTEC.jpg" alt="Présentation de l’application de Maintenance Prédictive devant des industriels lors d’une conférence européenne à l’ESTEC" />
     <figcaption>
-      Master's thesis defense at the European Space Research and Technology Center
+      Présentation de l’application de Maintenance Prédictive développée devant des industriels et des experts du domaine lors d’une conférence européenne aux Pays-Bas (ESTEC)
     </figcaption>
 
     <!-- ===== CONTACT (infos) SOUS la photo ===== -->
@@ -590,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function(){
     padding-right: 0;
   }
 
-  /* Liste verticale – une carte par ligne */
+  /* Liste verticale, une carte par ligne */
   .edu-list{
     display: grid;
     grid-template-columns: 1fr;
@@ -646,10 +689,573 @@ document.addEventListener('DOMContentLoaded', function(){
 </style>
 
 
+<!-- ====== Frise chronologique : Section dédiée ====== -->
+<section id="fresque" class="section-card is-ghost" style="margin-top:28px">
+  <h2 style="margin-bottom:4px">Parcours professionnel</h2>
+  <p style="color:#475569; margin-top:8px">Frise chronologique : glissez pour parcourir.</p>
+
+  <div class="frq2-wrap" style="margin-top:20px">
+    <div class="frq2-track" id="frq2-track">
+      <div class="frq2-rail"></div>
+    </div>
+  </div>
+  <div id="frq2-detail" class="frq2-detail" style="display:none"></div>
+</section>
+
+<style>
+.frq2-wrap {
+  overflow-x: auto; overflow-y: visible; padding: 20px 0 32px;
+  cursor: grab; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent;
+}
+.frq2-wrap:active { cursor: grabbing }
+.frq2-wrap::-webkit-scrollbar { height: 4px }
+.frq2-wrap::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:2px }
+
+.frq2-track {
+  position: relative; display: flex; align-items: flex-start;
+  min-width: max-content; padding: 80px 40px 16px;
+}
+.frq2-rail {
+  position: absolute; top: 80px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg,
+    #D97706 0%, #D97706 8%,
+    #2563EB 16%, #2563EB 24%,
+    #DC2626 32%, #DC2626 40%,
+    #1D4ED8 48%, #1D4ED8 56%,
+    #1E3A8A 64%, #1E3A8A 72%,
+    #991B1B 80%, #991B1B 88%,
+    #16A34A 96%, #16A34A 100%
+  );
+  border-radius: 2px;
+}
+.frq2-col {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; width: 220px; flex-shrink: 0;
+}
+.frq2-dot {
+  position: absolute; top: -8px; width: 16px; height: 16px;
+  border-radius: 50%; background: #fff;
+  border: 2.5px solid #0ea5a4; box-shadow: 0 0 0 3px rgba(14,165,164,.12);
+  z-index: 2;
+}
+.frq2-stem { width: 2px; height: 24px; background: #0ea5a4; margin-top: 8px; opacity: .45 }
+.frq2-card {
+  width: 200px; background: #fff; border: 1px solid #e6eef2;
+  border-radius: 14px; padding: 14px; overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15,23,42,.06);
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.frq2-col:hover .frq2-card { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.12); border-color: var(--card-color, #0ea5a4) }
+.frq2-dates {
+  position: absolute; top: -60px; text-align: center; line-height: 1.4;
+}
+.frq2-date-start { font-size: .85rem; font-weight: 800; color: #0f172a }
+.frq2-date-end   { font-size: .78rem; font-weight: 600; color: #64748b }
+.frq2-card-img   { width: 100%; height: 90px; object-fit: cover; display: block; border-radius: 6px; margin-bottom: 10px }
+.frq2-title  { font-weight: 800; font-size: .88rem; color: #0f172a; margin: 0 0 4px; line-height: 1.3 }
+.frq2-meta   { font-size: .75rem; color: #64748b; margin-bottom: 8px }
+.frq2-missions { list-style:none; padding:0; margin:0; display:grid; gap:3px }
+.frq2-missions li { font-size:.74rem; color:#475569; padding-left:10px; position:relative }
+.frq2-missions li::before { content:"›"; position:absolute; left:0; color:#0ea5a4 }
+.frq2-skills { display:flex; flex-wrap:wrap; gap:3px; margin-top:8px }
+.frq2-skill  { font-size:.68rem; padding:2px 7px; border-radius:999px; border:1px solid #e6eef2; color:#64748b; background:#f8fafc }
+.frq2-dl-wrap { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px }
+.frq2-dl {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 10px; border-radius:7px; font-size:.75rem; font-weight:600;
+  background:#f0fdfc; border:1px solid rgba(14,165,164,.35); color:#0ea5a4;
+  text-decoration:none; transition:background .15s;
+}
+.frq2-dl:hover { background:#ccfbf1 }
+@media(max-width:700px){ .frq2-col{ width:175px } .frq2-card{ width:155px } }
+/* Jalons */
+.frq2-milestone { width: 100px; }
+.frq2-milestone-dot {
+  position: absolute; top: -16px; font-size: 1.5rem; z-index: 3;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.15));
+}
+.frq2-milestone-label {
+  margin-top: 12px; text-align: center; font-size: .72rem; font-weight: 700;
+  color: #B45309; max-width: 96px; line-height: 1.35;
+  padding: 5px 7px; border-radius: 8px;
+  background: #FFFBEB; border: 1.5px solid #FDE68A;
+  box-shadow: 0 2px 8px rgba(245,158,11,.15);
+}
+.frq2-milestone-date {
+  font-size: .8rem; font-weight: 800; color: #D97706;
+  position: absolute; top: -58px; text-align: center; line-height: 1.4;
+}
+
+/* États actifs */
+.frq2-col { cursor: pointer }
+
+/* Bandeau logo en haut de carte */
+.frq2-logo-band {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px;
+  min-height: 72px; padding: 10px 14px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f0fdfc 100%);
+  border-bottom: 1px solid #e6eef2;
+}
+.frq2-logo-img {
+  max-height: 48px; max-width: 92%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 4px rgba(15,23,42,.12));
+}
+.frq2-client-logos {
+  display: flex; justify-content: center; align-items: center; gap: 5px; flex-wrap: wrap;
+}
+.frq2-client-logo-img {
+  max-height: 20px; max-width: 54px; object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(15,23,42,.15));
+}
+.frq2-client-badge {
+  font-size: .58rem; font-weight: 800; color: #fff;
+  padding: 1px 5px; border-radius: 3px; letter-spacing: .02em;
+}
+/* Bandeau logo dans le panneau détail */
+.frq2-detail-logo-band {
+  display: flex; align-items: center; gap: 18px;
+  padding: 4px 0 4px;
+}
+.frq2-detail-logo-wrap {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-width: 96px; padding: 10px 16px;
+  border-radius: 14px; background: #fff;
+}
+.frq2-detail-logo-img {
+  max-height: 52px; max-width: 110px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(15,23,42,.12));
+}
+.frq2-detail-logo-initial {
+  width: 72px; height: 72px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; font-weight: 900; color: #fff;
+}
+.frq2-col.is-active .frq2-dot {
+  background: var(--card-color, #0ea5a4); transform: scale(1.3);
+  box-shadow: 0 0 0 5px rgba(0,0,0,.12);
+}
+.frq2-col.is-active .frq2-card {
+  border-color: var(--card-color, #0ea5a4); border-width: 2px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.14);
+}
+
+/* Panneau détail */
+.frq2-detail {
+  margin-top: 18px; background: #fff;
+  border: 1px solid #e6eef2; border-radius: 16px; overflow: hidden;
+  animation: frq2-in .2s ease;
+}
+@keyframes frq2-in { from { opacity:0; transform:translateY(-6px) } to { opacity:1; transform:translateY(0) } }
+.frq2-detail-head {
+  background: rgba(14,165,164,.07); border-bottom: 1px solid #e6eef2;
+  padding: 14px 20px; display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.frq2-detail-head h3 { margin: 0; font-size: 1rem; color: #0f172a }
+.frq2-detail-head-meta { font-size: .82rem; color: #64748b; margin-top: 2px }
+.frq2-detail-body {
+  padding: 20px; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.frq2-detail-img-wrap { grid-column: 1 / -1 }
+.frq2-detail-img {
+  width: 100%; max-height: 200px; object-fit: cover;
+  border-radius: 12px; border: 1px solid #e6eef2;
+  box-shadow: 0 4px 14px rgba(15,23,42,.08);
+}
+.frq2-detail-col h4 {
+  font-size: .78rem; font-weight: 700; color: #64748b;
+  text-transform: uppercase; letter-spacing: .05em; margin: 0 0 8px;
+}
+.frq2-detail-missions { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px }
+.frq2-detail-missions li { font-size: .9rem; color: #334155; padding-left: 14px; position: relative }
+.frq2-detail-missions li::before { content: "›"; position: absolute; left: 0; color: #0ea5a4 }
+.frq2-detail-skills { display: flex; flex-wrap: wrap; gap: 5px }
+.frq2-detail-skill { font-size: .8rem; padding: 3px 10px; border-radius: 999px; border: 1px solid #e6eef2; color: #334155; background: #f8fafc }
+.frq2-detail-dl-wrap { display: flex; flex-wrap: wrap; gap: 6px }
+.frq2-detail-dl {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 12px; border-radius: 8px; font-size: .82rem; font-weight: 600;
+  background: #f0fdfc; border: 1px solid rgba(14,165,164,.35); color: #0ea5a4;
+  text-decoration: none; transition: background .15s;
+}
+.frq2-detail-dl:hover { background: #ccfbf1 }
+.frq2-close {
+  padding: 5px 14px; border-radius: 8px; font-weight: 600; cursor: pointer;
+  font-size: .82rem; border: 1px solid #e6eef2; background: #fff; color: #64748b;
+  flex-shrink: 0; transition: background .15s;
+}
+.frq2-close:hover { background: #f8fafc }
+@media(max-width:700px){ .frq2-detail-body { grid-template-columns: 1fr } }
+</style>
+
+<script>
+(function(){
+  /* =====================================================
+     DONNEES DE LA FRESQUE : modifier uniquement ici
+     Champs : start, end, title, entity, site
+              missions (tableau), skills (virgules)
+              image (chemin/url ou "")
+              downloads (tableau de {label, url} ou [])
+     ===================================================== */
+  var DATA = [
+    {
+      id: 1,
+      start: "Juin 2022", end: "Août 2022",
+      title: "Stage ouvrier",
+      entity: "Caterpillar", site: "France",
+      missions: [
+        "Monteur sur les lignes d'assemblages",
+        "Modélisation CAO de pièces",
+        "Études ergonomiques"
+      ],
+      skills: "CAO, assemblage industriel, ergonomie",
+      logo: "logo_cat.png", image: "", downloads: []
+    },
+    {
+      id: 2,
+      start: "Sept 2022", end: "Sept 2023",
+      title: "Membre : Association BIE",
+      entity: "Grenoble INP : ENSE3", site: "Grenoble",
+      missions: [
+        "Accueil et intégration de plus de 1 000 étudiants internationaux",
+        "Organisation d'événements d'intégration",
+        "Communication interculturelle"
+      ],
+      skills: "Communication, gestion d'événements, leadership",
+      logo: "logo_ense3.png", image: "", downloads: []
+    },
+    {
+      id: 3,
+      start: "Juin 2023", end: "Août 2023",
+      title: "Stage ingénieur : Mécanique des fluides",
+      entity: "Université Polytechnique de Catalogne (UPC)", site: "Barcelone",
+      missions: [
+        "Modélisation et simulation mécanique des structures",
+        "Simulation CFD : mécanique des fluides",
+        "Post-traitement des résultats (Ansys Workbench, Fluent, Python)"
+      ],
+      skills: "CAO, CFD, Ansys Workbench, Ansys Fluent, Python",
+      logo: "logo_upc.png", image: "",
+      downloads: [{ label: "Lettre de recommandation UPC", url: "reco_upc.pdf" }]
+    },
+    {
+      id: 4,
+      start: "Jan 2024", end: "Mars 2024",
+      title: "Projet étudiant : Véhicule pressurisé",
+      entity: "KTH École Royale Polytechnique", site: "Stockholm",
+      missions: [
+        "Supervisé par Christer Fuglesang (1er astronaute suédois)",
+        "Réalisation des modèles CAO (réservoirs pressurisés)",
+        "Coordination d'une équipe internationale de 25 personnes"
+      ],
+      skills: "CAO, SolidWorks, gestion de projet, travail en équipe international",
+      logo: "logo_kth.png", image: "",
+      downloads: [{ label: "Lettre de recommandation KTH", url: "reco_kth.pdf" }]
+    },
+    {
+      id: "m1",
+      type: "milestone",
+      start: "Juin 2024",
+      end: "",
+      title: "Fin du Double Diplôme",
+      entity: "KTH / ENSE3",
+      site: "",
+      missions: [],
+      skills: "",
+      logo: "", image: "", downloads: []
+    },
+    {
+      id: 5,
+      start: "Sept 2024", end: "Mai 2025",
+      title: "Stage ingénieur : Suivi énergétique",
+      entity: "Agence Spatiale Européenne (ESA)", site: "ESTEC, Pays-Bas",
+      missions: [
+        "Études thermiques et hydrauliques des équipements ESA",
+        "CAO et post-traitement des données de simulation",
+        "Application Python pour la maintenance prédictive (licence ESA)"
+      ],
+      skills: "Thermo-hydraulique, CAO, Python, simulation numérique, maintenance prédictive",
+      logo: "logo_esa.png", image: "",
+      downloads: [
+        { label: "Appréciation ESA", url: "appreciation_pfe.pdf" },
+        { label: "Reco. ESA", url: "reco_pfe.pdf" }
+      ]
+    },
+    {
+      id: 6,
+      start: "Fév 2025", end: "Mai 2025",
+      title: "Ingénieur en Maintenance Prédictive",
+      entity: "ESA / Industriels", site: "Europe",
+      missions: [
+        "Déploiement des solutions de maintenance prédictive chez ArianeGroup, GKN et Airbus",
+        "Adaptation des algorithmes Python aux systèmes industriels des clients",
+        "Formation des équipes terrain aux outils développés"
+      ],
+      skills: "Python, maintenance prédictive, transfert technologique, déploiement industriel",
+      logo: "logo_esa.png",
+      clients: [
+        { name: "ArianeGroup", logo: "logo_arianegroup.png" },
+        { name: "GKN", logo: "logo_gkn.png" },
+        { name: "Airbus", logo: "logo_airbus.png" },
+        { name: "MT Aerospace", logo: "Logo_MT_Aerospace.png" },
+        { name: "AVIO", logo: "logo_avio.png" }
+      ],
+      image: "", downloads: []
+    },
+    {
+      id: 7,
+      start: "Sept 2025", end: "Mars 2026",
+      title: "Création auto-entreprise, gestion et prestation de services",
+      entity: "Buck Engineering", site: "France",
+      missions: [
+        "Gestion administrative complète : création de l'auto-entreprise, suivi financier et aides (ACRE)",
+        "Définition et cadrage du besoin client, rédaction de spécifications techniques",
+        "Rédaction de devis, cahiers des charges et rapports techniques selon les exigences client",
+        "Suivi de la conformité des livrables aux exigences définies, gestion des écarts et dérogations",
+        "Coordination avec les prestataires pour mener les projets à leur terme dans les délais"
+      ],
+      skills: "Entrepreneuriat, rédaction technique, spécifications, conformité aux exigences, relation client",
+      logo: "logo_buck.png", image: "", downloads: []
+    },
+    {
+      id: 8,
+      start: "Nov 2025", end: "Mars 2026",
+      title: "Ingénieur mécanique et qualification",
+      entity: "Pony", site: "France",
+      missions: [
+        "Vérification sur le terrain des solutions retenues par l'équipe",
+        "Diagnostic de systèmes mécaniques et établissement de process de maintenance"
+      ],
+      skills: "IoT, CAO, FEM, logistique, diagnostics terrain",
+      logo: "logo_pony.png", image: "", downloads: [{ label: "Lettre de recommandation Pony", url: "reco_pony.pdf" }]
+    }
+  ];
+  /* ===================================================== */
+
+  var track  = document.getElementById("frq2-track");
+  var detail = document.getElementById("frq2-detail");
+  var activeId = null;
+
+  /* Palette associee a chaque experience par son id */
+  var COLORS = {
+    1: { base: "#D97706", light: "#FFFBEB" },
+    2: { base: "#2563EB", light: "#EFF6FF" },
+    3: { base: "#DC2626", light: "#FEF2F2" },
+    4: { base: "#1D4ED8", light: "#EFF6FF" },
+    5: { base: "#1E3A8A", light: "#F0F4FF" },
+    6: { base: "#0369A1", light: "#F0F9FF" },
+    7: { base: "#991B1B", light: "#FEF2F2" },
+    8: { base: "#16A34A", light: "#F0FDF4" }
+  };
+  function getColor(id){ return COLORS[id] || { base: "#0ea5a4", light: "#f0fdfc" }; }
+
+  /* Aligne le rail entre le premier et le dernier point */
+  function positionRail(){
+    var cols = track.querySelectorAll(".frq2-col");
+    var rail = track.querySelector(".frq2-rail");
+    if(!rail || cols.length < 2) return;
+    var first = cols[0];
+    var last  = cols[cols.length - 1];
+    rail.style.left  = (first.offsetLeft + first.offsetWidth / 2) + "px";
+    rail.style.right = (track.scrollWidth - last.offsetLeft - last.offsetWidth / 2) + "px";
+  }
+
+  function render(){
+    /* Vide le track sauf le rail */
+    track.innerHTML = '<div class="frq2-rail"></div>';
+
+    DATA.forEach(function(it){
+      var col = document.createElement("div");
+      col.className = "frq2-col" + (activeId === it.id ? " is-active" : "");
+
+      var imgHtml = it.image
+        ? '<img class="frq2-card-img" src="' + it.image + '" alt="' + (it.title||"") + '" loading="lazy">'
+        : "";
+
+      var missions = (it.missions||[]).slice(0,3)
+        .map(function(m){ return "<li>" + m + "</li>"; }).join("");
+      var skills = (it.skills||"").split(",")
+        .map(function(s){ return '<span class="frq2-skill">' + s.trim() + "</span>"; }).join("");
+
+      /* Jalons */
+      if(it.type === "milestone"){
+        col.className = "frq2-col frq2-milestone";
+        col.innerHTML =
+          '<div class="frq2-milestone-date">' + (it.start||"?") + '</div>' +
+          '<div class="frq2-milestone-dot">&#127891;</div>' +
+          '<div class="frq2-milestone-label">' + it.title + '</div>';
+        col.style.cursor = "default";
+        track.appendChild(col);
+        return;
+      }
+
+      var c = getColor(it.id);
+      col.style.setProperty("--card-color", c.base);
+      col.style.setProperty("--card-light", c.light);
+
+      var clientLogosHtml = "";
+      if(it.clients && it.clients.length){
+        clientLogosHtml = '<div class="frq2-client-logos">' +
+          it.clients.map(function(cl){
+            return cl.logo
+              ? '<img class="frq2-client-logo-img" src="' + cl.logo + '" alt="' + cl.name + '" title="' + cl.name + '">'
+              : '<span class="frq2-client-badge" style="background:' + (cl.color||"#64748b") + '" title="' + cl.name + '">' + (cl.initial||cl.name.charAt(0)) + '</span>';
+          }).join("") +
+          '</div>';
+      }
+
+      var logoBand = (it.logo || clientLogosHtml)
+        ? '<div class="frq2-logo-band" style="background:linear-gradient(135deg,' + c.light + ' 0%,#fff 100%);border-bottom:1px solid ' + c.base + '22">' +
+            (it.logo ? '<img class="frq2-logo-img" src="' + it.logo + '" alt="' + (it.entity||"") + '" loading="lazy">' : "") +
+            clientLogosHtml +
+          '</div>'
+        : '';
+
+      col.innerHTML =
+        '<div class="frq2-dates">' +
+          '<div class="frq2-date-start" style="color:' + c.base + '">' + (it.start||"?") + "</div>" +
+          '<div class="frq2-date-end" style="color:' + c.base + 'aa">'   + (it.end||"?")   + "</div>" +
+        "</div>" +
+        '<div class="frq2-dot" style="border-color:' + c.base + ';box-shadow:0 0 0 3px ' + c.base + '22"></div>' +
+        '<div class="frq2-stem" style="background:' + c.base + ';opacity:.55"></div>' +
+        '<div class="frq2-card">' +
+          logoBand +
+          (it.image ? '<img class="frq2-card-img" src="' + it.image + '" alt="' + (it.title||"") + '" loading="lazy">' : "") +
+          '<div style="padding:12px 14px">' +
+            '<p class="frq2-title">' + (it.title||"Sans titre") + "</p>" +
+            '<p class="frq2-meta">'  + [it.entity, it.site].filter(Boolean).join(" · ") + "</p>" +
+            (missions ? '<ul class="frq2-missions">' + missions + "</ul>" : "") +
+            (skills   ? '<div class="frq2-skills">'  + skills   + "</div>" : "") +
+          "</div>" +
+        "</div>";
+
+      col.addEventListener("click", function(){ toggleDetail(it.id); });
+      track.appendChild(col);
+    });
+    requestAnimationFrame(positionRail);
+  }
+
+  function toggleDetail(id){
+    if(activeId === id){
+      activeId = null;
+      detail.style.display = "none";
+      render(); return;
+    }
+    activeId = id;
+    var it = DATA.filter(function(x){ return x.id === id; })[0];
+    if(!it) return;
+
+    var imgHtml = it.image
+      ? '<div class="frq2-detail-img-wrap"><img class="frq2-detail-img" src="' + it.image + '" alt="' + (it.title||"") + '" loading="lazy"></div>'
+      : "";
+
+    var missions = (it.missions||[])
+      .map(function(m){ return "<li>" + m + "</li>"; }).join("");
+    var skills = (it.skills||"").split(",")
+      .map(function(s){ return '<span class="frq2-detail-skill">' + s.trim() + "</span>"; }).join("");
+
+    var dlHtml = "";
+    if(it.downloads && it.downloads.length){
+      var dlIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+      var dlItems = it.downloads.map(function(d){
+        return '<a class="frq2-detail-dl" href="' + d.url + '" download>' + dlIcon + d.label + "</a>";
+      }).join("");
+      dlHtml = '<div class="frq2-detail-col" style="grid-column:1/-1"><h4>Téléchargements</h4><div class="frq2-detail-dl-wrap">' + dlItems + "</div></div>";
+    }
+
+    /* Logo principal + logos clients dans le détail */
+    var c2 = getColor(it.id);
+    var detailClientHtml = "";
+    if(it.clients && it.clients.length){
+      detailClientHtml = '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px">' +
+        it.clients.map(function(cl){
+          return cl.logo
+            ? '<img src="' + cl.logo + '" alt="' + cl.name + '" title="' + cl.name + '" style="max-height:22px;max-width:70px;object-fit:contain">'
+            : '<span title="' + cl.name + '" style="font-size:.65rem;font-weight:800;color:#fff;padding:2px 6px;border-radius:4px;background:' + (cl.color||"#64748b") + '">' + (cl.initial||cl.name.charAt(0)) + '</span>';
+        }).join("") +
+        '</div>';
+    }
+    var detailLogoHtml;
+    if(it.logo){
+      detailLogoHtml = '<div class="frq2-detail-logo-wrap" style="border:2px solid ' + c2.base + '28;background:' + c2.light + '">' +
+        '<img class="frq2-detail-logo-img" src="' + it.logo + '" alt="' + (it.entity||"") + '" loading="lazy">' +
+        detailClientHtml +
+        '</div>';
+    } else {
+      var init2 = (it.entity||"?").charAt(0).toUpperCase();
+      detailLogoHtml = '<div class="frq2-detail-logo-initial" style="background:linear-gradient(135deg,' + c2.base + ',' + c2.base + 'bb)">' + init2 + '</div>';
+    }
+
+    detail.innerHTML =
+      '<div class="frq2-detail-head" style="background:' + c2.light + ';border-bottom:2px solid ' + c2.base + '22">' +
+        '<div class="frq2-detail-logo-band">' +
+          detailLogoHtml +
+          "<div>" +
+            '<h3 style="margin:0;color:' + c2.base + '">' + (it.title||"Sans titre") + "</h3>" +
+            '<div class="frq2-detail-head-meta" style="margin-top:4px">' +
+              [it.entity, it.site].filter(Boolean).join(" · ") +
+            "</div>" +
+            '<div class="frq2-detail-head-meta" style="margin-top:2px;font-weight:600">' +
+              (it.start||"") + " → " + (it.end||"") +
+            "</div>" +
+          "</div>" +
+        "</div>" +
+        '<button class="frq2-close" id="frq2-close" style="border-color:' + c2.base + '44;color:' + c2.base + '">Fermer ✕</button>' +
+      "</div>" +
+      '<div class="frq2-detail-body">' +
+        imgHtml +
+        (missions ? '<div class="frq2-detail-col"><h4>Missions</h4><ul class="frq2-detail-missions">' + missions + "</ul></div>" : "") +
+        (skills   ? '<div class="frq2-detail-col"><h4>Compétences</h4><div class="frq2-detail-skills">' + skills + "</div></div>" : "") +
+        dlHtml +
+      "</div>";
+
+    detail.style.display = "block";
+    document.getElementById("frq2-close").addEventListener("click", function(){
+      activeId = null; detail.style.display = "none"; render();
+    });
+    render();
+    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  /* drag scroll (ne déclenche pas le click si on glisse) */
+  var wrap = document.querySelector(".frq2-wrap");
+  if(wrap){
+    var isDown = false, startX, scrollLeft, moved = false;
+    wrap.addEventListener("mousedown", function(e){
+      isDown = true; moved = false;
+      startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft;
+    });
+    wrap.addEventListener("mouseleave", function(){ isDown = false; });
+    wrap.addEventListener("mouseup",    function(){ isDown = false; });
+    wrap.addEventListener("mousemove",  function(e){
+      if(!isDown) return;
+      var dx = e.pageX - wrap.offsetLeft - startX;
+      if(Math.abs(dx) > 4) moved = true;
+      e.preventDefault();
+      wrap.scrollLeft = scrollLeft - dx;
+    });
+    /* Annule le click si l'utilisateur a glissé */
+    wrap.addEventListener("click", function(e){
+      if(moved){ e.stopPropagation(); moved = false; }
+    }, true);
+  }
+
+  render();
+  /* Positionner la fresque sur la fin (entrée la plus récente) */
+  if(wrap) wrap.scrollLeft = wrap.scrollWidth;
+})();
+</script>
+
 <section id="education" class="section-card is-ghost" aria-labelledby="formation-title">
-  <h2 id="formation-title" style="margin-bottom:8px">Education</h2>
+  <h2 id="formation-title" style="margin-bottom:8px">Formation</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
-    Main schools, programs and industrial experiences.
+    Principales écoles, programmes et expériences industrielles.
   </p>
 
   <div class="edu-list">
@@ -657,16 +1263,16 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="edu-row" role="group" aria-labelledby="edu-kth-title">
       <img class="edu-logo" src="logo_kth.png" alt="KTH">
       <div class="edu-content">
-        <div class="edu-title" id="edu-kth-title">KTH Royal Institute of Technology — Double-degree program</div>
-        <div class="edu-sub">Mechanical & Energy Engineering • focus on structural mechanics and heat transfer</div>
+        <div class="edu-title" id="edu-kth-title">KTH École Royale Polytechnique de Stockholm : Double diplôme</div>
+        <div class="edu-sub">Génie mécanique et énergétique • mécanique des structures et transferts thermiques</div>
         <ul class="edu-details">
-          <li>Coursework & projects across mechanics, thermal sciences and simulations.</li>
-          <li>Ranked #7 worldwide in Mechanical Engineering (Shanghai Ranking 2024).</li>
+          <li>Cours et projets en mécanique, sciences thermiques et simulations numériques.</li>
+          <li>Classée #7 mondial en génie mécanique (Shanghai Ranking 2024).</li>
         </ul>
         <div class="edu-links">
-<a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-          <a class="edu-link" href="https://www.kth.se/en/studies/exchange/general/double-degree-1.619496" target="_blank" rel="noopener">Program page</a>
-          <a class="edu-link" href="https://www.shanghairanking.com/rankings/gras/2024/RS0201" target="_blank" rel="noopener">Ranking</a>
+<a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+          <a class="edu-link" href="https://www.kth.se/en/studies/exchange/general/double-degree-1.619496" target="_blank" rel="noopener">Page du programme</a>
+          <a class="edu-link" href="https://www.shanghairanking.com/rankings/gras/2024/RS0201" target="_blank" rel="noopener">Classement</a>
         </div>
       </div>
     </div>
@@ -675,18 +1281,18 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="edu-row" role="group" aria-labelledby="edu-ense3-title">
       <img class="edu-logo" src="logo_ense3.png" alt="ENSE3">
       <div class="edu-content">
-        <div class="edu-title" id="edu-ense3-title">Grenoble INP – ENSE3 — Mechanical & Energy Engineering</div>
-        <div class="edu-sub">Engineering degree (ME track) • multiphysics approach</div>
+        <div class="edu-title" id="edu-ense3-title">Grenoble INP, ENSE3 : Diplôme d'ingénieur en Génie Mécanique et Énergétique</div>
+        <div class="edu-sub">Diplôme d'ingénieur (filière ME) • approche multiphysique</div>
         <ul class="edu-details">
-          <li>Courses : Solid Mechanics (materials strength, elasticity), Structures and materials (fatigue, failure), FEM (plastic & elastic deformation, buckling local & global instability, modal analysis vibrations on ANSYS and Abaqus), Thermohydraulic, Heat and mass transfers (heat exchangers), Modelling and analysis of flows, Lightweight structures, Industrial Design and Mechanical modeling (CAD with ISO GPS compliance).</li>
-          <li>Team projects and industrial problem-solving across semesters.</li>
+          <li>Cours : Mécanique des solides (résistance des matériaux, élasticité), Structures et matériaux (fatigue, rupture), MEF (déformation plastique et élastique, flambement et instabilité locale/globale, analyse modale et vibrations sur ANSYS et Abaqus), Thermo-hydraulique, Transferts de chaleur et de masse (échangeurs), Modélisation et analyse des écoulements, Structures légères, Conception industrielle et modélisation mécanique (CAO avec conformité ISO GPS).</li>
+          <li>Projets en équipe et résolution de problèmes industriels tout au long des semestres.</li>
         </ul>
         <div class="edu-links">
 
-<a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-          <a class="edu-link" href="https://ense3.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ense3-filiere-mecanique-et-energetique-me#page-programme" target="_blank" rel="noopener">Program page (FR)</a>
+<a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+          <a class="edu-link" href="https://ense3.grenoble-inp.fr/fr/formation/ingenieur-de-grenoble-inp-ense3-filiere-mecanique-et-energetique-me#page-programme" target="_blank" rel="noopener">Page du programme</a>
 
-          <a class="edu-link" href="https://ense3.grenoble-inp.fr/en/study-at-ense3/master-s-degree-in-engineering-grenoble-inp-ense3-mechanical-and-energy-engineering-me#page-programme" target="_blank" rel="noopener">Program page (EN)</a>
+          <a class="edu-link" href="https://ense3.grenoble-inp.fr/en/study-at-ense3/master-s-degree-in-engineering-grenoble-inp-ense3-mechanical-and-energy-engineering-me#page-programme" target="_blank" rel="noopener">Page du programme (EN)</a>
         </div>
 
       </div>
@@ -696,23 +1302,23 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="edu-row" role="group" aria-labelledby="edu-esa-title">
       <img class="edu-logo" src="logo_esa.png" alt="ESA">
       <div class="edu-content">
-        <div class="edu-title" id="edu-esa-title">European Space Agency (ESA) — Master’s thesis internship (extended)</div>
-        <div class="edu-sub">Mechanical engineering • CAD & Digital Twin enablement</div>
+        <div class="edu-title" id="edu-esa-title">Agence Spatiale Européenne (ESA) : Stage de fin d’études (prolongé)</div>
+        <div class="edu-sub">Génie mécanique • CAO &amp; jumeaux numériques</div>
         <ul class="edu-details">
-          <li>Mechanical design of ESA systems (sensor housing), from 2D and 3D CAD modeling to manufacturing and assembly. Reference letter attached.
+          <li>Conception mécanique d'équipements ESA (boîtiers de capteurs), de la modélisation CAO 2D/3D jusqu'à la fabrication et l'assemblage. Lettre de recommandation jointe.
 </li>
 
-<li> Reducing the operational costs and downtime of mechanical equipment through predictive maintenance thanks to the digitalization of manufacturing lines via digital twins, AI, and smart sensors. Follow up implemetation of new technologies for digitalization within industries.</li>
-<li>Development of a Machine Learning application in Python for this predictive maintenance. Application validated during a European conference and now under ESA licensed registration.</li>
-<li>Daily collaboration with international companies and space agencies to ensure an optimized integration of the new technologies.</li>
-          <li>Project extended and presented to experts at a conference in the Netherlands.</li>
+<li> Réduction des coûts opérationnels et des arrêts imprévus des équipements mécaniques grâce à la maintenance prédictive, via la numérisation des lignes de production (jumeaux numériques, IA, capteurs intelligents).</li>
+<li>Développement d'une application Python de Machine Learning pour la maintenance prédictive. Application validée lors d'une conférence européenne et désormais sous licence ESA.</li>
+<li>Collaboration quotidienne avec des entreprises et agences spatiales internationales pour une intégration optimisée des nouvelles technologies.</li>
+          <li>Stage prolongé et présenté devant des experts lors d'une conférence aux Pays-Bas.</li>
         </ul>
         <div class="edu-links">
-  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Appraisal Master Thesis</a>
-<a class="reco-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster Master Thesis</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Report</a>
-          <a class="edu-link" href="https://www.esa.int/" target="_blank" rel="noopener">ESA website</a>
+  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Fiche d'appréciation stage</a>
+<a class="reco-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster de thèse</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="edu-link" href="https://www.esa.int/" target="_blank" rel="noopener">Site ESA</a>
         </div>
       </div>
     </div>
@@ -721,15 +1327,15 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="edu-row" role="group" aria-labelledby="edu-upc-title">
       <img class="edu-logo" src="logo_upc.png" alt="UPC">
       <div class="edu-content">
-        <div class="edu-title" id="edu-upc-title">Universitat Politècnica de Catalunya (UPC) — ESEIAAT</div>
-        <div class="edu-sub">CFD, FEM & CAD • mechanical engineering applications</div>
+        <div class="edu-title" id="edu-upc-title">Université Polytechnique de Catalogne (UPC), ESEIAAT</div>
+        <div class="edu-sub">CFD, FEM et CAO • applications en génie mécanique</div>
         <ul class="edu-details">
-          <li>Multidisciplinary resolution of outstanding issues for pantograph-catenary interaction from CAD (CATIA V5 in 2D and 3D) to Finite Element Analysis (ANSYS). Reference attached.</li>
+          <li>Résolution multidisciplinaire des problèmes d'interaction pantographe-caténaire, de la CAO (CATIA V5 2D/3D) jusqu'à l'analyse par éléments finis (ANSYS). Lettre de recommandation jointe.</li>
         </ul>
         <div class="edu-links">
-  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Report</a>
-          <a class="edu-link" href="https://www.upc.edu/en" target="_blank" rel="noopener">UPC website</a>
+  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="edu-link" href="https://www.upc.edu/en" target="_blank" rel="noopener">Site UPC</a>
         </div>
       </div>
     </div>
@@ -739,15 +1345,15 @@ document.addEventListener('DOMContentLoaded', function(){
       <img class="edu-logo" src="logo_cat.png" alt="Caterpillar">
       <div class="edu-content">
         <div class="edu-title" id="edu-cat-title">Caterpillar</div>
-        <div class="edu-sub">First-year industrial experience</div>
+        <div class="edu-sub">Expérience industrielle de première année</div>
         <ul class="edu-details">
-          <li> Gained practical mechanical experience on industrial assembly lines for heavy systems.</li>
-          <li>Developed hands-on skills in mechanical assembly and production workflows on manufacturing lines.</li>
+          <li> Acquisition d'une expérience mécanique pratique sur les lignes d'assemblage industrielles pour systèmes lourds.</li>
+          <li>Développement de compétences pratiques en assemblage mécanique et flux de production sur lignes de fabrication.</li>
         </ul>
         <div class="edu-links">
 
-<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_cater.pdf" target="_blank" rel="noopener">Report</a>
-          <a class="edu-link" href="https://www.cat.com/en_US/products/new/power-systems.html" target="_blank" rel="noopener">Business unit</a>
+<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_cater.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="edu-link" href="https://www.cat.com/en_US/products/new/power-systems.html" target="_blank" rel="noopener">Unité commerciale</a>
         </div>
       </div>
     </div>
@@ -757,8 +1363,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <section id="me-program" class="skills-section" style="margin-top:28px">
   <!-- TITRES (bilingue, on masque celui qui n'est pas sélectionné) -->
-  <h2 class="me-title" data-lang="fr">Grenoble-INP ENSE3 - Mécanique & Énergétique — Catalogue des enseignements</h2>
-  <h2 class="me-title" data-lang="en" hidden>Grenoble-INP ENSE3 - Mechanical & Energy Engineering — Course Catalog</h2>
+  <h2 class="me-title" data-lang="fr">Grenoble-INP ENSE3 - Mécanique & Énergétique : Catalogue des enseignements</h2>
+  <h2 class="me-title" data-lang="en" hidden>Grenoble-INP ENSE3 - Mechanical & Energy Engineering : Course Catalog</h2>
 
   <p class="me-sub" data-lang="fr" style="color:#000000;margin-top:8px">
     Choisissez la langue puis le semestre pour parcourir les pages officielles des cours.
@@ -801,8 +1407,8 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="me-panel" id="me-fr-s6" role="tabpanel" aria-labelledby="tab-fr-s6" hidden>
         <ul class="me-list">
           <li><a href="https://ense3.grenoble-inp.fr/fr/formation/outils-informatiques-et-num-eacute-riques-pour-l-ing-eacute-nieur-3eus2oin" target="_blank" rel="noopener">Outils informatiques & numériques pour l’ingénieur (3EUS2OIN)</a></li>
-          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/capteurs-et-traitement-de-l-information-3eus2cti" target="_blank" rel="noopener">Capteurs & traitement de l’information (3EUS2CTI) — (page récapitulative)</a></li>
-          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/thermo-hydraulique-monophasique-3eus2thm" target="_blank" rel="noopener">Thermo-hydraulique monophasique (3EUS2THM) — (page récapitulative)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/capteurs-et-traitement-de-l-information-3eus2cti" target="_blank" rel="noopener">Capteurs & traitement de l’information (3EUS2CTI) : (page récapitulative)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/thermo-hydraulique-monophasique-3eus2thm" target="_blank" rel="noopener">Thermo-hydraulique monophasique (3EUS2THM) : (page récapitulative)</a></li>
         </ul>
       </div>
 
@@ -822,7 +1428,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="me-panel" id="me-fr-s8" role="tabpanel" aria-labelledby="tab-fr-s8" hidden>
         <ul class="me-list">
           <li><a href="https://ense3.grenoble-inp.fr/fr/formation/heat-and-mass-transfers-ien-me-sem-m1-sgb-4eus4hmt-1" target="_blank" rel="noopener">Transferts de chaleur & de masse (4EUS4HMT)</a></li>
-          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-et-analyse-d-eacute-coulements-2-ien-me-4eus4ma2" target="_blank" rel="noopener">Modélisation & analyse d’écoulements 2 (4EUS4MA2) — (voir récapitulatif S8)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/fr/formation/mod-eacute-lisation-et-analyse-d-eacute-coulements-2-ien-me-4eus4ma2" target="_blank" rel="noopener">Modélisation & analyse d’écoulements 2 (4EUS4MA2) : (voir récapitulatif S8)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/fr/formation/structure-et-mat-eacute-riaux-ien-me-4eus4stm" target="_blank" rel="noopener">Structure & matériaux (4EUS4STM)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/fr/formation/simulation-pour-les-fluides-et-la-thermique-2-4eus4sft" target="_blank" rel="noopener">Simulation pour les fluides & la thermique 2 (4EUS4SFT)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/fr/formation/team-project-projet-d-ing-eacute-nierie-toutes-fili-egrave-res-m1-sgb-m1-hce-4eus4pro" target="_blank" rel="noopener">Projet d’ingénierie / Team Project (4EUS4PRO)</a></li>
@@ -878,7 +1484,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="me-panel" id="me-en-s6" role="tabpanel" aria-labelledby="tab-en-s6" hidden>
         <ul class="me-list">
           <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/computer-and-mathematical-tools-for-engineers-3eus2oin" target="_blank" rel="noopener">Computer & Mathematical Tools for Engineers (3EUS2OIN)</a></li>
-          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/sensors-and-signal-processing-3eus2cti" target="_blank" rel="noopener">Sensors & Signal Processing (3EUS2CTI) — (overview)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/sensors-and-signal-processing-3eus2cti" target="_blank" rel="noopener">Sensors & Signal Processing (3EUS2CTI) : (overview)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/monophasic-hydraulic-and-heat-transferts-3eus2thm" target="_blank" rel="noopener">Monophasic Hydraulic & Heat Transfers (3EUS2THM)</a></li>
         </ul>
       </div>
@@ -912,7 +1518,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-modelling-and-structure-durability-5eus5mad" target="_blank" rel="noopener">Advanced Modelling & Structure Durability (5EUS5MAD)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-simulation-tools-for-mechanics-5eus5osa" target="_blank" rel="noopener">Advanced Simulation Tools for Mechanics & Environment (5EUS5OSA)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/aerodynamics-and-combustion-5eus5aie" target="_blank" rel="noopener">Aerodynamics & Combustion (5EUS5AIE)</a></li>
-          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/hydraulic-systems-5eus5syh" target="_blank" rel="noopener">Hydraulic Systems (5EUS5SYH) — (overview)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/hydraulic-systems-5eus5syh" target="_blank" rel="noopener">Hydraulic Systems (5EUS5SYH) : (overview)</a></li>
           <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/advanced-heat-transfer-and-energetics-ien-me-sem-ise-m2-fme-m2-entech-5eu5adht" target="_blank" rel="noopener">Advanced Heat Transfer & Energetics (5EU5ADHT)</a></li>
         </ul>
       </div>
@@ -920,7 +1526,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <!-- S10 EN -->
       <div class="me-panel" id="me-en-s10" role="tabpanel" aria-labelledby="tab-en-s10" hidden>
         <ul class="me-list">
-          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/5eus6pfe" target="_blank" rel="noopener">Final Project – Internship / Master Thesis (5EUS6PFE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/5eus6pfe" target="_blank" rel="noopener">Final Project, Internship / Master Thesis (5EUS6PFE)</a></li>
         </ul>
       </div>
     </div>
@@ -994,11 +1600,557 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
+
+
+
+<!-- ====== Section EDF : avec images et liens sources, sans émojis ====== -->
+<section id="edf" class="section-card is-ghost" aria-labelledby="edf-title" style="margin-top:28px">
+  <h2 id="edf-title" style="margin-bottom:8px">EDF : Contexte, Projets &amp; Organisation</h2>
+  <p style="margin-top:8px; color:#475569">
+    Éléments de contexte sur EDF : projet Hercule, programme nucléaire, organisation et DIPDE.
+  </p>
+
+  <div class="edf-tabs" role="tablist" aria-label="Sections EDF" style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
+    <button class="edf-tab is-active" role="tab" aria-selected="true" aria-controls="edf-nucleaire" id="tab-edf-nucleaire">Projets Nucléaires</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-orga" id="tab-edf-orga">Organisation</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-dipde" id="tab-edf-dipde">La DIPDE</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-hercule" id="tab-edf-hercule">Projet Hercule</button>
+  </div>
+
+  <div class="edf-panels" style="margin-top:14px">
+
+    <!-- ===== HERCULE ===== -->
+    <div id="edf-hercule" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-hercule" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:12px">Naissance, ambitions, controverses et épilogue</h3>
+
+        <!-- Image projet Hercule (locale) -->
+        <figure class="edf-figure">
+          <img
+            src="projet hercule.jpg"
+            alt="Illustration du projet Hercule de restructuration EDF"
+            class="edf-img-wide"
+          />
+          <figcaption class="edf-figcaption">Illustration du projet Hercule de restructuration d'EDF (2019–2022)</figcaption>
+        </figure>
+
+        <div class="edf-subsection">
+          <h4>Genèse et contexte (2017–2019)</h4>
+          <p>Le projet Hercule trouve son origine dans l'ouverture à la concurrence des marchés de l'énergie en Europe, sous double pression : la Commission européenne réclamait la mise en concurrence des concessions hydroélectriques et une réforme du dispositif ARENH. En novembre 2018, Emmanuel Macron demanda au PDG d'EDF de réfléchir à une réorganisation du groupe. En juin 2019, Jean-Bernard Lévy présenta en interne son projet Hercule.</p>
+          <div class="edf-sources" style="margin-top:8px">
+            <span class="edf-source-label">Sources :</span>
+            <a class="edf-source-link" href="https://www.usinenouvelle.com/article/hercule-restructuration-edf.N1055882" target="_blank" rel="noopener">L'Usine Nouvelle : Hercule, le projet de restructuration d'EDF</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Projet_Hercule" target="_blank" rel="noopener">Wikipedia : Projet Hercule</a>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Ce que prévoyait le projet</h4>
+          <p>Séparation des activités en trois entités distinctes :</p>
+          <ul class="edf-list">
+            <li><strong>EDF Bleu</strong> : 100 % publique, regroupant les activités nucléaires et RTE</li>
+            <li><strong>EDF Vert</strong> : Enedis, vente d'électricité, énergies renouvelables et services (35 % ouvert aux capitaux privés)</li>
+            <li><strong>EDF Azur</strong> : Dédiée aux activités hydrauliques (barrages)</li>
+          </ul>
+          <div class="edf-sources" style="margin-top:8px">
+            <span class="edf-source-label">Source :</span>
+            <a class="edf-source-link" href="https://www.opera-energie.com/projet-hercule-edf/" target="_blank" rel="noopener">Opéra Énergie : Projet Hercule : comprendre la restructuration d'EDF</a>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Motivations officielles</h4>
+          <p>La dette nette d'EDF atteignait 41 milliards d'euros fin 2019, projetée à 60 milliards fin 2022. Le plan Hercule visait à ouvrir le capital des activités rentables pour attirer de nouveaux investisseurs et financer l'agrandissement des infrastructures renouvelables, tout en isolant le risque financier nucléaire.</p>
+        </div>
+
+        <div class="edf-two-col">
+          <div class="edf-pros">
+            <h4 style="color:#16a34a; font-size:.95rem">Avantages attendus</h4>
+            <ul class="edf-list">
+              <li>Isolation du risque financier nucléaire</li>
+              <li>Accès à de nouveaux capitaux pour les investissements EnR</li>
+              <li>Résolution du litige ARENH avec Bruxelles</li>
+              <li>Protection des concessions hydrauliques via la structure Azur</li>
+            </ul>
+          </div>
+          <div class="edf-cons">
+            <h4 style="color:#dc2626; font-size:.95rem">Inconvénients &amp; oppositions</h4>
+            <ul class="edf-list">
+              <li>Fin du modèle intégré historique d'EDF</li>
+              <li>Risque de désoptimisation et hausse des coûts</li>
+              <li>Inquiétudes sur la qualité du service public de distribution</li>
+              <li>Opposition unanime des syndicats et de la majorité parlementaire</li>
+            </ul>
+            <div class="edf-sources" style="margin-top:8px">
+              <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Projet_Hercule" target="_blank" rel="noopener">Wikipedia : Projet Hercule (détails syndicaux)</a>
+              <a class="edf-source-link" href="https://www.connaissancedesenergies.org/questions-et-reponses-energies/qu-est-ce-que-le-projet-hercule" target="_blank" rel="noopener">Connaissance des Énergies : Projet Hercule</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Épilogue : abandon et renationalisation</h4>
+          <div class="edf-timeline">
+            <div class="edf-timeline-item">
+              <span class="edf-badge">Avril 2021</span>
+              <p>Bruno Le Maire déclare : <em>"Oublions Hercule et construisons ensemble le grand EDF."</em> Le projet est officiellement abandonné.</p>
+            </div>
+            <div class="edf-timeline-item">
+              <span class="edf-badge">28 juillet 2021</span>
+              <p>Le gouvernement annonce l'échec des négociations avec la Commission Européenne. <a class="edf-inline-link" href="https://www.connaissancedesenergies.org/afp/edf-hercule-enterr-par-le-gouvernement" target="_blank" rel="noopener">Connaissance des Énergies →</a></p>
+            </div>
+            <div class="edf-timeline-item">
+              <span class="edf-badge">6 juillet 2022</span>
+              <p>La Première Ministre Élisabeth Borne annonce la renationalisation complète d'EDF à 100 %. <a class="edf-inline-link" href="https://www.opera-energie.com/renationalisation-edf/" target="_blank" rel="noopener">Opéra Énergie →</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NUCLEAIRE ===== -->
+    <div id="edf-nucleaire" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-nucleaire">
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:16px">Les projets nucléaires majeurs d'EDF</h3>
+
+        <!-- Flamanville 3 -->
+        <div class="edf-project-block edf-project--blue">
+          <div class="edf-project-header">
+            <span class="edf-project-dot" style="background:#3b82f6"></span>
+            <h4>Flamanville 3 : L'EPR de référence</h4>
+          </div>
+
+          <!-- Image Flamanville -->
+          <figure class="edf-figure">
+            <img
+              src="flamanville3.png"
+              alt="Vue aérienne de la centrale nucléaire de Flamanville 3 (EPR)"
+              class="edf-img-wide"
+            />
+            <figcaption class="edf-figcaption">Vue aérienne de la centrale de Flamanville : l'EPR est le bâtiment en dôme au premier plan (© Wikimedia Commons)</figcaption>
+          </figure>
+
+          <div class="edf-timeline" style="margin-top:14px">
+            <div class="edf-timeline-item"><span class="edf-badge">8 mai 2024</span><p>Chargement du combustible dans la cuve du réacteur EPR. <a class="edf-inline-link" href="https://www.edf.fr/centrale-nucleaire-flamanville3" target="_blank" rel="noopener">EDF officiel →</a></p></div>
+            <div class="edf-timeline-item"><span class="edf-badge">3 septembre 2024</span><p>Première divergence du réacteur à 15h54 : première réaction nucléaire en France depuis plus de 20 ans. <a class="edf-inline-link" href="https://www.edf.fr/la-centrale-nucleaire-de-flamanville-3-epr/les-actualites-de-la-centrale-nucleaire-de-flamanville-3-epr/actualites-reglementaires-du-reacteur-ndeg3-de-flamanville-aout-2024" target="_blank" rel="noopener">EDF →</a></p></div>
+            <div class="edf-timeline-item"><span class="edf-badge">21 décembre 2024</span><p>Premier raccordement au réseau électrique national. <a class="edf-inline-link" href="https://www.edf.fr/groupe-edf/espaces-dedies/journalistes/tous-les-communiques-de-presse/point-d-actualite-sur-l-epr-de-flamanville-le-reacteur-produit-ses-premiers-electrons-sur-le-reseau-electrique-national" target="_blank" rel="noopener">Communiqué EDF →</a></p></div>
+            <div class="edf-timeline-item"><span class="edf-badge">14 décembre 2025</span><p>Le réacteur atteint 100 % de puissance nucléaire (1 669 MWe bruts). <a class="edf-inline-link" href="https://www.edf.fr/centrale-nucleaire-flamanville3" target="_blank" rel="noopener">EDF →</a></p></div>
+          </div>
+          <div class="edf-stat-row">
+            <div class="edf-stat"><div class="edf-stat-val">1 630 MWe</div><div class="edf-stat-lbl">Puissance nette</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">17 ans</div><div class="edf-stat-lbl">Durée de construction</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">23,7 Md€</div><div class="edf-stat-lbl">Coût total estimé</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">−30 %</div><div class="edf-stat-lbl">Coût prévu EPR2</div></div>
+          </div>
+          <div class="edf-sources" style="margin-top:12px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Centrale_nucl%C3%A9aire_de_Flamanville" target="_blank" rel="noopener">Wikipedia : Centrale de Flamanville</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/R%C3%A9acteur_pressuris%C3%A9_europ%C3%A9en" target="_blank" rel="noopener">Wikipedia : EPR</a>
+            <a class="edf-source-link" href="https://www.framatome.com/fr/clients/nucleaire/flamanville-3/" target="_blank" rel="noopener">Framatome : Flamanville 3</a>
+            <a class="edf-source-link" href="https://www.connaissancedesenergies.org/afp/epr-de-flamanville-la-date-datteinte-de-la-pleine-puissance-repoussee-250801" target="_blank" rel="noopener">Connaissance des Énergies</a>
+          </div>
+        </div>
+
+        <!-- EPR2 -->
+        <div class="edf-project-block edf-project--green" style="margin-top:16px">
+          <div class="edf-project-header">
+            <span class="edf-project-dot" style="background:#16a34a"></span>
+            <h4>EPR2 : La prochaine génération (programme des 6 réacteurs)</h4>
+          </div>
+
+          <!-- Image EPR2 / Penly -->
+          <figure class="edf-figure">
+            <img
+              src="centrale de penly.jpg"
+              alt="Centrale nucléaire de Penly, site retenu pour la première paire EPR2"
+              class="edf-img-wide"
+            />
+            <figcaption class="edf-figcaption">Centrale nucléaire de Penly (Seine-Maritime) : site de la première paire EPR2 (© Wikimedia Commons)</figcaption>
+          </figure
+
+          <p style="margin-top:12px">Programme de six réacteurs en trois paires, lancé fin 2021. Conçu par EDF et Framatome via leur filiale commune Edvance, l'EPR2 est une évolution simplifiée et mieux industrialisable de l'EPR. Coût prévisionnel : <strong>72,8 milliards d'euros</strong> (valeur 2020).</p>
+          <div class="edf-site-grid">
+            <div class="edf-site-card">
+              <strong>Penly (Normandie)</strong>
+              <span>Paire 1 : Travaux préparatoires lancés juillet 2024</span>
+              <span class="edf-date-badge">Mise en service 2038</span>
+            </div>
+            <div class="edf-site-card">
+              <strong>Gravelines</strong>
+              <span>Paire 2</span>
+              <span class="edf-date-badge">Mise en service ~2040–2041</span>
+            </div>
+            <div class="edf-site-card">
+              <strong>Bugey</strong>
+              <span>Paire 3</span>
+              <span class="edf-date-badge">Mise en service ~2042–2043</span>
+            </div>
+          </div>
+          <div class="edf-sources" style="margin-top:12px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/nouveau-nucleaire/programme-epr2" target="_blank" rel="noopener">EDF : Programme EPR2 (officiel)</a>
+            <a class="edf-source-link" href="https://epr2-penly.edf.fr/" target="_blank" rel="noopener">EDF : Projet EPR2 Penly</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Evolutionary_Power_Reactor_2" target="_blank" rel="noopener">Wikipedia : EPR2</a>
+            <a class="edf-source-link" href="https://www.connaissancedesenergies.org/questions-et-reponses-energies/epr2-quelle-technologie-et-quels-projets-en-cours" target="_blank" rel="noopener">Connaissance des Énergies : EPR2</a>
+            <a class="edf-source-link" href="https://www.prefectures-regions.gouv.fr/normandie/Grands-dossiers/Grand-Chantier-EPR2/Le-Grand-Chantier-de-l-EPR2-a-Penly/Le-projet-d-EPR2/" target="_blank" rel="noopener">Préfecture Normandie : Grand Chantier Penly</a>
+          </div>
+        </div>
+
+        <!-- NUWARD -->
+        <div class="edf-project-block edf-project--yellow" style="margin-top:16px">
+          <div class="edf-project-header">
+            <span class="edf-project-dot" style="background:#d97706"></span>
+            <h4>NUWARD : Le SMR français</h4>
+          </div>
+
+          <figure class="edf-figure">
+            <img
+              src="nuward.jpg"
+              alt="Représentation du réacteur SMR NUWARD développé par EDF"
+              class="edf-img-wide"
+            />
+          </figure>
+
+          <p style="margin-top:10px">Petit réacteur modulaire (SMR) en développement depuis 2019, co-développé par EDF, Framatome, TechnicAtome, Naval Group et le CEA. Restructuré en 2024–2025 pour aboutir à un réacteur unique de <strong>400 MWe</strong>.</p>
+          <div class="edf-stat-row">
+            <div class="edf-stat"><div class="edf-stat-val">400 MWe</div><div class="edf-stat-lbl">Puissance électrique</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">100 MWth</div><div class="edf-stat-lbl">Cogénération chaleur</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">Mi-2026</div><div class="edf-stat-lbl">Point Comex EDF</div></div>
+          </div>
+          <p style="margin-top:10px"><strong>Usages visés :</strong> remplacement de centrales fossiles, alimentation de data centers, chauffage urbain, production d'hydrogène industriel.</p>
+          <div class="edf-sources" style="margin-top:10px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://www.nuward.com/" target="_blank" rel="noopener">NUWARD (site officiel)</a>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/NUWARD" target="_blank" rel="noopener">Wikipedia : NUWARD</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ORGANISATION ===== -->
+    <div id="edf-orga" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-orga" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:12px">Nouvelle architecture depuis avril 2024</h3>
+
+
+        <p style="color:#475569; margin-bottom:16px">Au 1<sup>er</sup> avril 2024, EDF a réorganisé ses activités nucléaires autour de quatre grandes directions, dans une logique de regroupement par grands métiers.
+          <a class="edf-inline-link" href="https://www.sfen.org/rgn/edf-devoile-une-nouvelle-organisation-des-activites-nucleaires/" target="_blank" rel="noopener">SFEN : Nouvelle organisation EDF →</a>
+        </p>
+        <div class="edf-orga-grid">
+          <div class="edf-orga-card">
+            <h4>DSTID</h4>
+            <p class="edf-orga-full">Direction Stratégie, Technologies, Innovation et Développement</p>
+            <p>Maîtrise d'ouvrage des constructions nucléaires, développement international, autorité technique du groupe.</p>
+          </div>
+          <div class="edf-orga-card">
+            <h4>Direction Projets &amp; Construction</h4>
+            <p>Maîtrise d'œuvre des grands projets nouveau nucléaire (sécurité, sûreté, coûts, délais).</p>
+          </div>
+          <div class="edf-orga-card edf-orga-card--highlight">
+            <h4>DISC</h4>
+            <p class="edf-orga-full">Direction Ingénierie et Supply Chain</p>
+            <p>Études, équipements et prestations pour le parc existant et les projets neufs. Harmonisation des méthodes et référentiels. Intègre la relation fournisseurs de la stratégie industrielle jusqu'au contrôle des fabrications.</p>
+          </div>
+          <div class="edf-orga-card">
+            <h4>Direction Production Nucléaire &amp; Thermique</h4>
+            <p>Exploitation, maintenance et démantèlement du parc existant.</p>
+          </div>
+        </div>
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Références :</span>
+          <a class="edf-source-link" href="https://www.edf.fr/edf-recrute/nos-metiers/decouvrez-les-metiers-du-groupe-edf/rejoignez-nos-equipes-de-la-production-et-de-l-ingenierie-nucleaire" target="_blank" rel="noopener">EDF : Métiers de la production nucléaire</a>
+          <a class="edf-source-link" href="https://www.sfen.org/rgn/edf-devoile-une-nouvelle-organisation-des-activites-nucleaires/" target="_blank" rel="noopener">SFEN : Réorganisation EDF avril 2024</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DIPDE ===== -->
+    <div id="edf-dipde" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-dipde" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4; margin-bottom:12px">La DIPDE en détail</h3>
+
+        <!-- Image centrale nucléaire générique -->
+        <figure class="edf-figure">
+          <img
+            src="centrale du bugey.jpg"
+            alt="Centrale nucléaire du Bugey, l'un des 11 sites couverts par la DIPDE"
+            class="edf-img-wide"
+          />
+          <figcaption class="edf-figcaption">Centrale nucléaire du Bugey (Ain) : l'un des 11 sites nucléaires couverts par la DIPDE (© Wikimedia Commons)</figcaption>
+        </figure>
+
+        <div class="edf-subsection">
+          <h4>Définition et positionnement</h4>
+          <p>La <strong>Division de l'Ingénierie du Parc et De l'Environnement (DIPDE)</strong> assure les études d'ingénierie et la réalisation des travaux d'amélioration pour la partie nucléaire des 56 réacteurs en fonctionnement, et fournit une expertise environnementale pour l'ensemble des réacteurs (construction, exploitation, déconstruction).</p>
+          <div class="edf-stat-row" style="margin-top:12px">
+            <div class="edf-stat"><div class="edf-stat-val">~2 500</div><div class="edf-stat-lbl">Salariés</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">56</div><div class="edf-stat-lbl">Réacteurs couverts</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">11</div><div class="edf-stat-lbl">Sites nucléaires</div></div>
+            <div class="edf-stat"><div class="edf-stat-val">Marseille</div><div class="edf-stat-lbl">Siège principal</div></div>
+          </div>
+          <div class="edf-sources" style="margin-top:10px">
+            <span class="edf-source-label">Références :</span>
+            <a class="edf-source-link" href="https://www.nuclearvalley.com/annuaire/edf-dipde/" target="_blank" rel="noopener">Nuclear Valley : EDF DIPDE</a>
+            <a class="edf-source-link" href="https://cgenial-connect.fr/profentreprise/2261" target="_blank" rel="noopener">Cgenial Connect : Présentation DIPDE</a>
+            <a class="edf-source-link" href="https://www.edf.fr/edf-recrute/" target="_blank" rel="noopener">EDF Recrutement : Ingénieur DIPDE</a>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Missions principales</h4>
+          <div class="edf-mission-grid">
+            <div class="edf-mission-card">
+              <strong>Ingénierie de modification</strong>
+              <p>Conception et réalisation des dossiers de modification pour améliorer performance, sûreté ou conformité réglementaire.</p>
+            </div>
+            <div class="edf-mission-card">
+              <strong>Grand Carénage</strong>
+              <p>Programme de prolongation de vie au-delà de 40 ans (et potentiellement 60 ans). RGV, NPGV, M2C, Visites Décennales.</p>
+              <a class="edf-inline-link" href="https://www.edf.fr/groupe-edf/innover/rd-un-savoir-faire-mondial/la-rd-et-le-grand-carenage" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px">EDF : Grand Carénage →</a>
+            </div>
+            <div class="edf-mission-card">
+              <strong>Expertise environnementale</strong>
+              <p>Évaluation des impacts environnementaux des sites pour tous les réacteurs du parc.</p>
+            </div>
+            <div class="edf-mission-card">
+              <strong>Poursuite d'exploitation au-delà de 60 ans</strong>
+              <p>Participation aux travaux préparatoires à la demande de prolongation, en lien avec l'ASNR.</p>
+              <a class="edf-inline-link" href="https://www.asnr.fr/" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px">ASNR (autorité de sûreté) →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="edf-subsection">
+          <h4>Le service MCP (Matériels et Composants Primaires)</h4>
+          <p>Responsable, pour l'intégralité des tranches REP en exploitation, des matériels de robinetterie, de la production de froid et des moto-ventilateurs.</p>
+
+          <!-- Image circuit primaire REP -->
+          <figure class="edf-figure" style="margin-top:12px">
+            <img
+              src="schémareactuereaupressurisé.jpg"
+              alt="Schéma d'un réacteur à eau pressurisée (REP)"
+              class="edf-img-wide"
+            />
+            <figcaption class="edf-figcaption">Schéma d'un réacteur à eau pressurisée (REP) : circuits primaire et secondaire (© Wikimedia Commons)</figcaption>
+          </figure>
+
+          <ul class="edf-list" style="margin-top:10px">
+            <li><strong>Qualification de matériels</strong> : Démonstration qu'un équipement remplit sa fonction de sûreté en conditions normales, incidentelles et accidentelles, conformément aux exigences du référentiel nucléaire (RCC-E, RCC-M, RCCSN, guides ASNR)</li>
+            <li><strong>Gestion des modifications matérielles</strong> : Instruction des dossiers de modification sur le parc REP en exploitation, depuis l'identification du besoin jusqu'à la mise en service</li>
+            <li><strong>Gestion des obsolescences</strong> : Identification et remplacement des composants en fin de vie, rédaction des spécifications de substitution</li>
+            <li><strong>Instruction des aléas</strong> : Analyse technique lors d'un comportement inattendu en exploitation, rédaction de notes de dérogation et fiches d'aléas</li>
+            <li><strong>Prolongation de durée de vie</strong> : Participation aux études préparatoires au-delà de 60 ans (VD5), en lien avec le Grand Carénage et les prescriptions de l'ASNR</li>
+            <li><strong>Veille réglementaire et normative</strong> : Intégration des nouvelles exigences de l'ASNR / ASN dans les dossiers techniques</li>
+          </ul>
+          <div class="edf-sources" style="margin-top:10px">
+            <span class="edf-source-label">Sources :</span>
+            <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/R%C3%A9acteur_%C3%A0_eau_pressuris%C3%A9e" target="_blank" rel="noopener">Wikipedia : Réacteur à eau pressurisée (REP)</a>
+            <a class="edf-source-link" href="https://www.asnr.fr/publications/" target="_blank" rel="noopener">ASNR : Publications réglementaires</a>
+          </div>
+        </div>
+
+        <!-- Encart motivation nucléaire -->
+        <div class="edf-subsection" style="background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 100%); border:1px solid #bae6fd; border-radius:12px; padding:18px 20px; margin-top:16px">
+          <h4 style="color:#0369A1; margin-bottom:10px">Pourquoi la qualification nucléaire m'intéresse</h4>
+          <p style="color:#0f172a; line-height:1.65">
+            La rigueur de la qualification nucléaire me parle directement : à l'ESA, j'ai travaillé selon des référentiels normatifs stricts (ECSS), rédigé des rapports techniques en anglais et démontré la tenue de systèmes en conditions opérationnelles. Transposer cette approche aux équipements REP , robinetterie, production de froid, moto-ventilateurs , est pour moi une continuité logique. La DIPDE/MCP représente un environnement où la rigueur documentaire, la maîtrise des exigences et la compréhension des systèmes mécaniques convergent : trois axes au cœur de ma formation et de mon expérience.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px">
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Référentiels RCC-M / RCC-E</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Parc REP en exploitation</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Qualification conditions accidentelles</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Dossiers de modification</span>
+            <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Prolongation de durée de vie</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    </script>
+
+  </div><!-- fin .edf-panels -->
+</section>
+
+
+
+
+<style>
+/* ===== EDF Section styles ===== */
+.edf-tabs { display:flex; gap:8px; flex-wrap:wrap }
+.edf-tab {
+  padding:8px 16px; border:1px solid #e6eef2; background:#fff; border-radius:10px;
+  font-weight:600; cursor:pointer; font-size:.9rem; letter-spacing:.01em;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+  box-shadow:0 4px 12px rgba(15,23,42,.04);
+}
+.edf-tab:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(14,165,164,.15) }
+.edf-tab.is-active { background:#0ea5a4; color:#fff; border-color:#0ea5a4; box-shadow:0 8px 22px rgba(14,165,164,.3) }
+.edf-panel[hidden] { display:none }
+
+.edf-card {
+  background:#fff; border:1px solid #e6eef2; border-radius:16px;
+  padding:clamp(16px,3vw,28px); box-shadow:0 8px 24px rgba(15,23,42,.07);
+}
+
+/* Images */
+.edf-figure { margin:16px 0; text-align:center }
+.edf-img-wide {
+  width:100%; max-height:320px; object-fit:contain; border-radius:12px; background:#f8fbfc;
+  border:1px solid #e6eef2; box-shadow:0 6px 18px rgba(15,23,42,.08);
+  display:block; margin:0 auto;
+}
+.edf-img-logo {
+  height:52px; width:auto; display:block; margin:0 auto;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.1));
+}
+.edf-figcaption {
+  font-size:.82rem; color:#64748b; margin-top:6px; font-style:italic;
+}
+
+/* Sources */
+.edf-sources { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:8px }
+.edf-source-label { font-weight:700; color:#64748b; font-size:.82rem; white-space:nowrap }
+.edf-source-link {
+  display:inline-block; padding:3px 10px; border-radius:999px;
+  border:1px solid #cbd5e1; color:#334155; font-size:.82rem; font-weight:600;
+  background:#f8fafc; text-decoration:none;
+  transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+.edf-source-link:hover { border-color:#0ea5a4; color:#0ea5a4; background:#f0fdfc }
+.edf-inline-link {
+  color:#0ea5a4; font-weight:600; text-decoration:underline; text-underline-offset:2px;
+  font-size:.88rem;
+}
+.edf-inline-link:hover { color:#0c8a89 }
+
+/* Subsections */
+.edf-subsection { margin-top:18px }
+.edf-subsection h4 { font-weight:800; margin-bottom:8px; color:#0f172a; border-left:3px solid #0ea5a4; padding-left:10px }
+.edf-list { list-style:none; display:grid; gap:6px; padding:0; margin-top:8px }
+.edf-list li { padding:6px 10px 6px 14px; border-left:2px solid #e6eef2; color:#334155; font-size:.95rem }
+.edf-list li strong { color:#0f172a }
+
+/* Timeline */
+.edf-timeline { display:grid; gap:10px; margin-top:12px }
+.edf-timeline-item { display:flex; align-items:flex-start; gap:12px }
+.edf-badge {
+  flex:0 0 auto; display:inline-block; padding:4px 10px; border-radius:999px;
+  background:rgba(14,165,164,.1); border:1px solid rgba(14,165,164,.3);
+  color:#0ea5a4; font-weight:700; font-size:.82rem; white-space:nowrap;
+}
+.edf-timeline-item p { margin:0; color:#334155; font-size:.93rem; padding-top:3px }
+
+/* Pros/cons */
+.edf-two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px }
+.edf-pros, .edf-cons { border-radius:12px; padding:14px }
+.edf-pros { background:#f0fdf4; border:1px solid #bbf7d0 }
+.edf-cons { background:#fef2f2; border:1px solid #fecaca }
+.edf-pros h4, .edf-cons h4 { margin-bottom:8px }
+
+/* Nuclear project blocks */
+.edf-project-block { border-radius:12px; padding:18px; border:1px solid #e6eef2 }
+.edf-project--blue { background:linear-gradient(135deg,#eff6ff,#fff) }
+.edf-project--green { background:linear-gradient(135deg,#f0fdf4,#fff) }
+.edf-project--yellow { background:linear-gradient(135deg,#fffbeb,#fff) }
+.edf-project-header { display:flex; align-items:center; gap:10px; margin-bottom:10px }
+.edf-project-dot { width:12px; height:12px; border-radius:50%; flex:0 0 auto }
+.edf-project-header h4 { font-weight:800; color:#0f172a; margin:0 }
+
+/* Stats */
+.edf-stat-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px }
+.edf-stat { background:#fff; border:1px solid #e6eef2; border-radius:10px; padding:10px 14px; text-align:center; min-width:80px; box-shadow:0 3px 10px rgba(0,0,0,.05) }
+.edf-stat-val { font-weight:900; font-size:1.1rem; color:#0ea5a4 }
+.edf-stat-lbl { font-size:.8rem; color:#64748b; margin-top:2px }
+
+/* Sites grid */
+.edf-site-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px }
+.edf-site-card { background:#fff; border:1px solid #e6eef2; border-radius:10px; padding:12px; display:flex; flex-direction:column; gap:4px }
+.edf-site-card strong { color:#0f172a; font-size:.95rem }
+.edf-site-card span { color:#475569; font-size:.85rem }
+.edf-date-badge { display:inline-block; margin-top:4px; background:rgba(14,165,164,.1); color:#0ea5a4; border-radius:999px; padding:3px 8px; font-size:.8rem; font-weight:700; border:1px solid rgba(14,165,164,.25) }
+
+/* Organisation */
+.edf-orga-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px }
+.edf-orga-card { background:#f8fbfc; border:1px solid #e6eef2; border-radius:12px; padding:16px }
+.edf-orga-card--highlight { background:rgba(14,165,164,.06); border-color:rgba(14,165,164,.3) }
+.edf-orga-card h4 { font-weight:800; color:#0f172a; margin-bottom:4px }
+.edf-orga-full { font-size:.85rem; color:#64748b; font-style:italic; margin-bottom:6px }
+.edf-orga-card p { color:#334155; font-size:.9rem }
+
+/* Mission grid */
+.edf-mission-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px }
+.edf-mission-card { background:#f8fbfc; border:1px solid #e6eef2; border-radius:12px; padding:14px }
+.edf-mission-card strong { display:block; color:#0f172a; margin-bottom:6px; font-size:.95rem }
+.edf-mission-card p { color:#475569; font-size:.9rem; margin:0 }
+
+/* Fresque */
+.edf-fresque-template { border:1px solid #e6eef2; border-radius:12px; overflow:hidden }
+.edf-fresque-header { background:rgba(14,165,164,.08); border-bottom:1px solid #e6eef2; padding:12px 16px }
+.edf-fresque-dates { font-weight:800; color:#0ea5a4 }
+.edf-fresque-body { padding:16px; display:grid; gap:10px }
+.edf-fresque-row { display:flex; align-items:center; gap:10px }
+.edf-fresque-row label { font-weight:700; color:#0f172a; white-space:nowrap; min-width:140px; font-size:.9rem }
+.edf-fresque-input { flex:1; padding:8px 12px; border:1px solid #e6eef2; border-radius:8px; font-size:.9rem; color:#0f172a; background:#fff; outline:none; transition:border-color .15s ease }
+.edf-fresque-input:focus { border-color:#0ea5a4 }
+.edf-fresque-textarea { width:100%; padding:10px 12px; border:1px solid #e6eef2; border-radius:8px; font-size:.9rem; color:#0f172a; background:#fff; min-height:80px; resize:vertical; outline:none; font-family:inherit; transition:border-color .15s ease }
+.edf-fresque-textarea:focus { border-color:#0ea5a4 }
+.edf-fresque-two-col { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+
+/* STAR */
+.edf-star-box { background:rgba(14,165,164,.05); border:1px solid rgba(14,165,164,.2); border-radius:12px; padding:16px }
+.edf-star-box h5 { font-weight:800; color:#0f172a; margin-bottom:12px }
+.edf-star-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px }
+.edf-star-grid > div { background:#fff; border-radius:10px; padding:10px; border:1px solid #e6eef2; text-align:center }
+.edf-star-grid strong { display:block; font-size:1.6rem; color:#0ea5a4; font-weight:900 }
+.edf-star-grid p { margin:4px 0 0; color:#475569; font-size:.82rem }
+
+/* Section ghost */
+#edf.section-card.is-ghost { background:transparent; border:none; box-shadow:none; padding-left:0; padding-right:0 }
+
+@media (max-width:800px) {
+  .edf-two-col, .edf-orga-grid, .edf-mission-grid, .edf-site-grid { grid-template-columns:1fr }
+  .edf-star-grid { grid-template-columns:repeat(2,1fr) }
+  .edf-fresque-row { flex-direction:column; align-items:flex-start }
+  .edf-fresque-row label { min-width:unset }
+  .edf-fresque-two-col { grid-template-columns:1fr }
+  .edf-img-wide { max-height:200px }
+}
+</style>
+
+<script>
+(function(){
+  const section = document.getElementById('edf');
+  if(!section) return;
+  const tabsRoot = section.querySelector('.edf-tabs');
+  if(!tabsRoot) return;
+  const tabs = tabsRoot.querySelectorAll('.edf-tab');
+  const panels = section.querySelectorAll('.edf-panels .edf-panel');
+  function showPanel(id){
+    panels.forEach(p => p.hidden = (p.id !== id));
+    tabs.forEach(t => {
+      const on = t.getAttribute('aria-controls') === id;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => showPanel(t.getAttribute('aria-controls'))));
+  showPanel(tabs[0].getAttribute('aria-controls'));
+})();
+</script>
+
+
+
+
+
+
+
+
 <!-- ======= Software Skills (grouped & unified) ======= -->
 <section id="software-skills" class="skills-section" style="margin-top:28px">
-  <h2>Software Skills</h2>
+  <h2>Compétences</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
-    Here are the main tools I use, grouped by category.
+    Les principaux outils que j'utilise, regroupés par catégorie.
   </p>
 
   <!-- CFD -->
@@ -1017,6 +2169,8 @@ document.addEventListener('DOMContentLoaded', function(){
   <!-- CAD & FEM -->
   <div class="skills-group">
     <h3 class="skills-heading">CAD & FEM</h3>
+    <!-- Note cotation fonctionnelle -->
+    <p style="font-size:.85rem; color:#475569; margin-bottom:10px">Cotation fonctionnelle et tolérancement selon les normes <strong style="color:#0f172a">ISO GPS</strong> (Geometrical Product Specifications) , appliqués en conception industrielle et modélisation mécanique.</p>
     <div class="skills-grid">
       <a class="skill-card" href="https://www.solidworks.com/" target="_blank" rel="noopener" aria-label="SOLIDWORKS">
         <img src="logo_solidworks.png" alt="SOLIDWORKS"><span class="skill-label">SOLIDWORKS</span>
@@ -1147,27 +2301,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <!-- ====== Recommendations (one row per line, ghost section) ====== -->
 <section id="recommandations" class="section-card is-ghost" aria-labelledby="reco-title">
-  <h2 id="reco-title">Recommendations and appraisal</h2>
+  <h2 id="reco-title">Recommandations et appréciations</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
-    Download the following documents or read them online.
+    Téléchargez les documents suivants ou consultez-les en ligne.
   </p>
 
   <div class="reco-list">
-    <!-- ESA — Appraisal -->
+    <!-- ESA : Appraisal -->
 
 
-    <!-- ESA — Reference letter -->
+    <!-- ESA : Reference letter -->
     <div class="reco-row" role="group" aria-labelledby="reco-esa-ref-title">
       <img class="reco-logo" src="logo_esa.png" alt="ESA">
       <div class="reco-content">
-        <div class="reco-title" id="reco-esa-ref-title">European Space Agency : Reference Letter and Appraisal</div>
-<div class="reco-sub">9 months at the European Space Agency</div>
-        <div class="reco-sub">Nicoletta Wagner, Space Project Manager & Michael Mallon, Dr.-Ing., Supervisor</div>
+        <div class="reco-title" id="reco-esa-ref-title">Agence Spatiale Européenne : Lettre de recommandation et fiche d'appréciation</div>
+<div class="reco-sub">9 mois à l'Agence Spatiale Européenne</div>
+        <div class="reco-sub">Nicoletta Wagner, Responsable de la division ingénierie du futur au sein de l'Agence Spatiale Européenne (ESA)<br>Michael Mallon, Docteur et Ingénieur pour la Maintenance Prédictive de l'ESA et des process d'industrialisation</div>
         <div class="reco-links">
-  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Appraisal Master Thesis</a>
-<a class="reco-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster Master Thesis</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Report</a>
+  <a class="reco-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+<a class="reco-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Fiche d'appréciation stage</a>
+<a class="reco-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster de thèse</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank" rel="noopener">Rapport</a>
 </div>
 
       </div>
@@ -1177,11 +2331,11 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="reco-row" role="group" aria-labelledby="reco-upc-title">
       <img class="reco-logo" src="logo_upc.png" alt="UPC">
       <div class="reco-content">
-        <div class="reco-title" id="reco-upc-title">Universitat Politècnica de Catalunya (UPC) : Reference Letter</div>
-        <div class="reco-sub">Robert Arcos, Associate Professor</div>
+        <div class="reco-title" id="reco-upc-title">Université Polytechnique de Catalogne (UPC) : Lettre de recommandation</div>
+        <div class="reco-sub">Robert Arcos, Enseignant chercheur à l'Université Polytechnique de Catalogne</div>
         <div class="reco-links">
-  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Report</a>
+  <a class="reco-link" href="reco_upc.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Rapport</a>
 </div>
 
       </div>
@@ -1191,14 +2345,27 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="reco-row" role="group" aria-labelledby="reco-kth-title">
       <img class="reco-logo" src="logo_kth.png" alt="KTH">
       <div class="reco-content">
-        <div class="reco-title" id="reco-kth-title">KTH Royal Institute of Technology : Reference Letter</div>
-        <div class="reco-sub">Professor Christer Fuglesang, Former ESA Astronaut</div>
+        <div class="reco-title" id="reco-kth-title">KTH École Royale Polytechnique de Stockholm : Lettre de recommandation</div>
+        <div class="reco-sub">Christer Fuglesang, premier astronaute suédois de l'histoire et directeur du centre spatial de l'École Royale Polytechnique de Stockholm (KTH)</div>
         <div class="reco-links">
-  <a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Report - Industrial Design</a>
+  <a class="reco-link" href="reco_kth.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Rapport : Conception industrielle</a>
 
 </div>
 
+      </div>
+    </div>
+
+    <!-- Pony -->
+    <div class="reco-row" role="group" aria-labelledby="reco-pony-title">
+      <img class="reco-logo" src="logo_pony.png" alt="Pony" style="width:60px;height:60px;object-fit:contain;border-radius:12px;background:#f0fdf4;padding:6px;border:1px solid #bbf7d0;flex-shrink:0">
+      <div class="reco-content">
+        <div class="reco-title" id="reco-pony-title">Pony : Lettre de recommandation</div>
+        <div class="reco-sub">Quentin Gerald, responsable ingénierie mécanique de Pony</div>
+        <div class="reco-links">
+          <a class="reco-link" href="reco_pony.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+          <a class="reco-link" href="reco_pony.pdf" download>Télécharger</a>
+        </div>
       </div>
     </div>
 
@@ -1206,13 +2373,13 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="reco-row" role="group" aria-labelledby="reco-ense3-title">
       <img class="reco-logo" src="logo_ense3.png" alt="ENSE3">
       <div class="reco-content">
-        <div class="reco-title" id="reco-ense3-title">Grenoble - INP - ENSE3 : Reference Letter</div>
-        <div class="reco-sub">Olivier Métais, President of the French Hydrotechnical Society</div>
+        <div class="reco-title" id="reco-ense3-title">Grenoble INP, ENSE3 : Lettre de recommandation</div>
+        <div class="reco-sub">Olivier Métais, Président de la société Hydrotechnique de France et Ancien directeur de l'ENSE3, Grenoble INP</div>
         <div class="reco-links">
-  <a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Open reference PDF</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank" rel="noopener">Report – Compressible flow in a nozzle on Fluent</a>
-<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank" rel="noopener">Report – Turbulent Jet on Fluent</a>
-  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank" rel="noopener">Report – Flowmeter</a>
+  <a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank" rel="noopener">Rapport : Écoulement compressible dans une tuyère</a>
+<a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank" rel="noopener">Rapport : Jet turbulent (Fluent)</a>
+  <a class="reco-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank" rel="noopener">Rapport : Débitmètre</a>
   
 </div>
 
@@ -1324,48 +2491,237 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
+<!-- ======= Section Q/R ======= -->
+<section id="entretien" class="section-card is-ghost" aria-labelledby="entretien-title" style="margin-top:28px">
+  <h2 id="entretien-title" style="margin-bottom:8px">Questions / Réponses</h2>
+  <p class="muted" style="margin-top:8px;color:#475569">Questions fréquentes, cliquez sur une question pour révéler la réponse.</p>
+
+  <div class="qa-list" style="margin-top:20px">
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi EDF ?</button>
+      <div class="qa-a" hidden>
+        <p>Mon intérêt pour EDF ne découle pas d'une candidature de convenance : il est le prolongement logique d'un parcours qui m'a progressivement orienté vers les systèmes énergétiques critiques. Durant mon stage à l'ESA, j'ai évolué dans une organisation où chaque décision technique était documentée, tracée et justifiable devant un comité d'experts. Cette culture de la rigueur, que certains pourraient percevoir comme une contrainte administrative, est en réalité ce qui confère aux livrables une robustesse durable. EDF est l'organisation qui pousse cette exigence à son niveau le plus élevé dans le secteur de l'énergie : 56 réacteurs en exploitation, une surveillance permanente de l'ASNR, des référentiels techniques (RCC-M, RCC-E, RCC-CW) qui encadrent chaque acte d'ingénierie du dimensionnement à la maintenance.</p>
+        <p>Au-delà du cadre réglementaire, c'est la profondeur des enjeux qui me motive. EDF est au centre de la décision énergétique française pour les quarante prochaines années : la prolongation du parc existant dans le cadre du Grand Carénage, la conception des EPR2, la montée en puissance des SMR, la gestion du combustible et des déchets. Contribuer à ces sujets en tant qu'ingénieur de qualification, c'est participer à des décisions qui ont un impact mesurable sur la disponibilité du parc, sur la sûreté des installations, et in fine sur la production d'une énergie bas carbone à grande échelle.</p>
+        <p>C'est aussi un employeur qui permet de construire une expertise sur la durée. Dans un secteur aussi technique et réglementé, la valeur d'un ingénieur ne se révèle pas en quelques mois. Elle se construit au fil des dossiers, des retours d'expérience et de la maîtrise progressive des référentiels. Je cherche précisément ce type d'environnement, celui où la profondeur prime sur la rapidité de rotation, et où le travail bien fait laisse une trace dans la vie du parc.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi le nucléaire ?</button>
+      <div class="qa-a" hidden>
+        <p>A l'issue de mon double diplôme en mécanique et énergétique, plusieurs secteurs m'étaient accessibles : l'aéronautique, l'industrie automobile, les énergies renouvelables. J'ai pris le temps d'analyser chacun en fonction de critères précis : la complexité technique des systèmes, l'impact réel sur la transition énergétique, et la profondeur d'expertise que le secteur permet de développer sur le long terme. Le nucléaire s'est imposé au terme de cette réflexion pour des raisons que je peux défendre avec des données.</p>
+        <p>Sur la question de la transition énergétique d'abord : si l'objectif est de produire massivement une énergie décarbonée, pilotable et disponible en base, le nucléaire est, à ce jour, la seule technologie mature capable de répondre à cette exigence à grande échelle. Ce n'est pas une position idéologique, c'est le constat que font les scénarios de l'IPCC, de RTE et de l'Agence internationale de l'énergie. Dans ce contexte, le travail d'un ingénieur nucléaire n'est pas dissociable des enjeux climatiques : contribuer à la disponibilité d'un réacteur, c'est contribuer à une production d'énergie sans émissions de CO2.</p>
+        <p>Sur la dimension technique ensuite : un réacteur à eau pressurisée est un système d'une complexité remarquable, à la jonction de la thermo-hydraulique, de la mécanique des structures, de la chimie des fluides primaires, des matériaux sous irradiation, de la sûreté-sûreté et de la réglementation. Ces disciplines sont précisément celles que j'ai étudiées et pratiquées. Je sais que je n'en ferai pas le tour en deux ans, et c'est exactement ce que je recherche dans un environnement professionnel : la certitude qu'il restera encore beaucoup à apprendre dans dix ans.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi la DIPDE ?</button>
+      <div class="qa-a" hidden>
+        <p>La DIPDE (Direction Ingénierie du Parc en Exploitation) est la direction qui gère techniquement le parc nucléaire en fonctionnement, depuis la modification des équipements jusqu'à la qualification des matériels de remplacement, en passant par la gestion des obsolescences et la prolongation de durée de vie dans le cadre des réexamens périodiques. C'est une direction où l'ingénierie produit des résultats tangibles sur le parc existant, avec un impact direct et mesurable sur la disponibilité des tranches.</p>
+        <p>Ce qui me distingue d'un profil purement académique, c'est une culture de la traçabilité et de la documentation rigoureuse, acquise à l'ESA dans un contexte normatif exigeant (normes ECSS). La DIPDE fonctionne dans un cadre similaire : chaque modification, chaque qualification, chaque dérogation s'appuie sur un dossier structuré, soumis à revue technique et validé selon des processus définis. Les référentiels sont différents (RCC-M, RCC-E, guides ASNR), mais la logique de démonstration, de traçabilité et de validation est identique à celle que j'ai pratiquée.</p>
+        <p>La diversité des sujets traités à la DIPDE est également un facteur déterminant : gestion des obsolescences matérielles, qualifications initiales ou de remplacement suite à modification, travaux de Grand Carénage, préparation des Visites Décennales. Cette variété garantit une montée en compétences progressive et multidimensionnelle, évitant l'enfermement dans un périmètre trop restreint dès les premières années. C'est le type d'environnement dans lequel je suis le plus efficace : exigeant techniquement, diversifié dans les sujets, et porteur d'une responsabilité réelle sur des installations en exploitation.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi le service MCP ?</button>
+      <div class="qa-a" hidden>
+        <p>Le service MCP (Mécanique, Climatisation et Production de froid) couvre la robinetterie de sûreté, les groupes moto-ventilateurs et les systèmes de production de froid pour l'ensemble du parc REP en exploitation. Ce périmètre d'équipements est, par nature, au coeur de mes compétences de formation : mécanique des fluides, transferts thermiques, simulation thermo-hydraulique, modélisation mécanique des structures. Je ne découvre pas les phénomènes physiques en jeu, ce qui me permettra de me concentrer plus rapidement sur la maîtrise des processus de qualification propres au nucléaire.</p>
+        <p>La qualification des équipements MCP représente un enjeu technique particulièrement élevé. Démontrer qu'une vanne de sûreté ou qu'un groupe moto-ventilateur remplit sa fonction en conditions normales, mais aussi incidentelles et accidentelles (APRP, LOCA, séisme de niveau VD3 ou VD4, transitoires thermiques) exige une démarche rigoureuse, combinant analyse des sollicitations enveloppantes, choix de la méthode de démonstration (calcul, essai, similitude), constitution du dossier justificatif et validation par les parties prenantes. C'est précisément ce type de démarche structurée que j'ai pratiqué à l'ESA, dans un cadre normatif différent (ECSS) mais fondé sur les mêmes principes méthodologiques.</p>
+        <p>Enfin, travailler au MCP sur des équipements appartenant aux systèmes de sauvegarde ou aux circuits primaires implique un niveau d'exigence maximal en matière de sûreté. Je ne perçois pas cela comme une difficulté supplémentaire, mais comme la garantie que le travail produit a une signification réelle et que la qualité de chaque dossier compte véritablement. C'est dans ce type de contexte que je suis le plus motivé pour travailler.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi la qualification ?</button>
+      <div class="qa-a" hidden>
+        <p>La qualification d'équipements est, à mon sens, l'une des disciplines les plus rigoureuses de l'ingénierie industrielle. Elle consiste à établir, de manière formelle et traçable, la preuve qu'un équipement est apte à remplir sa fonction de sûreté dans les conditions les plus sévères de son environnement d'exploitation. Cette démarche requiert une maîtrise simultanée des phénomènes physiques en jeu, des méthodes de calcul et d'essai, et des référentiels normatifs applicables. C'est précisément cette combinaison entre rigueur technique et rigueur documentaire qui m'attire dans ce métier.</p>
+        <p>Mon expérience à l'ESA m'a exposé à une logique très proche, appliquée aux équipements spatiaux selon les normes ECSS. Pour chaque sujet traité, la démarche imposait d'identifier les conditions enveloppantes (thermiques, vibratoires, mécaniques), de définir les critères d'acceptation, de choisir la méthode de démonstration appropriée (analyse par éléments finis sous ANSYS, simulation thermique sous Fluent, essais de validation), puis de constituer un rapport justificatif complet, soumis à revue par des ingénieurs seniors. Cette ossature méthodologique se transpose directement à la qualification nucléaire. Les référentiels diffèrent (RCC-M, RCC-E, guides de l'ASNR), mais la logique de démonstration reste identique.</p>
+        <p>Ce qui me convainc définitivement, c'est que la qualification ne laisse pas de place à l'approximation. Soit la démonstration est établie conformément au référentiel applicable, soit elle ne l'est pas. Cette absence d'ambiguïté est, selon moi, ce qui confère au métier sa valeur et sa crédibilité. Travailler dans un cadre où la qualité du raisonnement et la solidité du dossier sont les seuls critères d'évaluation, c'est un environnement dans lequel je me retrouve pleinement.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Quels sont vos projets à long terme ?</button>
+      <div class="qa-a" hidden>
+        <p>Mon projet professionnel s'inscrit dans une perspective de long terme au sein du groupe EDF. Ce positionnement n'est pas une réponse de circonstance : dans un secteur aussi technique et réglementé que le nucléaire, la valeur d'un ingénieur est indissociable de la profondeur de l'expertise accumulée au fil des années. Construire cette expertise prend du temps, et elle ne prend toute sa valeur que si l'on reste suffisamment longtemps pour la mettre au service de projets complexes.</p>
+        <p>A moyen terme, mon objectif est d'atteindre une autonomie réelle sur les processus de qualification au service MCP : maîtriser les référentiels applicables (RCC-M, RCC-E, guides ASNR), conduire des analyses de qualification avec rigueur, et contribuer activement à des dossiers sur des projets de modification ou de remplacement d'équipements. Sur un horizon de cinq à dix ans, j'aspire à prendre une responsabilité technique plus large : référent sur un domaine d'équipement, coordination de qualifications dans le cadre de programmes pluriannuels tels que le Grand Carénage ou les Visites Décennales, ou encore participation à des sujets transverses impliquant plusieurs services de la DIPDE ou de la DISC.</p>
+        <p>Je suis également disponible géographiquement et ouvert à la mobilité interne, qu'il s'agisse d'un changement de service, de direction ou de site. Ce qui oriente mes choix sur le long terme, c'est la nature des sujets traités et le niveau d'exigence technique de l'environnement. EDF offre, à cet égard, une variété de trajectoires professionnelles que peu d'entreprises peuvent proposer dans le secteur industriel.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Quelle est l'expérience qui vous a le plus marqué ?</button>
+      <div class="qa-a" hidden>
+        <p>Mon stage de fin d'études à l'ESA (Agence Spatiale Européenne) au centre ESTEC, aux Pays-Bas, est l'expérience qui a le plus structuré ma façon d'aborder le travail d'ingénieur. Pendant neuf mois, j'ai conduit deux sujets simultanément dans le département des systèmes de test au sol. Le premier concernait des études thermo-hydrauliques sur des équipements de conditionnement thermique pour satellites : modélisation des échanges de chaleur et des écoulements sous ANSYS Fluent, confrontation des résultats aux données expérimentales, rédaction de rapports justificatifs structurés. Le second consistait à développer une application Python de maintenance prédictive, basée sur des algorithmes de machine learning, pour surveiller et anticiper les défaillances des équipements mécaniques rotatifs de l'ESTEC. Cette application est aujourd'hui utilisée en production par l'équipe.</p>
+        <p>Ce que j'ai retiré de cette expérience dépasse la dimension technique. Travailler dans une organisation où chaque livrable est soumis à revue par des ingénieurs expérimentés, où les hypothèses doivent être justifiées et les résultats tracés, m'a profondément ancré dans une culture de la rigueur documentaire que je n'envisage plus comme une contrainte, mais comme une exigence naturelle de sérieux. J'ai également appris à fonctionner efficacement dans un environnement multiculturel, en produisant l'intégralité de mes livrables en anglais, dans un contexte où la précision du langage technique est aussi importante que la justesse du calcul.</p>
+        <p>Le stage a été prolongé de plusieurs semaines à la demande de mon équipe, en raison de l'avancement des deux sujets. C'est la confirmation qui m'a convaincu que j'étais capable de répondre aux attentes d'un environnement d'ingénierie exigeant, et que la rigueur que j'apporte au travail était non seulement attendue, mais reconnue. C'est cette même exigence que je souhaite apporter à EDF, dans un contexte où les enjeux de sûreté lui confèrent une dimension encore plus critique.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment décririez-vous votre profil en quelques mots ?</button>
+      <div class="qa-a" hidden>
+        <p>Je suis ingénieur en mécanique et énergétique, avec une formation duale (Grenoble INP ENSE3 et KTH Stockholm) qui m'a exposé à des approches complémentaires : thermo-hydraulique, transferts thermiques et mécanique des fluides à Grenoble ; mécanique des structures, aéroélasticité et simulation avancée à Stockholm. Sur le plan des outils, j'ai pratiqué la modélisation par éléments finis sous ANSYS, la simulation CFD sous Fluent, et le développement Python dans un cadre industriel. Ce sont des compétences que j'ai appliquées à des problèmes concrets, pas seulement exercées en travaux pratiques.</p>
+        <p>Ce qui me différencie pour un poste d'ingénieur qualification, c'est avant tout une culture documentaire naturelle. A l'ESA, je n'ai jamais produit un résultat sans le justifier dans un rapport structuré, conforme aux exigences du référentiel applicable. Pour moi, un calcul sans dossier associé n'est pas un livrable, c'est une note de travail. Cette façon d'aborder les choses est fondamentale dans le contexte de la qualification nucléaire, où la traçabilité des décisions techniques est une exigence réglementaire non négociable.</p>
+        <p>Je n'ai pas encore l'expérience des référentiels nucléaires (RCC-M, RCC-E, guides de l'ASNR). Je le dis sans ambiguïté, parce que je pense qu'il est contre-productif de prétendre à une maîtrise que l'on n'a pas. En revanche, j'ai prouvé à l'ESA que je suis capable de m'approprier rapidement un cadre normatif exigeant depuis zéro, d'en intégrer la logique, et de produire des dossiers de qualité dans ce cadre. C'est précisément ce que je m'engage à faire pour les référentiels nucléaires, avec la conviction que les bases techniques et la culture du travail sont déjà là.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi un double diplôme franco-suédois ?</button>
+      <div class="qa-a" hidden>
+        <p>Le choix du double diplôme entre Grenoble INP ENSE3 et KTH (Kungliga Tekniska Högskolan, Stockholm) répondait à une volonté délibérée d'élargir le spectre de ma formation au-delà de ce que proposait un seul établissement. Grenoble INP ENSE3 offre une excellente formation en mécanique des fluides, transferts thermiques et énergétique, avec une culture très appliquée et orientée vers les problèmes industriels. KTH, classée parmi les premières écoles polytechniques d'Europe du Nord, développait des modules en aéroélasticité, mécanique des structures avancée, composites structuraux et dynamique des lanceurs spatiaux. Ces deux enseignements sont complémentaires et leur combinaison m'a permis d'acquérir une vision à la fois thermique et structurelle des systèmes mécaniques complexes.</p>
+        <p>Sur le plan académique, le parcours m'a également conduit à produire trois rapports de recherche approfondis à KTH, sur des sujets allant de l'aéroélasticité des structures ailaires à l'évaluation comparative des performances des lanceurs européens, en passant par la mécanique des matériaux composites fibreux. Ces travaux m'ont appris à mener une analyse rigoureuse sur un sujet ouvert, à identifier les hypothèses structurantes, à sélectionner les méthodes appropriées et à présenter des conclusions justifiées devant des enseignants-chercheurs exigeants. Ces compétences sont directement transférables à la rédaction de dossiers de qualification.</p>
+        <p>L'expérience d'une année à Stockholm, dans un environnement académique et multiculturel où l'anglais est la langue de travail exclusive, a également renforcé mon aisance à évoluer dans des contextes internationaux et à collaborer avec des ingénieurs de formations et de cultures très diverses. Dans un groupe comme EDF, qui entretient des relations avec des partenaires européens et internationaux dans le cadre de projets comme le programme EPR2, cette dimension est, à mon sens, un atout complémentaire non négligeable.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Parlez-moi de votre expérience chez Buck Engineering.</button>
+      <div class="qa-a" hidden>
+        <p>J'ai fondé Buck Engineering en septembre 2025 afin de proposer des prestations d'ingénierie à des clients professionnels et des particuliers : études de conception assistée par ordinateur, analyses mécaniques, conseils techniques et gestion de projets d'ingénierie. Cette démarche entrepreneuriale m'a exposé à une réalité que les stages en entreprise n'offrent pas toujours : la responsabilité pleine et entière d'un livrable devant un client, depuis la définition du besoin jusqu'à la livraison finale.</p>
+        <p>L'une des leçons les plus importantes que j'en ai tirées concerne la gestion des exigences. Rédiger un cahier des charges n'est pas une formalité : c'est l'acte fondateur du projet. Il s'agit de formaliser avec précision le besoin du client, d'identifier les contraintes fonctionnelles et techniques, de définir les critères d'acceptation du livrable et de documenter les hypothèses retenues. Lorsque le besoin évolue en cours d'intervention, il faut gérer l'écart par rapport au cahier des charges initial, produire une note de modification, et valider les changements avec le client avant de les intégrer. Ce processus est structurellement analogue à la gestion des modifications d'équipements en contexte nucléaire, où chaque évolution par rapport à la configuration de référence doit être instruite, justifiée et validée.</p>
+        <p>Cette expérience m'a également confronté à la dimension de la conformité en fin de projet : est-ce que le livrable répond point par point aux exigences spécifiées dans le cahier des charges ? Cette vérification systématique, que j'effectuais naturellement à la clôture de chaque prestation, est la transposition directe de ce qu'un ingénieur de qualification applique à ses dossiers. Avoir intégré cette culture en situation réelle, avec les conséquences concrètes qu'implique la satisfaction ou l'insatisfaction d'un client, me semble une préparation pertinente à l'environnement de rigueur d'un service comme le MCP.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment démontrez-vous la tenue d'un équipement en conditions accidentelles ?</button>
+      <div class="qa-a" hidden>
+        <p>La démarche commence par la constitution du dossier de base de qualification : identification précise de l'équipement et de sa fonction de sûreté, recensement de l'environnement d'installation (zone sismique, température ambiante, humidité, rayonnement), et définition des sollicitations enveloppantes à démontrer. Dans le cadre du parc REP français, ces sollicitations couvrent classiquement le séisme de dimensionnement (niveaux VD1 à VD4 selon la criticité de la fonction), les sollicitations thermiques et de pression liées à un accident de perte de réfrigérant primaire (APRP ou LOCA), les effets d'un accident de Masse Froide (AMF), et les sollicitations combinées lorsque ces événements surviennent simultanément. Chaque enveloppe doit être justifiée et approuvée par les parties prenantes avant le lancement de la démonstration.</p>
+        <p>La stratégie de démonstration est ensuite choisie en fonction des caractéristiques de l'équipement, de son historique de qualification et des données disponibles. La qualification par le calcul (méthode par éléments finis ou analytique) est privilégiée pour les composants dont le comportement est bien modélisable, comme les structures métalliques ou les tuyauteries. La qualification par essais est retenue lorsque le comportement de l'équipement est difficile à simuler numériquement : c'est le cas des joints, des matériaux polymères, des actionneurs électromécaniques ou de tout équipement dont la défaillance dépend de phénomènes couplés complexes (vibrations, vieillissement thermique, irradiation). La qualification par similitude permet de s'appuyer sur un dossier existant pour un équipement de même famille, sous réserve de démontrer que les différences sont non pénalisantes. En pratique, une qualification complète combine souvent ces trois approches de façon complémentaire.</p>
+        <p>J'ai appliqué une démarche méthodologiquement très proche à l'ESA : analyse par éléments finis sous ANSYS pour démontrer la tenue structurelle d'équipements de test au sol sous charges vibratoires et thermiques, définition des conditions enveloppantes conformément aux normes ECSS-E-ST-32, et rédaction de rapports de qualification structurés incluant la description du modèle, les hypothèses retenues, les résultats commentés et la conclusion de qualification. La structure d'un tel rapport est identique à celle d'un dossier de qualification nucléaire régi par les référentiels RCC-M ou les guides de l'ASNR. La transposition est directe, même si l'approfondissement des référentiels nucléaires constitue naturellement la première étape de ma montée en compétences au sein du service MCP.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .qa-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .qa-item {
+    border: 1px solid #e6eef2;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(15,23,42,.05);
+    transition: box-shadow .2s ease;
+  }
+  .qa-item:has(.qa-q[aria-expanded="true"]) {
+    box-shadow: 0 6px 20px rgba(14,165,164,.15);
+    border-color: #0ea5a4;
+  }
+
+  .qa-q {
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background .15s ease, color .15s ease;
+    font-family: inherit;
+  }
+  .qa-q:hover { background: #f0fdfc; color: #0ea5a4; }
+  .qa-q[aria-expanded="true"] { color: #0ea5a4; background: #f0fdfc; }
+
+  .qa-q::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    flex-shrink: 0;
+    color: #94a3b8;
+    transition: transform .25s ease, color .25s ease;
+  }
+  .qa-q[aria-expanded="true"]::after {
+    content: '−';
+    color: #0ea5a4;
+    transform: rotate(0deg);
+  }
+
+  .qa-a {
+    padding: 0 20px 18px;
+    color: #334155;
+    line-height: 1.7;
+    font-size: .95rem;
+    border-top: 1px solid #e6eef2;
+    animation: qa-slide-down .2s ease;
+  }
+  .qa-a p { margin: 12px 0 0; }
+
+  @keyframes qa-slide-down {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+(function(){
+  document.querySelectorAll('.qa-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var answer = btn.nextElementSibling;
+      btn.setAttribute('aria-expanded', !expanded);
+      if(expanded){ answer.hidden = true; }
+      else { answer.hidden = false; }
+    });
+  });
+})();
+</script>
+
 <section id="projects" class="section-card" aria-labelledby="projects-title">
-  <h2 id="projects-title">Projects & Experiences</h2>
+  <h2 id="projects-title">Projets &amp; Expériences</h2>
 
 
-  <!-- ===== Project A — ESA Digital Twins / Predictive Maintenance ===== -->
+  <!-- ===== Project A : ESA Digital Twins / Predictive Maintenance ===== -->
   <article class="project" role="group" aria-labelledby="proj-esa-title">
     <header class="project-head">
       <img class="project-logo" src="logo_esa.png" alt="ESA" />
       <div>
-        <h3 id="proj-esa-title" class="project-title">ESA — Digital Twins & Predictive Maintenance</h3>
+        <h3 id="proj-esa-title" class="project-title">ESA : Digital Twins & Predictive Maintenance</h3>
         <p class="project-desc">
-          Development of a Python-based ML application to reduce equipment downtime through digital twin enablement and smart sensors. Work presented to experts at ESTEC in the Netherlands and under ESA license registration.
+          Développement d'une application Python de Machine Learning pour réduire les arrêts imprévus grâce aux jumeaux numériques et capteurs intelligents. Travail présenté devant des experts à l'ESTEC (Pays-Bas) et déposé sous licence ESA.
         </p>
         <div class="project-links">
-          <a class="project-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Appraisal</a>
-          <a class="project-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Reference letter</a>
+          <a class="project-link" href="appreciation_pfe.pdf" target="_blank" rel="noopener">Fiche d'appréciation</a>
+          <a class="project-link" href="reco_pfe.pdf" target="_blank" rel="noopener">Lettre de recommandation</a>
 <a class="project-link" href="poster_pfe.pdf" target="_blank" rel="noopener">Poster</a>
-<a class="project-link" href="report_pfe.pdf" target="_blank" rel="noopener">Report</a>
-          <a class="project-link" href="https://www.esa.int/" target="_blank" rel="noopener">ESA website</a>
+<a class="project-link" href="report_pfe.pdf" target="_blank" rel="noopener">Rapport</a>
+          <a class="project-link" href="https://www.esa.int/" target="_blank" rel="noopener">Site ESA</a>
         </div>
       </div>
     </header>
 
     <div class="proj-grid">
-<figure><img src="PdM.png" loading="lazy" alt="PdM"><figcaption>Predictive Maintenance (PdM)</figcaption></figure>
-<figure><img src="Presentation.jpeg" loading="lazy" alt="Presentation"><figcaption>Final presentation</figcaption></figure>
-<figure><img src="arduinosensoronasset.jpeg" loading="lazy" alt="arduinosensoronasset"><figcaption>Arduino sensor on asset</figcaption></figure>
+<figure><img src="PdM.png" loading="lazy" alt="PdM"><figcaption>Maintenance prédictive (PdM)</figcaption></figure>
+<figure><img src="Presentation.jpeg" loading="lazy" alt="Presentation"><figcaption>Présentation finale</figcaption></figure>
+<figure><img src="arduinosensoronasset.jpeg" loading="lazy" alt="arduinosensoronasset"><figcaption>Capteur Arduino sur équipement</figcaption></figure>
 <figure><img src="Circuit.png" loading="lazy" alt="Circuit"><figcaption>Circuit Arduino</figcaption></figure>
-<figure><img src="3ddt.png" loading="lazy" alt="3ddt"><figcaption>3D Digital Twin</figcaption></figure>
-    <figure><img src="ABBorgafolders.png" loading="lazy" alt="ABBorgafolders"><figcaption>ABB orga folders</figcaption></figure>
-    <figure><img src="analysis_temp.png" loading="lazy" alt="analysis_temp"><figcaption>Temperature analysis</figcaption></figure>
+<figure><img src="3ddt.png" loading="lazy" alt="3ddt"><figcaption>Jumeau numérique 3D</figcaption></figure>
+    <figure><img src="ABBorgafolders.png" loading="lazy" alt="ABBorgafolders"><figcaption>Dossiers organisation ABB</figcaption></figure>
+    <figure><img src="analysis_temp.png" loading="lazy" alt="analysis_temp"><figcaption>Analyse de température</figcaption></figure>
    
 
-   <figure><img src="panel_stat.png" loading="lazy" alt="panel_stat"><figcaption>Statistical panel</figcaption></figure>
-    <figure><img src="panel3d.png" loading="lazy" alt="panel3d"><figcaption>3D Panel</figcaption></figure>
+   <figure><img src="panel_stat.png" loading="lazy" alt="panel_stat"><figcaption>Tableau de bord statistique</figcaption></figure>
+    <figure><img src="panel3d.png" loading="lazy" alt="panel3d"><figcaption>Panneau 3D</figcaption></figure>
 
-    <figure><img src="detectfreq1.png" loading="lazy" alt="detectfreq1"><figcaption>Frequency detection 1</figcaption></figure>
-    <figure><img src="detectfreq2.png" loading="lazy" alt="detectfreq2"><figcaption>Frequency detection 2</figcaption></figure>
-    <figure><img src="detectfreq3.png" loading="lazy" alt="detectfreq3"><figcaption>Frequency detection 3</figcaption></figure>
-    <figure><img src="detectfreq4.png" loading="lazy" alt="detectfreq4"><figcaption>Frequency detection 4</figcaption></figure>
-    <figure><img src="panel_freq.png" loading="lazy" alt="panel_freq"><figcaption>Frequency panel</figcaption></figure>
-    <figure><img src="panel_mean.png" loading="lazy" alt="panel_mean"><figcaption>Mean panel</figcaption></figure>
+    <figure><img src="detectfreq1.png" loading="lazy" alt="detectfreq1"><figcaption>Détection fréquence 1</figcaption></figure>
+    <figure><img src="detectfreq2.png" loading="lazy" alt="detectfreq2"><figcaption>Détection fréquence 2</figcaption></figure>
+    <figure><img src="detectfreq3.png" loading="lazy" alt="detectfreq3"><figcaption>Détection fréquence 3</figcaption></figure>
+    <figure><img src="detectfreq4.png" loading="lazy" alt="detectfreq4"><figcaption>Détection fréquence 4</figcaption></figure>
+    <figure><img src="panel_freq.png" loading="lazy" alt="panel_freq"><figcaption>Panneau fréquences</figcaption></figure>
+    <figure><img src="panel_mean.png" loading="lazy" alt="panel_mean"><figcaption>Panneau moyennes</figcaption></figure>
     
     <figure><img src="CAD1.png" loading="lazy" alt="CAD1"><figcaption>CAD 1</figcaption></figure>
     <figure><img src="CAD2.png" loading="lazy" alt="CAD2"><figcaption>CAD 2</figcaption></figure>
@@ -1378,18 +2734,18 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
   </article>
 
-  <!-- ===== Project B — UPC CFD / Meshing on Fluent ===== -->
+  <!-- ===== Project B : UPC CFD / Meshing on Fluent ===== -->
   <article class="project" role="group" aria-labelledby="proj-upc-title">
     <header class="project-head">
       <img class="project-logo" src="logo_upc.png" alt="UPC" />
       <div>
         <h3 id="proj-upc-title" class="project-title">UPC BarcelonaTech - CFD & Meshing on Fluent</h3>
         <p class="project-desc">
-          From CAD to CFD : meshing strategies, solver setup and validation on industrial-like cases.
+          De la CAO au CFD : stratégies de maillage, paramétrage du solveur et validation sur des cas industriels.
         </p>
         <div class="project-links">
-          <a class="project-link" href="reco_upc.pdf" target="_blank" rel="noopener">Reference letter</a>
-          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Internship report</a>
+          <a class="project-link" href="reco_upc.pdf" target="_blank" rel="noopener">Lettre de recommandation</a>
+          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank" rel="noopener">Rapport de stage</a>
         </div>
       </div>
     </header>
@@ -1399,7 +2755,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <figure><img src="organigramme.png" loading="lazy" alt="organigramme"><figcaption>Organigramme</figcaption></figure>
       <figure>
         <img src="fond5.png" loading="lazy" alt="Fluent simulation at UPC" data-group="upc">
-        <figcaption>Fluent simulation</figcaption>
+        <figcaption>Simulation Fluent</figcaption>
       </figure>
     <figure><img src="setup1.png" loading="lazy" alt="setup1"><figcaption>Setup 1</figcaption></figure>
     <figure><img src="setup2.png" loading="lazy" alt="setup2"><figcaption>Setup 2</figcaption></figure>
@@ -1412,11 +2768,11 @@ document.addEventListener('DOMContentLoaded', function(){
     <figure><img src="pt_maillage_support.png" loading="lazy" alt="pt_maillage_support"><figcaption>Support</figcaption></figure>
 
       <figure>
-        <img src="fond16.png" loading="lazy" alt="Fluent Meshing — 1" data-group="upc">
+        <img src="fond16.png" loading="lazy" alt="Fluent Meshing : 1" data-group="upc">
         <figcaption>Fluent meshing (1)</figcaption>
       </figure>
       <figure>
-        <img src="fond17.png" loading="lazy" alt="Fluent Meshing — 2" data-group="upc">
+        <img src="fond17.png" loading="lazy" alt="Fluent Meshing : 2" data-group="upc">
         <figcaption>Fluent meshing (2)</figcaption>
       </figure>
 
@@ -1424,7 +2780,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <figure><img src="ph_maillage_train_tunnel.png" loading="lazy" alt="ph_maillage_train_tunnel"><figcaption>Train & tunnel</figcaption></figure>
     <figure><img src="phh_maillage_domaine.png" loading="lazy" alt="phh_maillage_domaine"><figcaption>Domaine</figcaption></figure>
     <figure><img src="pt_resid.png" loading="lazy" alt="pt_resid"><figcaption>Résidus</figcaption></figure>
-    <figure><img src="ph_ldc_dessous.png" loading="lazy" alt="ph_ldc_dessous"><figcaption>LDC – dessous</figcaption></figure>
+    <figure><img src="ph_ldc_dessous.png" loading="lazy" alt="ph_ldc_dessous"><figcaption>LDC : dessous</figcaption></figure>
     <figure><img src="ph_ldc_dessous_points_arret.png" loading="lazy" alt="ph_ldc_dessous_points_arret"><figcaption>Points d’arrêt</figcaption></figure>
     <figure><img src="ph_ldc_dessous_points_arret_zoom_maillage.png" loading="lazy" alt="ph_ldc_dessous_points_arret_zoom_maillage"><figcaption>Zoom maillage</figcaption></figure>
 
@@ -1436,7 +2792,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     <figure><img src="LDC.png" loading="lazy" alt="LDC"><figcaption>LDC</figcaption></figure>
-    <figure><img src="pt_ldc_bras.png" loading="lazy" alt="pt_ldc_bras"><figcaption>LDC – bras</figcaption></figure>
+    <figure><img src="pt_ldc_bras.png" loading="lazy" alt="pt_ldc_bras"><figcaption>LDC : bras</figcaption></figure>
     <!-- Rang 3 -->
     <figure><img src="pt_maillage_train.png" loading="lazy" alt="pt_maillage_train"><figcaption>Mesh train</figcaption></figure>
     <figure><img src="pt_maillage_train_basse.png" loading="lazy" alt="pt_maillage_train_basse"><figcaption>Mesh train (basse)</figcaption></figure>
@@ -1446,25 +2802,25 @@ document.addEventListener('DOMContentLoaded', function(){
     <figure><img src="ldc_pantographpresque.png" loading="lazy" alt="ldc_pantographpresque"><figcaption>LDC pantograph</figcaption></figure>
 
 
-    <figure><img src="pt_ldc_global.png" loading="lazy" alt="pt_ldc_global"><figcaption>LDC – global</figcaption></figure>
+    <figure><img src="pt_ldc_global.png" loading="lazy" alt="pt_ldc_global"><figcaption>LDC : global</figcaption></figure>
 
 
 
     </div>
   </article>
 
-  <!-- ===== Project C — SolidWorks Space Vehicle / ISS Docking ===== -->
+  <!-- ===== Project C : SolidWorks Space Vehicle / ISS Docking ===== -->
   <article class="project" role="group" aria-labelledby="proj-space-title">
     <header class="project-head">
       <img class="project-logo" src="logo_kth.png" alt="KTH" />
       <div>
-        <h3 id="proj-space-title" class="project-title"> Industrial DesignSolidWorks — Space Vehicle</h3>
+        <h3 id="proj-space-title" class="project-title">Conception industrielle SolidWorks : Véhicule spatial</h3>
         <p class="project-desc">
-          Concept design and assembly for a space vehicle.
+          Conception et assemblage d'un véhicule spatial.
         </p>
         <div class="project-links">
-          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Report</a>
-	<a class="project-link" href="reco_kth.pdf" target="_blank" rel="noopener">Reference letter</a>
+          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank" rel="noopener">Rapport</a>
+	<a class="project-link" href="reco_kth.pdf" target="_blank" rel="noopener">Lettre de recommandation</a>
         </div>
       </div>
     </header>
@@ -1472,39 +2828,39 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="proj-grid">
       <figure>
         <img src="fond11.png" loading="lazy" alt="Space vehicle assembly" data-group="space">
-        <figcaption>Space vehicle assembly</figcaption>
+        <figcaption>Assemblage véhicule spatial</figcaption>
       </figure>
       <figure>
         <img src="fond19.png" loading="lazy" alt="Space vehicle view 2" data-group="space">
-        <figcaption>Vehicle view (2)</figcaption>
+        <figcaption>Vue véhicule (2)</figcaption>
       </figure>
       <figure>
         <img src="fond20.png" loading="lazy" alt="Space vehicle view 3" data-group="space">
-        <figcaption>Vehicle view (3)</figcaption>
+        <figcaption>Vue véhicule (3)</figcaption>
       </figure>
       <figure>
         <img src="fond10.png" loading="lazy" alt="ISS docking port design" data-group="space">
-        <figcaption>ISS docking port</figcaption>
+        <figcaption>Port d'amarrage ISS</figcaption>
       </figure>
     </div>
   </article>
 
-  <!-- ===== Project E — Verlinde Hydraulic Motor (SolidWorks) ===== -->
+  <!-- ===== Project E : Verlinde Hydraulic Motor (SolidWorks) ===== -->
   <article class="project" role="group" aria-labelledby="proj-verlinde-title">
     <header class="project-head">
       <img class="project-logo" src="logo_ense3.png" alt="ENSE3" />
       <div>
-        <h3 id="proj-verlinde-title" class="project-title">Industrial design and mechanical modeling projects</h3>
+        <h3 id="proj-verlinde-title" class="project-title">Projets de conception industrielle et modélisation mécanique</h3>
         <p class="project-desc">
-          CAD, FEM (Catia, SolidWorks, Abaqus, ANSYS).
+          CAO, EF (Catia, SolidWorks, Abaqus, ANSYS).
         </p>
         <div class="project-links">
-          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_verlinde.pdf" target="_blank" rel="noopener">Report Hydraulic Verlinde Motor</a>
-<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fan.pdf" target="_blank" rel="noopener">Report Fan Blade CAD SolidWorks</a>
+          <a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_verlinde.pdf" target="_blank" rel="noopener">Rapport : Moteur hydraulique Verlinde</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fan.pdf" target="_blank" rel="noopener">Rapport : Pale de ventilateur CAO SolidWorks</a>
 
-<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank" rel="noopener">Report Mechanical Modeling Skate Abaqus</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank" rel="noopener">Rapport : Modélisation mécanique Skate (Abaqus)</a>
 
-<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank" rel="noopener">Report Mechanical Modeling Scooter Abaqus</a>
+<a class="project-link" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank" rel="noopener">Rapport : Modélisation mécanique Trottinette (Abaqus)</a>
         </div>
       </div>
     </header>
@@ -1512,15 +2868,15 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="proj-grid">
 <figure>
         <img src="fond6.png" loading="lazy" alt="Abaqus postprocessing 1" data-group="mech">
-        <figcaption>Abaqus – results</figcaption>
+        <figcaption>Abaqus : résultats</figcaption>
       </figure>
       <figure>
         <img src="fond7.png" loading="lazy" alt="Abaqus postprocessing 2" data-group="mech">
-        <figcaption>Abaqus – stresses</figcaption>
+        <figcaption>Abaqus : contraintes</figcaption>
       </figure>
       <figure>
         <img src="fond8.png" loading="lazy" alt="Abaqus postprocessing 3" data-group="mech">
-        <figcaption>Abaqus – deformations</figcaption>
+        <figcaption>Abaqus : déformations</figcaption>
       </figure>
       <figure>
         <img src="fond9.png" loading="lazy" alt="Fan blade design on SolidWorks" data-group="mech">
@@ -1528,7 +2884,7 @@ document.addEventListener('DOMContentLoaded', function(){
       </figure>
       <figure>
         <img src="fond12.png" loading="lazy" alt="Verlinde motor assembly on SolidWorks" data-group="verlinde">
-        <figcaption>Assembly view</figcaption>
+        <figcaption>Vue assemblage</figcaption>
       </figure>
       <figure>
         <img src="fond3.png" loading="lazy" alt="Industrial design view" data-group="verlinde">
@@ -1587,7 +2943,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
   </article>
 
-<!-- ===== Project F — CFD Simulation: Turbulent Jet (ENSE3) ===== -->
+<!-- ===== Project F : CFD Simulation: Turbulent Jet (ENSE3) ===== -->
 <article class="project" role="group" aria-labelledby="proj-cfd-title">
   <header class="project-head">
     <img class="project-logo" src="logo_ense3.png" alt="ENSE3" />
@@ -1619,7 +2975,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <figure><img src="Capture d’écran 2025-09-12 140644.png" loading="lazy" alt="CFD result 140644"><figcaption>Contours</figcaption></figure>
     <figure><img src="Capture d’écran 2025-09-12 140702.png" loading="lazy" alt="CFD result 140702"><figcaption>Contours</figcaption></figure>
     
-    <figure><img src="Capture d’écran 2025-09-12 135704.png" loading="lazy" alt="CFD result 135704"><figcaption>Velocity field</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 135704.png" loading="lazy" alt="CFD result 135704"><figcaption>Champ de vitesse</figcaption></figure>
     <figure><img src="Capture d’écran 2025-09-12 135721.png" loading="lazy" alt="CFD result 135721"><figcaption>Mesh</figcaption></figure>
     <figure><img src="Capture d’écran 2025-09-12 135745.png" loading="lazy" alt="CFD result 135745"><figcaption>Profile plot</figcaption></figure>
     <figure><img src="Capture d’écran 2025-09-12 135813.png" loading="lazy" alt="CFD result 135813"><figcaption>Residus</figcaption></figure>
@@ -1633,15 +2989,15 @@ document.addEventListener('DOMContentLoaded', function(){
     <figure><img src="Capture d’écran 2025-09-12 140854.png" loading="lazy" alt="CFD result 140854"><figcaption>Boundary conditions</figcaption></figure>
     <figure><img src="Capture d’écran 2025-09-12 140943.png" loading="lazy" alt="CFD result 140943"><figcaption>Residuals</figcaption></figure>
     <figure><img src="Capture d’écran 2025-09-12 140957.png" loading="lazy" alt="CFD result 140957"><figcaption>Residuals</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141011.png" loading="lazy" alt="CFD result 141011"><figcaption>Velocity field</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141011.png" loading="lazy" alt="CFD result 141011"><figcaption>Champ de vitesse</figcaption></figure>
 
-    <figure><img src="Capture d’écran 2025-09-12 141050.png" loading="lazy" alt="CFD result 141050"><figcaption>Pressure contours</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141059.png" loading="lazy" alt="CFD result 141059"><figcaption>Pressure contours</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141116.png" loading="lazy" alt="CFD result 141116"><figcaption>Pressure contours</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141131.png" loading="lazy" alt="CFD result 141131"><figcaption>Pressure contours</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141146.png" loading="lazy" alt="CFD result 141146"><figcaption>Pressure contours</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141211.png" loading="lazy" alt="CFD result 141211"><figcaption>Pressure contours</figcaption></figure>
-    <figure><img src="Capture d’écran 2025-09-12 141026.png" loading="lazy" alt="CFD result 141026"><figcaption>Profile</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141050.png" loading="lazy" alt="CFD result 141050"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141059.png" loading="lazy" alt="CFD result 141059"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141116.png" loading="lazy" alt="CFD result 141116"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141131.png" loading="lazy" alt="CFD result 141131"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141146.png" loading="lazy" alt="CFD result 141146"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141211.png" loading="lazy" alt="CFD result 141211"><figcaption>Contours de pression</figcaption></figure>
+    <figure><img src="Capture d’écran 2025-09-12 141026.png" loading="lazy" alt="CFD result 141026"><figcaption>Profil</figcaption></figure>
 
 
     <figure><img src="Capture d’écran 2025-09-12 141322.png" loading="lazy" alt="CFD result 141322"><figcaption>Graph</figcaption></figure>
@@ -1654,93 +3010,78 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <!-- ====== Reports Section (logos + full-width buttons) ====== -->
 <section id="rapports" class="section-card is-ghost" aria-labelledby="rapports-title" style="--report-logo-size:28px;">
-  <h2 id="rapports-title">Reports</h2>
+  <h2 id="rapports-title">Rapports</h2>
 <p class="muted" style="margin-top:6px;color:#334155;font-style:italic">
-  Please note: this work was carried out with the persons mentioned in the reports.
+  Note : ces travaux ont été réalisés avec les personnes mentionnées dans les rapports.
 </p>
 
   <p class="muted" style="margin-top:8px; color:#475569">
-    Download the reports or read them online.
+    Téléchargez les rapports ou consultez-les en ligne.
   </p>
 
   <div class="report-grid" style="margin-top:12px">
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_pfe.pdf" target="_blank">
       <img class="report-logo" src="logo_esa.png" alt="ESA">
-      <span>Report Master’s thesis with extension : Engineer at the European Space Agency</span>
+      <span>Rapport de stage de fin d’études (prolongé) : Ingénieur à l’Agence Spatiale Européenne</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_upc.pdf" target="_blank">
       <img class="report-logo" src="logo_upc.png" alt="UPC">
-      <span>Engineering internship at the Polytechnic University of Catalonia (CFD, FEM & CAD)</span>
+      <span>Stage ingénieur à l'Université Polytechnique de Catalogne (CFD, FEM &amp; CAO)</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_cater.pdf" target="_blank">
       <img class="report-logo" src="logo_cat.png" alt="Caterpillar">
-      <span>First-year internship report at Caterpillar</span>
+      <span>Rapport de stage de première année chez Caterpillar</span>
     </a>
 
 
-
-    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_aeroelasticity.pdf" target="_blank">
-      <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Aeroelasticity applied to the Windex aircraft</span>
-    </a>
-
-    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fibre_composites.pdf" target="_blank">
-      <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Fibre Composites - Analysis and design : Design Problem - FEM & Python</span>
-    </a>
-
-    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fundamentals.pdf" target="_blank">
-      <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Comparative Evaluation of Reusable Launch Vehicles and Expendable Launch Vehicles</span>
-    </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_refrig.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Heat Exchangers : Refrigeration system</span>
+      <span>Échangeurs de chaleur : système de réfrigération</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_heatexch.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Heat Exchangers : Tubular System</span>
+      <span>Échangeurs de chaleur : système tubulaire</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_mae2.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Flow modeling and analysis : Turbulent Jet on Fluent</span>
+      <span>Modélisation et analyse d'écoulements : Jet turbulent sur Fluent</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fluent.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Flow modeling and analysis : Compressible flow in a nozzle on Fluent</span>
+      <span>Modélisation et analyse d'écoulements : Écoulement compressible dans une tuyère (Fluent)</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_debitmetre.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Flow modeling and analysis : Flowmeter</span>
+      <span>Modélisation et analyse d'écoulements : Débitmètre</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_overset.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Fluids and Thermal Simulations : Overset meshing on Fluent</span>
+      <span>Simulations fluides et thermiques : Maillage Overset sur Fluent</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_maillage.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Fluids and Thermal Simulations : Mesh Generation on Fluent</span>
+      <span>Simulations fluides et thermiques : Génération de maillage sur Fluent</span>
     </a>
 
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_belier_resonance.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Pressurized Flow Hydraulics Project: Water Hammer and Resonance</span>
+      <span>Hydraulique en charge : Coup de bélier et résonance</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_belier.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Pressurized Flow Hydraulics Lab: Water Hammer</span>
+      <span>TP Hydraulique en charge : Coup de bélier</span>
     </a>
 
 
@@ -1750,48 +3091,64 @@ document.addEventListener('DOMContentLoaded', function(){
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_verlinde.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Mechanical Design Project: Hydraulic Motor Verlinde</span>
+      <span>Projet de conception mécanique : Moteur hydraulique Verlinde</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_fan.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Industrial Design : Fan Blade on SolidWorks</span>
+      <span>Conception industrielle : Pale de ventilateur (SolidWorks)</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank">
       <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Vehicle Design : A space taxi for two people - Human Spaceflight</span>
+      <span>Conception d’un taxi spatial pour deux personnes (vol habité)</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_abaqus.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Mechanical modeling on Abaqus</span>
+      <span>Modélisation mécanique sur Abaqus</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Mechanical Design and Modeling : Skateboard</span>
+      <span>Conception et modélisation mécanique d’un skateboard</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Mechanical Design and Modeling : Scooter</span>
+      <span>Conception et modélisation mécanique d’une trottinette</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_poutre.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Structures and materials : Free cantilever beam </span>
+      <span>Structures et matériaux : Poutre en porte-à-faux </span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_portique.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Structures and materials : Two-story portico</span>
+      <span>Structures et matériaux : Portique à deux niveaux</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_Hercule.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
       <span>Energy Issues: Hercule Project</span>
     </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_aeroelasticity.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Aéroélasticité appliquée à l'avion Windex</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fibre_composites.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Matériaux composites fibreux, analyse et conception (FEM &amp; Python)</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fundamentals.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Évaluation comparative des lanceurs réutilisables et à usage unique</span>
+    </a>
+
 
 
   </div>
@@ -1951,19 +3308,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 <section id="backgrounds-gallery" class="section-card" aria-labelledby="backgrounds-gallery-title">
-  <h2 id="backgrounds-gallery-title">Projects Illustrations</h2>
+  <h2 id="backgrounds-gallery-title">Illustrations de projets</h2>
   <p class="muted" style="margin-top:8px; color:#475569">
-    Click any image to enlarge.
+    Cliquez sur une image pour l'agrandir.
   </p>
 
   <div class="bg-grid">
     <figure>
       <img src="fond1.png"  loading="lazy" alt="Background 1">
-      <figcaption>Example ANSYS Fluent</figcaption>
+      <figcaption>Exemple ANSYS Fluent</figcaption>
     </figure>
     <figure>
       <img src="fond2.png"  loading="lazy" alt="Background 2">
-      <figcaption>Example ANSYS Fluent</figcaption>
+      <figcaption>Exemple ANSYS Fluent</figcaption>
     </figure>
     <figure>
       <img src="fond3.png"  loading="lazy" alt="Background 3">
@@ -2397,19 +3754,19 @@ document.addEventListener('DOMContentLoaded', function(){
           </figure>
           <figure class="portfolio-item">
             <img src="logo_kth.png" alt="Projet 3">
-            <figcaption>Projet 3 — CAD Project at KTH</figcaption>
+            <figcaption>Projet 3 : Projet CAO à KTH</figcaption>
           </figure>
           <figure class="portfolio-item">
             <img src="logo_ense3.png" alt="Projet 4">
-            <figcaption>Projet 4 — Blog professionnel</figcaption>
+            <figcaption>Projet 4 : Blog professionnel</figcaption>
           </figure>
           <figure class="portfolio-item">
             <img src="logo_cat.png" alt="Projet 5">
-            <figcaption>Projet 5 — Blog professionnel</figcaption>
+            <figcaption>Projet 5 : Blog professionnel</figcaption>
           </figure>
           <figure class="portfolio-item">
             <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Projet 6">
-            <figcaption>Projet 6 — Blog professionnel</figcaption>
+            <figcaption>Projet 6 : Blog professionnel</figcaption>
           </figure>
         </div>
       </section>
@@ -2452,6 +3809,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </video>
   </div>
 </section>
+
 
 
 
