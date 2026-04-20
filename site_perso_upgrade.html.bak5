@@ -393,17 +393,16 @@ html, body{
   section.hero,
   #home  { order: 0; }
   #fresque { order: 10; }
-  #education { order: 35; }
-  #me-program { order: 65; }
+  #education { order: 15; }
   #edf { order: 20; }
-  #entretien { order: 25; }
+  #entretien { order: 30; }
   #rapports { order: 40; }
   #recommandations { order: 50; }
   #projects { order: 60; }
   #software-skills { order: 70; }
-  #backgrounds-gallery { display: none !important; }
-  #skate-gallery { display: none !important; }
-  #trott-gallery { display: none !important; }
+  #backgrounds-gallery { order: 80; }
+  #skate-gallery { order: 90; }
+  #trott-gallery { order: 95; }
   #contact { order: 100; }
   /* les <style> et <script> directs de <main> sont invisibles, order 0 */
 </style>
@@ -462,11 +461,11 @@ document.addEventListener('DOMContentLoaded', function(){
   <a href="#fresque">Parcours</a>
   <a href="#edf">EDF</a>
   <a href="#entretien">Q / R</a>
-  <a href="#education">Formation</a>
   <a href="#rapports">Rapports</a>
   <a href="#recommandations">Recommandations</a>
   <a href="#projects">Projets</a>
   <a href="#software-skills">Compétences</a>
+  <a href="#backgrounds-gallery">Illustrations</a>
 </nav>
     </header>
 
@@ -477,27 +476,28 @@ document.addEventListener('DOMContentLoaded', function(){
     <span class="eyebrow" aria-label="Localisation et disponibilité">EU & FR • Disponible</span>
     <h1 id="hero-title"><strong>Alexandre Labau</strong></h1>
     <p class="sub">
-      Titulaire d’un double diplôme international en Mécanique et Énergétique entre KTH École Royale Polytechnique de Stockholm et Grenoble INP, ENSE3, je souhaite contribuer activement à la transition énergétique, plus spécifiquement dans le domaine de la production d’énergie nucléaire.
+      Titulaire d’un double diplôme de master en Génie Mécanique et Énergétique (KTH Stockholm / Grenoble INP – ENSE3), je cherche à mettre mes compétences en simulation, qualification d’équipements et rédaction technique au service de projets industriels exigeants dans l’énergie et l’ingénierie avancée.
     </p>
 
 <div class="cta cta--stack">
-  <a class="btn btn--ghost" href="reco_pfe.pdf" target="_blank" rel="noopener">ESA : Lettre de recommandation</a>
+  <!-- CV -->
+  <a class="btn btn--ghost" href="resume_alexandre_labau.pdf" download aria-label="Télécharger mon CV (EN)">Télécharger mon CV (EN)</a>
+  <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV (FR)">Télécharger mon CV (FR)</a>
   <a class="btn btn--ghost" href="appreciation_pfe.pdf" target="_blank" rel="noopener">ESA : Fiche d'appréciation</a>
-  <a class="btn btn--ghost" href="reco_pony.pdf" target="_blank" rel="noopener">Pony : Lettre de recommandation</a>
+  <a class="btn btn--ghost" href="reco_pfe.pdf" target="_blank" rel="noopener">ESA : Lettre de recommandation</a>
   <a class="btn btn--ghost" href="reco_kth.pdf" target="_blank" rel="noopener">KTH : Lettre de recommandation</a>
   <a class="btn btn--ghost" href="reco_ense3.pdf" target="_blank" rel="noopener">Grenoble INP ENSE3 : Lettre de recommandation</a>
   <a class="btn btn--ghost" href="reco_upc.pdf" target="_blank" rel="noopener">UPC : Lettre de recommandation</a>
-  <a class="btn btn--ghost" href="cv_alexandre_labau.pdf" download aria-label="Télécharger mon CV (FR)">Télécharger mon CV (FR)</a>
-  <a class="btn btn--ghost" href="resume_alexandre_labau.pdf" download aria-label="Télécharger mon CV (EN)">Télécharger mon CV (EN)</a>
+  <a class="btn btn--ghost" href="reco_pony.pdf" target="_blank" rel="noopener">Pony : Lettre de recommandation</a>
 </div>
 
 
   </div>
 
   <figure>
-    <img class="profile-pic" src="photo_ESTEC.jpg" alt="Présentation de l’application de Maintenance Prédictive devant des industriels lors d’une conférence européenne à l’ESTEC" />
+    <img class="profile-pic" src="photo_ESTEC.jpg" alt="Soutenance de thèse au Centre européen de recherche et de technologie spatiale (ESTEC)" />
     <figcaption>
-      Présentation de l’application de Maintenance Prédictive développée devant des industriels et des experts du domaine lors d’une conférence européenne aux Pays-Bas (ESTEC)
+      Soutenance de thèse au Centre européen de recherche et de technologie spatiale (ESTEC)
     </figcaption>
 
     <!-- ===== CONTACT (infos) SOUS la photo ===== -->
@@ -633,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function(){
     padding-right: 0;
   }
 
-  /* Liste verticale, une carte par ligne */
+  /* Liste verticale – une carte par ligne */
   .edu-list{
     display: grid;
     grid-template-columns: 1fr;
@@ -1004,7 +1004,8 @@ document.addEventListener('DOMContentLoaded', function(){
         { name: "GKN", logo: "logo_gkn.png" },
         { name: "Airbus", logo: "logo_airbus.png" },
         { name: "MT Aerospace", logo: "Logo_MT_Aerospace.png" },
-        { name: "AVIO", logo: "logo_avio.png" }
+        { name: "AVIO", logo: "", initial: "AV", color: "#1D3C6E" },
+        { name: "SCADA", logo: "", initial: "SC", color: "#6B21A8" }
       ],
       image: "", downloads: []
     },
@@ -1526,7 +1527,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <!-- S10 EN -->
       <div class="me-panel" id="me-en-s10" role="tabpanel" aria-labelledby="tab-en-s10" hidden>
         <ul class="me-list">
-          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/5eus6pfe" target="_blank" rel="noopener">Final Project, Internship / Master Thesis (5EUS6PFE)</a></li>
+          <li><a href="https://ense3.grenoble-inp.fr/en/study-at-ense3/5eus6pfe" target="_blank" rel="noopener">Final Project – Internship / Master Thesis (5EUS6PFE)</a></li>
         </ul>
       </div>
     </div>
@@ -1611,16 +1612,16 @@ document.addEventListener('DOMContentLoaded', function(){
   </p>
 
   <div class="edf-tabs" role="tablist" aria-label="Sections EDF" style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
-    <button class="edf-tab is-active" role="tab" aria-selected="true" aria-controls="edf-nucleaire" id="tab-edf-nucleaire">Projets Nucléaires</button>
+    <button class="edf-tab is-active" role="tab" aria-selected="true" aria-controls="edf-hercule" id="tab-edf-hercule">Projet Hercule</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-nucleaire" id="tab-edf-nucleaire">Projets Nucléaires</button>
     <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-orga" id="tab-edf-orga">Organisation</button>
     <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-dipde" id="tab-edf-dipde">La DIPDE</button>
-    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-hercule" id="tab-edf-hercule">Projet Hercule</button>
   </div>
 
   <div class="edf-panels" style="margin-top:14px">
 
     <!-- ===== HERCULE ===== -->
-    <div id="edf-hercule" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-hercule" hidden>
+    <div id="edf-hercule" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-hercule">
       <div class="edf-card">
         <h3 style="color:#0ea5a4; margin-bottom:12px">Naissance, ambitions, controverses et épilogue</h3>
 
@@ -1709,7 +1710,7 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
 
     <!-- ===== NUCLEAIRE ===== -->
-    <div id="edf-nucleaire" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-nucleaire">
+    <div id="edf-nucleaire" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-nucleaire" hidden>
       <div class="edf-card">
         <h3 style="color:#0ea5a4; margin-bottom:16px">Les projets nucléaires majeurs d'EDF</h3>
 
@@ -1761,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <!-- Image EPR2 / Penly -->
           <figure class="edf-figure">
             <img
-              src="centrale de penly.jpg"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Centrale_nucl%C3%A9aire_de_Penly.jpg/640px-Centrale_nucl%C3%A9aire_de_Penly.jpg"
               alt="Centrale nucléaire de Penly, site retenu pour la première paire EPR2"
               class="edf-img-wide"
             />
@@ -1822,6 +1823,7 @@ document.addEventListener('DOMContentLoaded', function(){
             <span class="edf-source-label">Références :</span>
             <a class="edf-source-link" href="https://www.nuward.com/" target="_blank" rel="noopener">NUWARD (site officiel)</a>
             <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/NUWARD" target="_blank" rel="noopener">Wikipedia : NUWARD</a>
+            <a class="edf-source-link" href="https://www.sfen.org/rgn/nuward-le-smr-francais/" target="_blank" rel="noopener">SFEN : NUWARD, le SMR français</a>
           </div>
         </div>
       </div>
@@ -1832,6 +1834,14 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="edf-card">
         <h3 style="color:#0ea5a4; margin-bottom:12px">Nouvelle architecture depuis avril 2024</h3>
 
+        <figure class="edf-figure">
+          <img
+            src="organigramme.png"
+            alt="Nouvelle organisation nucléaire EDF (avril 2024)"
+            class="edf-img-wide"
+          />
+          <figcaption class="edf-figcaption">Nouvelle architecture des activités nucléaires EDF depuis le 1<sup>er</sup> avril 2024</figcaption>
+        </figure>
 
         <p style="color:#475569; margin-bottom:16px">Au 1<sup>er</sup> avril 2024, EDF a réorganisé ses activités nucléaires autour de quatre grandes directions, dans une logique de regroupement par grands métiers.
           <a class="edf-inline-link" href="https://www.sfen.org/rgn/edf-devoile-une-nouvelle-organisation-des-activites-nucleaires/" target="_blank" rel="noopener">SFEN : Nouvelle organisation EDF →</a>
@@ -1858,7 +1868,7 @@ document.addEventListener('DOMContentLoaded', function(){
         </div>
         <div class="edf-sources" style="margin-top:14px">
           <span class="edf-source-label">Références :</span>
-          <a class="edf-source-link" href="https://www.edf.fr/edf-recrute/nos-metiers/decouvrez-les-metiers-du-groupe-edf/rejoignez-nos-equipes-de-la-production-et-de-l-ingenierie-nucleaire" target="_blank" rel="noopener">EDF : Métiers de la production nucléaire</a>
+          <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/notre-groupe/nos-metiers/production-nucleaire" target="_blank" rel="noopener">EDF : Métiers de la production nucléaire</a>
           <a class="edf-source-link" href="https://www.sfen.org/rgn/edf-devoile-une-nouvelle-organisation-des-activites-nucleaires/" target="_blank" rel="noopener">SFEN : Réorganisation EDF avril 2024</a>
         </div>
       </div>
@@ -1906,7 +1916,7 @@ document.addEventListener('DOMContentLoaded', function(){
             <div class="edf-mission-card">
               <strong>Grand Carénage</strong>
               <p>Programme de prolongation de vie au-delà de 40 ans (et potentiellement 60 ans). RGV, NPGV, M2C, Visites Décennales.</p>
-              <a class="edf-inline-link" href="https://www.edf.fr/groupe-edf/innover/rd-un-savoir-faire-mondial/la-rd-et-le-grand-carenage" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px">EDF : Grand Carénage →</a>
+              <a class="edf-inline-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/notre-parc-nucleaire/le-grand-carenage" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px">EDF : Grand Carénage →</a>
             </div>
             <div class="edf-mission-card">
               <strong>Expertise environnementale</strong>
@@ -1953,7 +1963,7 @@ document.addEventListener('DOMContentLoaded', function(){
         <div class="edf-subsection" style="background:linear-gradient(135deg,#f0f9ff 0%,#e0f2fe 100%); border:1px solid #bae6fd; border-radius:12px; padding:18px 20px; margin-top:16px">
           <h4 style="color:#0369A1; margin-bottom:10px">Pourquoi la qualification nucléaire m'intéresse</h4>
           <p style="color:#0f172a; line-height:1.65">
-            La rigueur de la qualification nucléaire me parle directement : à l'ESA, j'ai travaillé selon des référentiels normatifs stricts (ECSS), rédigé des rapports techniques en anglais et démontré la tenue de systèmes en conditions opérationnelles. Transposer cette approche aux équipements REP , robinetterie, production de froid, moto-ventilateurs , est pour moi une continuité logique. La DIPDE/MCP représente un environnement où la rigueur documentaire, la maîtrise des exigences et la compréhension des systèmes mécaniques convergent : trois axes au cœur de ma formation et de mon expérience.
+            La rigueur de la qualification nucléaire me parle directement : à l'ESA, j'ai travaillé selon des référentiels normatifs stricts (ECSS), rédigé des rapports techniques en anglais et démontré la tenue de systèmes en conditions opérationnelles. Transposer cette approche aux équipements REP — robinetterie, production de froid, moto-ventilateurs — est pour moi une continuité logique. La DIPDE/MCP représente un environnement où la rigueur documentaire, la maîtrise des exigences et la compréhension des systèmes mécaniques convergent : trois axes au cœur de ma formation et de mon expérience.
           </p>
           <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:12px">
             <span style="background:#0ea5a4;color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600">Référentiels RCC-M / RCC-E</span>
@@ -1996,7 +2006,7 @@ document.addEventListener('DOMContentLoaded', function(){
 /* Images */
 .edf-figure { margin:16px 0; text-align:center }
 .edf-img-wide {
-  width:100%; max-height:320px; object-fit:contain; border-radius:12px; background:#f8fbfc;
+  width:100%; max-height:280px; object-fit:cover; border-radius:12px;
   border:1px solid #e6eef2; box-shadow:0 6px 18px rgba(15,23,42,.08);
   display:block; margin:0 auto;
 }
@@ -2170,7 +2180,7 @@ document.addEventListener('DOMContentLoaded', function(){
   <div class="skills-group">
     <h3 class="skills-heading">CAD & FEM</h3>
     <!-- Note cotation fonctionnelle -->
-    <p style="font-size:.85rem; color:#475569; margin-bottom:10px">Cotation fonctionnelle et tolérancement selon les normes <strong style="color:#0f172a">ISO GPS</strong> (Geometrical Product Specifications) , appliqués en conception industrielle et modélisation mécanique.</p>
+    <p style="font-size:.85rem; color:#475569; margin-bottom:10px">Cotation fonctionnelle et tolérancement selon les normes <strong style="color:#0f172a">ISO GPS</strong> (Geometrical Product Specifications) — appliqués en conception industrielle et modélisation mécanique.</p>
     <div class="skills-grid">
       <a class="skill-card" href="https://www.solidworks.com/" target="_blank" rel="noopener" aria-label="SOLIDWORKS">
         <img src="logo_solidworks.png" alt="SOLIDWORKS"><span class="skill-label">SOLIDWORKS</span>
@@ -2373,7 +2383,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="reco-row" role="group" aria-labelledby="reco-ense3-title">
       <img class="reco-logo" src="logo_ense3.png" alt="ENSE3">
       <div class="reco-content">
-        <div class="reco-title" id="reco-ense3-title">Grenoble INP, ENSE3 : Lettre de recommandation</div>
+        <div class="reco-title" id="reco-ense3-title">Grenoble INP – ENSE3 : Lettre de recommandation</div>
         <div class="reco-sub">Olivier Métais, Président de la société Hydrotechnique de France et Ancien directeur de l'ENSE3, Grenoble INP</div>
         <div class="reco-links">
   <a class="reco-link" href="reco_ense3.pdf" target="_blank" rel="noopener">Ouvrir la lettre de recommandation</a>
@@ -2499,101 +2509,79 @@ document.addEventListener('DOMContentLoaded', function(){
   <div class="qa-list" style="margin-top:20px">
 
     <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Pourquoi EDF ?</button>
+      <button class="qa-q" aria-expanded="false">Pourquoi avez-vous choisi l'ingénierie mécanique et énergétique ?</button>
       <div class="qa-a" hidden>
-        <p>Mon intérêt pour EDF ne découle pas d'une candidature de convenance : il est le prolongement logique d'un parcours qui m'a progressivement orienté vers les systèmes énergétiques critiques. Durant mon stage à l'ESA, j'ai évolué dans une organisation où chaque décision technique était documentée, tracée et justifiable devant un comité d'experts. Cette culture de la rigueur, que certains pourraient percevoir comme une contrainte administrative, est en réalité ce qui confère aux livrables une robustesse durable. EDF est l'organisation qui pousse cette exigence à son niveau le plus élevé dans le secteur de l'énergie : 56 réacteurs en exploitation, une surveillance permanente de l'ASNR, des référentiels techniques (RCC-M, RCC-E, RCC-CW) qui encadrent chaque acte d'ingénierie du dimensionnement à la maintenance.</p>
-        <p>Au-delà du cadre réglementaire, c'est la profondeur des enjeux qui me motive. EDF est au centre de la décision énergétique française pour les quarante prochaines années : la prolongation du parc existant dans le cadre du Grand Carénage, la conception des EPR2, la montée en puissance des SMR, la gestion du combustible et des déchets. Contribuer à ces sujets en tant qu'ingénieur de qualification, c'est participer à des décisions qui ont un impact mesurable sur la disponibilité du parc, sur la sûreté des installations, et in fine sur la production d'une énergie bas carbone à grande échelle.</p>
-        <p>C'est aussi un employeur qui permet de construire une expertise sur la durée. Dans un secteur aussi technique et réglementé, la valeur d'un ingénieur ne se révèle pas en quelques mois. Elle se construit au fil des dossiers, des retours d'expérience et de la maîtrise progressive des référentiels. Je cherche précisément ce type d'environnement, celui où la profondeur prime sur la rapidité de rotation, et où le travail bien fait laisse une trace dans la vie du parc.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Pourquoi le nucléaire ?</button>
-      <div class="qa-a" hidden>
-        <p>A l'issue de mon double diplôme en mécanique et énergétique, plusieurs secteurs m'étaient accessibles : l'aéronautique, l'industrie automobile, les énergies renouvelables. J'ai pris le temps d'analyser chacun en fonction de critères précis : la complexité technique des systèmes, l'impact réel sur la transition énergétique, et la profondeur d'expertise que le secteur permet de développer sur le long terme. Le nucléaire s'est imposé au terme de cette réflexion pour des raisons que je peux défendre avec des données.</p>
-        <p>Sur la question de la transition énergétique d'abord : si l'objectif est de produire massivement une énergie décarbonée, pilotable et disponible en base, le nucléaire est, à ce jour, la seule technologie mature capable de répondre à cette exigence à grande échelle. Ce n'est pas une position idéologique, c'est le constat que font les scénarios de l'IPCC, de RTE et de l'Agence internationale de l'énergie. Dans ce contexte, le travail d'un ingénieur nucléaire n'est pas dissociable des enjeux climatiques : contribuer à la disponibilité d'un réacteur, c'est contribuer à une production d'énergie sans émissions de CO2.</p>
-        <p>Sur la dimension technique ensuite : un réacteur à eau pressurisée est un système d'une complexité remarquable, à la jonction de la thermo-hydraulique, de la mécanique des structures, de la chimie des fluides primaires, des matériaux sous irradiation, de la sûreté-sûreté et de la réglementation. Ces disciplines sont précisément celles que j'ai étudiées et pratiquées. Je sais que je n'en ferai pas le tour en deux ans, et c'est exactement ce que je recherche dans un environnement professionnel : la certitude qu'il restera encore beaucoup à apprendre dans dix ans.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Pourquoi la DIPDE ?</button>
-      <div class="qa-a" hidden>
-        <p>La DIPDE (Direction Ingénierie du Parc en Exploitation) est la direction qui gère techniquement le parc nucléaire en fonctionnement, depuis la modification des équipements jusqu'à la qualification des matériels de remplacement, en passant par la gestion des obsolescences et la prolongation de durée de vie dans le cadre des réexamens périodiques. C'est une direction où l'ingénierie produit des résultats tangibles sur le parc existant, avec un impact direct et mesurable sur la disponibilité des tranches.</p>
-        <p>Ce qui me distingue d'un profil purement académique, c'est une culture de la traçabilité et de la documentation rigoureuse, acquise à l'ESA dans un contexte normatif exigeant (normes ECSS). La DIPDE fonctionne dans un cadre similaire : chaque modification, chaque qualification, chaque dérogation s'appuie sur un dossier structuré, soumis à revue technique et validé selon des processus définis. Les référentiels sont différents (RCC-M, RCC-E, guides ASNR), mais la logique de démonstration, de traçabilité et de validation est identique à celle que j'ai pratiquée.</p>
-        <p>La diversité des sujets traités à la DIPDE est également un facteur déterminant : gestion des obsolescences matérielles, qualifications initiales ou de remplacement suite à modification, travaux de Grand Carénage, préparation des Visites Décennales. Cette variété garantit une montée en compétences progressive et multidimensionnelle, évitant l'enfermement dans un périmètre trop restreint dès les premières années. C'est le type d'environnement dans lequel je suis le plus efficace : exigeant techniquement, diversifié dans les sujets, et porteur d'une responsabilité réelle sur des installations en exploitation.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Pourquoi le service MCP ?</button>
-      <div class="qa-a" hidden>
-        <p>Le service MCP (Mécanique, Climatisation et Production de froid) couvre la robinetterie de sûreté, les groupes moto-ventilateurs et les systèmes de production de froid pour l'ensemble du parc REP en exploitation. Ce périmètre d'équipements est, par nature, au coeur de mes compétences de formation : mécanique des fluides, transferts thermiques, simulation thermo-hydraulique, modélisation mécanique des structures. Je ne découvre pas les phénomènes physiques en jeu, ce qui me permettra de me concentrer plus rapidement sur la maîtrise des processus de qualification propres au nucléaire.</p>
-        <p>La qualification des équipements MCP représente un enjeu technique particulièrement élevé. Démontrer qu'une vanne de sûreté ou qu'un groupe moto-ventilateur remplit sa fonction en conditions normales, mais aussi incidentelles et accidentelles (APRP, LOCA, séisme de niveau VD3 ou VD4, transitoires thermiques) exige une démarche rigoureuse, combinant analyse des sollicitations enveloppantes, choix de la méthode de démonstration (calcul, essai, similitude), constitution du dossier justificatif et validation par les parties prenantes. C'est précisément ce type de démarche structurée que j'ai pratiqué à l'ESA, dans un cadre normatif différent (ECSS) mais fondé sur les mêmes principes méthodologiques.</p>
-        <p>Enfin, travailler au MCP sur des équipements appartenant aux systèmes de sauvegarde ou aux circuits primaires implique un niveau d'exigence maximal en matière de sûreté. Je ne perçois pas cela comme une difficulté supplémentaire, mais comme la garantie que le travail produit a une signification réelle et que la qualité de chaque dossier compte véritablement. C'est dans ce type de contexte que je suis le plus motivé pour travailler.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Pourquoi la qualification ?</button>
-      <div class="qa-a" hidden>
-        <p>La qualification d'équipements est, à mon sens, l'une des disciplines les plus rigoureuses de l'ingénierie industrielle. Elle consiste à établir, de manière formelle et traçable, la preuve qu'un équipement est apte à remplir sa fonction de sûreté dans les conditions les plus sévères de son environnement d'exploitation. Cette démarche requiert une maîtrise simultanée des phénomènes physiques en jeu, des méthodes de calcul et d'essai, et des référentiels normatifs applicables. C'est précisément cette combinaison entre rigueur technique et rigueur documentaire qui m'attire dans ce métier.</p>
-        <p>Mon expérience à l'ESA m'a exposé à une logique très proche, appliquée aux équipements spatiaux selon les normes ECSS. Pour chaque sujet traité, la démarche imposait d'identifier les conditions enveloppantes (thermiques, vibratoires, mécaniques), de définir les critères d'acceptation, de choisir la méthode de démonstration appropriée (analyse par éléments finis sous ANSYS, simulation thermique sous Fluent, essais de validation), puis de constituer un rapport justificatif complet, soumis à revue par des ingénieurs seniors. Cette ossature méthodologique se transpose directement à la qualification nucléaire. Les référentiels diffèrent (RCC-M, RCC-E, guides de l'ASNR), mais la logique de démonstration reste identique.</p>
-        <p>Ce qui me convainc définitivement, c'est que la qualification ne laisse pas de place à l'approximation. Soit la démonstration est établie conformément au référentiel applicable, soit elle ne l'est pas. Cette absence d'ambiguïté est, selon moi, ce qui confère au métier sa valeur et sa crédibilité. Travailler dans un cadre où la qualité du raisonnement et la solidité du dossier sont les seuls critères d'évaluation, c'est un environnement dans lequel je me retrouve pleinement.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Quels sont vos projets à long terme ?</button>
-      <div class="qa-a" hidden>
-        <p>Mon projet professionnel s'inscrit dans une perspective de long terme au sein du groupe EDF. Ce positionnement n'est pas une réponse de circonstance : dans un secteur aussi technique et réglementé que le nucléaire, la valeur d'un ingénieur est indissociable de la profondeur de l'expertise accumulée au fil des années. Construire cette expertise prend du temps, et elle ne prend toute sa valeur que si l'on reste suffisamment longtemps pour la mettre au service de projets complexes.</p>
-        <p>A moyen terme, mon objectif est d'atteindre une autonomie réelle sur les processus de qualification au service MCP : maîtriser les référentiels applicables (RCC-M, RCC-E, guides ASNR), conduire des analyses de qualification avec rigueur, et contribuer activement à des dossiers sur des projets de modification ou de remplacement d'équipements. Sur un horizon de cinq à dix ans, j'aspire à prendre une responsabilité technique plus large : référent sur un domaine d'équipement, coordination de qualifications dans le cadre de programmes pluriannuels tels que le Grand Carénage ou les Visites Décennales, ou encore participation à des sujets transverses impliquant plusieurs services de la DIPDE ou de la DISC.</p>
-        <p>Je suis également disponible géographiquement et ouvert à la mobilité interne, qu'il s'agisse d'un changement de service, de direction ou de site. Ce qui oriente mes choix sur le long terme, c'est la nature des sujets traités et le niveau d'exigence technique de l'environnement. EDF offre, à cet égard, une variété de trajectoires professionnelles que peu d'entreprises peuvent proposer dans le secteur industriel.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Quelle est l'expérience qui vous a le plus marqué ?</button>
-      <div class="qa-a" hidden>
-        <p>Mon stage de fin d'études à l'ESA (Agence Spatiale Européenne) au centre ESTEC, aux Pays-Bas, est l'expérience qui a le plus structuré ma façon d'aborder le travail d'ingénieur. Pendant neuf mois, j'ai conduit deux sujets simultanément dans le département des systèmes de test au sol. Le premier concernait des études thermo-hydrauliques sur des équipements de conditionnement thermique pour satellites : modélisation des échanges de chaleur et des écoulements sous ANSYS Fluent, confrontation des résultats aux données expérimentales, rédaction de rapports justificatifs structurés. Le second consistait à développer une application Python de maintenance prédictive, basée sur des algorithmes de machine learning, pour surveiller et anticiper les défaillances des équipements mécaniques rotatifs de l'ESTEC. Cette application est aujourd'hui utilisée en production par l'équipe.</p>
-        <p>Ce que j'ai retiré de cette expérience dépasse la dimension technique. Travailler dans une organisation où chaque livrable est soumis à revue par des ingénieurs expérimentés, où les hypothèses doivent être justifiées et les résultats tracés, m'a profondément ancré dans une culture de la rigueur documentaire que je n'envisage plus comme une contrainte, mais comme une exigence naturelle de sérieux. J'ai également appris à fonctionner efficacement dans un environnement multiculturel, en produisant l'intégralité de mes livrables en anglais, dans un contexte où la précision du langage technique est aussi importante que la justesse du calcul.</p>
-        <p>Le stage a été prolongé de plusieurs semaines à la demande de mon équipe, en raison de l'avancement des deux sujets. C'est la confirmation qui m'a convaincu que j'étais capable de répondre aux attentes d'un environnement d'ingénierie exigeant, et que la rigueur que j'apporte au travail était non seulement attendue, mais reconnue. C'est cette même exigence que je souhaite apporter à EDF, dans un contexte où les enjeux de sûreté lui confèrent une dimension encore plus critique.</p>
-      </div>
-    </div>
-
-    <div class="qa-item">
-      <button class="qa-q" aria-expanded="false">Comment décririez-vous votre profil en quelques mots ?</button>
-      <div class="qa-a" hidden>
-        <p>Je suis ingénieur en mécanique et énergétique, avec une formation duale (Grenoble INP ENSE3 et KTH Stockholm) qui m'a exposé à des approches complémentaires : thermo-hydraulique, transferts thermiques et mécanique des fluides à Grenoble ; mécanique des structures, aéroélasticité et simulation avancée à Stockholm. Sur le plan des outils, j'ai pratiqué la modélisation par éléments finis sous ANSYS, la simulation CFD sous Fluent, et le développement Python dans un cadre industriel. Ce sont des compétences que j'ai appliquées à des problèmes concrets, pas seulement exercées en travaux pratiques.</p>
-        <p>Ce qui me différencie pour un poste d'ingénieur qualification, c'est avant tout une culture documentaire naturelle. A l'ESA, je n'ai jamais produit un résultat sans le justifier dans un rapport structuré, conforme aux exigences du référentiel applicable. Pour moi, un calcul sans dossier associé n'est pas un livrable, c'est une note de travail. Cette façon d'aborder les choses est fondamentale dans le contexte de la qualification nucléaire, où la traçabilité des décisions techniques est une exigence réglementaire non négociable.</p>
-        <p>Je n'ai pas encore l'expérience des référentiels nucléaires (RCC-M, RCC-E, guides de l'ASNR). Je le dis sans ambiguïté, parce que je pense qu'il est contre-productif de prétendre à une maîtrise que l'on n'a pas. En revanche, j'ai prouvé à l'ESA que je suis capable de m'approprier rapidement un cadre normatif exigeant depuis zéro, d'en intégrer la logique, et de produire des dossiers de qualité dans ce cadre. C'est précisément ce que je m'engage à faire pour les référentiels nucléaires, avec la conviction que les bases techniques et la culture du travail sont déjà là.</p>
+        <p>Dès le lycée, j'étais fasciné par la manière dont la physique se traduit en systèmes concrets : moteurs, structures, flux thermiques. L'ingénierie mécanique et énergétique est à l'intersection de ces disciplines : elle permet de concevoir des objets réels tout en maîtrisant les phénomènes physiques qui les gouvernent. La double formation KTH / ENSE3 m'a offert une vision à la fois rigoureuse sur le plan théorique et très orientée vers l'application industrielle.</p>
       </div>
     </div>
 
     <div class="qa-item">
       <button class="qa-q" aria-expanded="false">Pourquoi un double diplôme franco-suédois ?</button>
       <div class="qa-a" hidden>
-        <p>Le choix du double diplôme entre Grenoble INP ENSE3 et KTH (Kungliga Tekniska Högskolan, Stockholm) répondait à une volonté délibérée d'élargir le spectre de ma formation au-delà de ce que proposait un seul établissement. Grenoble INP ENSE3 offre une excellente formation en mécanique des fluides, transferts thermiques et énergétique, avec une culture très appliquée et orientée vers les problèmes industriels. KTH, classée parmi les premières écoles polytechniques d'Europe du Nord, développait des modules en aéroélasticité, mécanique des structures avancée, composites structuraux et dynamique des lanceurs spatiaux. Ces deux enseignements sont complémentaires et leur combinaison m'a permis d'acquérir une vision à la fois thermique et structurelle des systèmes mécaniques complexes.</p>
-        <p>Sur le plan académique, le parcours m'a également conduit à produire trois rapports de recherche approfondis à KTH, sur des sujets allant de l'aéroélasticité des structures ailaires à l'évaluation comparative des performances des lanceurs européens, en passant par la mécanique des matériaux composites fibreux. Ces travaux m'ont appris à mener une analyse rigoureuse sur un sujet ouvert, à identifier les hypothèses structurantes, à sélectionner les méthodes appropriées et à présenter des conclusions justifiées devant des enseignants-chercheurs exigeants. Ces compétences sont directement transférables à la rédaction de dossiers de qualification.</p>
-        <p>L'expérience d'une année à Stockholm, dans un environnement académique et multiculturel où l'anglais est la langue de travail exclusive, a également renforcé mon aisance à évoluer dans des contextes internationaux et à collaborer avec des ingénieurs de formations et de cultures très diverses. Dans un groupe comme EDF, qui entretient des relations avec des partenaires européens et internationaux dans le cadre de projets comme le programme EPR2, cette dimension est, à mon sens, un atout complémentaire non négligeable.</p>
+        <p>Je voulais sortir de ma zone de confort académique et culturelle. KTH est l'une des meilleures écoles d'ingénieurs en Europe du Nord, avec une approche très axée sur la recherche et l'innovation. Combiner cela avec la rigueur de Grenoble INP – ENSE3 sur les aspects énergétiques m'a paru idéal pour me préparer à des environnements internationaux exigeants. Apprendre à travailler en anglais au quotidien, dans des équipes multiculturelles, a été une richesse autant personnelle que professionnelle.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Quelle est l'expérience qui vous a le plus marqué ?</button>
+      <div class="qa-a" hidden>
+        <p>Sans hésitation, mon stage de fin d'études à l'Agence Spatiale Européenne (ESA, ESTEC, Pays-Bas). J'y ai travaillé sur des études thermo-hydrauliques d'équipements spatiaux et développé une application Python de maintenance prédictive aujourd'hui sous licence ESA. La rigueur imposée par les normes spatiales, la qualité des ingénieurs rencontrés et la dimension internationale de l'environnement ont été déterminants dans ma vision du métier. Ce stage a été prolongé, ce qui reflète la confiance que l'équipe m'a accordée.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Qu'est-ce qui vous a motivé à postuler à l'ESA ?</button>
+      <div class="qa-a" hidden>
+        <p>L'ESA représente pour moi l'archétype de l'organisation où l'excellence technique et la coopération internationale se rejoignent. J'avais déjà réalisé un stage en simulation CFD à Barcelone et un projet étudiant à KTH supervisé par un astronaute, ce qui m'avait donné le goût des défis techniques ambitieux dans des contextes multiculturels. Intégrer l'ESA était une étape logique dans cette progression. Le fait d'y avoir développé un outil concret, aujourd'hui utilisé en production, confirme que ce choix était le bon.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment décririez-vous votre profil en quelques mots ?</button>
+      <div class="qa-a" hidden>
+        <p>Je suis un ingénieur polyvalent, à l'aise aussi bien sur des sujets de simulation numérique (CFD, FEM, thermo-hydraulique) que sur du développement Python ou de la conception CAO. Ma formation m'a appris à m'adapter vite à de nouveaux environnements techniques. J'aime travailler en équipe internationale, coordonner des projets et livrer des résultats concrets. Mon expérience entrepreneuriale avec Buck Engineering m'a aussi appris la rigueur de la relation client et la gestion de projets en autonomie complète.</p>
       </div>
     </div>
 
     <div class="qa-item">
       <button class="qa-q" aria-expanded="false">Parlez-moi de votre expérience chez Buck Engineering.</button>
       <div class="qa-a" hidden>
-        <p>J'ai fondé Buck Engineering en septembre 2025 afin de proposer des prestations d'ingénierie à des clients professionnels et des particuliers : études de conception assistée par ordinateur, analyses mécaniques, conseils techniques et gestion de projets d'ingénierie. Cette démarche entrepreneuriale m'a exposé à une réalité que les stages en entreprise n'offrent pas toujours : la responsabilité pleine et entière d'un livrable devant un client, depuis la définition du besoin jusqu'à la livraison finale.</p>
-        <p>L'une des leçons les plus importantes que j'en ai tirées concerne la gestion des exigences. Rédiger un cahier des charges n'est pas une formalité : c'est l'acte fondateur du projet. Il s'agit de formaliser avec précision le besoin du client, d'identifier les contraintes fonctionnelles et techniques, de définir les critères d'acceptation du livrable et de documenter les hypothèses retenues. Lorsque le besoin évolue en cours d'intervention, il faut gérer l'écart par rapport au cahier des charges initial, produire une note de modification, et valider les changements avec le client avant de les intégrer. Ce processus est structurellement analogue à la gestion des modifications d'équipements en contexte nucléaire, où chaque évolution par rapport à la configuration de référence doit être instruite, justifiée et validée.</p>
-        <p>Cette expérience m'a également confronté à la dimension de la conformité en fin de projet : est-ce que le livrable répond point par point aux exigences spécifiées dans le cahier des charges ? Cette vérification systématique, que j'effectuais naturellement à la clôture de chaque prestation, est la transposition directe de ce qu'un ingénieur de qualification applique à ses dossiers. Avoir intégré cette culture en situation réelle, avec les conséquences concrètes qu'implique la satisfaction ou l'insatisfaction d'un client, me semble une préparation pertinente à l'environnement de rigueur d'un service comme le MCP.</p>
+        <p>Buck Engineering est l'auto-entreprise que j'ai fondée en septembre 2025 pour proposer des prestations d'ingénierie à des particuliers et des entreprises : conception CAO, études mécaniques, conseils techniques. Cette démarche m'a appris à gérer l'intégralité d'un projet : de la rédaction du devis à la livraison, en passant par la relation client et l'adaptation au besoin. C'est une expérience qui complète ma formation académique en m'ancrant dans la réalité économique et commerciale du métier d'ingénieur.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Quelles sont vos ambitions professionnelles à moyen terme ?</button>
+      <div class="qa-a" hidden>
+        <p>Je souhaite intégrer une organisation internationale : industrie spatiale, énergies renouvelables ou grands groupes industriels : où je pourrai travailler sur des problématiques techniques complexes avec des équipes multiculturelles. À moyen terme, j'aimerais évoluer vers des rôles de coordination technique ou de chef de projet, en m'appuyant sur mes compétences en simulation, CAO et développement Python. L'expérience ESA m'a montré que je peux apporter une valeur ajoutée réelle dans ce type d'environnement.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Comment gérez-vous le travail en équipe internationale ?</button>
+      <div class="qa-a" hidden>
+        <p>J'ai eu la chance de travailler dans des contextes très variés : une équipe de 25 personnes à KTH pour le projet de véhicule pressurisé, une équipe ESA plurinationale aux Pays-Bas, ou encore l'association BIE à Grenoble où j'assurais l'accueil d'étudiants internationaux. Ces expériences m'ont appris que la communication claire, la flexibilité culturelle et la rigueur dans les livrables sont les clés d'un travail collaboratif efficace, quelle que soit la nationalité des membres de l'équipe.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Pourquoi la qualification d'équipements nucléaires vous attire-t-elle ?</button>
+      <div class="qa-a" hidden>
+        <p>Ce qui m'attire dans la qualification nucléaire, c'est la rigueur totale qu'elle impose : chaque équipement doit démontrer sa capacité à remplir sa fonction de sûreté en conditions normales, incidentelles et accidentelles, selon des référentiels précis comme les RCC-M et RCC-E. C'est une démarche qui ressemble à celle que j'ai pratiquée à l'ESA, où les normes ECSS fixaient des exigences très strictes sur la documentation, la traçabilité et la démonstration de conformité. Passer de l'espace au nucléaire, c'est appliquer la même logique de rigueur dans un contexte industriel différent mais tout aussi exigeant. La dimension "sûreté critique" me motive : chaque dossier a un impact réel sur la fiabilité d'un réacteur en exploitation.</p>
       </div>
     </div>
 
     <div class="qa-item">
       <button class="qa-q" aria-expanded="false">Comment démontrez-vous la tenue d'un équipement en conditions accidentelles ?</button>
       <div class="qa-a" hidden>
-        <p>La démarche commence par la constitution du dossier de base de qualification : identification précise de l'équipement et de sa fonction de sûreté, recensement de l'environnement d'installation (zone sismique, température ambiante, humidité, rayonnement), et définition des sollicitations enveloppantes à démontrer. Dans le cadre du parc REP français, ces sollicitations couvrent classiquement le séisme de dimensionnement (niveaux VD1 à VD4 selon la criticité de la fonction), les sollicitations thermiques et de pression liées à un accident de perte de réfrigérant primaire (APRP ou LOCA), les effets d'un accident de Masse Froide (AMF), et les sollicitations combinées lorsque ces événements surviennent simultanément. Chaque enveloppe doit être justifiée et approuvée par les parties prenantes avant le lancement de la démonstration.</p>
-        <p>La stratégie de démonstration est ensuite choisie en fonction des caractéristiques de l'équipement, de son historique de qualification et des données disponibles. La qualification par le calcul (méthode par éléments finis ou analytique) est privilégiée pour les composants dont le comportement est bien modélisable, comme les structures métalliques ou les tuyauteries. La qualification par essais est retenue lorsque le comportement de l'équipement est difficile à simuler numériquement : c'est le cas des joints, des matériaux polymères, des actionneurs électromécaniques ou de tout équipement dont la défaillance dépend de phénomènes couplés complexes (vibrations, vieillissement thermique, irradiation). La qualification par similitude permet de s'appuyer sur un dossier existant pour un équipement de même famille, sous réserve de démontrer que les différences sont non pénalisantes. En pratique, une qualification complète combine souvent ces trois approches de façon complémentaire.</p>
-        <p>J'ai appliqué une démarche méthodologiquement très proche à l'ESA : analyse par éléments finis sous ANSYS pour démontrer la tenue structurelle d'équipements de test au sol sous charges vibratoires et thermiques, définition des conditions enveloppantes conformément aux normes ECSS-E-ST-32, et rédaction de rapports de qualification structurés incluant la description du modèle, les hypothèses retenues, les résultats commentés et la conclusion de qualification. La structure d'un tel rapport est identique à celle d'un dossier de qualification nucléaire régi par les référentiels RCC-M ou les guides de l'ASNR. La transposition est directe, même si l'approfondissement des référentiels nucléaires constitue naturellement la première étape de ma montée en compétences au sein du service MCP.</p>
+        <p>La démonstration de tenue en conditions accidentelles repose sur une approche structurée en plusieurs étapes. D'abord, on définit précisément les conditions enveloppantes : séismes (par rapport à la carte sismique du site), accidents de perte de réfrigérant primaire (APRP), variations de température et de pression. Ensuite, on mobilise les leviers de démonstration : calcul analytique ou par éléments finis pour les contraintes mécaniques, essais de qualification (vieillissement accéléré, essais sous conditions LOCA), et retour d'expérience sur des équipements similaires. Dans mon expérience à l'ESA, j'ai appliqué une démarche analogue pour des équipements spatiaux : enveloppes thermiques et vibratoires, analyses FEM sous ANSYS, et rédaction de rapports de qualification. Transposer cela aux équipements REP est une continuité directe.</p>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <button class="qa-q" aria-expanded="false">Donnez un exemple de rédaction technique pour un cahier des charges ou une prescription.</button>
+      <div class="qa-a" hidden>
+        <p>Chez Buck Engineering, j'ai rédigé des cahiers des charges pour des clients industriels : identification des fonctions attendues, définition des critères d'acceptation, description des contraintes d'environnement et de compatibilité. À l'ESA, j'ai produit des rapports techniques en anglais sur des études thermo-hydrauliques, avec une structure normée : objet, référentiels applicables, hypothèses, résultats et conclusions. Pour la rédaction de prescriptions, mon expérience KTH sur le véhicule pressurisé m'a amené à formaliser des exigences de conception en conformité avec des normes structurelles. Ce que je retiens de ces expériences, c'est que la qualité d'un document technique tient à trois choses : la précision des exigences, la traçabilité des hypothèses et la clarté des conclusions. Ce sont exactement ces critères que j'appliquerais dans la rédaction de dossiers de qualification ou de modification chez EDF.</p>
       </div>
     </div>
 
@@ -3038,6 +3026,21 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_aeroelasticity.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Aéroélasticité appliquée à l'avion Windex</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fibre_composites.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Matériaux composites fibreux : Analyse et conception : Problème de conception : FEM &amp; Python</span>
+    </a>
+
+    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fundamentals.pdf" target="_blank">
+      <img class="report-logo" src="logo_kth.png" alt="KTH">
+      <span>Évaluation comparative des lanceurs réutilisables et à usage unique</span>
+    </a>
+
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_refrig.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
       <span>Échangeurs de chaleur : système de réfrigération</span>
@@ -3101,7 +3104,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_human_spaceflight.pdf" target="_blank">
       <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Conception d’un taxi spatial pour deux personnes (vol habité)</span>
+      <span>Conception de véhicule : Taxi spatial pour deux personnes : Vol habité</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_abaqus.pdf" target="_blank">
@@ -3111,12 +3114,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_skate.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Conception et modélisation mécanique d’un skateboard</span>
+      <span>Conception et modélisation mécanique : Skateboard</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_trott.pdf" target="_blank">
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
-      <span>Conception et modélisation mécanique d’une trottinette</span>
+      <span>Conception et modélisation mécanique : Trottinette</span>
     </a>
 
     <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_ense3_poutre.pdf" target="_blank">
@@ -3133,22 +3136,6 @@ document.addEventListener('DOMContentLoaded', function(){
       <img class="report-logo" src="logo_ense3.png" alt="ENSE3">
       <span>Energy Issues: Hercule Project</span>
     </a>
-
-    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_aeroelasticity.pdf" target="_blank">
-      <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Aéroélasticité appliquée à l'avion Windex</span>
-    </a>
-
-    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fibre_composites.pdf" target="_blank">
-      <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Matériaux composites fibreux, analyse et conception (FEM &amp; Python)</span>
-    </a>
-
-    <a class="report-card" href="https://github.com/AlexandreLabau/AlexandreLabau.github.io/releases/download/v2/report_kth_fundamentals.pdf" target="_blank">
-      <img class="report-logo" src="logo_kth.png" alt="KTH">
-      <span>Évaluation comparative des lanceurs réutilisables et à usage unique</span>
-    </a>
-
 
 
   </div>
