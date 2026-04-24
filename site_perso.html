@@ -33,7 +33,31 @@ html, body{
 
     /* Layout */
     .container{max-width:1300px;margin:0 auto;padding:24px}
-    header{display:flex;justify-content:space-between;align-items:center;padding:12px 0;flex-wrap:nowrap;gap:8px}
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 0;flex-wrap:nowrap;gap:8px;
+
+      /* ── STICKY HEADER ─────────────────────────────────────── */
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      /* Fond blanc semi-transparent + verre dépoli */
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(18px) saturate(1.6);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      /* Déborde du container pour couvrir toute la largeur */
+      margin-top:   -24px;          /* flush avec la barre du navigateur */
+      margin-left:  -24px;
+      margin-right: -24px;
+      padding-left:  24px;
+      padding-right: 24px;
+      width: calc(100% + 48px);
+      /* Coins arrondis en bas uniquement */
+      border-radius: 0 0 14px 14px;
+      /* Ligne de séparation + ombre discrète */
+      border-bottom: 1px solid rgba(14,165,164,0.15);
+      box-shadow: 0 4px 18px rgba(15,23,42,0.08);
+    }
     .brand{font-weight:700;font-size:clamp(.9rem,1.5vw,1.05rem);white-space:nowrap;flex-shrink:0}
     nav { display:flex; flex-wrap:nowrap; gap:3px; align-items:center; overflow-x:auto; scrollbar-width:none }
     nav::-webkit-scrollbar{display:none}
@@ -54,6 +78,7 @@ html, body{
   isolation: isolate;
   border: 1px solid #e6eef2;
   border-radius: 18px;
+  margin-top: 36px;
   padding: clamp(22px, 4vw, 36px);
   background:
     radial-gradient(1200px 600px at 90% -10%, rgba(14,165,164,.12), transparent 60%),
@@ -385,6 +410,84 @@ html, body{
 .cta--docs .btn--ghost{ font-size:.9rem; padding:8px 12px }
 
 
+
+/* ═══ SOUS-SECTIONS EDF ═══ */
+.norme-grid { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.norme-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 13px; border-radius:999px;
+  font-size:.8rem; font-weight:600; border:1.5px solid transparent;
+  cursor:default; transition:transform .15s, box-shadow .15s;
+}
+.norme-badge:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.1); }
+.norme-badge.cat-reg  { background:#fef3c7; border-color:#f59e0b; color:#92400e; }
+.norme-badge.cat-code { background:#eff6ff; border-color:#3b82f6; color:#1e40af; }
+.norme-badge.cat-intl { background:#f0fdf4; border-color:#22c55e; color:#166534; }
+.norme-badge.cat-qual { background:#fdf4ff; border-color:#a855f7; color:#6b21a8; }
+.norme-badge.cat-inst { background:#fff1f2; border-color:#f43f5e; color:#9f1239; }
+.norme-legend { display:flex; flex-wrap:wrap; gap:12px; margin:14px 0 4px; }
+.norme-leg-item { display:flex; align-items:center; gap:6px; font-size:.78rem; color:#475569; }
+.norme-leg-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+
+.qual-steps { display:flex; flex-direction:column; margin-top:20px; position:relative; }
+.qual-steps::before {
+  content:''; position:absolute; left:21px; top:0; bottom:0;
+  width:2px; background:linear-gradient(180deg,#0ea5a4,#7c3aed); border-radius:2px;
+}
+.qual-step { display:flex; gap:16px; padding-bottom:24px; position:relative; }
+.qual-step:last-child { padding-bottom:0; }
+.qual-num {
+  width:44px; height:44px; border-radius:50%; flex-shrink:0; z-index:1;
+  background:#fff; border:2px solid #0ea5a4;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:.9rem; color:#0ea5a4;
+  transition:background .2s, color .2s;
+}
+.qual-step:hover .qual-num { background:#0ea5a4; color:#fff; }
+.qual-body { padding-top:9px; }
+.qual-title { font-weight:700; font-size:.93rem; color:#0f172a; }
+.qual-desc  { font-size:.83rem; color:#475569; margin-top:4px; line-height:1.55; }
+.qual-tags  { display:flex; flex-wrap:wrap; gap:5px; margin-top:7px; }
+.qual-tag   { font-size:.73rem; padding:2px 8px; border-radius:999px; background:rgba(14,165,164,.1); color:#0ea5a4; font-weight:600; }
+
+.surete-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin-top:18px; }
+.surete-card {
+  background:#fff; border:1px solid #e6eef2; border-radius:13px; padding:18px;
+  transition:box-shadow .2s, transform .2s;
+}
+.surete-card:hover { box-shadow:0 6px 18px rgba(15,23,42,.09); transform:translateY(-2px); }
+.surete-icon { font-size:1.6rem; margin-bottom:8px; }
+.surete-card h4 { font-size:.92rem; font-weight:700; color:#0f172a; margin-bottom:5px; }
+.surete-card p  { font-size:.82rem; color:#475569; line-height:1.55; }
+.surete-banner {
+  margin-top:16px; padding:12px 16px; border-radius:11px;
+  background:linear-gradient(135deg,rgba(14,165,164,.07),rgba(124,58,237,.05));
+  border:1px solid rgba(14,165,164,.2);
+  font-size:.85rem; color:#334155; line-height:1.6;
+}
+
+.veille-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:14px; margin-top:18px; }
+.veille-card {
+  border-radius:13px; padding:18px; border:1px solid transparent;
+  position:relative; overflow:hidden;
+  transition:transform .2s, box-shadow .2s;
+}
+.veille-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(15,23,42,.09); }
+.veille-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.veille-card.vc-1 { background:#fefce8; border-color:#fde047; } .veille-card.vc-1::before { background:#eab308; }
+.veille-card.vc-2 { background:#eff6ff; border-color:#bfdbfe; } .veille-card.vc-2::before { background:#3b82f6; }
+.veille-card.vc-3 { background:#f0fdf4; border-color:#bbf7d0; } .veille-card.vc-3::before { background:#22c55e; }
+.veille-card.vc-4 { background:#fdf4ff; border-color:#e9d5ff; } .veille-card.vc-4::before { background:#a855f7; }
+.veille-card.vc-5 { background:#f0f9ff; border-color:#bae6fd; } .veille-card.vc-5::before { background:#0ea5e9; }
+.veille-tag { display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#64748b; margin-bottom:7px; }
+.veille-card h4 { font-size:.92rem; font-weight:700; color:#0f172a; margin-bottom:5px; }
+.veille-card p  { font-size:.82rem; color:#475569; line-height:1.55; }
+
+@media(max-width:700px){
+  .surete-grid, .veille-grid { grid-template-columns:1fr; }
+  .qual-steps::before { left:17px; }
+  .qual-num { width:36px; height:36px; font-size:.82rem; }
+}
   </style>
 
 <style id="section-order">
@@ -477,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <span class="eyebrow" aria-label="Localisation et disponibilité">EU & FR • Disponible</span>
     <h1 id="hero-title"><strong>Alexandre Labau</strong></h1>
     <p class="sub">
-      Titulaire d’un double diplôme international en Mécanique et Énergétique entre KTH École Royale Polytechnique de Stockholm et Grenoble INP, ENSE3, je souhaite contribuer activement à la transition énergétique, plus spécifiquement dans le domaine de la production d’énergie nucléaire.
+      Titulaire d’un double diplôme international d’ingénieur en Mécanique et Énergétique entre KTH École Royale Polytechnique de Stockholm et Grenoble-INP, ENSE3, je souhaite contribuer activement à la transition énergétique, plus spécifiquement dans le domaine de la production d’énergie nucléaire.
     </p>
 
 <div class="cta cta--stack">
@@ -963,7 +1066,7 @@ document.addEventListener('DOMContentLoaded', function(){
       type: "milestone",
       start: "Juin 2024",
       end: "",
-      title: "Fin du Double Diplôme",
+      title: "Fin des cours du Double Diplôme",
       entity: "KTH / ENSE3",
       site: "",
       missions: [],
@@ -1010,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', function(){
     },
     {
       id: 7,
-      start: "Sept 2025", end: "Mars 2026",
+      start: "Sept 2025", end: "Mai 2026",
       title: "Création auto-entreprise, gestion et prestation de services",
       entity: "Buck Engineering", site: "France",
       missions: [
@@ -1025,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', function(){
     },
     {
       id: 8,
-      start: "Nov 2025", end: "Mars 2026",
+      start: "Nov 2025", end: "Mai 2026",
       title: "Ingénieur mécanique et qualification",
       entity: "Pony", site: "France",
       missions: [
@@ -1611,10 +1714,13 @@ document.addEventListener('DOMContentLoaded', function(){
   </p>
 
   <div class="edf-tabs" role="tablist" aria-label="Sections EDF" style="margin-top:16px; display:flex; gap:8px; flex-wrap:wrap;">
-    <button class="edf-tab is-active" role="tab" aria-selected="true" aria-controls="edf-nucleaire" id="tab-edf-nucleaire">Projets Nucléaires</button>
-    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-orga" id="tab-edf-orga">Organisation</button>
-    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-dipde" id="tab-edf-dipde">La DIPDE</button>
-    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-hercule" id="tab-edf-hercule">Projet Hercule</button>
+    <button class="edf-tab is-active" role="tab" aria-selected="true"  aria-controls="edf-orga"          id="tab-edf-orga">Organisation d'EDF</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-nucleaire"    id="tab-edf-nucleaire">Projets Nucléaires</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-dipde"        id="tab-edf-dipde">La DIPDE &amp; MCP</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-carenage"     id="tab-edf-carenage">Grand Carénage</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-materiaux"    id="tab-edf-materiaux">Matériaux &amp; R&amp;D</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-ecs"          id="tab-edf-ecs">ECS post-Fukushima</button>
+    <button class="edf-tab" role="tab" aria-selected="false" aria-controls="edf-hercule"      id="tab-edf-hercule">Projet Hercule</button>
   </div>
 
   <div class="edf-panels" style="margin-top:14px">
@@ -1683,7 +1789,7 @@ document.addEventListener('DOMContentLoaded', function(){
             </ul>
             <div class="edf-sources" style="margin-top:8px">
               <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Projet_Hercule" target="_blank" rel="noopener">Wikipedia : Projet Hercule (détails syndicaux)</a>
-              <a class="edf-source-link" href="https://www.connaissancedesenergies.org/questions-et-reponses-energies/qu-est-ce-que-le-projet-hercule" target="_blank" rel="noopener">Connaissance des Énergies : Projet Hercule</a>
+              <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/Projet_Hercule" target="_blank" rel="noopener">Wikipedia : Projet Hercule</a>
             </div>
           </div>
         </div>
@@ -1697,11 +1803,11 @@ document.addEventListener('DOMContentLoaded', function(){
             </div>
             <div class="edf-timeline-item">
               <span class="edf-badge">28 juillet 2021</span>
-              <p>Le gouvernement annonce l'échec des négociations avec la Commission Européenne. <a class="edf-inline-link" href="https://www.connaissancedesenergies.org/afp/edf-hercule-enterr-par-le-gouvernement" target="_blank" rel="noopener">Connaissance des Énergies →</a></p>
+              <p>Le gouvernement annonce l'échec des négociations avec la Commission Européenne. <a class="edf-inline-link" href="https://fr.wikipedia.org/wiki/Projet_Hercule" target="_blank" rel="noopener">Wikipedia : Projet Hercule →</a></p>
             </div>
             <div class="edf-timeline-item">
               <span class="edf-badge">6 juillet 2022</span>
-              <p>La Première Ministre Élisabeth Borne annonce la renationalisation complète d'EDF à 100 %. <a class="edf-inline-link" href="https://www.opera-energie.com/renationalisation-edf/" target="_blank" rel="noopener">Opéra Énergie →</a></p>
+              <p>La Première Ministre Élisabeth Borne annonce la renationalisation complète d'EDF à 100 %. <a class="edf-inline-link" href="https://www.opera-energie.com/projet-hercule-edf/" target="_blank" rel="noopener">Opéra Énergie →</a></p>
             </div>
           </div>
         </div>
@@ -1711,9 +1817,10 @@ document.addEventListener('DOMContentLoaded', function(){
     <!-- ===== NUCLEAIRE ===== -->
     <div id="edf-nucleaire" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-nucleaire">
       <div class="edf-card">
-        <h3 style="color:#0ea5a4; margin-bottom:16px">Les projets nucléaires majeurs d'EDF</h3>
+        <h3 style="color:#0ea5a4; margin-bottom:12px">Les projets nucléaires majeurs d'EDF</h3>
 
         <!-- Flamanville 3 -->
+        <div id="proj-flamanville" class="proj-panel">
         <div class="edf-project-block edf-project--blue">
           <div class="edf-project-header">
             <span class="edf-project-dot" style="background:#3b82f6"></span>
@@ -1751,8 +1858,11 @@ document.addEventListener('DOMContentLoaded', function(){
           </div>
         </div>
 
+        </div><!-- fin proj-flamanville -->
+
         <!-- EPR2 -->
-        <div class="edf-project-block edf-project--green" style="margin-top:16px">
+        <div id="proj-epr2" class="proj-panel" style="margin-top:20px">
+        <div class="edf-project-block edf-project--green">
           <div class="edf-project-header">
             <span class="edf-project-dot" style="background:#16a34a"></span>
             <h4>EPR2 : La prochaine génération (programme des 6 réacteurs)</h4>
@@ -1796,8 +1906,11 @@ document.addEventListener('DOMContentLoaded', function(){
           </div>
         </div>
 
+        </div><!-- fin proj-epr2 -->
+
         <!-- NUWARD -->
-        <div class="edf-project-block edf-project--yellow" style="margin-top:16px">
+        <div id="proj-nuward" class="proj-panel" style="margin-top:20px">
+        <div class="edf-project-block edf-project--yellow">
           <div class="edf-project-header">
             <span class="edf-project-dot" style="background:#d97706"></span>
             <h4>NUWARD : Le SMR français</h4>
@@ -1824,6 +1937,7 @@ document.addEventListener('DOMContentLoaded', function(){
             <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/NUWARD" target="_blank" rel="noopener">Wikipedia : NUWARD</a>
           </div>
         </div>
+        </div><!-- fin proj-nuward -->
       </div>
     </div>
 
@@ -1945,7 +2059,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <div class="edf-sources" style="margin-top:10px">
             <span class="edf-source-label">Sources :</span>
             <a class="edf-source-link" href="https://fr.wikipedia.org/wiki/R%C3%A9acteur_%C3%A0_eau_pressuris%C3%A9e" target="_blank" rel="noopener">Wikipedia : Réacteur à eau pressurisée (REP)</a>
-            <a class="edf-source-link" href="https://www.asnr.fr/publications/" target="_blank" rel="noopener">ASNR : Publications réglementaires</a>
+            <a class="edf-source-link" href="https://www.asnr.fr/information/les-publications-de-lasnr" target="_blank" rel="noopener">ASNR : Publications réglementaires</a>
           </div>
         </div>
 
@@ -1969,6 +2083,151 @@ document.addEventListener('DOMContentLoaded', function(){
 
     </script>
 
+
+    <!-- ===== GRAND CARENAGE ===== -->
+    <div id="edf-carenage" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-carenage" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4;margin-bottom:10px">Grand Carénage &amp; Prolongation du parc</h3>
+        <p style="font-size:.87rem;color:#475569;line-height:1.6">Lancé officiellement en 2014, le Grand Carénage est le programme de maintenance exceptionnelle le plus ambitieux de l'histoire d'EDF. Son objectif : maintenir en exploitation les 56 réacteurs du parc français au-delà de leur durée de vie initiale de 40 ans, en visant 60 ans voire 80 ans pour certaines tranches. L'enjeu économique et énergétique est colossal : chaque réacteur prolongé de 20 ans représente environ 100 à 140 TWh supplémentaires, soit l'équivalent de plusieurs années de consommation d'une grande région.</p>
+
+        <div class="edf-subsection" style="margin-top:18px">
+          <h4>Ampleur financière et calendrier</h4>
+          <p>Le coût initial estimé à 50 milliards d'euros sur la décennie 2014–2025 a été revu à la hausse, dépassant 100 milliards d'euros sur l'ensemble du programme jusqu'en 2035. Ce budget finance des chantiers simultanés sur l'ensemble des sites : remplacement des générateurs de vapeur (GV), réfection des circuits de sauvegarde, mise à niveau post-Fukushima (noyau dur), remplacement des câbles de classe 1E et remise à neuf des tableaux électriques de sûreté.</p>
+        </div>
+
+        <div class="edf-subsection" style="margin-top:14px">
+          <h4>Impact direct sur la qualification</h4>
+          <p>La prolongation au-delà de l'enveloppe de qualification initiale impose une démarche systématique de requalification pour l'ensemble des matériels concernés. Les Visites Décennales de 3e et 4e cycle (VD3/VD4) sont les jalons réglementaires clés : l'ASN conditionne l'autorisation de poursuite d'exploitation à la démonstration que chaque équipement de classe 1E reste dans son enveloppe de qualification, ou qu'une nouvelle qualification a été obtenue. Les équipements les plus sensibles sont les câbles électriques, les capteurs, les vannes motorisées et les tableaux de commande, soumis à un vieillissement combiné thermique, radiatif et humide.</p>
+        </div>
+
+        <div class="edf-stat-row" style="margin-top:18px">
+          <div class="edf-stat"><div class="edf-stat-val">56</div><div class="edf-stat-lbl">Réacteurs concernés</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">&gt;100 Md€</div><div class="edf-stat-lbl">Investissement total</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">VD3 / VD4</div><div class="edf-stat-lbl">Jalons réglementaires</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">60–80 ans</div><div class="edf-stat-lbl">Durée de vie visée</div></div>
+        </div>
+
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Sources :</span>
+          <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/le-grand-carenage" target="_blank" rel="noopener">EDF : Le Grand Carénage (officiel)</a>
+          <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/le-grand-carenage" target="_blank" rel="noopener">EDF : Grand Carénage (détail)</a>
+          <a class="edf-source-link" href="https://www.asnr.fr/" target="_blank" rel="noopener">ASNR : Contrôle des réacteurs en exploitation</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ECS POST-FUKUSHIMA ===== -->
+    <div id="edf-ecs" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-ecs" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4;margin-bottom:10px">Évaluations Complémentaires de Sûreté &amp; Renforcement sismique</h3>
+        <p style="font-size:.87rem;color:#475569;line-height:1.6">L'accident de Fukushima Daiichi en mars 2011 — provoqué par un séisme de magnitude 9 suivi d'un tsunami — a profondément modifié les exigences de sûreté dans tous les pays nucléaires. En France, l'ASN a immédiatement demandé aux exploitants de réaliser des Évaluations Complémentaires de Sûreté (ECS), conduisant à une révision significative des marges de qualification du parc.</p>
+
+        <div class="edf-subsection" style="margin-top:18px">
+          <h4>Le noyau dur : une nouvelle ligne de défense</h4>
+          <p>Suite aux ECS, EDF a déployé sur chaque site un « noyau dur » d'équipements résistant à des agressions extrêmes dépassant les bases de conception initiales. Ce noyau comprend un groupe électrogène ultime (GEU), une réserve d'eau ultime (REU), un local de crise sismiquement renforcé et des équipements mobiles d'intervention. Chacun de ces équipements a dû faire l'objet d'une qualification sismique renforcée, selon des spectres de plancher révisés à la hausse. La FARN (Force d'Action Rapide Nucléaire), créée en 2014 et forte de 350 personnes réparties sur quatre bases régionales, peut intervenir sur n'importe quel site français en moins de 24 heures avec des moyens qualifiés.</p>
+        </div>
+
+        <div class="edf-subsection" style="margin-top:14px">
+          <h4>Révision des enveloppes de qualification sismique</h4>
+          <p>Les spectres sismiques de référence (SMHV — Séisme Majoré de Sécurité renforcé) ont été réévalués pour tenir compte des connaissances sismologiques actualisées. En conséquence, environ 15 000 équipements de classe 1E ont dû être revérifiés pour leur tenue aux nouvelles sollicitations. Certains ont pu être maintenus par analyse de marges, d'autres ont nécessité une requalification complète par essais sur table vibrante ou par calcul ANSYS. Ce travail considérable a mobilisé les équipes de qualification d'EDF, de Framatome et de nombreux fournisseurs pendant plusieurs années.</p>
+        </div>
+
+        <div class="edf-stat-row" style="margin-top:18px">
+          <div class="edf-stat"><div class="edf-stat-val">2011</div><div class="edf-stat-lbl">Déclenchement ECS</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">~15 000</div><div class="edf-stat-lbl">Équipements revérifiés</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">FARN</div><div class="edf-stat-lbl">350 personnes / 4 bases</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">SMHV+</div><div class="edf-stat-lbl">Spectres renforcés</div></div>
+        </div>
+
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Sources :</span>
+          <a class="edf-source-link" href="https://www.asnr.fr/" target="_blank" rel="noopener">ASNR : Évaluations post-Fukushima</a>
+          <a class="edf-source-link" href="https://www.edf.fr/groupe-edf/produire-une-energie-respectueuse-du-climat/lenergie-nucleaire/la-surete-nucleaire/la-force-d-action-rapide-du-nucleaire" target="_blank" rel="noopener">EDF : La FARN</a>
+          <a class="edf-source-link" href="https://www.iaea.org/topics/fukushima-daiichi-nuclear-accident" target="_blank" rel="noopener">IAEA : Fukushima Daiichi</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MATERIAUX & R&D ===== -->
+    <div id="edf-materiaux" class="edf-panel" role="tabpanel" aria-labelledby="tab-edf-materiaux" hidden>
+      <div class="edf-card">
+        <h3 style="color:#0ea5a4;margin-bottom:10px">Matériaux &amp; R&amp;D — Qualification des matériaux avancés</h3>
+        <p style="font-size:.87rem;color:#475569;line-height:1.6">La qualification d'un équipement nucléaire repose sur la compréhension précise des mécanismes de vieillissement des matériaux qui le constituent. Sans maîtrise de la physique de dégradation, il est impossible de justifier la tenue à long terme d'un composant soumis simultanément à la chaleur, au rayonnement et à la chimie du circuit primaire.</p>
+
+        <div class="edf-subsection" style="margin-top:18px">
+          <h4>Vieillissement des câbles électriques (XLPE, EPR, EPDM)</h4>
+          <p>Les câbles de classe 1E représentent l'un des enjeux majeurs du Grand Carénage : présents par centaines de kilomètres dans chaque centrale, ils assurent l'alimentation et la signalisation des équipements de sûreté. Leur qualification suit la norme IEC 60780 et repose sur le vieillissement accéléré (méthode d'Arrhenius) : exposition à des températures élevées et à des doses de rayonnement cumulées représentant la durée de vie visée. La validité prédictive de ces essais accélérés face aux conditions réelles est un sujet actif de recherche, notamment au CEA et à l'IRSN, car les mécanismes d'oxydation thermo-oxydatifs diffèrent selon la formulation des polymères.</p>
+        </div>
+
+        <div class="edf-subsection" style="margin-top:14px">
+          <h4>Aciers du circuit primaire : fragilisation et corrosion</h4>
+          <p>Les aciers inoxydables austénitiques (316L) et les aciers faiblement alliés (16MND5) du circuit primaire sont soumis à la fragilisation sous irradiation neutronique et à la corrosion sous contrainte intergranulaire (IGSCC). Le suivi de ces phénomènes, réalisé via des programmes de surveillance (capsules d'irradiation en cuve, prélèvements lors des VD), conditionne directement la justification de la tenue mécanique des composants et donc leur qualification à long terme. Les alliages de gainage combustible (Zircaloy-4, M5, M-MDA) font l'objet d'une surveillance spécifique pour leur résistance à l'oxydation en conditions normales et en conditions LOCA.</p>
+        </div>
+
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Sources :</span>
+          <a class="edf-source-link" href="https://www.asnr.fr/information/les-publications-de-lasnr" target="_blank" rel="noopener">ASNR : Publications (ex-IRSN/ASN fusionnés)</a>
+          <a class="edf-source-link" href="https://www.cea.fr/energie" target="_blank" rel="noopener">CEA : Énergie nucléaire</a>
+          <a class="edf-source-link" href="https://www.asnr.fr/" target="_blank" rel="noopener">ASNR : Surveillance des réacteurs</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ITER & FUSION — SUPPRIME ===== -->
+    <div id="edf-iter" style="display:none" hidden>
+      <div>
+        <p style="font-size:.87rem;color:#475569;line-height:1.6">ITER (International Thermonuclear Experimental Reactor) est le plus grand projet scientifique collaboratif de l'histoire : 35 nations, un budget dépassant 20 milliards d'euros, et un objectif vertigineux — démontrer la faisabilité scientifique et technique de la fusion nucléaire contrôlée en atteignant un facteur Q supérieur à 10 (10 fois plus d'énergie produite que consommée). Installé à Cadarache (Bouches-du-Rhône), ITER représente aussi pour moi un sujet d'intérêt particulier, à la frontière entre mécanique structurale, physique des matériaux et qualification nucléaire.</p>
+
+        <div class="edf-subsection" style="margin-top:18px">
+          <h4>Un défi inédit de qualification mécanique</h4>
+          <p>Le tokamak d'ITER est une machine de 19 000 tonnes dont les composants doivent fonctionner simultanément à des températures allant de −269 °C (aimants supraconducteurs Nb₃Sn refroidis à l'hélium liquide, champ de 15 T) à plus de 150 millions de degrés (plasma). Les composants face au plasma — première paroi en béryllium, diverteur en tungstène — reçoivent des flux neutroniques de 14 MeV d'une intensité inédite, générant des dommages dans les matériaux (déplacements par atome, dpa) sans équivalent dans les réacteurs de fission actuels. Qualifier ces matériaux pour des décennies de service constitue un programme de R&D à part entière, impliquant le CEA, le Fusion for Energy et des laboratoires du monde entier.</p>
+        </div>
+
+        <div class="edf-subsection" style="margin-top:14px">
+          <h4>De ITER à DEMO : vers la commercialisation</h4>
+          <p>ITER doit ouvrir la voie à DEMO (DEMOnstration Power Plant), premier réacteur à fusion produisant de l'électricité sur le réseau, prévu à l'horizon 2050–2060. La qualification des systèmes de DEMO devra s'appuyer sur les normes existantes (ASME III, RCC-MX) adaptées aux spécificités de la fusion, notamment pour les systèmes de confinement, les systèmes de refroidissement (lithium-6 pour la tritiation) et les systèmes de contrôle-commande. Ce travail de normalisation est en cours au niveau européen (EUROfusion) et constitue une opportunité de carrière pour les ingénieurs qualification formés sur le parc de fission.</p>
+        </div>
+
+        <div class="edf-stat-row" style="margin-top:18px">
+          <div class="edf-stat"><div class="edf-stat-val">35</div><div class="edf-stat-lbl">Nations partenaires</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">&gt;20 Md€</div><div class="edf-stat-lbl">Budget total</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">Q &gt; 10</div><div class="edf-stat-lbl">Objectif énergétique</div></div>
+          <div class="edf-stat"><div class="edf-stat-val">15 T</div><div class="edf-stat-lbl">Champ magnétique</div></div>
+        </div>
+
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Sources :</span>
+          <a class="edf-source-link" href="https://www.iter.org/" target="_blank" rel="noopener">ITER Organization (officiel)</a>
+          <a class="edf-source-link" href="https://fusionforenergy.europa.eu/" target="_blank" rel="noopener">Fusion for Energy — UE</a>
+          <a class="edf-source-link" href="https://www.cea.fr/Pages/domaines-recherche/energies/energie-nucleaire/fusion-nucleaire.aspx" target="_blank" rel="noopener">CEA : Fusion nucléaire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== JUMEAUX NUMERIQUES — SUPPRIME ===== -->
+    <div id="edf-digital" style="display:none" hidden>
+      <div>
+        <p style="font-size:.87rem;color:#475569;line-height:1.6">La transformation digitale du secteur nucléaire ouvre des perspectives inédites pour la qualification des équipements. L'intégration de modèles numériques haute-fidélité dans les processus de qualification — jusqu'ici largement fondés sur des essais physiques coûteux — pourrait réduire significativement les délais et les coûts tout en augmentant la précision des analyses. C'est un sujet que je suis avec attention, à la croisée de ma formation en simulation numérique (ANSYS, Python) et de mon projet professionnel dans la qualification nucléaire.</p>
+
+        <div class="edf-subsection" style="margin-top:18px">
+          <h4>Qu'est-ce qu'un jumeau numérique en contexte nucléaire ?</h4>
+          <p>Un jumeau numérique est un modèle numérique dynamique d'un équipement physique, alimenté en temps réel par les données capteurs et capable de simuler son comportement dans des conditions normales et accidentelles. Appliqué à la qualification, cela signifie pouvoir simuler un essai LOCA, un séisme ou un cycle de vieillissement accéléré sans mobiliser un laboratoire d'essais accrédité. Des projets comme ANSYS Twin Builder, Siemens Xcelerator ou le programme « Digital Nuclear » d'EDF explorent cette voie. L'enjeu est considérable pour le Grand Carénage : au lieu de soumettre physiquement des câbles ou des capteurs à des cycles de vieillissement de plusieurs mois, un modèle calibré pourrait extrapoler leur comportement sur 60 ans à partir de données d'irradiation et de température réelles.</p>
+        </div>
+
+        <div class="edf-subsection" style="margin-top:14px">
+          <h4>Enjeux réglementaires : vers des DQ certifiables</h4>
+          <p>La question centrale est la reconnaissance des résultats de simulation par l'ASNR dans un Dossier de Qualification. Aujourd'hui, les calculs numériques sont acceptés comme méthode de qualification analytique (ANSYS, SYSTUS), mais sous conditions strictes de validation du modèle. L'extension à des jumeaux numériques plus complexes, intégrant des phénomènes multi-physiques couplés (thermique–mécanique–radiatif), nécessite l'élaboration d'un cadre réglementaire adapté. Des groupes de travail au sein de l'AIEA (IAEA-TECDOC), de l'OCDE/NEA et de la NRC américaine travaillent à définir les exigences de validation et de vérification (V&V) pour ces modèles. Le BIM nucléaire — gestion de la maquette numérique de la centrale sur toute sa durée de vie — est un complément naturel pour assurer la traçabilité des modifications et la cohérence des dossiers de qualification sur 60 ans.</p>
+        </div>
+
+        <div class="edf-sources" style="margin-top:14px">
+          <span class="edf-source-label">Sources :</span>
+          <a class="edf-source-link" href="https://www.iaea.org/topics/digital-instrumentation-and-control" target="_blank" rel="noopener">IAEA : Digital I&amp;C in Nuclear</a>
+          <a class="edf-source-link" href="https://www.nrc.gov/reading-rm/doc-collections/reg-guides/power-reactors/rg/01-152/index.html" target="_blank" rel="noopener">NRC : Software V&amp;V (RG 1.152)</a>
+          <a class="edf-source-link" href="https://www.ansys.com/en-gb/industries/energy/nuclear" target="_blank" rel="noopener">ANSYS : Solutions nucléaires</a>
+        </div>
+      </div>
+    </div>
+
   </div><!-- fin .edf-panels -->
 </section>
 
@@ -1987,6 +2246,16 @@ document.addEventListener('DOMContentLoaded', function(){
 .edf-tab:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(14,165,164,.15) }
 .edf-tab.is-active { background:#0ea5a4; color:#fff; border-color:#0ea5a4; box-shadow:0 8px 22px rgba(14,165,164,.3) }
 .edf-panel[hidden] { display:none }
+
+/* Sous-onglets projets nucléaires */
+.proj-tab {
+  padding:6px 14px; border:1px solid #cbd5e1; background:#f8fafc;
+  border-radius:8px; font-weight:600; font-size:.82rem; cursor:pointer;
+  transition:background .15s, color .15s, border-color .15s;
+}
+.proj-tab:hover { background:#f0fdfc; border-color:#0ea5a4; color:#0ea5a4; }
+.proj-tab.is-active { background:#0ea5a4; color:#fff; border-color:#0ea5a4; }
+.proj-panel[hidden] { display:none }
 
 .edf-card {
   background:#fff; border:1px solid #e6eef2; border-radius:16px;
@@ -2136,6 +2405,23 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   tabs.forEach(t => t.addEventListener('click', () => showPanel(t.getAttribute('aria-controls'))));
   showPanel(tabs[0].getAttribute('aria-controls'));
+
+  // Sous-onglets Projets Nucléaires
+  const projTabsRoot = section.querySelector('.proj-tabs');
+  if(projTabsRoot){
+    const projTabs   = projTabsRoot.querySelectorAll('.proj-tab');
+    const projPanels = section.querySelectorAll('.proj-panel');
+    function showProjPanel(id){
+      projPanels.forEach(p => { p.hidden = (p.id !== id); });
+      projTabs.forEach(t => {
+        const on = t.getAttribute('aria-controls') === id;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+    }
+    projTabs.forEach(t => t.addEventListener('click', () => showProjPanel(t.getAttribute('aria-controls'))));
+    showProjPanel(projTabs[0].getAttribute('aria-controls'));
+  }
 })();
 </script>
 
